@@ -22,6 +22,22 @@
 .om-tabs .header-no-border{
 	border-width:0px;
 }
+.om-tabs .left-placeholder{
+    display: inline-block;
+    float: left;
+    height: 27px;
+    line-height: 28px;
+    width: 3px;
+    margin-left: -3px;
+}
+
+.om-tabs .right-placeholder{
+    display: inline-block;
+    float: left;
+    height: 27px;
+    line-height: 28px;
+    width: 8px;
+}
 .om-tabs .om-tabs-scroll-left {
 	background : url(images/tabs/om-tabs-scroll-left.gif) no-repeat;
 	height: 29px;
