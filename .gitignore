@@ -1,1 +1,4 @@
 /build
+*.DS_Store
+/WebContent/release
+/WebContent/docs
