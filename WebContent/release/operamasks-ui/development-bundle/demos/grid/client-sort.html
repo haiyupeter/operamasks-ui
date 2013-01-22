@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>客户端排序</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                url : 'griddata.do?method=fast',
+                title : 'IP数据',
+                width : 586,
+                height : 300,
+                showIndex : true,
+                //当设置了clientSort时，必须同时设置sortName.
+                //sortOrder非必须，默认为asc
+                sortName : 'start',
+                sortOrder : 'asc',
+                onClientSort : function(griddata,
+                        sortName, sortOrder, g, p) {
+                    var renderer;
+                    var sort = (sortOrder == 'asc' ? 1
+                            : -1);
+                    if (p.colModel) {
+                        for ( var i = 0; i < p.colModel.length; i++) {
+                            if (p.colModel[i].name == sortName
+                                    && p.colModel[i].renderer) {
+                                renderer = p.colModel[i].renderer;
+                                break;
+                            }
+                        }
+                    }
+                    griddata.rows.sort(function(a, b) {
+                                var ah = renderer ? renderer(
+                                        sortName, a)
+                                        : a[sortName];
+                                var bh = renderer ? renderer(
+                                        sortName, b)
+                                        : b[sortName];
+                                if (ah.length == bh.length) {
+                                    return 0;
+                                } else if (ah.length < bh.length) {
+                                    return -1
+                                            * sort;
+                                } else {
+                                    return 1 * sort;
+                                }
+                            });
+                    return griddata;
+                },
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center', sortable : true}, 
+                             {header : '开始地址', name : 'start', width : 120, align : 'center', sortable : true}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>
+            设置onClientSort属性非false时，点击表格头，表格数据按照字典顺序进行客户端排序。
+            如果想表格数据按照自定义的排序算法排序，则需要设置onClientSort为一个函数，该函数接受5个参数，具体可参考说明文档。</p>
+        <p>设置sortName使表格加载时就进行排序，sortOrder为排序顺序，asc正序或者desc逆序。
+            本示例的使用“字符串长度比较”排序算法用，而不是常用的字典顺序，因此点击ID列数据的排序将不会有任何改变。</p>
+    </div>
+</body>
+</html>

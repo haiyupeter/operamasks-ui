@@ -1,0 +1,1205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omCalendar</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omCalendar
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#events">事件</a></li>
+                    
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    日历控件。默认通过绑定一个输入域来触发展示，同时也可以直接显示在页面上。<br /> 
+日历控件提供了一系列配置项参数和常用的组件api，尽量考虑到各种不同的应用场景。请注意，此控件支持的年份从100到10000。<br /><br/>
+<b>工具方法:</b>
+<pre>$.omCalendar.formatDate(date, formatter)</pre>
+<p>将传入的日期对象date按照formatter格式化成一个string并返回.</p>
+<pre>$.omCalendar.parseDate(date_string, formatter)</pre>
+<p>传入的string遵循formatter格式,此时提取日期信息,构建并返回日期对象.</p>
+<p>两个方法都接收一个格式字符串参数formater，大概像这样："yy-m-d H:i"，<br />
+在该字符串中每个字母(如 yy , m 等等)都有严格的定义，如下所示：<br /></p>
+<b>日期格式定义:</b>
+<pre>
+y:   年份(取后面2位字符),<br />
+yy:  年份(用4位字符表示),<br />
+m:   月份(数字表示,最少1个字符表示),<br />
+mm:  月份(数字表示,最少2个字符表示,不足时在前面添加0),<br />
+d:   日期(最少1个字符表示),<br />
+dd:  日期(最少2个字符表示,不足时在前面添加0),<br />
+h:   小时(12小时制,最少2个字符表示,不足时在前面添加0,取值范围00~11),<br />
+H:   小时(24小时制,最少2个字符表示,不足时在前面添加0,取值范围00~23),<br />
+g:   小时(12小时制,最少1个字符表示,取值范围0~11),<br />
+G:   小时(24小时制,最少1个字符表示,取值范围0~23),<br />
+i:   分钟(最少2个字符表示,取值范围00~59),<br />
+s:   秒钟(最少2个字符表示,取值范围00~59),<br />
+u:   毫秒(最少3个字符表示,取值范围000~999),<br />
+D:   星期的简写(如 Sun, Sat等等),<br />
+DD:  星期的全名(如 Sunday, Saturday等等),<br />
+M:   月份的简写(如 Jan, Feb 等等),<br />
+MM:  月份的全名(如 January, February等),<br />
+a:   上午下午(小写 am & pm),<br />
+A:   上午下午(大写 AM & PM),<br />
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-calendar.js.html">om-calendar.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omCalendar</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象 {minDate : new Date(2011, 7, 5), maxDate : new Date(2011, 7, 15)}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-date">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">date</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Date</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">当前日期</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        默认显示日期。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>
+  $("#input").omCalendar({date : new Date(2012, 0, 1)});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-dateFormat">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">dateFormat</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'yy-mm-dd H:i:s'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        日期格式化。具体的日期格式化参数请参考预览页签。如果设置showtime:false，默认取值为 'yy-mm-dd'，否则为 'yy-mm-dd H:i:s'。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#input").omCalendar({dateFormat : 'yy-mm-dd'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-disabled">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">disabled</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否禁用组件。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#input").omCalendar({disabled : false});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-disabledDays">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">disabledDays</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Array[Number]</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        不可选的星期。数组类型，里面的元素为 0-6，分别代表星期天到星期六。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  将星期六和星期天设为不可用:
+    $("#input").omCalendar({disabledDays : [0, 6]});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-disabledFn">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">disabledFn</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Function</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        设置过滤不可选日期方法。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>
+大于当月10号的日期不可用
+$("#input").omCalendar({
+    disabledFn : function disFn(date) {
+        var nowMiddle = new Date();
+        nowMiddle.setDate(10);
+        if (date > nowMiddle) {
+            return false;
+        }
+    }
+});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-editable">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">editable</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件是否可编辑。如果设成false则只可以通过下拉框选择日期，而不能在输入框里直接输入日期。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#input").omCalendar({editable : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxDate">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxDate</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Date</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最大日期。大于这个日期的日期将禁止选择。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#input").omCalendar({maxDate : new Date(2010, 0, 1)});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minDate">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minDate</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Date</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最小日期。小于这个日期的日期将禁止选择。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#input").omCalendar({minDate : new Date(2010, 0, 1)});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-pages">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">pages</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">1</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        下拉框中一次显示几个月。默认只显示一个月。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#input").omCalendar({pages : 3});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-popup">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">popup</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">true</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否带有input框。设成false时下拉框将不再需要通过输入框得到焦点来让它显示，而是下拉框直接显示在页面上。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  <div id="container" />
+  $("#container").omCalendar({popup : false});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-readOnly">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">readOnly</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件是否只读。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#input").omCalendar({readOnly : false});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-showTime">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">showTime</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否显示时间。默认情况下只显示日期不显示时间。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#input").omCalendar({showTime : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-startDay">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">startDay</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">0</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        下拉框中第一列是星期几（默认起始星期是星期天）。值为0-6的数字，分别代表星期天到星期六。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#input").omCalendar({startDay : 1});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-disable">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">disable</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omCalendar.html#disable">disable</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    将控件设置为不可用。会将input设置为不可用。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>jQuery对象</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>$('#input').omCalendar('disable');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-enable">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">enable</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omCalendar.html#enable">enable</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    将控件设置为可用状态。会将input设置为可用状态。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>jQuery对象</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>$('#input').omCalendar('enable');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-getDate">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">getDate</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omCalendar.html#getDate">getDate</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    获取控件选中的日期。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>Date</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>var date = $('#input').omCalendar('getDate');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-setDate">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">setDate</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omCalendar.html#setDate">setDate</a></b>(Date)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    设置控件选中的日期。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>Date</b>&nbsp;-
+	                                                
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>jQuery 对象</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>$('#input').omCalendar('setDate', new Date(2012, 0, 1));</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+          <!-- doc_events_begin -->
+          <div id="events">
+            <!-- ============================== event details ========================= -->     
+            <h2 class="top-header">事件</h2>
+            <div id="events-list">
+	            <ul class="events-list">
+	                
+	                    <li class="event" id="event-onSelect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onSelect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(date, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            选择日期后触发。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>date</b>&nbsp;-
+	                                        选中的日期
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象。
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>  $("#input").omCalendar({onSelect : function(date,event) {alert(date);}});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	            </ul>
+            </div>
+          </div>
+          <!-- doc_events_end -->
+       
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:58 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>基本功能</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-slider.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	.slider-demo{
+    		width: 500px;
+    		height: 375px;
+    		border: 1px solid #0092D2;
+    	}
+    </style>
+    <!-- view_source_end -->
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	$('#slider').omSlider();
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="slider" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+    <div id="view-desc">
+    <p>在指定的dom元素中，生成最简单的slider。
+        slider把指定元素下的子节点作为滑动的对象面板，并在右下角生成用来切换面板的导航条。</p>
+    </div>
+    <!-- view_source_end -->
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

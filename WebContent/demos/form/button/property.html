@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>属性设置</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('a#disabledprep').omButton({
+                disabled : true
+            });
+            $('#prepButton').omButton({});
+            $('#widthButton').omButton({width : 250});
+            $('#onclickButton').omButton({
+                width : 250,
+                label : '设置了onClick属性的按钮',
+                onClick : function(event){$('#showMessage').css('display','inline-block');}
+            });
+        });
+    </script>
+    <style type="text/css">
+       .iconCls{
+          background: url("images/help.png") no-repeat scroll 0 0 transparent;
+          padding-left: 20px;
+       }
+    </style>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <a id="disabledprep" href="javascript:void(0)">disabled设置到属性上面的按钮</a>
+    <br/><br/>
+    <input type="button" id="prepButton" disabled="disabled" value="disabled设置到标签上面的按钮">
+    <br/><br/>
+    <input type="submit" id="widthButton" value="width设置为250的按钮"/>
+    <br/><br/>
+    <input type="button" id="onclickButton"  /><span id="showMessage" style="display: none;">您点击了我</span>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>omButton支持disabled、width、onClick、label等属性，具体的属性说明请参考说明文档。</p>
+        <p><b>注意：</b>label可以直接写在dom元素里面，dom若为input，value属性显示为label文本；若为a或者button，text属性显示为label文本。disabled也可以可以写在标签里面。
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

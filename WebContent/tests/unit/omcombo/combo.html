@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omCombo test</title>
+<link rel="stylesheet" href="../../../themes/default/om-combo.css">
+<script src="../../../demos/common/js/json2.js"></script>
+<script src="../../../jquery.js"></script>
+
+<script src="../../../ui/om-core.js"></script>
+<script src="../../../ui/om-combo.js"></script>
+
+<link rel="stylesheet" href="../common/css/qunit.css">
+<script src="../common/js/qunit.js"></script>
+<script src="../common/js/jquery.simulate.js"></script>
+<script src="combo_options.js"></script>
+<script src="combo_methods.js"></script>
+<script src="combo_events.js"></script>
+<script src="combo_set_options.js"></script>
+<script src="../common/js/qunit-junit-outputter.js"></script>	
+</head>
+<body>
+<h1 id="qunit-header">Operamasks UI Combo Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+	<div id="combo1">
+		<input id="autoFilter_true" />
+		<input id="autoFilter_false" />
+	</div>
+	<div id="combo2">
+		<input id="dataSource_JSON" />
+		<input id="dataSource_URL" />
+	</div>
+	<div id="combo3">
+		<input id="disabled_test" />	
+	</div>
+	<div id="combo4">
+		<input id="editable_test" />
+	</div>
+	<div id="combo5">
+		<input id="emptyText_test" />
+	</div>
+	<div id="combo6">
+		<input id="filterDelay_test" />
+	</div>
+	<div id="combo7">
+		<input id="filterStrategy_test1" />
+		<input id="filterStrategy_test2" />
+		<input id="filterStrategy_test3" />
+		<input id="filterStrategy_test4" />
+	</div>
+	<div id="combo8">
+		<input id="inputField_test1" />
+		<input id="inputField_test2" />
+		<input id="inputField_test3" />
+	</div>
+	<div id="combo9">
+		<input id="lazyLoad_true" />
+	</div>
+	<div id="combo10">
+		<input id="listAutoWidth_false" />
+		<input id="listAutoWidth_true" />
+	</div>
+	<div id="combo11">
+		<input id="listMaxHeight_true1" />
+		<input id="listMaxHeight_true2" />
+		<input id="listMaxHeight_auto" />
+	</div>
+	<div id="combo12">
+		<input id="listProvider_test" />		
+	</div>
+	<div id="combo13">
+		<input id="optionField_name" />
+		<input id="optionField_function" />
+	</div>
+	<div id="combo14">
+		<input id="readOnly" />
+	</div>
+	<div id="combo15">
+		<input id="value-test" />
+		<input id="value-test1" />
+	</div>
+	<div id="combo16" style="width:500px;">
+		<input id="width-test1" />
+		<div id="width-test1-equal" style="width:100px"></div>
+		<input id="width-test2" />
+		<div id="width-test2-equal" style="width:100pt"></div>
+		<input id="width-test3" />
+		<div id="width-test3-equal" style="width:10em"></div>
+		<input id="width-test4" />
+		<div id="width-test4-equal" style="width:10%"></div>
+		<input id="width-test5" />
+		<div id="width-test5-equal" style="width:auto"></div>
+	</div>
+	<input id="forceSelection" />
+	<div id = "combo17">
+		<input id="disable_enable" />
+	</div>
+	<div id = "combo18">
+		<input id="getData_setData" />
+	</div>
+	<div id = "event-test">
+		<input id="onError-test" />
+		<span id="onError-span" ></span>
+		<input id="onSuccess-test" />
+		<span id="onSuccess-span"></span>
+		<input id="onValueChange-test" />
+		<span id="onvalueChange-span"></span>
+	</div>
+	
+	<div id="set-options-tests">
+	   <input id="autoFilter_set" />
+	   <input id="dataSource_set" />
+	   <input id="disabled_set" />
+	   <input id="editable_set" />
+	   <input id="emptyText_set" />
+	   <input id="filterDelay_set" />
+	   <input id="filterStrategy_set" />
+	   <input id="inputField_set1" />
+	   <input id="inputField_set2" />
+	   <input id="listAutoWidth_set" />
+	   <input id="listMaxHeight_set" />
+	   <input id="listProvider_set" />
+	   <input id="optionField_set" />
+	   <input id="readOnly_set" />
+	   <input id="value_set" />
+	   <input id="width_set" />
+	   <div id="width_set_equal" style="width:100px"></div>
+	</div>
+</div>
+</body>
+</html>

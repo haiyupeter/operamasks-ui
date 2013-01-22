@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>自定义导航条</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-slider.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	.slider-demo{
+    		width: 740px;
+    		height: 318px;
+    	}
+    	.my-custom-nav{
+    		background-color: #7B7A7A;
+    		list-style: none;
+    		margin: 0;
+    		padding: 0;
+    		position: relative;
+    		font-size: 12px;
+    		white-space:nowrap;
+    		width: 740px;
+    		height: 30px;
+    	}
+    	.my-custom-nav li{
+    		line-height: 18px;
+    		height: 25px;
+    		float: left;
+    		width: 184px;
+    		border-right: 1px solid #DCD6D3;
+    		border-top: 4px solid #7B7A7A;
+    		background-color: #7B7A7A;
+    	}
+    	.my-custom-nav li a{
+    		text-decoration: none;
+    		color: white;
+    	}
+    	.my-custom-nav li a p{
+    		margin: 3px 0 0 15px;
+    	}
+    	.my-custom-nav li.nav-selected{
+    		border-top: 4px solid #C00B0B;
+    		font-weight: bold;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slider').omSlider({controlNav:'.my-custom-nav'});            
+        }); 
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="slider" class="slider-demo">
+        <a href="#"><img src="images/custom-nav/ok1.jpg" alt="" /></a>
+        <a href="#"><img src="images/custom-nav/ok2.jpg" alt="" /></a>
+        <a href="#"><img src="images/custom-nav/ok3.jpg" alt="" /></a>
+        <a href="#"><img src="images/custom-nav/ok4.jpg" alt="" /></a>
+    </div>
+    <ul class="my-custom-nav">
+    	<li><a href="#"><p>李宁应季新品5.9折起卖疯了</p></a></li>
+    	<li><a href="#"><p>迪凯伦固特异工装鞋269元起</p></a></li>
+    	<li><a href="#"><p>新百伦秋季新款折扣会</p></a></li>
+    	<li><a href="#"><p>奥卡索秋季新款舒适行走</p></a></li>
+    </ul>
+    <!-- view_source_end -->
+    <div id="view-desc">自定义导航条内容。导航条可以使用div或者ul作为dom结构，导航条下的子节点和slider面板按位置顺序一一对应。<br/>
+        <b>注意：</b>自定义导航条的dom节点不能放到slider面板里面，否则导航条会作为slider下的其中一个面板进行切换。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

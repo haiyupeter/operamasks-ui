@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>批量上传文件</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+	    action : '../../../omFileUpload.do',
+	    swf : '../../../ui/om-fileupload.swf',
+	    multi  :true,
+	    queueSizeLimit : 5,
+	    onComplete : function(event,ID,fileObj,response,data){
+	    	var jsonData = eval("("+response+")");
+	    	$('#response').append('<span>文件'+fileObj.name+'已至此：<a target="_blank" href="'+jsonData.fileUrl+'">点击浏览</a></span><br />');
+	    }
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="上传第一个" onclick="$('#file_upload').omFileUpload('upload',0)">上传第一个</button>
+    <button value="上传所有" onclick="$('#file_upload').omFileUpload('upload')">上传所有</button><br />
+    <button value="取消第一个" onclick="$('#file_upload').omFileUpload('cancel',0)">取消第一个</button>
+    <button value="取消所有" onclick="$('#file_upload').omFileUpload('cancel')">取消所有</button>
+    <div id="response" style="font-weight: bold;color: red;"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>设置multi属性为true后可以批量上传文件。同时设置文件数量不能超过5个，当选择的文件数超过最大限制的时候会出现错误提示。设置multi为true后可在选择文件弹出框中使用CTRL或SHIFT键同时选择多个文件。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

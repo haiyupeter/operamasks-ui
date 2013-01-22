@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>事件监听</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-accordion.js"></script>
+    <script src="../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+        .java_icon{background: url('images/java.png') no-repeat;}
+        .c_icon{background: url('images/c.png') no-repeat;}
+        .c_plus_plus_icon{background: url('images/c_plus_plus.png') no-repeat;}
+        .om-panel-body {padding : 20px;}
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            $("#accordionId").omAccordion({
+                width : 500,
+                height : 250,
+                onActivate : function(n,event) {
+                    $("#log").append("<li>"+"第"+(n+1)+"个抽屉的onActivate事件被触发，该抽屉被展开了</li>");
+                },
+                onCollapse : function(n,event) {
+                    $("#log").empty().append("<li>"+"第"+(n+1)+"个抽屉的onCollapse事件被触发，该抽屉被收起了</li>");
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+<title>According Events</title>
+</head>
+<body>
+<!-- view_source_begin -->
+    <div id="accordionId" > 
+        <ul> 
+            <li><a href="#accordion-1" iconCls="java_icon" >java语言</a></li> 
+            <li><a href="#accordion-2" iconCls="c_icon" >c语言</a></li> 
+            <li><a href="#accordion-3" iconCls="c_plus_plus_icon" >c++语言</a></li> 
+        </ul> 
+        <div id="accordion-1">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;Java是一种可以撰写跨平台应用软件的面向对象的程序设计语言，
+            是由Sun Microsystems公司于1995年5月推出的Java程序设计语言和Java平台
+            （即JavaSE, JavaEE, JavaME）的总称。Java 技术具有卓越的通用性、高效性、
+            平台移植性和安全性，广泛应用于个人PC、数据中心、游戏控制台、科学超级计算机、
+            移动电话和互联网，同时拥有全球最大的开发者专业社群。在全球云计算和移动互联网
+            的产业环境下，Java更具备了显著优势和广阔前景。
+            </p>
+        </div>
+        <div id="accordion-2">
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;C语言是一种计算机程序设计语言。它既具有高级语言的特点，又具有汇编语
+                言的特点。它由美国贝尔研究所的D.M.Ritchie于1972年推出。1978后，C语言
+                已先后被移植到大、中、小及微型机上。它可以作为工作系统设计语言，编写系统
+                应用程序，也可以作为应用程序设计语言，编写不依赖计算机硬件的应用程序。它的应
+                用范围广泛，具备很强的数据处理能力，不仅仅是在软件开发上，而且各类科研都
+                需要用到C语言，适于编写系统软件，三维，二维图形和动画。具体应用比如单片
+                机以及嵌入式系统开发。
+            </p>
+        </div>
+        <div id="accordion-3">
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;C++这个词在中国大陆的程序员圈子中通常被读做“C加加”，而西方的程序员通常
+                读做“C plus plus”，“CPP”。 它是一种使用非常广泛的计算机编程语言。C++是一
+                种静态数据类型检查的、支持多重编程范式的通用程序设计语言。它支持过程化程序
+                设计、数据抽象、面向对象程序设计、制作图标等等泛型程序设计等多种程序设计风格。
+            </p>
+        </div>
+    </div>
+    <br/>
+    <h3>监听信息:</h3>
+    <ul id="log" style="list-style-type:none">
+    </ul>
+<!-- view_source_end -->
+    <!-- view_source_end -->
+    <div id="view-desc">
+        omAccordion提供了抽屉的收起和激活事件，用户可以监听这些事件在适当的时机做些特殊处理（比如激活第二个抽屉时让里面的某个输入框得到焦点）。事件的具体说明请参考说明文档。</p>
+    </div>
+</body>
+</html>

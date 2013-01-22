@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>排序功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-sort.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-grid-sort.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        //用于IP地址排序的自定义算法，具体思路是：将IP地址转换为数字，然后比较两个数字的大小。
+        //转换算法为：对于IP地址中每段不足3位的前面补0变成三位，比如
+        //   1.2.3.4变成001002003004、192.168.1.2变成192168001002、255.255.255.0变成255255255000
+        function ip2Number(ip){
+            var sections=ip.split('.');
+            for(var i=0,len=sections.length;i<len;i++){
+                switch(sections[i].length){
+                    case 0:sections[i]='000';break;
+                    case 1:sections[i]='00'+sections[i];break;
+                    case 2:sections[i]='0'+sections[i];break;
+                    default : ;//do nothing
+                }
+            }
+            return parseInt(sections.join("") , 10);
+        }
+        //清除排序信息并刷新数据
+        function clearSort(){
+            $('#grid').omGrid('clearSort');
+            $('#grid').omGrid('reload');
+        }
+        
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                height:320,
+                dataSource : '../../sortgriddata.data',
+                colModel : [ {header : 'ID', name : 'id', width : 50, align : 'center',sort:'clientSide'}, 
+                            {header : '开始IP', name : 'start', width : 120, align : 'left',sort:function(rowData1,rowData2){
+                                return ip2Number(rowData1.start)-ip2Number(rowData2.start);
+                                }
+                             }, 
+                             {header : '结束IP', name : 'end', width : 120, align : 'left',sort:function(rowData1,rowData2){
+                                return ip2Number(rowData1.end)-ip2Number(rowData2.end);
+                                }
+                             },
+                             {header : '地区', name : 'city', width : 100, align : 'left',sort:'serverSide'}, 
+                             {header : '地址', name : 'address', width : 'autoExpand', align : 'left'} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <br/>
+    <button onclick="clearSort();">清除排序状态并刷新数据</button>
+    <!-- view_source_end -->
+    
+    <div id="view-desc">
+        使用omGrid组件的排序插件即可添加排序功能。“ID”列采用默认算法排序，“开始IP”和“结束IP”这两列采用自定义算法排序，“地区”列采用服务器端排序，“地址”列不可以排序。<br/>
+       omGrid组件的排序插件与omGrid独立，使用该插件时只需要引入相应的js和css文件即可，使用插件后omGrid的colModel数组中每列都可以配置一个sort属性，它有以下4种值：
+       <ul>
+            <li><b>不设置:</b>该列不可以进行排序，单击表头后没有反应。</li>
+            <li><b>'clientSide':</b>对本页显示的数据进行客户端排序。采用默认的排序算法排序（对于数字进行大小比较；对于字符串进行字符左对齐比较，如'1'&lt;'10'、'1'&lt;'2'、'11'&lt;'2','a'&gt;'99','ZZ'&lt;'a'）。</li>
+            <li><b>自定义Function:</b>对本页显示的数据进行客户端排序。采用自定义的算法排序，Function具体写法为
+            <pre>            function(rowData1,rowData2){ 
+                //如果rowData1&lt;rowData2请返回任意负数，
+                //如果rowData1==rowData2请返回0
+                //rowData1&gt;rowData2请返回任意正数
+            }</pre></li>
+            <li><b>'serverSide':</b>对所有数据进行服务器端排序。取数请求中除了可以使用start、limit参数外，还可以使用sortBy（是colModel中某item的name属性的值）和sortDir（升序是asc，降序时是desc）两个参数。</li>
+       </ul>
+       该插件还有一个clearSort()方法，用于清除排序信息（去掉表头的排序图标，对于服务器排序还能保证下次取数时不再传递与排序相关的信息到后台），<b>此方法仅清空排序状态，并不立即取数，如果要立即取数，需要主动调用reload()方法</b>。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

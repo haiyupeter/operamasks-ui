@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tooltip.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+      .qtip-target {
+		    background: none repeat scroll 0 0 #DFE8F6;
+		    border: 1px dotted #99BBE8;
+		    color: #15428B;
+		    cursor: default;
+		    float: left;
+		    font: bold 11px tahoma,arial,sans-serif;
+		    margin: 10px;
+		    padding: 5px 0;
+		    text-align: center;
+		    width: 100px;
+		}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tip').omTooltip({
+                trackMouse : true,
+                lazyLoad : true,
+                url : 'content.html'
+            });
+            
+            $('#tip1').omTooltip({
+                contentEL : '#tipContent',
+                trackMouse : true
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div  class="qtip-target" id="tip">ajax方式懒加载资源</div>
+   	<div  class="qtip-target" id="tip1">获取页面dom节点做为提示内容</div>
+   	<div style="clear: both;"></div>
+   	<div id="tipContent" style="display: none;">
+   	  <div style="overflow:hidden" id="content-tip">
+          <ul>
+              <li>1、250平米豪宅</li>
+              <li>2、全豪华装修，厕纸盒平均价格5000块(比铁道部贵)</li>
+              <li>3、买房送苹果全系列产品</li>
+              <li>4、免费一年房屋保养</li>
+          </ul>
+          <div style="clear: both;"></div>
+          <img src="images/house.jpg">
+   	</div>
+    </div>
+    
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>可以通过url的方式异步加载内容，还可以配置懒加载<br/>
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,13 @@
+1)没有覆盖的组件
+1，omEditor
+2，omFileupload
+
+2)增加了qunit 预处理 om.qunit.preprocess.js
+   根据实际servlet部署的位置，修改其中的地址
+
+3)测试用例需要被测试js支持jsonp方式
+
+4）phantomjs命令参考
+phantomjs --local-to-remote-url-access=yes ../js/phantomjs-qunit-runner.js ../../omsuggestion/om-suggestion.html
+
+5）根据实际需要修改web.xml中‘omProxy’ servlet的<init-param>

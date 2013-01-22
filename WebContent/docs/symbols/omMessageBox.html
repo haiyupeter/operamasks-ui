@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omMessageBox</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omMessageBox
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    omMessageBox用于提供提示信息的弹出窗口，类似于JavaScript中使用alert()、confirm()、prompt()函数时出现的那种提示信息的弹出窗口。<br/><br/>
+<br/>
+<h2>有以下特点：</h2><br/>
+<ul>
+    <li>有较好的浏览器兼容性</li>
+    <li>可以定义标题、内容，并且标题和内容可以使用html代码</li>
+    <li>标题栏有关闭按钮，也可以按Esc键关闭</li>
+    <li>支持丰富的提示（图标不同）</li>
+    <li>可以监听关闭事件</li>
+</ul>
+<br/>
+<h2>提供了以下工具方法：</h2><br/>
+<ul>
+    <li>
+        <b>$.omMessageBox.alert(config)</b><br/>
+        弹出一个Alert提示，仅有一个“确定”按钮。其中config有以下配置项：<br/>
+        <ul style="margin-left:40px">
+            <li>type：alert提示的类型，类型不同时弹出窗口左边的图标会不同。String类型，可选的值有'alert'、'success'、'error'、'question'、'warning'。默认值为'alert'。</li>
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'提示'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为true，按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.alert({
+                type:'error',
+                title:'失败',
+                content:'不能删除&lt;font color="red">admin&lt;/font>用户',
+                onClose:function(value){
+                    alert('do something');
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.confirm(config)</b><br/>
+        弹出一个Confirm提示，有“确定”和“取消”按钮。其中config有以下配置项：<br/>
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'确认'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为true，点击“取消”按钮或按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.confirm({
+                title:'确认删除',
+                content:'删除用户后，它所有的发帖和回帖将同时删除（不可恢复），你确定要这样做吗？',
+                onClose:function(value){
+                    alert(value?'开始删除操作':'不删除了');
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.prompt(config)</b><br/>
+        弹出一个Prompt提示，有一个输入框和“确定”和“取消”按钮。其中config有以下配置项：
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'请输入'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为用户在输入框里输入的字符串（一定是字符串），点击“取消”按钮或按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。<b>注意：在此方法中返回false将会阻止弹出窗口关闭。</b></li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.prompt({
+                title:'商品数量',
+                content:'请输入你要购买的商品的数量（你的余额最多只能购买12千克）：',
+                onClose:function(value){
+                    if(value===false){ //按了取消或ESC
+                        alert('取消购买');
+                        return;
+                    }
+                    if(value==''){
+                        alert('数量不能为空');
+                        return false; //不关闭弹出窗口
+                    }
+                    if(value-0+'' !== value){
+                        alert('只能输入数字');
+                        return false;  //不关闭弹出窗口
+    `               }
+                    if(value&lt;0 || value&gt;12){
+                        alert('请输入0-12之间的数字（可带小数）');
+                        return false; //不关闭弹出窗口
+                    }else{
+                        alert('开始购买'+value+'千克商品');
+                    }
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.waiting(config | 'close')</b><br/>
+        弹出一个Prompt提示，有一个输入框和“确定”和“取消”按钮。该提示窗口没有关闭按钮，也不可以按ESC关闭。如果参数是'close'时表示关闭上次弹出的Waiting提示窗口。如果是config时表示要弹出一个Waiting提示窗口，其中config有以下配置项：
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'请稍候'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            //弹出提示
+            $.omMessageBox.waiting({
+                title:'请稍候',
+                content:'服务器正在处理您的请求，请稍候...',
+            });
+
+            //关闭提示
+            $.omMessageBox.waiting('close');
+        </pre>
+    </li>
+</ul>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-messagebox.js.html">om-messagebox.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omMessageBox</b>()
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            
+                        </div>
+                        -->
+                        
+                        
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            
+        
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:59 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

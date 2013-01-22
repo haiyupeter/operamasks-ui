@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>信息展示</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+	    input.omError {
+	        border: 1px solid red;
+	    }
+	    #errorMessages span{
+	    	display: block;
+	    	background: url(images/alert.png) 0 0 no-repeat;
+	    	padding-left:20px;
+	    }
+	    .error{
+		    background-color: #fff6bf;
+			text-align: left;
+			padding: 5px 20px 5px 15px;
+			border: 2px solid #ffd324;
+			display: none;
+			width: 200px;
+	    }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#reg").validate({
+                errorContainer : "#errorMessages",
+                errorLabelContainer : "#errorMessages",
+                wrapper : "span",
+                errorClass : "omError",
+                rules : {
+                    username : "required",
+                    password : {
+                        required : true,
+                        minlength : 5,
+                        maxlength : 10
+                    }
+                },
+                messages : {
+                    username : {
+                        required : "请输入用户名"
+                    },
+                    password : {
+                        required : "请输入密码",
+                        minlength : "密码长度不够",
+                        maxlength : "密码长度超出限制"
+                    }
+                },
+                submitHandler : function(){
+                    alert('提交成功！');
+                    $(this)[0].currentForm.reset();
+                    return false;
+                }
+            });
+            $("#sub").omButton(); 
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+	    <div id="errorMessages" class="error"></div>
+	    <br>
+	    <form action="test.action" id="reg">
+	        <label>用户名：</label><input type="text" name="username" />
+	        <br>
+	        <br>
+	        <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input type="password" name="password" />
+	        <br>
+	        <br>
+	        <input type="submit" value="提交" id="sub"/>
+	    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        插件支持灵活多变的错误信息展现，提供了多个配置属性进行错误信息的展现定制，有 errerElement
+        进行错误信息标签的展现，wrapper 包装错误信息标签, <br /> errorLabelContainer
+        配置展现错误信息的容器，errorContainer 配置所有的展现信息的容器。如果这些还不够，甚至还有
+        errorPlacement 属性配置，展现回调方法实现完全控制。
+    </div>
+</body>
+</html>

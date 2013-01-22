@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>隔行斑纹</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+      .om-grid div.bDiv tr.grayRow {
+		    background-color: gray;
+	  }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                dataSource : 'griddata.do?method=fast',
+                height : 290,
+                showIndex : true,
+                rowClasses:['oddRow','evenRow','grayRow'],
+                pageStat : '共 {total} 条数据',
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand'} ]
+            });
+        });   
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置rowClasses:['oddRow','evenRow','grayRow'],组件会根据传入数组循环显示行的样式（即第1,4,7...行使用'oddRow'样式，第2,5,8...行使用'evenRow'样式，第3,6,9...行使用'grayRow'样式）。<br/>
+       还可以把rowClasses设成一个function来完成根据记录的不同使用不同样式的功能。如rowClasses:function(rowIndex,rowData){if(rowData.address=='电信') return 'redRowClass';}表示地址是‘电信’行的显示成红色背景，其它行显示成默认背景的功能
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

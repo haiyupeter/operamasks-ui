@@ -1,0 +1,60 @@
+<!DOCTYPE html><html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omItemSelector tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-mouse.js" ></script>
+<script type="text/javascript" src="../../../ui/om-sortable.js" ></script>
+<script type="text/javascript" src="../../../ui/om-itemselector.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+         //properties : width, disabled, icons,  onClick
+    	$('#selector-event-onSort').omItemSelector({
+    		dataSource:'../../../items.json',
+    		width:600,
+    		toolbarIcons:[1,2,3,4,5,6,7,8],
+    		onSort:function(itemData,oldIndex,newIndex,event){
+    			alert('你刚刚将：'+itemData.text+'从第'+(oldIndex+1)+'行移到了第'+(newIndex+1)+'行');
+    		}
+    	}); 
+    });
+</script>
+ 
+</head> 
+<body> 
+  <div class="total">
+		Itemselector测试案例，API属性总共 <span class="apiNo" number="0"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-2">功能测试</a></li>
+	</ul>
+	
+	<div id="tabs-2">
+		<div  class="testPoint">
+		      <span class="title">事件测试点1：测试onSort属性</span>
+		      <br />
+		      <p>操作和预期结果：</p>
+		      <div class="textresult">
+		      	点击任何排序的按钮(向上、向下、置顶、置底)或者拖动元素进行排序后都会弹出框
+		      	提示“你刚刚将（元素名字）从第（原来的行数）行移到了第（现在的行数）行”
+		      </div>
+			<div id="selector-event-onSort"></div>
+		</div>
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

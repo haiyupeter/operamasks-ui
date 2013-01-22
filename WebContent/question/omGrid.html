@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>常见问题</title>
+    <style type="text/css">
+       div.option-header h3.option-name{
+          width:80%;
+       }
+    </style>
+</head>
+<script type="text/javascript">
+      $(function() {
+          $("#question-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示详情</a></div>');
+          var showExamples = true;
+          $(".toggle-docs-detail").toggle(function(e){
+              var details = $(this).text("隐藏详情")
+                  .parent().next().find("li > div:first-child").addClass("header-open");
+              if ( showExamples ) {
+                  details.nextAll().show();
+              } else {
+                  details.next().show();
+              }
+              e.preventDefault();
+          },function(e){
+              $(this).text("显示详情")
+                  .parent().next().find("li > div:first-child").removeClass("header-open")
+                  .nextAll().hide();
+              e.preventDefault();
+          });
+          
+          //Initially hide all options/methods/events
+          $('div.option-description, div.option-examples').hide();
+          
+          //Make list items collapsible
+          $('.question-list .option div.option-header h3').bind('click', function() {
+              var details = $(this).parent().toggleClass('header-open');
+              if ( showExamples ) {
+                  details.nextAll().toggle();
+              } else {
+                  details.next().toggle();
+              }
+          });
+         
+      });
+</script>
+<body>
+
+        <div id="question-list">
+        <ul class="question-list options-list">
+              <li class="option" id="option-autoFit">
+                 <div class="option-header">
+                    <h3 class="option-name"><a href="#" onclick="return false;">colModel的使用？</a></h3>
+                 </div>
+                 <div class="option-description">
+                    colModel配置项是列模型，它定义了表格与具体数据无关的展现。它是一个JSON数组，其中数组中每一个item（是一个JSON对象）代表表格中的一列。可以使用以下属性：<br/>
+					<ol>
+					     <li>header:String类型，表示表格的表头文字。无默认值。</li>
+					     <li>width:Number类型或'autoExpand'，如果是数字200表示该列宽度是200px。如果是'autoExpand'表示该列的宽度是表格总宽度减去其它各列宽度之和。默认值是60。</li>
+					     <li>align:'left'或'right'或'center'，表示表格的表头和表体文字的对齐方式。默认值是'left'。</li>
+					     <li>name:String类型，说明表体这一列要显示后台返回的数据记录（JSON对象）中的哪个属性的值，如name:'sex'表示这一列显示JSON对象的sex属性的值。无默认值。</li>
+					     <li>wrap:Boolean类型，说明这一列的表头和表体当内容太多时是否允许自动换行显示，如wrap:true表示这一列的表头和表体在显示时自动换行（比如该列宽度是100px但是表体某td内容宽度是120px时则该td的内容自动换行显示）。默认值是false。</li>
+					     <li>renderer:Function类型，允许在显示该列的值是进行客户端处理。无默认值（不做转换直接输出，比如id是'name'的列将会直接把JSON行数据中的name属性的值显示在表格的td中）。<br/>
+					     </li>
+					</ol>
+                  </div><br/>
+                  <div class="option-examples">
+                     <h4>示例：</h4>
+                     <dl class="option-examples-list">
+                       <dd>
+	                       <br/>
+	                       <p>1、某列中显示字体要需要加粗可以使用</p>
+	                       <pre>renderer:function(value , rowData , rowIndex){
+      return '&lt;b>'+value+'&lt;/b>';
+}</pre>
+                       </dd>
+                       <dd>
+	                       <br/>
+	                       <p>2、后台返回的数据中sex是0或1，页面中要转换为中文'男'和'女'可以使用</p>
+	                       <pre>renderer:function(value , rowData , rowIndex){
+    return value==0?'男':'女';
+}</pre>
+                       </dd>
+                       <dd>
+	                       <br/>
+	                       <p>3、后台返回的数据中score是分数，现要求100分输出为绿色的'满分'小于60分时输出红色的'不及格'其它的不变，可以使用</p>
+	                       <pre>renderer:function(value , rowData , rowIndex){ 
+        if(value==100){
+            return value==100?'&lt;font color="green">满分&lt;/font>';
+        }else if(value&lt;60){
+            return '&lt;font color="red">不及格&lt;/font>';
+        }else{
+            return value;
+        }
+   }</pre>
+                       </dd>
+                       </dl>
+                   </div>  
+ 
+                  </li>
+            <li class="option" id="option-autoFit">
+                 <div class="option-header">
+                   <h3 class="option-name"><a href="#" onclick="return false;">怎么实现隐藏列？</a></h3>
+                 </div>
+                 <div class="option-description">
+                   <p>
+                                            在omGrid中隐藏某列，只需要在colModel中不提供该列的表头信息即可。获取任意一行数据，都包括了隐藏列的数据。
+               示例参考组件示例“隐藏列和分页条”
+                 
+                   </p>
+                 </div>
+             </li>
+              <li class="option" id="option-autoFit">
+                 <div class="option-header">
+                   <h3 class="option-name"><a href="#" onclick="return false;">omGrid 行编辑如何定义编辑框的内容？</a></h3>
+                 </div>
+                 <div class="option-description">
+                   <p>
+                    设置colModel中的editor，当editor中的type=‘custom’时，可以通过设置renderer属性来自定义编辑框的渲染内容。
+                 
+                   </p>
+                 </div>
+                 <div class="option-examples">
+                     <h4>示例：</h4>
+                     <dl class="option-examples-list">
+                       <dd>
+	                       <br/>
+	                       <p>给“姓名”列自定义编辑框，编辑框中包括一个input输入框和一个“增加”按钮。</p>
+	                       <pre>colModel:[{header: 'ID', name: 'id'},
+{header: '姓名', name: 'name', editor:{
+type:'custom', renderer: function(value, rowData){
+return '&lt;input />&lt;button id="showGrid">增加&lt;/button>';
+}}}]</pre>
+                       </dd>
+                     </dl>
+                 </div>
+             </li>
+             <li class="option" id="option-autoFit">
+                 <div class="option-header">
+                   <h3 class="option-name"><a href="#" onclick="return false;">omGrid 如何动态自适应？</a></h3>
+                 </div>
+                 <div class="option-description">
+                   <p>
+                    第一种方式：可以设置组件属性“autoFit”为true即可。注意只有当只有所有列的宽度都不是'autoExpand'时该属性才会起作用。<br/>
+                    第二种方式：可以绑定window的scroll事件，在该事件中调用组件的resize方法。
+                   </p>
+                 </div>
+                 <div class="option-examples">
+                     <h4>示例：</h4>
+                     <dl class="option-examples-list">
+                       <dd>
+	                       <br/>
+	                       <p>给window绑定sroll事件</p>
+	                       <pre>$(window).scroll(function (){
+	$("#grid").omGrid('resize');
+});</pre>
+                       </dd>
+                     </dl>
+                 </div>
+             </li>
+	  </body>
+</html>

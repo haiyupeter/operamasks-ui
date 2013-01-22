@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>提交附加表单数据</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+	    action : '../../../omFileUpload.do',
+	    swf : '../../../ui/om-fileupload.swf',
+	    method   : 'GET',
+	    onComplete : function(ID,fileObj,response,data,event){
+	    	var jsonData = eval("("+response+")");
+	    	$('#response').html('提交的表单数据：'+jsonData.username+'<br />已上传文件至此：<a target="_blank" href="'+jsonData.fileUrl+'">点击浏览</a>');
+	    }
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <label for="username">用户名：</label>
+    <input id="username" name="username" type="text"></input><br />
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="上传" onclick="$('#file_upload').omFileUpload({'actionData':{'username':document.getElementById('username').value}});$('#file_upload').omFileUpload('upload');">上传</button>
+    <div id="response" style="font-weight: bold;color: red;"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>在“用户名”输入框中输入内容，然后选择上传文件。点击“上传”按钮后在文件上传请求中可以获得附加的表单数据。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

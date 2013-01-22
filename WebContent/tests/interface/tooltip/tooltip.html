@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../../ui/om-tooltip.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+<style>
+.tpDIV {
+	width: 400px;
+	height: 200px;
+}
+.qtip-target {
+		    background: none repeat scroll 0 0 #DFE8F6;
+		    border: 1px dotted #99BBE8;
+		    color: #15428B;
+		    cursor: default;
+		    float: left;
+		    font: bold 11px tahoma,arial,sans-serif;
+		    margin: 10px;
+		    padding: 5px 0;
+		    text-align: center;
+		    width: 100px;
+		}
+</style>
+<script type="text/javascript">
+     $(document).ready(function(){
+    	 $('#trackMouse').omTooltip({
+             trackMouse : true,
+             html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+         });
+    	 $('#lazyLoad').omTooltip({
+    	     lazyLoad : true,
+             url : 'content.html'
+         });
+    	 $('#offset').omTooltip({
+    	     offset : [6,6],
+    	     retion : 'right',
+             html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+         });
+    	 $('#anchorOffset').omTooltip({
+    	     anchorOffset : 7,
+    	     anchor : true ,
+    	     region : 'right',
+    	     offset : [17,2],
+             html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+         });
+    	 $('#region').omTooltip({
+    	     region : 'right',
+    	     offset : [15,2],
+             html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+         });
+     });
+</script>
+</head>
+<body>
+	    <div id="testPoint1" class="testPoint">
+			<span class="title">属性测试点1：测试trackMouse属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">鼠标在蓝色区域内移动，提示框会跟随移动</div>
+			<div class="tpDIV">
+				<div id="trackMouse" class="qtip-target">啊啊啊啊</div>
+			</div>
+	    </div>
+	    <div id="testPoint2" class="testPoint">
+			<span class="title">属性测试点2：测试lazyLoad属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">设置了lazyLoad为true的时候不会触发取数请求，在显示提示的时候才加载内容,需要使用firebug查看网络连接判定</div>
+			<div class="tpDIV">
+				<div id="lazyLoad" class="qtip-target">啊啊啊啊</div>
+			</div>
+	    </div>
+	    <div id="testPoint3" class="testPoint">
+			<span class="title">属性测试点3：测试offset属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">鼠标移动到目标区域，提示信息偏离目标比较远。</div>
+			<div class="tpDIV">
+				<div id="offset" class="qtip-target">啊啊啊啊</div>
+			</div>
+	    </div>
+	    <div id="testPoint4" class="testPoint">
+			<span class="title">属性测试点4：测试anchorOffset属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">anchor会在居中的位置</div>
+			<div class="tpDIV">
+				<div id="anchorOffset" class="qtip-target">啊啊啊啊</div>
+			</div>
+	    </div>
+	    <div id="testPoint5" class="testPoint">
+			<span class="title">属性测试点5：测试region属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">region设置为right，则提示框出现在右边</div>
+			<div class="tpDIV">
+				<div id="region" class="qtip-target">啊啊啊啊</div>
+			</div>
+	    </div>
+</body>
+</html>

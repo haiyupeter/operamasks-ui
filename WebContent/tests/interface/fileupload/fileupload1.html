@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omFileUpload Test</title>
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script>
+<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<style type="text/css">
+   .VPDIV{
+	width: 400px;
+	height: 200px;
+   }
+	#upload13Uploader{
+		border: 1px solid red;
+	}
+	#upload14Uploader{
+		border: 1px solid red;
+	}
+</style>
+<script type="text/javascript">
+   $(document).ready(function(){
+	   $("#upload1").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do"
+	   });
+	   
+	   $("#upload2").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   preview: true
+	   });
+	   
+	   $("#upload3").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   sizeLimit: 1024
+	   });
+	   
+	   $("#upload4").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   fileExt: "*.jpg;*.png;*.gif",
+		   fileDesc: "Image Files"
+	   });
+	   
+	   $("#upload5").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   multi: true
+	   });
+	   
+	   $("#upload6").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   multi: true,
+		   queueSizeLimit: 3
+	   });
+	   
+	   $("#upload7").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   autoUpload: true
+	   });
+	   
+	   $("#upload8").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   removeCompleted: false
+	   });
+	   
+	   $("#upload9").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   method: "GET",
+		   actionData:{name:'file1'},
+		   onComplete : function(ID,fileObj,response,data,event){
+		    	var jsonData = eval("("+response+")");
+		    	alert('actionData:name ='+jsonData.name);
+		    }
+	   });
+	   
+	   $("#upload10").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   width: 130,
+		   height: 45,
+		   buttonImg: 'images/newbutton.png'
+	   });
+	   
+	   $("#upload11").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   buttonText: '请上传小文件'
+	   });
+	   
+	   $("#upload13").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   width: 200
+	   });
+	   
+	   $("#upload14").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   height: 50
+	   });
+	   
+	   $("#upload15").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   method: "GET",
+		   actionData:{name:'file1'},
+		   onComplete : function(ID,fileObj,response,data,event){
+		    	var jsonData = eval("("+response+")");
+		    	alert('actionData:name ='+jsonData.name);
+		    }
+	   });
+	   
+	   $("#upload16").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   swf: "/operamasks-ui/tests/interface/fileupload/om-fileupload.swf"
+	   });
+   });
+</script>
+</head>
+<body>
+   <div class="testPoint">
+			<span class="title">属性测试点1：测试action属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件正常上传
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload1" name="upload1"/>
+			    <a href="#" onclick="$('#upload1').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+  <!--  <div class="testPoint">
+			<span class="title">属性测试点2：测试preview属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     可以预览选择上传的图片
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload2" name="upload2" />
+			    <a href="#" onclick="$('#upload2').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div> -->
+   <div class="testPoint">
+			<span class="title">属性测试点3：测试sizeLimit属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			    限制上传的文件大小不超过1024B
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload3" name="upload3" />
+			    <a href="" onclick="$('#upload3').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   <div class="testPoint">
+			<span class="title">属性测试点4：测试fileExt与fileDesc属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     只能上传“jpg、gif、png”图片，并且在选择文件的弹出窗口中的“文件类型”下拉框中显示“Image Files”。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload4" name="upload4" />
+			    <a href="#" onclick="$('#upload4').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点5：测试multi属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     可以进行批量上传。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload5" name="upload5" />
+			    <a href="#" onclick="$('#upload5').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点6：测试queueSizeLimit属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     可以进行批量上传，并且最多一次可以批量上传3个文件。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload6" name="upload6" />
+			    <a href="#" onclick="$('#upload6').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点7：测试autoUpload属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     选择完上传的文件后，就自动上传此文件。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload7" name="upload7" />
+			    <a href="#" onclick="$('#upload7').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点8：测试removeCompleted属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件上传完后，不移除上传的状态栏。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload8" name="upload8" />
+			    <a href="#" onclick="$('#upload8').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点9：测试actionData属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     点击“upload Files”链接后，上传完成后弹出框中显示“actionData：name=file1”。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload9" name="upload9" />
+			    <a href="#" onclick="$('#upload9').omFileUpload('upload');return false;">Upload Files</a>
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点10：测试buttonImg属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     已更新上传按钮的背景图片。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload10" name="upload10" />
+			    <a href="#" onclick="$('#upload10').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点11：测试buttonText属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮下面显示的文字为"请选择上传小文件"。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload11" name="upload11" />
+			    <a href="#" onclick="$('#upload11').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点13：测试width属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮所在的DIV的宽度为200px。
+			</div>
+
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload13" name="upload13" />
+			    <a href="#" onclick="$('#upload13').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点14：测试height属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮所在的DIV的高度为50px。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload14" name="upload14" />
+			    <a href="#" onclick="$('#upload14').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点15：测试method属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     点击“upload Files”链接后，上传完成后弹出框中显示“actionData：name=file1”。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload15" name="upload15" />
+			    <a href="#" onclick="$('#upload15').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">属性测试点16：测试swf属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     选择文件后点击“upload Files”链接，正常上传文件。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload16" name="upload16" />
+			    <a href="#" onclick="$('#upload16').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+      
+</body>
+</html>

@@ -1,0 +1,1172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omTooltip</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omTooltip
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    提示组件，当某个链接、表单、输入框等需要做功能向导提示的时候可以使用本组件。
+<b>特点：</b><br/>
+<ol>
+     <li>提示内容多样化，可以是文字，html，页面dom节点还可以是异步加载的内容</li>
+     <li>异步加载内容的时候支持懒加载</li>
+     <li>最大限度节约资源，只有需要使用的时候才在页面加入dom元素</li>
+     <li>支持所有标准html元素</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" &gt;
+$(document).ready(function() {
+    $('#tip').omTooltip({
+        trackMouse : true,
+        html : '&lt;div style="color:red;"&gt;欢迎使用omTooltip组件&lt;/div&gt;'
+    });
+});
+&lt;/script&gt;
+
+&lt;input id="tip" type="submit" /&gt;
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-tooltip.js.html">om-tooltip.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omTooltip</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            构造函数.
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象：{}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-anchor">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">anchor</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否显示anchor，默认不显示，如果trackMouse为true，则显示在左上角，如果不跟随，
+则根据region属性确定，箭头的方向永远指向被提示的目标。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({anchor: false});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-anchorOffset">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">anchorOffset</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">0</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        anchor偏移度(px),
+当设置anchor为top、button的时候，偏移度指相对于最左边的距离；
+为left、right的时候偏移度指相对于最上的距离
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({anchorOffset:10});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-contentEL">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">contentEL</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>selector</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        jquery选择器，可以获取页面的dom元素作为提示内容，格式为#ID、.className、tagName等，优先级比html属性低。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({contentEL:'#aa'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-delay">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">delay</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">300</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        鼠标移入目标区域之后弹出提示框的延迟时间(ms) ，同时也是隐藏延迟的事件。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({delay: 300});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-height">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">height</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'auto'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示框的高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({height: 100});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-html">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">html</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示组件显示的内容，可以是html和普通字符,优先级比contentEL属性高。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({html:'&lt;span style="color:red;"&gt;我是omTooltip&lt;/span&gt;'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-lazyLoad">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">lazyLoad</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        ajax方式显示内容的时候是否延迟加载页面，必须配置了url才有效
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({url:'a.html',lazyLoad: true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxHeight">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxHeight</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最大高度，高度默认自适应，当达到最大高度之后会隐藏内容 。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({maxHeight: 100});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最大宽度，当需要根据内容自动适应宽度而又不想因为内容太多而导致太宽的情况，可以使用maxWidht设置一个最大宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({maxWidth: 200});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minHeight">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minHeight</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最小高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({minHeight: 100});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最小宽度，当提示内容很少的时候为了样式美观显示指定的宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({minWidth: 100});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-offset">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">offset</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Object</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[5,5]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示框显示在指定位置的偏离度,提示框有两种基准位置，一是鼠标，二是目标区域,
+ 第一个参数为top偏差值，第二个为left偏差值。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({offset:[10,15]});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-region">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">region</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示框显示的区域,设置提示框显示的区域，如果不设置，
+则以鼠标的当前位置为基准点显示并跟随鼠标移动，
+如果设置了则以目标为基准点显示,可选值有left、right、top、bottom，
+比如选择了left，则提示框永远出现在目标的左边，不会进入目标。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({region:'bottom'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-showOn">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">showOn</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'mouseover'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        显示提示框的触发方式,可选值有mouseover、click
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({showOn: click});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-trackMouse">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">trackMouse</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示框是否跟随鼠标移动,默认不跟随鼠标移动，设置为true则跟随鼠标移动，
+比region优先级低。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({trackMouse: false});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-url">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">url</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        ajax加载内容的url地址,返回的内容格式dataType为html
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({url:'a.html'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-width">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">width</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'auto'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        提示框的宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#tip").omTooltip({width: 100});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-hide">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">hide</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omTooltip.html#hide">hide</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    隐藏组件。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>$('#mytip').omTooltip('hide');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-show">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">show</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omTooltip.html#show">show</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    显示组件，组件只有在显示的时候才添加到dom树，
+第二次显示已经存在dom树，只需要改变显示状态。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>$('#mytip').omTooltip('show');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:59 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    
+    <!-- view_source_begin -->
+    <style type="text/css">
+        .apple{
+        	background-image: url(images/apple.gif);
+        }
+        .tool-help{
+        	background-image: url("images/help.png"); 
+        }
+        .tool-help-hover{
+        	opacity: .6; filter:Alpha(Opacity=60);
+        }
+        .tool-min{
+        	background-image: url("images/min.png"); 
+        }
+        .tool-min-hover{
+        	opacity: .6; filter:Alpha(Opacity=60);
+        }
+    </style>
+    <script type="text/javascript">
+    
+        $(function() {
+            var panel = $("#panel").omPanel({
+                width:'500px',
+                height:'180px',
+                iconCls: "apple",
+                header: true,
+                title:'苹果公司简介',
+                tools:[
+                      	{
+                           iconCls:["tool-min","tool-min-hover"],
+                    		handler:function(){panel.omPanel("close"); $("#show").show();}
+                		},
+                        {
+                		    iconCls:["tool-help","tool-help-hover"],
+                		    handler:function(){alert("请求帮助。");}
+                }]
+            });
+            
+            $("#show").click(function(){
+                panel.omPanel("open");
+                $(this).hide();
+            });
+        });
+    
+    </script>
+    <!-- view_source_end -->
+    
+<title>基本功能</title>
+</head>
+<body>
+	<!-- view_source_begin -->
+	<input id="show" type="button" value="显示" style="margin-bottom:20px; display:none"/>
+   	<div id="panel">
+	   	<p style="text-indent:2em">
+	   		苹果公司（Apple Inc.，NASDAQ：AAPL，LSE：ACP），原称苹果电脑公司（Apple Computer, Inc.）总部位于美国加利福尼亚的库比蒂诺，核心业务是电子科技产品，目前全球电脑市场占有率为7.96%。苹果的Apple II于1970年代助长了个人电脑革命，其后的Macintosh接力于1980年代持续发展。最知名的产品是其出品的Apple II、Macintosh电脑、iPod音乐播放器、iTunes商店、iPhone手机和iPad平板电脑等。它在高科技企业中以创新而闻名。
+	   	</p>
+   	</div>
+   	<br/>
+   
+   	<!-- view_source_end -->
+    <div id="view-desc">
+      	omPanel的工具条除了内置的，还提供了方便的扩展，以便实现用户的复杂业务需求。</p>
+    </div>
+</body>
+</html>

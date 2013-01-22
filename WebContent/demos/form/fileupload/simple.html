@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+	    action : '../../../omFileUpload.do',
+	    swf : '../../../ui/om-fileupload.swf',
+	    onComplete : function(event,ID,fileObj,response,data){
+	    	var jsonData = eval("("+response+")");
+	    	$('#response').html('已上传文件至此：<a target="_blank" href="'+jsonData.fileUrl+'">点击浏览</a>');
+	    }
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="上传" onclick="$('#file_upload').omFileUpload('upload')">上传</button>
+    <div id="response" style="font-weight: bold;color: red;"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>omFileUpload的最基本用法。action属性指定处理文件上传的服务端地址。swf属性指定处理上传的swf的文件位置。onComplete为上传成功后的回调函数。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

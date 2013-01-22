@@ -1,0 +1,594 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omCombo tests</title> 
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Expires" CONTENT="0"/> 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-combo.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />  
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        
+    	 $('#combo_autoFilter').omCombo({
+             dataSource : [{text:'apusic server',name:'apusic',value:'1'},{text:'kingdee',name:'kingdee',value:'2'}],
+             autoFilter:true
+         });
+         
+         // test disabled attr
+         $('#combo_disabled').omCombo({  //disabled属性
+             dataSource : [{text:'Google',name:'apusic',value:'1'},{text:'baidu',name:'kingdee',value:'2'}],
+             value : '2',
+             disabled : true
+         });
+         
+         // test editable attr
+         $('#combo_editable_false').omCombo({
+             dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}],
+             editable:false
+         });
+         $('#combo_editable_true').omCombo({
+             dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}],
+             editable:true
+         });
+         $('#combo_editable_default').omCombo({
+             dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}]
+         });
+         
+         // test emptyText
+         $('#combo_emptyText').omCombo({  //emptyText属性，当没有数据的时候显示的提示信息
+             dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}],
+             emptyText : '没有数据'
+         });
+         
+         // test listProvider
+         $('#combo_listProvider').omCombo({  
+             dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}],
+             listProvider:function(container,records){
+                 var len=records.length;
+                 var html = '';
+                 for(var i=0;i<len;i++){
+                     html+='<div class="list_test">'+records[i].name+'---'+records[i].text+'</div>';
+                 }
+                 $(html).appendTo(container);
+                 return container.find('div[class="list_test"]');
+             }
+         });
+         
+         // test filterDelay
+         $('#combo_filterDelay').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             filterDelay:2000
+         });
+         
+         // test filterStrategy
+         $('#combo_filterStrategy').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             filterStrategy:'anywhere'
+         });
+         
+         $('#combo_filterStrategy_fn').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             filterStrategy:function(text){ 
+                 if (text=='ac') {
+                         return true;
+                 }
+                 return false;
+             }
+         });
+         
+         // test combo_width
+         $('#combo_width').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             width:300
+         });
+         
+         // test inputField
+         $('#combo_inputField').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             inputField:function(data,index){
+                 return data.text+'('+data.value+')';
+             }
+         });
+         
+         // test lazyLoad
+         $('#combo_lazyLoad').omCombo({  //lazyLoad属性，是否延迟加载 ,默认为false，如果为延迟加载，则对于不是直接在html中写好option的情况，在开始不构造下拉框的内容，而是在第一次onfocus时才构造options
+             dataSource : 'combo4.test?method=combo4&'+new Date().getTime(),
+             lazyLoad : true
+         });
+         
+         // test listAutoWidth
+         $('#combo_listAutoWidth').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'sdfffsssffffffffffffffffffsdoperamasks.org', name:'om',value:'2'}],
+             listAutoWidth:true
+         });
+         
+         // test listMaxHeight
+         $('#combo_listMaxHeight').omCombo({  //listMaxHeight属性，下拉框的最小高度,此处设置为60
+             dataSource : [{text:'Google',name:'apusic',value:'1'},{text:'baidu',name:'kingdee',value:'2'},{text:'3',name:'3',value:'3'},{text:'4',name:'4',value:'4'},{text:'5',name:'5',value:'5'}],
+             value : '2',
+             listMaxHeight : 60
+         });
+         
+         // test onValueChange
+         $('#combo_onValueChange').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             value:'1',
+             onValueChange:function(target, newValue, oldValue) {
+                 $('#valueChange_span').html("old value:" + oldValue +" - new value:" + newValue);
+             }
+         });
+         
+         //test multi
+         $('#combo_multi1').omCombo({
+             dataSource:[{text:'Java语言',value:'java'},{text:'C语言',value:'c'},{text:'C++语言',value:'c++'},{text:'JavaScript语言',value:'js'}]
+         });
+         $('#combo_multi2').omCombo({
+              multi:true,
+             dataSource:[{text:'Java语言',value:'java'},{text:'C语言',value:'c'},{text:'C++语言',value:'c++'},{text:'JavaScript语言',value:'js'}]
+         });
+         //test multiSeparator
+         $('#combo_multiSeparator1').omCombo({
+             multi:true,
+             dataSource:[{text:'Java语言',value:'java'},{text:'C语言',value:'c'},{text:'C++语言',value:'c++'},{text:'JavaScript语言',value:'js'}]
+         });
+         $('#combo_multiSeparator2').omCombo({
+             multi:true,
+             multiSeparator:'/',
+             dataSource:[{text:'Java语言',value:'java'},{text:'C语言',value:'c'},{text:'C++语言',value:'c++'},{text:'JavaScript语言',value:'js'}]
+         });
+         
+         // test optionField
+         $('#combo_optionField').omCombo({  //combo1默认optionField属性为‘text’，故无需设置
+ 			dataSource:[{text:'金蝶中间件',name:'apusic',value:'1'}],
+ 			value:'1'
+ 		});
+         
+         $('#combo_valueField_fn').omCombo({  //valueField类型为function，个性化设置valueField为原值加10,所以value必须设置为11才能表示默认值为1
+  			dataSource : [{text:'金蝶中间件',name:'apusic',value:'1'},{text:'金蝶',name:'kingdee',value:'2'}],
+  			optionField : function(data,index){
+  				return '<font color="red">'+index+'</font>.'+data.name+'('+data.text+')';
+  			},
+  		    valueField : function(data,index){
+  			    return data.value + '10';
+  			}, 
+  			inputField:function(data,index){
+  			    return data.text;
+  			},
+  			value:'110'
+  		});
+         
+         // test readOnly
+         $('#combo_readOnly').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             value:'1',
+             readOnly:true
+         });
+         
+         // test dataSource
+         $('#combo_records').omCombo({  //records属性必须设置，如果不设置下拉框div将没有值
+             dataSource : [{text:'Google',name:'apusic',value:'1'},{text:'baidu',name:'kingdee',value:'2'}],
+             value:'1'
+         });
+         
+         // test url
+         $('#combo_url').omCombo({  //url属性设置之后下拉框div将显示获取的值
+             dataSource : 'combo4.test?method=combo4',
+             value:'1'
+         });
+         
+         // test value
+         $('#combo_value').omCombo({  //value属性
+             dataSource : [{text:'Google',name:'apusic',value:'1'},{text:'baidu',name:'kingdee',value:'2'}],
+             value : '2'
+         });
+         
+         
+         $('#combo_optionField_1').omCombo({  //combo_optionField_1为function，个性化设置optionField
+ 			dataSource:[{text:'金蝶中间件',name:'apusic',value:'1'}],
+ 			optionField:function(data,index){
+ 				return '<font color="red">'+index+'</font>.'+data.name+'('+data.text+')';
+ 			},
+ 			inputField:function(data,index){
+ 			    return data.text;
+ 			},
+ 			value:'1'
+ 		});
+         
+         $('#combo_onError').omCombo({  //
+  			dataSource: 'combo4.test1?method=combo4', //将url地址写错误，触发onError
+  			lazyLoad : true,
+  			onError : function(request, status, error){alert('请求数据出错，错误消息：'+error);}
+  		});
+         $('#combo_onSuccess').omCombo({  //
+  			dataSource: 'combo4.test?method=combo4&t='+new Date().getTime(),
+  			lazyLoad : true,
+  			onSuccess : function(data){alert('总共加载出了：'+data.length+'条数据');}
+  		});
+         
+         
+         // ****************method test***************************
+         
+         // test combo_disable_enable
+         $('#combo_disable_enable').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             value:'1'
+         });
+         $('#disable_btn').bind('click', function(){
+             $('#combo_disable_enable').omCombo('disable');
+         });
+         $('#enable_btn').bind('click', function(){
+             $('#combo_disable_enable').omCombo('enable');
+         });
+         
+         // test loadRecords
+         $('#combo_loadRecords').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             value:'1'
+         });
+         $('#loadRecords_btn').bind('click', function(){
+             $('#combo_loadRecords').omCombo('setData', [
+ 	             {"text":'Apusic Server',"value":"aas"},
+ 	             {"text":'Apusic OperaMasks SDK',"value":"aom"},
+ 	             {"text":'Apusic OperaMasks Studio',"value":"studio"}
+ 	        ]);
+         });
+         
+         // test getValue and setValue method
+         $('#combo_get_set_value').omCombo({
+             dataSource:[{text:'apusic.com', name:'apusic',value:'1'},{text:'operamasks.org', name:'om',value:'2'}],
+             value:'1'
+         });
+         $('#setValue_btn').bind('click', function(){
+             $('#combo_get_set_value').omCombo('value', '2');
+         });
+         $('#getValue_btn').bind('click', function(){
+             $("#getValue_span").html($('#combo_get_set_value').omCombo('value'));
+         });
+         
+    }); 
+    
+    function getFirstItem()
+    {
+        var itemText = $('div.omcombo-ct-outter div[style^="display: block;"] div.omcombo-list-row').not('.omcombo-list-row-hidden').eq(0).text();
+        alert(itemText);
+    }
+    
+    function getListWidth()
+    {
+        var listWidth = $('div.omcombo-ct-outter div[style^="display: block;"] ').css('width');
+        alert(listWidth);
+    }
+    
+    function getListHeight()
+    {
+        var listHeight = $('div.omcombo-ct-outter div[style^="display: block;"] ').css('height');
+        alert(listHeight);
+    }
+    
+    function getItems()
+    {
+        var itemsText = $('div.omcombo-ct-outter div[style^="display: block;"] div.omcombo-list-row').not('.omcombo-list-row-hidden').text();
+        alert(itemsText);
+    }
+    
+    function clickTrigger(id)
+    {
+        $('#'+id).next('span.omcombo-arrow').click();
+    }
+    
+    function selectItem(index)
+    {
+        $('div.omcombo-ct-outter div[style^="display: block;"] div.omcombo-list-row').not('.omcombo-list-row-hidden').eq(index).mouseover().click();
+    }
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		Combo测试案例，API属性总共 <span class="apiNo" number="24"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+	   <!-- 
+		<div id="testPoint1" class="testPoint">
+			<span class="title">属性测试点1：测试autoFilter属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">输入a，将过滤下拉框，只剩下apusic server</div>
+			<div  class="tpDIV">
+				<input id="combo_autoFilter">
+			</div>
+	  </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点2：测试dataSource为静态数据的时候</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">初始输入框中显示Google，下拉列表中显示“Google”，“baidu”</div>
+            <div  class="tpDIV">
+                <input id="combo_records">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点3：测试dataSource为URL后台取数的时候</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">下拉列表中显示“Google”，“baidu”</div>
+            <div  class="tpDIV">
+                <input id="combo_url">
+            </div>
+      </div>
+	  
+	  <div id="testPoint2" class="testPoint">
+			<span class="title">属性测试点4：测试disabled属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">此属性能够将combo设置为不可用</div>
+			<div  class="tpDIV">
+				<input id="combo_disabled">
+			</div>
+	  </div>
+	  
+	  <div id="testPoint3" class="testPoint">
+			<span class="title">属性测试点5：测试editable属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">第一个输入框不可输入，第二个和第三个可输入</div>
+			<div  class="tpDIV">
+				<input id="combo_editable_false">
+			    <input id="combo_editable_true">
+			    <input id="combo_editable_default">
+			</div>
+	  </div>
+	  
+	   <div id="testPoint4" class="testPoint">
+			<span class="title">属性测试点6：测试emptyText属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">当输入框没有内容且没有得到焦点时显示”没有数据“。当输入框没有内容且得到焦点时显示空白</div>
+			<div  class="tpDIV">
+				<input id="combo_emptyText">
+			</div>
+	  </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点7：测试filterDelay属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">在输入框输入a等待2秒钟之后下拉框中记录从2条变成1条</div>
+            <div  class="tpDIV">
+                <input id="combo_filterDelay">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点8：测试filterStrategy属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">第一个输入框a不会过滤，再输入s会之后只剩一条记录，第二个输入框ac时下拉框会显示出来，输入其它内容下拉框都不显示</div>
+            <div  class="tpDIV">
+                 <input id="combo_filterStrategy">
+                 <input id="combo_filterStrategy_fn">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点9：测试inputField属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击下拉框，选择apusic.com会显示apusic.com(1)</div>
+            <div  class="tpDIV">
+                <input id="combo_inputField">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点10：测试lazyLoad属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">当设置此属性的时候，输入框focus时才加载下拉框中的内容。具体表现为页面加载时trigger处不出现loading图标，当且仅当第一次得到焦点时trigger处才出现loading图标</div>
+            <div  class="tpDIV">
+                <input id="combo_lazyLoad">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点11：测试listAutoWidth属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">当设置此属性的时候，下拉框宽度将等于最宽的那个条目的宽度 </div>
+            <div  class="tpDIV">
+                <input id="combo_listAutoWidth">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点12：测试listMaxHeight属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">下拉框中出现滚动条</div>
+            <div  class="tpDIV">
+                <input id="combo_listMaxHeight">
+            </div>
+      </div>
+	  
+	  <div class="testPoint">
+			<span class="title">属性测试点13：测试listProvider属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击下拉框，将出现“apusic---金蝶中间件”此类下拉文字，中文和英文之间使用---分隔</div>
+			<div  class="tpDIV">
+				<input id="combo_listProvider">
+			</div>
+	  </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点14：测试optionField属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">第一个下拉框正常显示“金蝶中间件”，第二个下拉框显示“0.apusic(金蝶中间件)”，其中“0”字体颜色为红色</div>
+            <div  class="tpDIV">
+                <input id="combo_optionField">
+                <input id="combo_optionField_1">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点15：测试readOnly属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">输入框为内容只读，不能输入，不能打开下拉框</div>
+            <div  class="tpDIV">
+                <input id="combo_readOnly">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点16：测试value属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">初始输入框中显示“baidu”</div>
+            <div  class="tpDIV">
+                <input id="combo_value">
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点17：测试valueField属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">输入框初始显示“金蝶中间件”</div>
+            <div  class="tpDIV">
+                <input id="combo_valueField_fn">
+            </div>
+      </div>
+	  
+	  <div class="testPoint">
+			<span class="title">属性测试点18：测试width属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">输入框宽度为300</div>
+			<div  class="tpDIV">
+				<input id="combo_width">
+			</div>
+	  </div>
+      
+	  <div class="testPoint">
+			<span class="title">属性测试点19：测试onError属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击下拉框，会弹出错误提示，提示请求数据出错</div>
+			<div  class="tpDIV">
+				<input id="combo_onError">
+			</div>
+	  </div>
+	  
+	  <div class="testPoint">
+			<span class="title">属性测试点20：测试onSuccess属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">输入框得到焦点，约3秒钟后弹出一个提示，提示内容为“总共加载出了：2条数据”(前提是你必须清空浏览器缓存或者设置你的浏览器不缓存数据，否则看不到描述的效果)</div>
+			<div  class="tpDIV">
+				<input id="combo_onSuccess">
+			</div>
+	  </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点21：测试onValueChange属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">当切换下拉框的输入值时，右边显示的“old value“、”new value”值会发生变化</div>
+            <div  class="tpDIV">
+                <input id="combo_onValueChange">
+                <span id="valueChange_span"></span>
+            </div>
+      </div>
+       -->
+      <div class="testPoint">
+            <span class="title">属性测试点22：测试multi属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">第一个combo一次只能选择一条记录。第二个combo可以同时选择多条记录（在其它地方点击时下拉框就会隐藏）</div>
+            <div  class="tpDIV">
+                <input id="combo_multi1">
+                <input id="combo_multi2">
+            </div>
+      </div>
+      <div class="testPoint">
+            <span class="title">属性测试点23：测试multiSeparator属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">第一个combo选择多条记录时，输入框的内容以,分隔开。第二个combo选择多条记录时，输入框的内容以/分隔开</div>
+            <div  class="tpDIV">
+                <input id="combo_multiSeparator1">
+                <input id="combo_multiSeparator2">
+            </div>
+      </div>
+	  
+	</div>
+	
+	<div id="tabs-2">
+	   <!-- 
+		<div  class="testPoint">
+			<span class="title">功能测试点1：测试disable()和enable()方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">初始时输入框可用，点击disable按钮后，输入框不可用，，点击enable按钮，输入框恢复正常</div>
+			<div  class="tpDIV">
+				<input id="combo_disable_enable">
+			    <button id="disable_btn">disable</button>
+			    <button id="enable_btn">enable</button>
+			</div>
+	  </div>
+	   -->
+	  <div  class="testPoint">
+			<span class="title">功能测试点2：测试getValue()和setValue(value)方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">初始时输入框中显示“apusic.com”，点击setValue按钮后，输入框中的值为“operamasks.org”，点击
+			getValue按钮后，按钮右边显示“2”</div>
+			<div  class="tpDIV">
+				<input id="combo_get_set_value">
+			    <button id="setValue_btn">setValue</button>
+			    <button id="getValue_btn">getValue</button>
+			    <span id="getValue_span"></span>
+			</div>
+	  </div>
+	  <div  class="testPoint">
+			<span class="title">功能测试点3：测试setData(url)方法，用于级联</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">初始下拉列表中有两条记录，点击setData按钮后，下拉列表中有3条记录</div>
+			<div  class="tpDIV">
+				 <input id="combo_loadRecords" style="width:200px">
+   				 <button id="loadRecords_btn">setData</button>
+			</div>
+	  </div>
+	</div>
+	
+	<div id="tabs-3">
+		
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

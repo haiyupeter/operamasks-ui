@@ -1,0 +1,508 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*
+<span class='line'>  2</span>  * $Id: om-editor.js,v 1.28 2012/03/15 06:23:58 wangfan Exp $
+<span class='line'>  3</span>  * operamasks-ui omEditor @VERSION
+<span class='line'>  4</span>  *
+<span class='line'>  5</span>  * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+<span class='line'>  6</span>  * Dual licensed under the MIT or LGPL Version 2 licenses.
+<span class='line'>  7</span>  * http://ui.operamasks.org/license
+<span class='line'>  8</span>  *
+<span class='line'>  9</span>  * http://ui.operamasks.org/docs/
+<span class='line'> 10</span>  *
+<span class='line'> 11</span>  * Depends:
+<span class='line'> 12</span>  *  om-core.js
+<span class='line'> 13</span>  */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="PUNC">;</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    
+<span class='line'> 16</span>     </span><span class="COMM">/** 
+<span class='line'> 17</span>      * @name omEditor
+<span class='line'> 18</span>      * @class HTML富文本编辑器.&lt;br/>
+<span class='line'> 19</span>      * &lt;b>特点：&lt;/b>&lt;br/>
+<span class='line'> 20</span>      * &lt;ol>
+<span class='line'> 21</span>      * 		&lt;li>在网页中使用的可见即所得HTML富文本编辑器&lt;/li>
+<span class='line'> 22</span>      * 		&lt;li>支持更换皮肤样式&lt;/li>
+<span class='line'> 23</span>      * 		&lt;li>支持文件上传&lt;/li>
+<span class='line'> 24</span>      * 		&lt;li>支持自定义工具条&lt;/li>
+<span class='line'> 25</span>      * 		&lt;li>支持自定义快捷键及其命令&lt;/li>
+<span class='line'> 26</span>      * &lt;/ol>
+<span class='line'> 27</span>      * &lt;b>工具条命令列表：&lt;/b>&lt;br/>
+<span class='line'> 28</span>      * &lt;ol>
+<span class='line'> 29</span>      * 		&lt;li>'Source'：源码&lt;/li>
+<span class='line'> 30</span>      * 		&lt;li>'Preview'：预览&lt;/li>
+<span class='line'> 31</span>      * 		&lt;li>'Print'：打印&lt;/li>
+<span class='line'> 32</span>      * 		&lt;li>'PasteText'：粘贴为无格式文本&lt;/li>
+<span class='line'> 33</span>      * 		&lt;li>'PasteFromWord'：从 MS Word 粘贴&lt;/li>
+<span class='line'> 34</span>      * 		&lt;li>'Undo'：撤销&lt;/li>
+<span class='line'> 35</span>      * 		&lt;li>'Redo'：重做&lt;/li>
+<span class='line'> 36</span>      * 		&lt;li>'Find'：查找&lt;/li>
+<span class='line'> 37</span>      * 		&lt;li>'Replace'：替换&lt;/li>
+<span class='line'> 38</span>      * 		&lt;li>'Bold'：加粗&lt;/li>
+<span class='line'> 39</span>      * 		&lt;li>'Italic'：倾斜&lt;/li>
+<span class='line'> 40</span>      * 		&lt;li>'Underline'：下划线&lt;/li>
+<span class='line'> 41</span>      * 		&lt;li>'Strike'：删除线&lt;/li>
+<span class='line'> 42</span>      * 		&lt;li>'Subscript'：下标&lt;/li>
+<span class='line'> 43</span>      * 		&lt;li>'Superscript'：上标&lt;/li>
+<span class='line'> 44</span>      * 		&lt;li>'RemoveFormat'：清除格式&lt;/li>
+<span class='line'> 45</span>      * 		&lt;li>'NumberedList'：编号列表&lt;/li>
+<span class='line'> 46</span>      * 		&lt;li>'BulletedList'：项目列表&lt;/li>
+<span class='line'> 47</span>      * 		&lt;li>'Outdent'：减少缩进量&lt;/li>
+<span class='line'> 48</span>      * 		&lt;li>'Indent'：增加缩进量&lt;/li>
+<span class='line'> 49</span>      * 		&lt;li>'Blockquote'：块引用&lt;/li>
+<span class='line'> 50</span>      * 		&lt;li>'JustifyLeft'：左对齐&lt;/li>
+<span class='line'> 51</span>      * 		&lt;li>'JustifyCenter'：居中&lt;/li>
+<span class='line'> 52</span>      * 		&lt;li>'JustifyRight'：右对齐&lt;/li>
+<span class='line'> 53</span>      * 		&lt;li>'JustifyBlock'：两端对齐&lt;/li>
+<span class='line'> 54</span>      * 		&lt;li>'BidiLtr'：文字方向为从左至右&lt;/li>
+<span class='line'> 55</span>      * 		&lt;li>'BidiRtl'：文字方向为从右至左&lt;/li>
+<span class='line'> 56</span>      * 		&lt;li>'Link'：插入/编辑超链接&lt;/li>
+<span class='line'> 57</span>      * 		&lt;li>'Unlink'：取消超链接&lt;/li>
+<span class='line'> 58</span>      * 		&lt;li>'Anchor'：插入/编辑锚点链接&lt;/li>
+<span class='line'> 59</span>      * 		&lt;li>'Image'：图象&lt;/li>
+<span class='line'> 60</span>      * 		&lt;li>'Flash'：Flash&lt;/li>
+<span class='line'> 61</span>      * 		&lt;li>'Table'：表格&lt;/li>
+<span class='line'> 62</span>      * 		&lt;li>'HorizontalRule'：插入水平线&lt;/li>
+<span class='line'> 63</span>      * 		&lt;li>'Smiley'：表情符&lt;/li>
+<span class='line'> 64</span>      * 		&lt;li>'SpecialChar'：插入特殊符号&lt;/li>
+<span class='line'> 65</span>      * 		&lt;li>'PageBreak'：插入分页符&lt;/li>
+<span class='line'> 66</span>      * 		&lt;li>'Iframe'：iFrame&lt;/li>
+<span class='line'> 67</span>      * 		&lt;li>'Styles'：样式&lt;/li>
+<span class='line'> 68</span>      * 		&lt;li>'Format'：格式&lt;/li>
+<span class='line'> 69</span>      * 		&lt;li>'Font'：字体&lt;/li>
+<span class='line'> 70</span>      * 		&lt;li>'FontSize'：大小&lt;/li>
+<span class='line'> 71</span>      * 		&lt;li>'TextColor'：文本颜色&lt;/li>
+<span class='line'> 72</span>      * 		&lt;li>'BGColor'：背景颜色&lt;/li>
+<span class='line'> 73</span>      * 		&lt;li>'Maximize'：全屏&lt;/li>
+<span class='line'> 74</span>      * 		&lt;li>'ShowBlocks'：显示区块&lt;/li>
+<span class='line'> 75</span>      * 		&lt;li>'About'：关于omEditor&lt;/li>
+<span class='line'> 76</span>      * &lt;/ol>
+<span class='line'> 77</span>      * &lt;b>示例：&lt;/b>&lt;br/>
+<span class='line'> 78</span>      * &lt;pre>
+<span class='line'> 79</span>      * &lt;script type="text/javascript" &gt;
+<span class='line'> 80</span>      * $(document).ready(function() {
+<span class='line'> 81</span>      *     $('#editor').omEditor({
+<span class='line'> 82</span>      *         skin:'kama',
+<span class='line'> 83</span>      *         toolbar:'Basic',
+<span class='line'> 84</span>      *         filebrowserImageUploadUrl : '/operamasks-ui/omUpload.do?type=Images'
+<span class='line'> 85</span>      *     });
+<span class='line'> 86</span>      * });
+<span class='line'> 87</span>      * &lt;/script&gt;
+<span class='line'> 88</span>      * &lt;textarea id="editor" name="editor" class="editor"&gt;&lt;p&gt;Initial value &lt;/p&gt;&lt;/textarea&gt;
+<span class='line'> 89</span>      * &lt;/pre>
+<span class='line'> 90</span>      * @constructor
+<span class='line'> 91</span>      * @description 构造函数. 
+<span class='line'> 92</span>      * @param p 标准config对象：{}
+<span class='line'> 93</span>      */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">    </span><span class="NAME">$.omWidget</span><span class="PUNC">(</span><span class="STRN">"om.omEditor"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">        
+<span class='line'> 96</span>         </span><span class="NAME">options</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="COMM">/** @lends omEditor.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'> 98</span>          * 工具箱（别名工具栏）的定义。它是一个工具栏的名称或数组。
+<span class='line'> 99</span>          * editor默认定义了两个工具箱，名字分别为'Full'和'Basic'。
+<span class='line'>100</span>          * @type Array,String
+<span class='line'>101</span>          * @default 'Full'
+<span class='line'>102</span>          * @example
+<span class='line'>103</span>          * // 定义一个工具条只包含”源代码“、一个分隔符，”加粗“和”斜体“按钮 
+<span class='line'>104</span>          * var config = {};
+<span class='line'>105</span>          * config.toolbar =
+<span class='line'>106</span>          * [
+<span class='line'>107</span>          *     [ 'Source', '-', 'Bold', 'Italic' ]
+<span class='line'>108</span>          * ];
+<span class='line'>109</span>          * $( "#editor" ).omEditor(config);
+<span class='line'>110</span>          * @example
+<span class='line'>111</span>          * // 加载名字为'Basic'的工具集.
+<span class='line'>112</span>          * $( "#editor" ).omEditor({ toolbar: 'Basic' });
+<span class='line'>113</span>          */</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">            </span><span class="NAME">toolbar</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Full'</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>115</span> 
+<span class='line'>116</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>117</span>              * 编辑器的高度。&lt;b>注意: 不支持百分比&lt;/b>
+<span class='line'>118</span>              * @type Number
+<span class='line'>119</span>              * @default 200
+<span class='line'>120</span>              * @example
+<span class='line'>121</span>              * $( "#editor" ).omEditor({ height: 500 });
+<span class='line'>122</span>              */</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">            </span><span class="NAME">height</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">200</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>124</span> 
+<span class='line'>125</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>126</span>              * 编辑器的皮肤。可以是安装路径下的皮肤文件夹的名字，或者是用逗号分隔路径和文件夹的名字。
+<span class='line'>127</span>              * @type String
+<span class='line'>128</span>              * @default 'eac'
+<span class='line'>129</span>              * @example
+<span class='line'>130</span>              * $( "#editor" ).omEditor({ skin: 'kama' });
+<span class='line'>131</span>              * $( "#editor" ).omEditor({ skin: 'myskin,/customstuff/myskin/' });
+<span class='line'>132</span>              */</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">            </span><span class="NAME">skin</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'eac'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>134</span> 
+<span class='line'>135</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>136</span>              * 编辑器的宽度，可设置具体的像素值或百分比。
+<span class='line'>137</span>              * @type String,Number
+<span class='line'>138</span>              * @default 无
+<span class='line'>139</span>              * @example
+<span class='line'>140</span>              * $( "#editor" ).omEditor({ width: 850 });
+<span class='line'>141</span>              * @example
+<span class='line'>142</span>              * $( "#editor" ).omEditor({ width: '75%' });
+<span class='line'>143</span>              */</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">            </span><span class="NAME">width</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">            
+<span class='line'>146</span>             </span><span class="COMM">/**
+<span class='line'>147</span>              * 编辑器是否只读。
+<span class='line'>148</span>              * @type Boolean
+<span class='line'>149</span>              * @default false
+<span class='line'>150</span>              * @example
+<span class='line'>151</span>              * $( "#editor" ).omEditor({ readOnly: true });
+<span class='line'>152</span>              */</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">            </span><span class="NAME">readOnly</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">            
+<span class='line'>155</span>             </span><span class="COMM">/**
+<span class='line'>156</span>              * 是否在“源码”模式中对“所见即所得”模式里的HTML实体进行转义，包括:nbsp,gt,lt,amp;
+<span class='line'>157</span>              * @type Boolean
+<span class='line'>158</span>              * @default true
+<span class='line'>159</span>              * @example
+<span class='line'>160</span>              * $( "#editor" ).omEditor({ basicEntities: false });
+<span class='line'>161</span>              */</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">            </span><span class="NAME">basicEntities</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">            
+<span class='line'>164</span>             </span><span class="COMM">// 设置为false且暂时不开放这个属性，当设置为true且basicEntities设置为false时会出现转义异常</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">            </span><span class="COMM">// 见：http://jira.apusic.net/browse/AOM-33</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">            </span><span class="NAME">entities</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">            
+<span class='line'>168</span>             </span><span class="COMM">/**
+<span class='line'>169</span>              * 定义一组快捷键列表用来阻止浏览器对这些按键的默认行为。
+<span class='line'>170</span>              * @type Array
+<span class='line'>171</span>              * @default (查看该属性示例)
+<span class='line'>172</span>              * @name omEditor#blockedBrowserKeystrokes
+<span class='line'>173</span>              * @example
+<span class='line'>174</span>              * // 这是默认值
+<span class='line'>175</span>              * var config = {};
+<span class='line'>176</span>              * config.blockedBrowserKeystokes =
+<span class='line'>177</span>              * [
+<span class='line'>178</span>              *     OMEDITOR.CTRL + 66 &#47;*B*&#47;,
+<span class='line'>179</span>              *     OMEDITOR.CTRL + 73 &#47;*I*&#47;,
+<span class='line'>180</span>              *     OMEDITOR.CTRL + 85 &#47;*U*&#47;
+<span class='line'>181</span>              * ];
+<span class='line'>182</span>              * $( "#editor" ).omEditor(config);
+<span class='line'>183</span>              */</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">            
+<span class='line'>185</span>             </span><span class="COMM">/**
+<span class='line'>186</span>              * 设置加载为HTML编辑器的内容时，要使用的DOCTYPE。
+<span class='line'>187</span>              * @type String
+<span class='line'>188</span>              * @default '&lt;!DOCTYPE HTML&gt;'
+<span class='line'>189</span>              * @example
+<span class='line'>190</span>              * // Set the doctype to the HTML 4 (quirks) mode.
+<span class='line'>191</span>              * $( "#editor" ).omEditor({ docType: '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;' });
+<span class='line'>192</span>              */</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">            </span><span class="NAME">docType</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'&lt;!DOCTYPE HTML>'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">            
+<span class='line'>195</span>             </span><span class="COMM">/**
+<span class='line'>196</span>              * 允许上下文敏感的tab键行为，包括下列情况：
+<span class='line'>197</span>              * &lt;h5>当在表格里面按下tab键时:&lt;/h5>
+<span class='line'>198</span>              * &lt;ul>
+<span class='line'>199</span>              *      &lt;li>如果 TAB 被按下, 选择表格的下一个单元格，如果当前是表格的最后一个单元格则新建一行并focus到该行的第一个单元格&lt;/li>
+<span class='line'>200</span>              *      &lt;li>如果 SHIFT+TAB 被按下, 选择表格的上一个单元格，如果当前是表格的第一个单元格则什么事都不做.&lt;/li>
+<span class='line'>201</span>              * &lt;/ul>
+<span class='line'>202</span>              * &lt;br/>
+<span class='line'>203</span>              * @type Boolean
+<span class='line'>204</span>              * @default true
+<span class='line'>205</span>              * @example
+<span class='line'>206</span>              * $( "#editor" ).omEditor({ enableTabKeyTools: false });
+<span class='line'>207</span>              */</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">            
+<span class='line'>209</span>             </span><span class="NAME">enableTabKeyTools</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">            
+<span class='line'>211</span>             </span><span class="COMM">/**
+<span class='line'>212</span>              * 设置回车键的行为. 这也决定了在编辑器中的其他行为规则, 例如元素 &lt;br&gt;是否作为段落分隔时使用。
+<span class='line'>213</span>              * 允许的值包括以下常量，以及它们的相对行为:
+<span class='line'>214</span>              * &lt;ul>
+<span class='line'>215</span>              *     &lt;li>{@link OMEDITOR.ENTER_P} (1): 创建新的 &lt;p&gt; 段落;&lt;/li>
+<span class='line'>216</span>              *     &lt;li>{@link OMEDITOR.ENTER_BR} (2): 行被 &lt;br&gt; 元素分隔;&lt;/li>
+<span class='line'>217</span>              *     &lt;li>{@link OMEDITOR.ENTER_DIV} (3): 创建新的 &lt;div&gt; 块&lt;/li>
+<span class='line'>218</span>              * &lt;/ul>
+<span class='line'>219</span>              * &lt;strong>注意&lt;/strong>: 建议使用
+<span class='line'>220</span>              * {@link OMEDITOR.ENTER_P} 值，因为它的语义值和正确性。并且编辑器会优化这个值.
+<span class='line'>221</span>              * @type Number
+<span class='line'>222</span>              * @default OMEDITOR.ENTER_P
+<span class='line'>223</span>              * @example
+<span class='line'>224</span>              * // 不建议使用的.
+<span class='line'>225</span>              * $( "#editor" ).omEditor({ enterMode: OMEDITOR.ENTER_BR });
+<span class='line'>226</span>              */</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">            </span><span class="NAME">enterMode</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.ENTER_P</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">            
+<span class='line'>229</span>             </span><span class="COMM">/**
+<span class='line'>230</span>              * 快捷键关联命令的列表。
+<span class='line'>231</span>              * 列表中的每个元素是一个数组，其中第一项是按键，第二个是要执行的命令的名称。
+<span class='line'>232</span>              * &lt;b>注意：如果设置了这个属性值则默认值会被覆盖&lt;/b>
+<span class='line'>233</span>              * @type Array
+<span class='line'>234</span>              * @default (查看该属性示例)
+<span class='line'>235</span>              * @name omEditor#keystrokes
+<span class='line'>236</span>              * @example
+<span class='line'>237</span>              * // 下面是默认值.
+<span class='line'>238</span>              * var config={};
+<span class='line'>239</span>              * config.keystrokes =
+<span class='line'>240</span>              * [
+<span class='line'>241</span>              *     [ OMEDITOR.ALT + 121 &#47;*F10*&#47;, 'toolbarFocus' ],
+<span class='line'>242</span>              *     [ OMEDITOR.ALT + 122 &#47;*F11*&#47;, 'elementsPathFocus' ],
+<span class='line'>243</span>              *
+<span class='line'>244</span>              *     [ OMEDITOR.SHIFT + 121 &#47;*F10*&#47;, 'contextMenu' ],
+<span class='line'>245</span>              *
+<span class='line'>246</span>              *     [ OMEDITOR.CTRL + 90 &#47;*Z*&#47;, 'undo' ],
+<span class='line'>247</span>              *     [ OMEDITOR.CTRL + 89 &#47;*Y*&#47;, 'redo' ],
+<span class='line'>248</span>              *     [ OMEDITOR.CTRL + OMEDITOR.SHIFT + 90 &#47;*Z*&#47;, 'redo' ],
+<span class='line'>249</span>              *
+<span class='line'>250</span>              *     [ OMEDITOR.CTRL + 76 &#47;*L*&#47;, 'link' ],
+<span class='line'>251</span>              *
+<span class='line'>252</span>              *     [ OMEDITOR.CTRL + 66 &#47;*B*&#47;, 'bold' ],
+<span class='line'>253</span>              *     [ OMEDITOR.CTRL + 73 &#47;*I*&#47;, 'italic' ],
+<span class='line'>254</span>              *     [ OMEDITOR.CTRL + 85 &#47;*U*&#47;, 'underline' ],
+<span class='line'>255</span>              *
+<span class='line'>256</span>              *     [ OMEDITOR.ALT + 109 &#47;*-*&#47;, 'toolbarCollapse' ]
+<span class='line'>257</span>              * ];
+<span class='line'>258</span>              * $( "#editor" ).omEditor(config);
+<span class='line'>259</span>              */</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">            
+<span class='line'>261</span>             </span><span class="COMM">/**
+<span class='line'>262</span>              * 是否允许改变编辑器大小。
+<span class='line'>263</span>              * @type Boolean
+<span class='line'>264</span>              * @default true
+<span class='line'>265</span>              * @example
+<span class='line'>266</span>              * $( "#editor" ).omEditor({ resizable:true });
+<span class='line'>267</span>              */</span><span class="WHIT">
+<span class='line'>268</span> </span><span class="WHIT">            </span><span class="NAME">resizable</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">            
+<span class='line'>270</span>             </span><span class="COMM">/**
+<span class='line'>271</span>              * 设置页面加载的时候编辑器是否默认focus。
+<span class='line'>272</span>              * @type Boolean
+<span class='line'>273</span>              * @default false
+<span class='line'>274</span>              * @example
+<span class='line'>275</span>              * $( "#editor" ).omEditor({ startupFocus:true });
+<span class='line'>276</span>              */</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">            
+<span class='line'>278</span>             </span><span class="NAME">startupFocus</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">            
+<span class='line'>280</span>             </span><span class="COMM">/**
+<span class='line'>281</span>              * 设置编辑器启动时加载的模式。
+<span class='line'>282</span>              * 这取决于加载的插件。默认情况下，“所见即所得”(wysiwyg)和“源”(source)模式可供选择。
+<span class='line'>283</span>              * @type String
+<span class='line'>284</span>              * @default 'wysiwyg'
+<span class='line'>285</span>              * @example
+<span class='line'>286</span>              * $( "#editor" ).omEditor({ startupMode:'source' });
+<span class='line'>287</span>              */</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">            </span><span class="NAME">startupMode</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'wysiwyg'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">            
+<span class='line'>290</span>             </span><span class="COMM">/**
+<span class='line'>291</span>              * 要保持的撤销步骤的数量。此值设置越高则占用内存越大。
+<span class='line'>292</span>              * @type Number
+<span class='line'>293</span>              * @default 20
+<span class='line'>294</span>              * @example
+<span class='line'>295</span>              * $( "#editor" ).omEditor({ undoStackSize:50 });
+<span class='line'>296</span>              */</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">            </span><span class="NAME">undoStackSize</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">            
+<span class='line'>299</span>             </span><span class="COMM">/**
+<span class='line'>300</span>              * 编辑器的界面颜色。并不适用于所有皮肤。
+<span class='line'>301</span>              * @type String
+<span class='line'>302</span>              * @default 无
+<span class='line'>303</span>              * @example
+<span class='line'>304</span>              * $( "#editor" ).omEditor({ uiColor:'#AADC6E' });
+<span class='line'>305</span>              */</span><span class="WHIT">           
+<span class='line'>306</span>             </span><span class="NAME">uiColor</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">            
+<span class='line'>308</span>         	</span><span class="COMM">/**
+<span class='line'>309</span>         	 * 图象对话框中处理图片上传的服务端地址。默认为空，表示不支持图片上传。
+<span class='line'>310</span>         	 * @type String
+<span class='line'>311</span>         	 * @default 无
+<span class='line'>312</span>         	 * @name omEditor#filebrowserImageUploadUrl
+<span class='line'>313</span>         	 * @example
+<span class='line'>314</span>         	 * $( "#editor" ).omEditor({ filebrowserImageUploadUrl:'/uploadImage.do?type=Images' });
+<span class='line'>315</span>         	 */</span><span class="WHIT">           
+<span class='line'>316</span>             
+<span class='line'>317</span>             </span><span class="COMM">/**
+<span class='line'>318</span>              * 允许上传的图片类型。
+<span class='line'>319</span>              * @type Array
+<span class='line'>320</span>              * @default ['jpg','gif','png']
+<span class='line'>321</span>              * @name omEditor#allowImageType
+<span class='line'>322</span>              * @example
+<span class='line'>323</span>              * $( "#editor" ).omEditor({ allowImageType:['jpg','gif','png','bmp'] });
+<span class='line'>324</span>              */</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">            
+<span class='line'>326</span>             </span><span class="COMM">/**
+<span class='line'>327</span>              * 编辑器中释放键盘时的事件。
+<span class='line'>328</span>              * @event
+<span class='line'>329</span>              * @type Function
+<span class='line'>330</span>              * @default null
+<span class='line'>331</span>              * @param event
+<span class='line'>332</span>              * @name omEditor#onKeyUp
+<span class='line'>333</span>              * @example
+<span class='line'>334</span>              * $("#editor").omEditor({
+<span class='line'>335</span> 			 *	onKeyUp: function(e) {
+<span class='line'>336</span> 			 *		alert($('#editor').omEditor('getData').length);
+<span class='line'>337</span> 			 *	}
+<span class='line'>338</span> 			 * });
+<span class='line'>339</span>              */</span><span class="WHIT">
+<span class='line'>340</span> 
+<span class='line'>341</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">        </span><span class="NAME">_create</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">        	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.options.allowImageType</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">        		</span><span class="NAME">this.options.allowImageType</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'jpg'</span><span class="PUNC">,</span><span class="STRN">'gif'</span><span class="PUNC">,</span><span class="STRN">'png'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">        	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>346</span> </span><span class="WHIT">        	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.options.keystrokes</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">        		</span><span class="NAME">this.options.keystrokes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">   
+<span class='line'>348</span>         			</span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.ALT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">121</span><span class="WHIT"> </span><span class="COMM">/*F10*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'toolbarFocus'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.ALT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">122</span><span class="WHIT"> </span><span class="COMM">/*F11*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'elementsPathFocus'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>351</span> 
+<span class='line'>352</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.SHIFT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">121</span><span class="WHIT"> </span><span class="COMM">/*F10*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'contextMenu'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.SHIFT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">121</span><span class="WHIT"> </span><span class="COMM">/*F10*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'contextMenu'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>354</span> 
+<span class='line'>355</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">90</span><span class="WHIT"> </span><span class="COMM">/*Z*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'undo'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">89</span><span class="WHIT"> </span><span class="COMM">/*Y*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'redo'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.SHIFT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">90</span><span class="WHIT"> </span><span class="COMM">/*Z*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'redo'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>358</span> 
+<span class='line'>359</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">76</span><span class="WHIT"> </span><span class="COMM">/*L*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'link'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>360</span> 
+<span class='line'>361</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">66</span><span class="WHIT"> </span><span class="COMM">/*B*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'bold'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">73</span><span class="WHIT"> </span><span class="COMM">/*I*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'italic'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">84</span><span class="WHIT"> </span><span class="COMM">/*U*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'underline'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>364</span> 
+<span class='line'>365</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.ALT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.env.ie</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.env.webkit</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NUMB">189</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">109</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="COMM">/*-*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'toolbarCollapse'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>366</span> </span><span class="WHIT">                         </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.ALT</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">48</span><span class="WHIT"> </span><span class="COMM">/*0*/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'a11yHelp'</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>367</span> </span><span class="WHIT">                     </span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">        	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">        	</span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.options.blockedBrowserKeystrokes</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>370</span> </span><span class="WHIT">        		</span><span class="NAME">this.options.blockedBrowserKeystrokes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> 
+<span class='line'>371</span>         		</span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'>372</span> </span><span class="WHIT">                    </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">66</span><span class="WHIT"> </span><span class="COMM">/*B*/</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>373</span> </span><span class="WHIT">                    </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">73</span><span class="WHIT"> </span><span class="COMM">/*I*/</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>374</span> </span><span class="WHIT">                    </span><span class="NAME">OMEDITOR.CTRL</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">85</span><span class="WHIT"> </span><span class="COMM">/*U*/</span><span class="WHIT">
+<span class='line'>375</span> </span><span class="WHIT">                </span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>376</span> </span><span class="WHIT">        	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">        	</span><span class="NAME">this.options.blockedKeystrokes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.options.blockedBrowserKeystrokes</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>378</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">=</span><span class="NAME">this.options</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>379</span> </span><span class="WHIT">            </span><span class="NAME">this.element.filter</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'textarea, div, p'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">each</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>380</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">$element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>381</span> </span><span class="WHIT">                </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$element.data</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'omeditorInstance'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>382</span> </span><span class="WHIT">                </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>383</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">editor</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>384</span> </span><span class="WHIT">                    </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.replace</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">element</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>385</span> </span><span class="WHIT">                    </span><span class="NAME">$element.data</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'omeditorInstance'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>386</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>387</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">  
+<span class='line'>388</span>         </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>389</span> </span><span class="WHIT">        </span><span class="NAME">_init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>390</span> </span><span class="WHIT">            
+<span class='line'>391</span>         </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>392</span> </span><span class="WHIT">        </span><span class="NAME">_get</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">$el</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>393</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">$el.data</span><span class="PUNC">(</span><span class="STRN">'omeditorInstance'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>395</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>396</span>          * 获取editor的HTML内容。
+<span class='line'>397</span>          * @name omEditor#getData
+<span class='line'>398</span>          * @function
+<span class='line'>399</span>          * @returns omEditor的HTML内容
+<span class='line'>400</span>          * @example
+<span class='line'>401</span>          * $('#editor').omEditor('getData');
+<span class='line'>402</span>          */</span><span class="WHIT">  
+<span class='line'>403</span>         </span><span class="NAME">getData</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>404</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._get</span><span class="PUNC">(</span><span class="NAME">this.element.eq</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>405</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">editor.getData</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>406</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>407</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>408</span>          * 获取editor的内容。包含纯文本，不包含IMG、EMBED元素以及文本头尾的换行符和空格符。
+<span class='line'>409</span>          * @name omEditor#getPlainText
+<span class='line'>410</span>          * @function
+<span class='line'>411</span>          * @returns omEditor的文本内容
+<span class='line'>412</span>          * @example
+<span class='line'>413</span>          * $('#editor').omEditor('getPlainText');
+<span class='line'>414</span>          */</span><span class="WHIT">         
+<span class='line'>415</span>         </span><span class="NAME">getPlainText</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>416</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getData</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>417</span> </span><span class="WHIT">            </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">data.replace</span><span class="PUNC">(</span><span class="REGX">/&lt;(?!img|embed).*?>/ig</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>418</span> </span><span class="WHIT">            </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">data.replace</span><span class="PUNC">(</span><span class="REGX">/&nbsp;/ig</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">' '</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>419</span> </span><span class="WHIT">            
+<span class='line'>420</span>             </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">data.replace</span><span class="PUNC">(</span><span class="REGX">/&lt;(?:img|embed).*?>/ig</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>421</span> </span><span class="WHIT">            </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">data.replace</span><span class="PUNC">(</span><span class="REGX">/\r\n|\n|\r/g</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>422</span> </span><span class="WHIT">            </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">OMEDITOR.tools.trim</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>423</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">;</span><span class="WHIT">  
+<span class='line'>424</span>         </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>425</span> </span><span class="WHIT">        
+<span class='line'>426</span>         </span><span class="COMM">/**
+<span class='line'>427</span>          * 设置editor的内容。
+<span class='line'>428</span>          * @name omEditor#setData
+<span class='line'>429</span>          * @function
+<span class='line'>430</span>          * @param params 要设置的内容
+<span class='line'>431</span>          * @example
+<span class='line'>432</span>          * $('#editor').omEditor('setData','&lt;a href="#"&gt;link&lt;/a&gt;');
+<span class='line'>433</span>          */</span><span class="WHIT">
+<span class='line'>434</span> </span><span class="WHIT">        </span><span class="NAME">setData</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>435</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">_self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>436</span> </span><span class="WHIT">            </span><span class="NAME">this.element.each</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>437</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_self._get</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>438</span> </span><span class="WHIT">                </span><span class="NAME">editor.setData</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>439</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>440</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>441</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>442</span>          * 设置editor为只读模式。
+<span class='line'>443</span>          * @name omEditor#setReadOnly
+<span class='line'>444</span>          * @function
+<span class='line'>445</span>          * @param params Boolean是否只读
+<span class='line'>446</span>          * @example
+<span class='line'>447</span>          * $('#editor').omEditor('setReadOnly', true);
+<span class='line'>448</span>          */</span><span class="WHIT">
+<span class='line'>449</span> </span><span class="WHIT">        </span><span class="NAME">setReadOnly</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>450</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">_self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>451</span> </span><span class="WHIT">            </span><span class="NAME">this.element.each</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>452</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_self._get</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>453</span> </span><span class="WHIT">                </span><span class="NAME">editor.setReadOnly</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>454</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>456</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>457</span>          * 插入HTML内容。
+<span class='line'>458</span>          * @name omEditor#insertHtml
+<span class='line'>459</span>          * @function
+<span class='line'>460</span>          * @param params 要插入的HTML内容
+<span class='line'>461</span>          * @example
+<span class='line'>462</span>          * $('#editor').omEditor('insertHtml', '&lt;a href="#"&gt;link&lt;/a&gt;');
+<span class='line'>463</span>          */</span><span class="WHIT">        
+<span class='line'>464</span>         </span><span class="NAME">insertHtml</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>465</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">_self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>466</span> </span><span class="WHIT">            </span><span class="NAME">this.element.each</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_self._get</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>468</span> </span><span class="WHIT">                </span><span class="NAME">editor.insertHtml</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>469</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>470</span>         </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>471</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>472</span>          * 插入文本内容。
+<span class='line'>473</span>          * @name omEditor#insertText
+<span class='line'>474</span>          * @function
+<span class='line'>475</span>          * @param params 要插入的内容
+<span class='line'>476</span>          * @example
+<span class='line'>477</span>          * $('#editor').omEditor('insertText', 'new text');
+<span class='line'>478</span>          */</span><span class="WHIT">        
+<span class='line'>479</span>         </span><span class="NAME">insertText</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>480</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">_self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>481</span> </span><span class="WHIT">            </span><span class="NAME">this.element.each</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>482</span> </span><span class="WHIT">                </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_self._get</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>483</span> </span><span class="WHIT">                </span><span class="NAME">editor.insertText</span><span class="PUNC">(</span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>484</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>485</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>486</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>487</span>          * 更新&lt;textarea&gt;元素，取而代之的是在编辑器中当前的数据。
+<span class='line'>488</span>          * @name omEditor#updateElement
+<span class='line'>489</span>          * @function
+<span class='line'>490</span>          * @example
+<span class='line'>491</span>          * $('#editor').omEditor('updateElement');
+<span class='line'>492</span>          */</span><span class="WHIT">
+<span class='line'>493</span> </span><span class="WHIT">        </span><span class="NAME">updateElement</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>494</span> </span><span class="WHIT">        	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">_self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>495</span> </span><span class="WHIT">        	</span><span class="NAME">this.element.each</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>496</span> </span><span class="WHIT">        		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_self._get</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>497</span> </span><span class="WHIT">        		</span><span class="NAME">editor.updateElement</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>498</span> </span><span class="WHIT">        	</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>499</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>500</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">(</span><span class="NAME">jQuery</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

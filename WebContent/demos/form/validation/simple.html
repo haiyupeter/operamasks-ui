@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>简单校验</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+             var test = $("#reg").validate({
+                rules : {
+                    username : "required",
+                    password : {
+                        required : true,
+                        minlength : 5,
+                        maxlength : 10
+                    }
+                },
+                messages : {
+                    username : {
+                        required : "请输入用户名"
+                    },
+                    password : {
+                        required : "请输入密码",
+                        minlength : "密码长度不够",
+                        maxlength : "密码长度不能超过10"
+                    }
+                },
+                submitHandler : function(){
+                    alert('提交成功！');
+                    $(this)[0].currentForm.reset()
+                    return false;
+                }
+            });
+             
+             $("#sub").omButton(); 
+             
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form action="#" id="reg">
+        <label>用户名：</label><input type="text" name="username" id="username"/>
+        <br>
+        <br>
+        <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input type="password" name="password"/>
+        <br>
+        <br>
+        <input type="submit" value="提交" id="sub"/>
+    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        使用校验插件可以方便地对表单元素进行校验.通过配置
+        <code>rules</code>
+        和
+        <code>messages</code>
+        配置项分别指定校验规则和错误信息。
+    </div>
+</body>
+</html>

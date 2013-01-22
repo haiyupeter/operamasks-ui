@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>查询树节点</title>
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        var data = [
+                    {
+                        "text": "node1",
+                        "expanded": true,
+                        "children":
+                        [
+                            {
+                                "text": "node11",
+                                "page": "index.html"
+                            },
+                            {
+                                "text": "node12",
+                                "page": "index.html"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "item2",
+                        "expanded": true,
+                        "children":
+                            [{
+                                "text":"item21",
+                                "expanded": false,
+                                "children": [{
+                                    "text":"item211"
+                                },{
+                                    "text":"item212"
+                                }]
+                            },{
+                                "text":"item22",
+                                "expanded": true,
+                                "children": [{
+                                    "text":"item221"
+                                }]
+                            }]
+                    },
+                    {
+                        "text": "node3"
+                    },
+                    {
+                        "text": "node4"
+                    }
+                ];
+        $(document).ready(function(){
+            $("#mytree").omTree({
+                dataSource : data
+            });
+        });
+        
+       function findByNId(){
+           var node = $("#mytree").omTree("findByNId", "mytree_10");
+           $("#result").html("查询NID为mytree_10的节点：" + "<b>  " + node.text + "  </b>");
+       }
+       
+       function findNode(){
+           var node=$("#mytree").omTree("findNode","page","index.html");
+           $("#result").html("第一个满足查询条件：属性page的值为index.html的节点" 
+                   + "<b> " + node.text + " </b>");
+       }
+       
+       function findNodes(){
+           var nodes = $("#mytree").omTree("findNodes","page","index.html");
+           $("#result").html("查询属性page的值为index.html的节点");
+           $.each(nodes,function(i, item){
+                $("#result").append("<b>  " + item.text + "  </b>");
+           });
+       }
+       
+       function findNodeBy(){
+           var node = $("#mytree").omTree("findNodeBy", fn);
+           $("#result").html("第一个满足查询条件树节点text中包含item字符的节点" + "<b>  " + node.text + "  </b>");
+       }
+       
+       function findNodesBy(){
+           var nodes=$("#mytree").omTree("findNodesBy", fn);
+           $("#result").html("查询树节点text中包含item字符的节点");
+           $.each(nodes, function(i, item){
+                $("#result").append("<b>  " + item.text + "  </b>");
+           });
+       }
+       
+       var fn = function choose(node){
+           if(node.text.indexOf("item")!=-1){
+               return true;
+           }
+           return false;
+       }
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="content">
+        <ul id="mytree"></ul>
+        <br/>
+        <br/>
+        <button onclick="findByNId()">findByNId</button>
+        <button onclick="findNode()">findNode</button>
+        <button onclick="findNodes()">findNodes</button>
+        <button onclick="findNodeBy()">findNodeBy</button>
+        <button onclick="findNodesBy()">findNodesBy</button>
+        <br/>
+        <span id="result"></span>
+    </div>
+   <!-- view_source_end -->
+   <div id="view-desc">
+        <p>omTree提供了通过NID查找树节点，通过属性(datasource中树节点的属性)查找树节点，通过自定义方法查找节点方法。</p>
+        <p>findByNId，查找指定NID树节点，效率较高，直接通过NID查找；<br/>
+            findNode 和 findNodes 方法根据节点的属性名 key 和属性值 value （datasource中的树节点属性）查找自定父节点pNode下的子节点。
+            两个方法的区别在于：findNode方法只获取第一个满足条件的节点，而findNodes获取所有满足条件的节点。<br/>
+         findNodeBy 和 findNodesBy 根据方法fn查找自定父节点pNode下的子节点，fn为查找函数，接收一个节点的JSON数据对象参数，
+            函数返回为true则该节点满足查找条件，false则不满足条件。
+            两个方法的区别在于：findNodeBy方法只获取第一个满足条件的节点，而findNodesBy获取所有满足条件的节点。</p>
+   </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

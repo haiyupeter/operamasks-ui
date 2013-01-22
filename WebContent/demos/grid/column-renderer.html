@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>列渲染</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                dataSource : 'griddata.do?method=fast',
+                height : 300,
+                showIndex : true,
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand', 
+                                 renderer : function(colValue, rowData, rowIndex) {
+                                     if (colValue == '电信') {
+                                         return '<span style="color:red;"><b>' + colValue + '</b></span>';
+                                     } else if (colValue == "CZ88.NET") {
+                                         return '<span style="color:green;"><b>' + colValue + '</b></span>';
+                                     }
+                                     return colValue;
+                                 }
+                             } ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>在列模型colModel中为某列设定renderer属性，让该列的值根据设定的renderer来做展现。</p>
+        <p>renderer为一个函数，接受3个参数，colValue存放该单元格的值，rowData存放当前行数据，rowIndex存放当前行号(从0开始)。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

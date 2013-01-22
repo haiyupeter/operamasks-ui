@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ajax提交</title>
+    <style>
+    <!--
+    table {font-family: Segoe UI, Arial, sans-serif; font-size: 12px;}
+    td {padding: 4px 2px;}
+    select {width: 154px;}
+    tr td:nth-child(2) {width: 200px;}
+    .display {color: gray;font-size: 13px;}
+    .querycontent {color: blue; font-size: 12px; width: 500px;}
+    -->
+    </style>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-ajaxsubmit.js"></script>
+    <script type="text/javascript" src="../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css"/>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#wrapper').hide();
+            var options = {
+                beforeSubmit : showRequest, 
+                success : showResponse
+            };
+            $('#myForm2').submit(function() {
+                $(this).omAjaxSubmit(options);
+                return false;//返回false,阻止浏览器默认行为
+            });
+        });
+        function showRequest(formData, jqForm, options) {
+            var queryString = $.param(formData);
+            $('#send').text(queryString);
+            var senttime = '(时间：' + $.omCalendar.formatDate(new Date(), "yy-mm-dd H:i:s ") + ')';
+            $('#sendtime').text(senttime);
+            $('#wrapper').show();
+            return true;
+        }
+        function showResponse(responseText, statusText, xhr, $form) {
+            var res = ('status: ' + statusText + '\n\nresponseText: \n'
+                    + responseText + '\n\nThe output div should have already been updated with the responseText.');
+            var gettime = '(时间：' + $.omCalendar.formatDate(new Date(), "yy-mm-dd H:i:s ") + ')';
+            $('#receivetime').text(gettime);
+            $('#output').text(res);
+        }
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form id="myForm2" action="result.jsp" method="post">
+        <div>
+            <input type="hidden" name="Hidden" value="hiddenValue" />
+            <label for="Name" style="width:100px;">用户名:</label>
+            <input name="Name" type="text" value="administrator" /><br/><br/>
+            <label for="Password" style="width:100px;">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+            <input name="Password" type="password" /><br/><br/>
+            <input type="reset" name="resetButton " value="Reset" />
+            <input type="submit" name="submitButton" value="Submit1" />
+        </div>
+    </form>
+    <br />
+    <div id="wrapper">
+        <div class="display">请求串<span id="sendtime"></span></div>
+        <div id="send" class="querycontent"></div>
+        <div class="display">响应内容<span id="receivetime"></span></div>
+        <div id="output" class="querycontent"></div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        通过拦截表单的默认提交动作，可以达到Ajax提交的目的。omAjaxSubmit可以方便的进行Ajax提交，该组件提供了丰富的参数，可以对整个提交过程进行定制。<br/>
+        在本示例中，配置了beforeSubmit和success属性，分别注册了提交请求前和响应正确返回之后的回调函数。<br/>
+        需要注意的是当使用了omAjaxSubmit来做Ajax提交后，需要返回false，屏蔽表单默认的行为。若不返回false，表单将继续执行其默认的提交逻辑，导致整个页面刷新。
+    </div>
+</body>
+</html>

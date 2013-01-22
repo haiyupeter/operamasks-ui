@@ -1,0 +1,152 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.hd {
+	height: 35px;
+	background: url(images/banner.png) repeat scroll 0 0 transparent;;
+}
+
+.hd h2 {
+	line-height: 35px;
+	padding-left: 5px;
+	font-size: 16px;
+	color: white;
+}
+
+.reg-form {
+	margin: 0 auto 20px;
+	padding: 5px 0 0 0;
+	position: relative;
+}
+.reg-form li.field {
+    height: 35px;
+    padding: 10px 2px 2px;
+}
+.reg-form li.field .input {
+	float: left;
+	width: 315px;
+}
+.hover {
+	background-color: #FCEFE3;
+}
+.content .field-text {
+	border: 1px solid #DB9238;
+	font-size: 14px;
+	height: 24px;
+	margin: 0 5px;
+	padding: 2px;
+	width: 196px;
+}
+.reg-form li.field label {
+    float: left;
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    text-align: right;
+    width: 98px;
+}
+.reg-form li.code-field .code-img {
+    border: 1px solid #E4E4E4;
+    height: 26px;
+    width: 100px;
+}
+.reg-form li.code-field input {
+    vertical-align: top;
+    width: 85px;
+}
+.content .field-text {
+	background: url("images/input.png") no-repeat scroll 0 0 white;
+}
+
+select,input,button,textarea {
+	font: 100% Tahoma, Helvetica, Arial, sans-serif;
+}
+
+input,button,textarea,select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+.reg-form .submit-field {
+    padding: 20px 103px;
+}
+.reg-form li.submit-field .submit-btn {
+	background: url("images/reg_btn.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    margin-right: 13px;
+   /** text-indent: -23556px;*/
+}
+.reg-form li.submit-field .submit-btn {
+    height: 33px;
+    width: 180px;
+}
+.reg-form li.field .tools {
+    margin-left: 102px;
+    clear : both;
+    width: 250px;
+}
+.msg .error, .msg .stop, .msg .alert, .msg .attention, .msg .tips, .msg .ok, .msg .notice, .msg .question, .msg .help, .msg .small-help {
+    background: url("images/msg_bg.png") no-repeat scroll 0 0 transparent;
+    border: 1px solid #DDDDDD;
+    color: #404040;
+    float: left;
+    line-height: 18px;
+    padding: 2px 10px 2px 23px;
+}
+.reg-form li.field .msg {
+    display: block;
+    float: left;
+    font-size: 12px;
+}
+.show-error{
+	display: block;
+}
+.chl-reg .reg-form li .msg .attention {
+    background-position: 3px -145px;
+    width: 250px;
+}
+.reg-form li.field .msg p {
+    display: none;
+    line-height: 17px;
+    overflow: hidden;
+}
+.chl-reg .reg-form li .msg p {
+    padding: 4px 10px 4px 23px;
+}
+.msg .attention {
+    background-color: #E5F5FF;
+    background-position: 3px -147px;
+    border-color: #40B3FF;
+}
+.reg-form li.field .tools .trigger {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.reg-form li.field .tools .status-bar {
+    background-color: white;
+    border: 1px solid #42BF26;
+    display: inline-block;
+    font-size: 0;
+    height: 5px;
+    padding: 1px;
+    vertical-align: middle;
+    width: 80px;
+}
+.reg-form li.field .tools .status-bar span {
+    background-color: #42BF26;
+    display: inline-block;
+    height: 5px;
+}
+.content .reg-form li .msg .ok {
+    background-position: 3px -245px;
+}
+.count{
+	display: none;
+}
+.msg .error {
+    background-position: 0px 3px;
+}

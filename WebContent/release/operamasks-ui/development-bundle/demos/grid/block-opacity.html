@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>LoadMask</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                url : 'griddata.do?method=block',
+                title : 'IP数据',
+                width : 586,
+                height : 300,
+                showIndex : true,
+                pageStat : '共 {total} 条数据',
+                blockOpacity : 0.8, //不透明度在0.1 到 1之间，越大则越不透明
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center', sortable : true}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
+            });
+        });
+    </script>
+<!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置blockOpacity值为0到1的浮点数，表格加载数据时蒙版的透明度，取值越大透明度越小。</div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui om-numberfield tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-numberfield.js"></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+ 
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        
+    	$('#numberfield1').omNumberField();
+        $('#numberfield2').omNumberField({allowDecimals:true});
+        $('#numberfield3').omNumberField({allowDecimals:false});
+        
+        $('#numberfield4').omNumberField();
+        $('#numberfield5').omNumberField({allowNegative:false});
+        $('#numberfield6').omNumberField({allowNegative:true});
+        
+        $('#numberfield7').omNumberField();
+        $('#numberfield8').omNumberField({decimalPrecision:1});
+        $('#numberfield9').omNumberField({decimalPrecision:3});
+        
+        $('#numberfield12').omNumberField();
+        $('#numberfield13').omNumberField({readOnly:false});
+        $('#numberfield14').omNumberField({readOnly:true});
+        
+        $('#numberfield10').omNumberField();
+        $('#numberfield11').omNumberField({disabled:false});
+        $('#numberfield111').omNumberField({disabled:true});
+        $('#numberfield15').omNumberField({disabled:true});
+        $('#numberfield21').omNumberField({onBlur:function(value){$("#blur_event_trigger").text(value);}});
+        
+        // 多个.号测试
+        $('#numberfield16').omNumberField();
+        // 多个-号测试
+        $('#numberfield17').omNumberField();
+        // 其他字符测试
+        $('#numberfield18').omNumberField();
+        
+        //组件边界值测试
+        $('#numberfield19').omNumberField();
+        
+      //组件边界值decimalPrecision测试
+        $('#numberfield20').omNumberField({decimalPrecision:4});
+    }); 
+    
+ // test option
+    function changeAllowDecimals() {
+        $("#numberfield3").val("");
+        $("#numberfield3").omNumberField("option", "allowDecimals", true);
+    }
+    
+    function changeDecimalPrecision() {
+        $("#numberfield6").val("");
+        $('#numberfield6').omNumberField("option", "decimalPrecision", 1);
+    }
+    
+    function changeAllowNegative() {
+        $("#numberfield9").val("");
+        $('#numberfield9').omNumberField("option", "allowNegative", false);
+    }
+    
+    function changeReadOnly() {
+        $("#numberfield12").val("");
+        $('#numberfield12').omNumberField("option", "readOnly", false);
+    }
+    
+    function changeDisabled() {
+        $("#numberfield15").val("");
+        $('#numberfield15').omNumberField("option", "disabled", false);
+    }
+    
+    // test method
+    function testDisable() {
+        $('#numberfield15').omNumberField("disable");
+    }
+    function testEnable() {
+        $('#numberfield15').omNumberField("enable");
+    }
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		numberField测试案例，API属性总共 <span class="apiNo" number="5"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+	   <!-- 
+		<div  class="testPoint">
+			<span class="title">属性测试点1：测试allowDecimals属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			       在第一个输入框输入输入1.23，允许输入。<br>
+			       在第二个输入框输入输入1.23，允许输入。<br>
+			       尝试在第三个输入框输入1.23，结果只可以输入1,'.'号输不进去
+			</div>
+			<div  class="tpDIV">
+				<input id="numberfield1">
+			    <input id="numberfield2">
+			    <input id="numberfield3">
+			</div>
+	  </div>
+      
+      <div  class="testPoint">
+            <span class="title">属性测试点2：测试allowNegative属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+                  第一个输入框输入-1.23，允许输入<br>
+                  尝试在第二个输入框输入-1.23，结果"-"号输不进去<br>
+                  第三个输入框输入-1.23，允许输入
+            </div>
+            <div  class="tpDIV">
+                <input id="numberfield4">
+                <input id="numberfield5">
+                <input id="numberfield6">
+            </div>
+      </div>
+	  
+	  <div  class="testPoint">
+			<span class="title">属性测试点3：测试decimalPrecision属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   第一个输入框输入1.23，允许输入。<br>
+			   第二个输入框输入1.23，输入框失去焦点后只显示1.2。<br>
+			   第三个输入框输入1.233，允许输入。
+			</div>
+			<div  class="tpDIV">
+				 <input id="numberfield7">
+			     <input id="numberfield8">
+			     <input id="numberfield9">
+			</div>
+	  </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点4：测试disabled属性</span>
+            <br />
+            <p>操作和操作和预期结果：</p>
+            <div class="textresult">
+                   第一个输入框输入1，允许输入<br>
+                  第二个输入框输入1，允许输入<br>
+                  第三个输入框输光标不能进入
+            </div>
+            <div  class="tpDIV">
+                <input id="numberfield10">
+                <input id="numberfield11">
+                <input id="numberfield111">
+            </div>
+      </div>
+	  
+	   <div  class="testPoint">
+			<span class="title">属性测试点5：测试readOnly属性</span>
+			<br />
+			<p>操作和操作和预期结果：</p>
+			<div class="textresult">
+                                      第一个输入框输入1，允许输入<br>
+			      第二个输入框输入1，允许输入<br>
+			      第三个输入框输入1，不允许输入
+			</div>
+			<div  class="tpDIV">
+				<input id="numberfield12">
+			    <input id="numberfield13">
+			    <input id="numberfield14">
+			</div>
+	  </div>
+	 
+	 <div  class="testPoint">
+			<span class="title">属性测试点6：测试onBlur属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+            	在输入框中输入"12.56-",待输入框失去焦点后，输入框内容变为12.56并且"输入的值为"后边显示 12.56                          
+			</div>
+			<div  class="tpDIV">
+				<input id="numberfield21">
+				<br/>
+				输入的值为:<span id="blur_event_trigger"></span>
+			</div>
+	  </div>
+	  -->
+	</div>
+	
+	<div id="tabs-2">
+		<div  class="testPoint">
+			<span class="title">功能测试点1：测试多个.号测试；多个-号测试；其他字符测试</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   操作步骤：在如下任意一个输入框中尝试输入多个.号，多个-号或者其它英文字符。<br/>
+			   预期结果：在英文输入法中只能输入一个“.”,"-";
+			   		      在中文输入法中最多只可以输入一个'.'(有些浏览器不可以输入)，只可以输入一个'-'，其他英文字符输入不了。
+			</div>
+			<div  class="tpDIV">
+				<input id="numberfield16">
+			    <input id="numberfield17">
+			    <input id="numberfield18">
+			</div>
+	  </div>
+	  <div  class="testPoint">
+			<span class="title">功能测试点2：测试disable、enable方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   点击enable按钮，输入框能输入12，点击disable，输入框不能输入
+			</div>
+			<div  class="tpDIV">
+			    <input id="numberfield15"> 
+			    <button onclick="testDisable()">disable</button>
+			    <button onclick="testEnable()">enable</button>
+			</div>
+	  </div>
+	</div>
+	
+	<div id="tabs-3">
+		<div  class="testPoint">
+			<span class="title">边界值测试1：测试组件的边界(暂不测试)</span>
+			<br />
+			<p>输入数值：</p>
+			<div class="textresult">
+              <ul>
+                 <li>1.7976931348623157e+308 和 5e-324(边界值)</li>
+                 <li>1.7976931348623157e+309 和 5e-325(边界值以外数值)</li>
+                 <li>1.7976931348623157e+300 和 5e-320(边界值以内数值)</li>
+              </ul>
+			</div>
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			    分别输入1.7976931348623157e+308 和 5e-324的时候，输入框正常。<br>
+			    分别输入1.7976931348623157e+310 和 5e-329的时候，输入框变成Infinity<br>
+			    分别输入1.7976931348623157e+300 和 5e-320的时候，输入框正常。
+			</div>
+			<div  class="tpDIV">
+			    <input id="numberfield19"> 
+			</div>
+	  </div>
+	  <div  class="testPoint">
+			<span class="title">边界值测试2：测试decimalPrecision的边界</span>
+			<br />
+			<p>输入数值：</p>
+			<div class="textresult">
+			小数点后最多保留4位小数。
+              <ul>
+                 <li>1.2345 (边界值)</li>
+                 <li>1.12345(大与边界值)</li>
+                 <li>1.23(边界值以内数值)</li>
+              </ul>
+			</div>
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			    输入1.2345的时候，能正常输入。<br>
+			    输入1.12345后，失去焦点时，输入框显示1.1234<br>
+			    输入1.23，正常输入。
+            </div>
+			<div  class="tpDIV">
+			    <input id="numberfield20"> 
+			</div>
+	  </div>
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

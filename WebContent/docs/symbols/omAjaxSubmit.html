@@ -1,0 +1,955 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omAjaxSubmit</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omAjaxSubmit
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                
+                    
+                    
+                        <li><a href="#events">事件</a></li>
+                    
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    <div>
+omAjaxSubmit() 提供使用ajax方式提交HTML form的一种机制。本插件会监听表单的submit事件，<br/>
+覆盖传统的submit事件监听器，而使用ajax方式来处理submit事件。在表单提交之前，本插件会收集<br/>
+所有的表单字段，并将之序列化后附加在ajax请求的数据域(data)中。支持所有标准的html可提交的<br/>
+表。元素。
+</div><br/>
+<b>事件回调</b><br/>
+<div>
+通过丰富的配置参数，omAjaxSubmit可以高度自定制。同时提供多个事件回调函数，在每一次完整<br/>
+的表单提交的过程中，用户有时机能够对提交的请求进行修改。
+</div>
+<pre>beforeSerialize:</pre>
+<div style="text-indent:2em;">在form序列化之前执行的回调函数。在获取所有form表单字段的值之前，该函数提供了一个操作form的时机</div>
+<pre>beforeSubmit:</pre>
+<div style="text-indent:2em;">在form被提交之前执行的回调函数。该函数提供了一个时机来执行预提交的逻辑，比如表单校验</div><br/>
+<b>工具方法</b><br/>
+<div>omAjaxSubmit还提供了一系列静态工具方法，用于方便地操作表单及其字段。</div>
+<pre>$.fn.formToArray()</pre>
+<div style="text-indent:2em;">将表单所有元素转换成key/value的数组，例如[{name:'username', value:'jack'},{name:'password', value:'secret'}]，<br/>
+注意:该数组将作为参数传递给beforeSubmit函数</div>
+<pre>$.fn.formSerialize()</pre>
+<div style="text-indent:2em;">将表单数据序列化成可提交的字符串，例如name1=value1&amp;name2=value2</div>
+<pre>$.fn.fieldSerialize()</pre>
+<div style="text-indent:2em;">将表单所有元素序列化成可提交的字符串，例如name1=value1&amp;name2=value2</div>
+<pre>$.fn.fieldValue()</pre>
+<div style="text-indent:2em;">获取当前元素(或元素数组)的值</div>
+<pre>$.fieldValue(successful)</pre>
+<div style="text-indent:2em;">静态工具方法，用于获取元素的值，参数successful的意义同上</div>
+<pre>$.fn.clearForm()</pre>
+<div style="text-indent:2em;">清空当前表单各个元素的值</div>
+<pre>$.fn.clearFields()</pre>
+<div style="text-indent:2em;">清空当前元素(或元素数组)的值</div>
+<pre>$.fn.resetForm()</pre>
+<div style="text-indent:2em;">重置当前表单各个元素的值</div>
+<pre>$.fn.enable(b)</pre>
+<div style="text-indent:2em;">设置当前元素(或元素数组)的使能状态</div>
+<pre>$.fn.selected(selected)</pre>
+<div style="text-indent:2em;">设置当前元素(或元素数组)的选中状态</div><br/>
+<b>示例</b><br/>
+<pre>
+ $(document).ready(function() {
+     $('#myForm').bind('submit', function(e) {
+         e.preventDefault(); //阻止form默认的提交行为
+             $(this).omAjaxSubmit(//使用ajax提交
+                 {
+                     target: '#output'
+                 }
+             );
+     });
+ });
+
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-ajaxsubmit.js.html">om-ajaxsubmit.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omAjaxSubmit</b>(options)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            
+                        </div>
+                        -->
+                        
+                            <div class="option-examples">
+                                <h4>示例：</h4>
+                                <dl class="option-examples-list">
+                                
+                                <dd>
+                                <pre>	$('#formId').omAjaxSubmit({target: '#output'});</pre>
+                                </dd>
+                                
+                                </dl>
+                            </div>
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>options</b>&nbsp;-
+                                        标准config对象
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-clearForm">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">clearForm</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        在form成功提交后，是否将form字段清空。<br/>
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({clearForm: true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-data">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">data</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>JSON</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        ajax提交中的附加数据，以JSON的形式组成(key/value)。如果value是数组，将会被展开;如果value是函数，将会被求值。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>data: { key1: 'value1', key2: 'value2' }</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-dataType">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">dataType</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        响应的数据格式，可选的取值为'xml'， 'script'， 'json'或者null。该选项表明了响应将要被如何处理。<br/>
+与jQuery.httpData一一对应，其各种取值情况处理如下：<br/>
+<pre>
+     'xml':	响应将会被认为是xml格式的，并作为第一个参数传递给success回调函数
+     'json':	响应将会被认为是json格式的，其将会被求值，结果将会作为第一个参数传递给success回调函数
+     'script':响应将会被认为是js脚本，其将在全局上下文中被执行
+</pre>
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({dataType : 'json'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-method">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">method</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'GET'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        表单的提交方法，取值为：'GET' 或者 'POST'。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({method:'POST'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-replaceTarget">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">replaceTarget</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        可选配置，是否替换target指定的区域。<br/>
+设为true将会整体替换target对应的DOM节点，设为false将只会替换节点的内容。<br/>
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({replaceTarget : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-resetForm">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">resetForm</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        在form成功提交后，是否将form字段重置
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>//提交后重置表单字段
+$('#formId').omAjaxSubmit({resetForm: true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-target">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">target</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>DOM, jQuery, or String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        指定了一个更新区域，该区域将会被ajax响应更新。<br/>
+该值可以是DOM元素，jQuery对象，或者一个可以被jQuery选择到的选择器。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({target : '#targetDivId'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-url">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">url</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">form的action属性值</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        表单提交的url。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#formId').omAjaxSubmit({url : 'result.jsp'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+        
+          <!-- doc_events_begin -->
+          <div id="events">
+            <!-- ============================== event details ========================= -->     
+            <h2 class="top-header">事件</h2>
+            <div id="events-list">
+	            <ul class="events-list">
+	                
+	                    <li class="event" id="event-beforeSerialize">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">beforeSerialize</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function($form, options)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            在form序列化之前执行的回调函数。在获取form表单元素的值之前，该函数提供了一个操作form的时机。<br/>
+该函数接受2个参数<br/>
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>$form</b>&nbsp;-
+	                                        form对应的jQuery对象
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>options</b>&nbsp;-
+	                                        传给ajaxSubmit的options对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">返回:</dt>
+	                                
+	                                    <dt>false 取消form的提交</dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>beforeSerialize: function($form, options) { 
+    // return false to cancel submit                  
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-beforeSubmit">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">beforeSubmit</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(arr, $form, options)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            在form被提交之前执行的回调函数。该函数提供了一个时机来执行预提交的逻辑，或者可以用来进行校验表单元素。<br/>
+该函数接受3个参数:arr, $form, options。<br/>
+若函数返回false，则会取消form的提交。<br/>
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>arr</b>&nbsp;-
+	                                        一个数组，包含form所有字段的key/value值，例如: [{key:value},{key1:value1},{key2:value2}]
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>$form</b>&nbsp;-
+	                                        form对应的jQuery对象
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>options</b>&nbsp;-
+	                                        传递给ajaxSubmit的options参数
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">返回:</dt>
+	                                
+	                                    <dt>false 取消提交表单</dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>beforeSubmit: function(arr, $form, options) { 
+    // The array of form data takes the following form: 
+    // [ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ] 
+    // return false to cancel submit                  
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-success">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">success</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(responseText, statusText, xhr, $form)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            当表单提交成功并取到响应时，执行的回调函数。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>responseText</b>&nbsp;-
+	                                        响应的文本。具体的取值根据options中的dataType有关，请参考dataType属性的说明文档。
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>statusText</b>&nbsp;-
+	                                        响应的状态，在该回调中，常见的取值为success
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>xhr</b>&nbsp;-
+	                                        XMLHttpRequest对象
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>$form</b>&nbsp;-
+	                                        经过jQuery包装的form对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>//定义一个函数
+function showResponse(responseText, statusText, xhr, $form) {
+ alert('submit success!');
+}
+//提交成功取到响应时的回调函数
+$('#formId').omAjaxSubmit({success: showResponse});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	            </ul>
+            </div>
+          </div>
+          <!-- doc_events_end -->
+       
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:58 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>展开收缩</title>
+    
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var data = [{
+                "text": "node1",
+                "children":[{
+                    "text": "node11"
+                }, {
+                    "text": "node12",
+                    "id": "n12"
+                }]
+            }, {
+                "text": "node2",
+                "expanded": true,
+                "children":[{
+                    "text":"node21",
+                    "expanded": true,
+                    "children": [{
+                        "text":"node211"
+                    },{
+                        "text":"node212"
+                    }]
+                },{
+                    "text":"node22"
+                }]
+            }, {
+                "text": "node3"
+            }, {
+                "text": "node4"
+            }];
+            $("#mytree").omTree({
+                dataSource : data
+            });
+        });
+        function collapse() {
+            var node1=$("#mytree").omTree("findNode","text","node1");
+            $("#mytree").omTree("collapse", node1);
+        }
+        function expand() {
+            var node1=$("#mytree").omTree("findNode","text","node1");
+            $("#mytree").omTree("expand", node1);
+        }
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="main">
+        <ul id="mytree">
+        </ul>
+        <br/>
+        <button onclick="$('#mytree').omTree('expandAll');">展开全部</button>
+        <button onclick="$('#mytree').omTree('collapseAll');">收缩全部</button>
+        <button onclick="expand()">展开 node1</button>
+        <button onclick="collapse();">收起 node1</button>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>omTree支持展开或者收缩指定节点，也可以展开或者收缩全部节点。</p>
+        <p>“展开”或者“收缩”单个节点，使用方法：expand和collapse，接收node参数，node为某一个具体的树节点JSON数据。
+            “展开全部”或者“收缩全部”节点，使用方法：expandAll和collapseAll，不接收参数。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

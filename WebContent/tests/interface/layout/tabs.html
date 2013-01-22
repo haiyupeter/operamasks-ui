@@ -1,0 +1,263 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui om-tabs tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-theme.css" /> 
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-panel.css" /> 
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-tabs.css" /> 
+ <style type="text/css">
+ 	.width-ruler{
+ 		height: 14px;
+ 		background-color: red;
+ 		font-weight: bold;
+ 		text-align: center;
+ 		margin-top: 5px;
+ 	}
+ 	.height-ruler{
+ 		background-color: red;
+ 		font-weight: bold;
+ 		margin-left: 5px;
+ 		width: 14px;
+ 	}
+ 	table{
+ 		table-layout: fixed;
+ 	}
+ 	.om-panel-body p{
+ 		padding-left: 15px;
+ 		margin-top:20px;
+ 		margin-bottom:20px;
+ 	}
+ </style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+		 // test option
+		$('#test-tabs-interval').omTabs({autoPlay:true,interval:3000});
+        $('#test-tabs-autoPlay').omTabs({autoPlay:true});
+    
+        
+	    // test method
+	    $('#test-tabs-method-add').omTabs({
+	    	onBeforeAdd:function(){alert('onBeforeAdd')},
+	    	onAdd:function(){alert('onAdd')}
+    	});
+	    $('#test-tabs-method-close').omTabs({
+	    	onBeforeClose:function(){alert('onBeforeClose')},
+	    	onClose:function(){alert('onClose')}
+    	});
+	    $('#test-tabs-method-closeAll').omTabs({
+	    	onBeforeCloseAll:function(){alert('onBeforeCloseAll')},
+	    	onCloseAll:function(){alert('onCloseAll')}
+    	});
+	    $('#test-tabs-method-activate').omTabs({
+	    	onActivate:function(){alert('onActivate')},
+	    	onBeforeActivate:function(){alert('onBeforeActivate')}
+	    });
+	    $('#test-tabs-method-getAlter').omTabs();
+	    $('#test-tabs-method-setDataSource').omTabs();
+
+	    
+	    // test limit
+	    $('#test-tabs-limit-nest').omTabs();
+	    $('#test-tabs-limit-nest-1').omTabs({width:'90%',height:200});
+	    $('#test-tabs-limit-nest-1-1').omTabs({width:'90%',height:100});
+	    $('#test-tabs-limit-nest-2').omTabs({width:'90%',height:200});
+	    $('#test-tabs-limit-nest-3').omTabs({width:'90%',height:200});
+	   
+	    
+    }); 
+    
+    function addTabs(){
+    	$('#test-tabs-method-add').omTabs('add',{title:'New Title',content:'New Content'});
+    }
+    function closeTabs(){
+    	$('#test-tabs-method-close').omTabs('close',0);
+    }
+    function closeAllTabs(){
+    	$('#test-tabs-method-closeAll').omTabs('closeAll',0);
+    }
+    function activateTab(){
+    	$('#test-tabs-method-activate').omTabs('activate',1);
+    }
+    function getActivatedTabs(){
+    	alert($('#test-tabs-method-activate').omTabs('getActivated'));
+    }
+    function getActivatedTabIndex(){
+    	var activatedId = $('#test-tabs-method-getAlter').omTabs('getActivated');
+    	alert($('#test-tabs-method-getAlter').omTabs('getAlter',activatedId));
+    }
+    function getLength(){
+    	alert($('#test-tabs-method-activate').omTabs('getLength'));
+    }
+    function setTabsDataSource(){
+    	$('#test-tabs-method-setDataSource').omTabs('setDataSource',{
+    	    index : 1,
+    	    url : './frame.html'
+    	});
+    	$('#test-tabs-method-setDataSource').omTabs('reload',1);
+    	return false;
+    }
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		tabs测试案例，API属性总共 <span class="apiNo" number="2">2</span> 个；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;" ></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;" ></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+        <div class="testPoint">
+            <span class="title">属性测试点1：测试autoPlay属性</span>
+            <br />
+            <p>操作和操作和预期结果：</p>
+            <div class="textresult">
+               页签每隔1秒自动切换。
+            </div>
+            <div class="tpDIV">
+                <div id="test-tabs-autoPlay"> 
+                    <ul> 
+                        <li><a href="#tabs-1">TabTitle1</a></li> 
+                        <li><a href="#tabs-2">TabTitle2</a></li> 
+                        <li><a href="#tabs-3">TabTitle3</a></li> 
+                        <li><a href="#tabs-4">TabTitle4</a></li> 
+                    </ul> 
+                    <div id="tabs-1"> 
+                        <p>this is tabs 1.</p> 
+                    </div> 
+                    <div id="tabs-2"> 
+                        <p>this is tabs 2.</p> 
+                    </div> 
+                    <div id="tabs-3"> 
+                        <p>this is tabs 3.</p> 
+                    </div> 
+                    <div id="tabs-4"> 
+                        <p>this is tabs 4.</p> 
+                    </div> 
+                </div> 
+            </div>
+        </div>       
+        <div class="testPoint">
+            <span class="title">属性测试点2：测试interval属性</span>
+            <br />
+            <p>操作和操作和预期结果：</p>
+            <div class="textresult">
+               页签每隔三秒自动切换。
+            </div>
+            <div class="tpDIV">
+                <div id="test-tabs-interval"> 
+                    <ul> 
+                        <li><a href="#tabs-1">TabTitle1</a></li> 
+                        <li><a href="#tabs-2">TabTitle2</a></li> 
+                        <li><a href="#tabs-3">TabTitle3</a></li> 
+                        <li><a href="#tabs-4">TabTitle4</a></li> 
+                    </ul> 
+                    <div id="tabs-1"> 
+                        <p>this is tabs 1.</p> 
+                    </div> 
+                    <div id="tabs-2"> 
+                        <p>this is tabs 2.</p> 
+                    </div> 
+                    <div id="tabs-3"> 
+                        <p>this is tabs 3.</p> 
+                    </div> 
+                    <div id="tabs-4"> 
+                        <p>this is tabs 4.</p> 
+                    </div> 
+                </div> 
+            </div>
+        </div>   
+	</div>
+	
+	<div id="tabs-3">
+		
+		<div class="testPoint">
+			<span class="title">边界测试点5：测试tabs多重嵌套</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			  页签面板以及嵌套的页签面板显示正常
+			</div>
+			<div class="tpDIV">
+				<div id="test-tabs-limit-nest"> 
+				    <ul> 
+				        <li><a href="#tabs-1">TabTitle1</a></li> 
+				        <li><a href="#tabs-2">TabTitle2</a></li> 
+				        <li><a href="#tabs-3">TabTitle3</a></li> 
+				    </ul> 
+				    <div id="tabs-1">
+				    	<p>this is tabs 1.</p>
+				        <div id="test-tabs-limit-nest-1" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#tabs-1">TabTitle1</a></li> 
+						        <li><a href="#tabs-2">TabTitle2</a></li> 
+						        <li><a href="#tabs-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="tabs-1">
+						    	<p>this is nest tabs.</p>
+		  				        <div id="test-tabs-limit-nest-1-1" style="margin: 0 auto;"> 
+								    <ul> 
+								        <li><a href="#tabs-1">TabTitle1</a></li> 
+								        <li><a href="#tabs-2">TabTitle2</a></li> 
+								        <li><a href="#tabs-3">TabTitle3</a></li> 
+								    </ul>
+								    <div id="tabs-1">this is nest tabs 1-1.</div>
+								    <div id="tabs-2">this is nest tabs 1-2.</div>
+								    <div id="tabs-3">this is nest tabs 1-3.</div>
+							    </div> 
+						    </div>
+						    <div id="tabs-2">this is nest tabs 2.</div>
+						    <div id="tabs-3">this is nest tabs 3.</div>
+					    </div> 
+				    </div> 
+				    <div id="tabs-2"> 
+				    	<p>this is nest tabs.</p>
+				        <div id="test-tabs-limit-nest-2" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#tabs-1">TabTitle1</a></li> 
+						        <li><a href="#tabs-2">TabTitle2</a></li> 
+						        <li><a href="#tabs-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="tabs-1">this is nest tabs 1.</div>
+						    <div id="tabs-2">this is nest tabs 2.</div>
+						    <div id="tabs-3">this is nest tabs 3.</div>
+					    </div> 
+				    </div> 
+				    <div id="tabs-3"> 
+				    	<p>this is nest tabs.</p>
+				        <div id="test-tabs-limit-nest-3" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#tabs-1">TabTitle1</a></li> 
+						        <li><a href="#tabs-2">TabTitle2</a></li> 
+						        <li><a href="#tabs-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="tabs-1">this is nest tabs 1.</div>
+						    <div id="tabs-2">this is nest tabs 2.</div>
+						    <div id="tabs-3">this is nest tabs 3.</div>
+					    </div> 
+				    </div> 
+				</div> 
+			</div>
+		</div>
+	
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../../ui/om-menu.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+<style>
+.tpDIV {
+	width: 400px;
+	height: 200px;
+}
+</style>
+<script type="text/javascript">
+     $(document).ready(function(){
+    	  $("#menu1").omMenu({
+    		 contextMenu: true,
+    		 dataSource:[{id:"01",label:"复制"},{id:"02",label:"粘贴"},{id:"03",label:"剪切"},
+    		             {id:"04",label:"删除"}]
+    	 });
+    	 $("#context").bind("contextmenu",function(e){
+    		 $("#menu1").omMenu("show",e);
+    	 });
+    	 
+    	 $("#menu2").omMenu();
+    	 
+    	 $("#menu3").omMenu({
+    		 dataSource:[{id:"01",label:"复制"},{id:"02",label:"粘贴"},{id:"03",label:"剪切"},
+    		             {id:"04",label:"删除"}]
+    	 });
+    	 
+    	 $("#menu4").omMenu({
+    		 dataSource: '../../../omMenu.json'
+    	 });
+    	 $("#menu5").omMenu({
+    		 dataSource: '../../../omMenu.json',
+    		 onSelect : function(item){
+    		     alert(item.label);
+    		 }
+    	 });
+    	 
+     });
+</script>
+</head>
+<body>
+	    <div class="testPoint">
+			<span class="title">属性测试点1：测试contextMenu属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">在黑色框中，点击鼠标右键会显示右键菜单。</div>
+			<div class="tpDIV">
+				<div id="context" style="width:200px;height:200px;border:1px solid #000;"></div>
+				<div id="menu1"></div>
+			</div>
+	    </div>
+	    
+	    <div class="testPoint">
+			<span class="title">属性测试点2：测试dataSource属性的默认值</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮，显示菜单。</div>
+			<div class="tpDIV">
+				<div id="menu2">
+				   <ul>
+				        <li>
+						 <a href="#">
+							<img class="icon" src="images/blank.png">
+							<span>饼干</span>
+						</a>
+						</li>
+					    <li>
+					      <a href="#">
+						    <img  src="images/blank.png">
+						    <span>蛋糕</span>
+						  </a>
+					    </li>
+					    <li>
+					      <a href="#">
+						    <img class="icon" src="images/fruit.png">
+						    <span>水果</span>
+						    <span role="popup"></span>
+						  </a>
+						  <ul>
+						     <li class="">
+						        <a href="#">
+								    <img class="icon" src="images/fruit.png">
+								    <span>苹果</span>
+								 </a>
+						     </li>
+						     <li class="">
+						        <a href="#">
+								    <img src="images/fruit.png">
+								    <span>香蕉</span>
+								 </a>
+						     </li>
+						  </ul>
+					    </li>
+					    <li>
+							<a href="#">
+							  <img class="icon" src="images/blank.png">
+							  <span>干果</span>
+							</a>
+						</li>
+					  </ul>
+				</div>
+				<input id="btn1" type="button" value="show menu" onclick="$('#menu2').omMenu('show',this);"/>
+			</div>
+	    </div>
+	    
+	    <div class="testPoint">
+			<span class="title">属性测试点3：测试dataSource属性本地取数</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮会显示菜单。</div>
+			<div class="tpDIV">
+                <input id="btn2" type="button" value="show menu" onclick="$('#menu3').omMenu('show',this);"/>
+				<div id="menu3"></div>
+			</div>
+	    </div>
+	    
+	    <div class="testPoint">
+			<span class="title">属性测试点4：测试dataSource属性远程取数</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮会显示菜单。</div>
+			<div class="tpDIV">
+                <input id="btn3" type="button" value="show menu" onclick="$('#menu4').omMenu('show',this);"/>
+				<div id="menu4"></div>
+			</div>
+	    </div>
+	    
+	    <div class="testPoint">
+			<span class="title">属性测试点5：测试键盘支持功能</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击弹出菜单，并且使用上下左右操作菜单，当有子菜单的时候移动过去会显示子菜单，移出会隐藏子菜单，按ESC会隐藏子菜单，按确认会触发点击菜单动作</div>
+			<div class="tpDIV">
+                <input id="btn4" type="button" value="show menu" onclick="$('#menu5').omMenu('show',this);"/>
+				<div id="menu5"></div>
+			</div>
+	    </div>
+	
+
+</body>
+</html>

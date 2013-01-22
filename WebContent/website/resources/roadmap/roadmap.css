@@ -1,0 +1,106 @@
+body {
+    color: #444444;
+    font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif, simsun;
+}
+.roadmap .headline
+{
+    width: 640px;
+}
+.roadmap .headline h2 
+{
+    margin: 0;
+}
+.roadmap th.status,
+.roadmap th.when
+{
+    width: 150px;
+    font-size: 12px
+}
+.roadmap td.status,
+.roadmap td.when
+{
+    color: #000;
+}
+.roadmap td
+{
+    vertical-align: top;
+    
+}
+.roadmap td section 
+{
+    float: left;
+    width: 560px;
+    padding: 5px 0 0 0;
+}
+
+.stripes table,
+table.stripes
+{
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+.stripes th 
+{
+    color: #666;
+    font-weight: normal;
+    border-bottom: 1px solid #dedede;
+    text-align: left;
+    padding: 6px 4px 8px;
+}
+.stripes td 
+{
+    padding: 6px 4px 7px;
+    border-bottom: 1px solid #dedede;
+}
+
+.stripes tr:nth-child(2n+1) td
+{
+    background: #f7f7f7;
+}
+header, section, footer, article, figure {
+    display: block;
+}
+h1, h2, h3 {
+    color: #2E2E2E;
+    line-height: 24px;
+}
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32px;
+    margin: 0 0 9px;
+    position: relative;
+    z-index: 2;
+}
+h5 {
+    color: #000000;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 4px 0 5px;
+}
+span.planned{
+	background: url(images/planned.png) no-repeat;
+	padding-left: 20px;	
+}
+span.planning{
+	background: url(images/planning.png) no-repeat;
+	padding: 3px 0px 3px 25px;	
+}
+h2.components{
+	background: url(images/charts2.png) no-repeat 0px 4px;
+	padding-left: 30px;
+}
+h2.upgrade{
+	background: url(images/upgrade.png) no-repeat 0px 4px;
+	padding-left: 30px;
+}
+h2.docs{
+	background: url(images/doc.png) no-repeat 0px 4px;
+	padding-left: 30px;	
+}
+h2.mobile{
+	background: url(images/mobile.png) no-repeat 0px 4px;
+	padding-left: 30px;	
+}

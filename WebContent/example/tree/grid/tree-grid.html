@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>树节点查询</title>
+    
+    <script src="../../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tree.js"></script>
+    <script src="../../../ui/om-mouse.js"></script>
+    <script src="../../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+	<link rel="stylesheet" type="text/css" href="../../../demos/common/css/base.css" />
+	<link rel="stylesheet" href="../../../demos/common/css/demo.css">
+    <script type="text/javascript" src="../js/data.js"></script>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#navtree").omTree({
+                dataSource : citydata,
+                onSelect: function(nodedata){
+                	if(!nodedata.children && nodedata.text){
+                		//避免在IE浏览器下出现中文乱码
+                		var url = encodeURI("griddata.do?method=filter&city="+nodedata.text);
+                		$("#grid").omGrid("setData", url);
+                	}else {
+                		$("#grid").omGrid("setData", "griddata.do?method=fast");
+                	}
+                }
+            });
+            $('#grid').omGrid({
+                dataSource : 'griddata.do?method=fast',
+                limit: 10,
+                height: 330,
+                width: 500,
+                colModel : [ {header : 'ID', name : 'id', width : 80, align : 'center'}, 
+                             {header : '地区', name : 'city', width : 130, align : 'left'}, 
+                             {header : '地址', name : 'address', align : 'left', width : 180} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+    <style type="text/css">
+    #body-table{
+       width:660px;
+    }
+    </style>
+</head>
+<body>
+<!-- view_source_begin -->
+	    <div id="content" class="content">
+		    <table id="body-table">
+		        <tr>
+		            <td class="left-panel" valign="top">
+		                <ul id="navtree">
+		                </ul>
+		            </td>   
+		            <td class="center-panel" valign="top">
+		                <div style="float:left;">
+		                    <table id="grid"></table>
+		                </div>
+		                
+		            </td>
+		        </tr>
+	    	</table>
+	    </div>
+<!-- view_source_end -->
+<div id="view-desc">
+        点击左边的树节点可以导航表格中显示的数据。<br/>
+   在onSelect回调方法中获取选中树节点的信息作为参数，通过omGrid的setData方法将参数传到后台进行取数。
+    </div> 	    
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

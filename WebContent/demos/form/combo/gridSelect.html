@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>下拉表格</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var timer = '_select1_timer';
+            var input = $('#select1').attr('readonly', 'readOnly')
+					                 .focus(function() {
+					                     dropList.show();
+					                 })
+					                 .blur(function() {
+					                     window[timer] = setTimeout(function() {
+					                        dropList.hide();
+					                     }, 450);
+					                 });
+             var inputOffset=input.offset();
+             var dropList = input.next().css({top:inputOffset.top+input.outerHeight(),left:inputOffset.left})
+                                        .mousedown(function(e) {
+                                            e.stopPropagation();
+                                            setTimeout(function() {
+                                                clearTimeout(window[timer]);
+                                            }, 25);
+                                        });
+             $(document.body).mousedown(function() {
+                dropList.hide();
+             });                                        
+    
+            $('#target-table').omGrid({
+                dataSource : 'griddata.do?method=fast',
+                method : 'POST',
+                width : 470,
+                height : 200,
+                showIndex : true,
+                autoFit : true,
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center', sortable : true}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
+                             {header : '地址', name : 'address', align : 'left', width : 200, autoExpandMin : 100, sortable : true} ],
+                onRowClick : function(event, rowData) {
+                    input.val(rowData.city).attr('_trueValue', rowData.id);
+                    dropList.hide();
+                }
+            });
+            input.next().hide();
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <span>
+        <input id="select1" /> <!-- 如果display设置为none，则grid无法得到正确的高度 TODO -->
+        <div class="omcombo-ct" style="position: absolute; display: block; left: 0;">
+            <table id="target-table"></table>
+        </div>
+    </span>
+    <input type="button" onclick="$('#result').html($('#select1').attr('_trueValue'));" value="getValue"/>
+    <br /><span style="font-size:12px">你选择的记录的value为：<span style="color: red" id="result"></span><span>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        在下拉框中渲染表格组件，选中表格行时回填选中的值。用以实现类似于下拉框表格的功能。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

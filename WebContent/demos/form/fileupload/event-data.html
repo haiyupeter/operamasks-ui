@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>事件回调函数</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	function praseDate(date){
+		return date.fullYear + '-' + date.month + '-' + date.day + ' ' + date.hours + ':' + date.minutes + ':' + date.seconds;
+	}
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+	    action : '../../../omFileUpload.do',
+	    swf : '../../../ui/om-fileupload.swf',
+	    multi : true,
+	    onComplete : function(ID,fileObj,response,data,event){
+	    	var jsonData = eval("("+response+")");
+	    	$('#response').append('<p>文件ID：' + ID + '</p>')
+	    				  .append('<p>文件名：' + fileObj.name + '</p>')
+	    				  .append('<p>文件大小：' + fileObj.size + ' Bytes</p>')
+	    				  .append('<p>文件创建时间：' + praseDate(fileObj.creationDate) + '</p>')
+	    				  .append('<p>文件最后修改时间：' + praseDate(fileObj.modificationDate) + '</p>')
+	    				  .append('<p>文件类型：' + fileObj.type + '</p>')
+	    				  .append('<p>文件上传队列中剩余文件的数量：' + data.fileCount + '</p>')
+	    				  .append('<p>文件上传的平均速度：' + data.speed + 'KB/s</p>')
+	    				  .append('<p>已上传文件至此：<a target="_blank" href="'+jsonData.fileUrl+'">点击浏览</a></p>')
+	    				  .append('<hr />');
+	    },
+	    onSelect : function(ID,fileObj,event){
+	    	var msg = '文件信息\n';
+    		msg += '文件ID：' + ID + '\n';
+    		msg += '文件名：' + fileObj.name + '\n';
+    		msg += '文件大小：' + fileObj.size + ' Bytes\n';
+    		msg += '文件创建时间：' + praseDate(fileObj.creationDate) + '\n';
+    		msg += '文件最后修改时间：' + praseDate(fileObj.modificationDate) + '\n';
+    		msg += '文件类型：' + fileObj.type + '\n';
+    		alert(msg);
+	    }
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="上传" onclick="$('#file_upload').omFileUpload('upload')">上传</button>
+    <div id="response" style="font-weight: bold;color: red;"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>这个示例展示如何在omFileUpload的事件回调函数中获得文件的相关信息。选择文件后弹出窗口显示文件的详细信息。文件上传完成后显示文件的详细信息和文件上传的相关信息。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

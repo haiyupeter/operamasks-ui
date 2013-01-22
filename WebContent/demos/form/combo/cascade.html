@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>级联下拉</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<style>
+		span {
+			font-size: 12px;
+			line-height:1em;
+		}
+	</style>
+<!-- view_source_begin -->
+    <script type="text/javascript">
+        function getCityRecords() {
+            var country = $('#country').omCombo('value');
+            if(country == 'China'){
+                return [ {'text' : '广东', 'value' : 'gd'}, {'text' : '广西','value' : 'gx'} ];
+            }else if(country == 'America'){
+                return [ {'text' : '夏威夷', 'value' : 'hawaii'},{'text' : '佛罗里达', 'value' : 'florida'} ];
+            }else{
+                return [];
+            }
+        }
+        $(document).ready(function() {
+            $('#country').omCombo({
+                dataSource : [ {text : '中国', value : 'China'}, 
+                               {text : '美国', value : 'America'} ],
+                onValueChange : function(target, newValue, oldValue, event) {
+                   //根据第1个combo的当前值算出第2个combo的值
+                   var records = getCityRecords();
+                   //将算出的值设置为第2个combo的数据源
+                   $('#province').val('').omCombo('setData', records);
+                   //清除城市(岛)输入框的值
+                   $('#city').val('').omCombo( 'setData', []);
+               }
+            });
+            $('#province').omCombo({
+                onValueChange : function(target, newValue, oldValue, event) {
+                    //得到第2个combo的当前值
+                    var province = $('#province').omCombo('value');
+                    //用Ajax方式从后台取出城市(岛)的数据并赋值给第3个combo
+                    $('#city').val('').omCombo('setData',
+                            '../../../cascadeCombo.json?province=' + province);
+                }
+            });
+            $('#city').omCombo({});
+        });
+    </script>
+    <!-- view_source_end -->
+
+</head>
+<body style="line-height: 3em">
+    <!-- view_source_begin -->
+    <span>国家名称：</span>
+    <input id="country" />
+    <br /> <span>省份(州)：</span>
+    <input id="province" />
+    <br /> <span>城市(岛)：</span>
+    <input id="city" />
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>通过setData方法，将静态JSON数据设置到指定的combo中，也可将URL远程数据设置到指定的combo，达到级联的效果。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

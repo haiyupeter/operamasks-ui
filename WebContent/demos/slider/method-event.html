@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>方法和事件</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-slider.js"></script>
+    <script src="../../ui/om-calendar.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	.slider-demo{
+    		width: 500px;
+    		height: 375px;
+    		border: 1px solid #0092D2;
+    	}
+    </style>
+    <script type="text/javascript">
+        function getTime () {
+            return '<span style="color:red;"> [' + $.omCalendar.formatDate(new Date(), 'yy-mm-dd H:i:s') + ']</span>';
+        }
+        function log(text){
+        	$('<span>'+getTime() + text+'</span><br/>').insertBefore($('#end-scroll'));
+            var log = $('#log')[0]; 
+            log.scrollTop = log.scrollHeight;
+        }
+        $(document).ready(function(){
+            $('#slider').omSlider({
+                autoPlay:false,
+                onBeforeSlide:function(index,event){
+                    log('即将在切换到第'+(index+1)+'张图片.');
+                },
+                onAfterSlide:function(index,event){
+                    log('切换到第'+(index+1)+'张图片完成.');
+                }
+            });
+        }); 
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="slider" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+    <button onclick="$('#slider').omSlider('prev');">上一页</button>
+    <button onclick="$('#slider').omSlider('next');">下一页</button>
+    <button onclick="$('#slider').omSlider('slideTo',4);">跳至最后一页</button>
+    <br/><br/>
+    <fieldset style="width: 500px;height: 200px">
+    <legend>操作日志</legend>
+    	<div id="log" style="height: 185px;overflow:auto;font-size: 13px;">
+    		<div id="end-scroll"></div>
+    	</div>
+    </fieldset>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>omSlider支持onBeforeSlide、onAfterSlide事件，分别在面板切换前和切换后触发事件，开发人员可以在切换前后做相应的事件处理。
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    
+    <!-- view_source_begin -->
+    <style type="text/css">
+        .key_word{
+        	color:red;
+        }
+        .passage{
+        	text-indent: 2em;
+        }
+    </style>
+    <script type="text/javascript">
+    
+        $(function() {
+            var panel = $("#panel").omPanel({
+                width:'500px',
+                height:'220px',
+                header: true,
+                title:'JQuery',
+                preProcess: function(data , textStatus){
+                    return "<p class='passage'>"+data.replace(/jquery/ig , "<span class='key_word'>$&</span>")+"</p>";
+                },
+                url:'jquery-desc.html',
+                loadingMessage:"default",
+                onError: function(xmlHttpRequest, textStatus, errorThrown){
+                	$(this).html("加载数据失败，请稍后重试。"); 
+                }
+            });
+            
+            $("#show").click(function(){
+                panel.omPanel("open");
+            });
+            $("#success").click(function(){
+                panel.omPanel("reload" ,  "../../panelDataGet");
+            });
+            $("#error").click(function(){
+                panel.omPanel("reload" , "bad");
+            });
+        });
+    
+    </script>
+    <!-- view_source_end -->
+    
+<title>基本功能</title>
+</head>
+<body>
+	<!-- view_source_begin -->
+	<div  style="margin-bottom:20px">
+		<input id="success" type="button" value="成功加载"/>
+		<input id="error" type="button" value="失败加载"/>
+	</div>
+   	<div id="panel">
+   	</div>
+   	<!-- view_source_end -->
+    <div id="view-desc">
+      	omPanel支持远程加载数据，并提供一些回调接口处理数据和错误提示。</p>
+    </div>
+</body>
+</html>

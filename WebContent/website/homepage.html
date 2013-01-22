@@ -1,0 +1,188 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="keywords" content="jquery,ui框架,开源,web开发框架,om-ui,组件丰富,RIA,前端">
+        <title>operamasks-ui首页</title>
+        <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+        <script type="text/javascript" src="resources/common/jquery.min.js"></script>
+		<script type="text/javascript" src="resources/common/common.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/common/common.css" />
+        <link type="text/css" rel="stylesheet" href="resources/homepage/homepage.css">
+        <script src="../ui/om-core.js"></script>
+	    <script src="../ui/om-slider.js"></script>
+	    <link rel="stylesheet" href="../themes/default/om-slider.css"/>
+        
+        <script type="text/javascript">
+		<!--
+		$(document).ready(function(){
+		  $('#om-ui-components a').each(function(){
+		      $(this).attr('href','demos.html#'+$(this).text());
+		  });
+		  $('.om-ui-component-slider').omSlider({controlNav : false,interval: 3000, effect: 'random'});
+		});
+		//-->
+		</script>
+    </head>
+    <body>
+   	   <div id="main-frame-center">
+	    <div class="header-class">
+	        <div class="hdbanner">
+	            <div class="hdlogo"></div>
+	            <div class="hdmenu" id="__hdmenu">
+	                <div link="homepage.html" class="default_selected"><span>首页</span></div>
+	                <div link="demos.html"><span>示例</span></div>
+	                <div link="download.html"><span>下载</span></div>
+	                <div link="team.html"><span>团队</span></div>
+	                <div link="http://www.operamasks.org/forum/index.php"><span>社区</span></div>
+	                <div link="http://www.operamasks.org/blog"><span>博客</span> </div>
+	                <div link="roadmap.html"><span>Roadmap</span></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div id="__content" class="content">
+	       <div class="om-ui-intro">
+              <div class="intro-font"><img src="resources/homepage/images/font.png"/></div>
+              <a href="download.html" class="download-button"><img src="resources/homepage/images/download.gif"></a>
+              <div class="banner-bro"><img src="resources/homepage/images/banner-bro.png"/></div>
+              <div class="om-ui-component-slider-bg">
+              	 <div class="om-ui-component-slider">
+	                 <a href="../website/demos.html#omSlider" target="_blank"><img  src="resources/homepage/images/slider.jpg"></a>
+	                 <a href="../website/demos.html#omAccordion" target="_blank"><img  src="resources/homepage/images/accordion.jpg"></a>
+	                 <a href="../website/demos.html#grid" target="_blank"><img  src="resources/homepage/images/grid.jpg"></a>
+	                 <a href="../website/demos.html#validation" target="_blank"><img  src="resources/homepage/images/validation.jpg"></a>
+	                 <a href="../website/demos.html#omTabs" target="_blank"><img  src="resources/homepage/images/tabs.jpg"></a>
+                 </div>
+              </div>
+       		</div>
+	       <div class="clear-float"></div>
+	       <div class="om-ui-features">
+	            <div class="om-ui-feature">
+	                <div class="om-ui-feature-title om-ui-feature-base">
+	                    <span>
+	                        <div class="om-ui-feature-titleMain">简单易用</div>
+	                    </span>
+	                </div>
+	                <div class="om-ui-feature-detail">
+	                    OperaMasks-UI是基于Jquery并提供丰富组件的前端UI库，统一的API体系，丰富的业务场景支持，简单的使用模式，平滑的版本升级。将带给您便捷的前端开发新体验。
+	                </div>
+	            </div>
+	            <div class="om-ui-feature">
+	                <div class="om-ui-feature-title om-ui-feature-toolkit">
+	                    <span>
+	                        <div class="om-ui-feature-titleMain">面向企业</div>
+	                    </span>
+	                </div>
+	                <div class="om-ui-feature-detail">
+	                   OperaMasks-UI致力降低企业应用的开发成本，丰富的业务组件、高度的可靠性、强大的扩展能力和平滑的版本升级能力，可满足大部分业务场景需求。
+	                </div>
+	            </div>
+	            <div class="om-ui-feature">
+	                <div class="om-ui-feature-title om-ui-feature-open">
+	                    <span>
+	                        <div class="om-ui-feature-titleMain">开源免费</div>
+	                    </span>
+	                </div>
+	                <div class="om-ui-feature-detail">
+	                                              秉承OperaMasks团队持续开源奉献的理念，OperaMasks-UI将遵循 LGPL 协议，这是一种对商业友好的协议。其可以被商业软件作为类库引用并发布和销售使用。
+	                </div>
+	            </div>
+	       </div>
+	       <div class="clear-float"></div>
+       	   <div class="om-ui-components" id="om-ui-components">
+            <div class="category">
+                <div class="title">
+                   <img alt="" src="resources/homepage/images/img1.png">
+                   <br><br>
+                   <span>Forms</span>
+                </div>
+                <div class="components">
+                   <a href="#">omCalendar</a><br/>
+                   <a href="#">omCombo</a><br/>
+                   <a href="#">omNumberField</a><br/>
+                   <a href="#">omEditor</a><br/>
+                   <a href="#">omSuggestion</a><br/>
+                   <a href="#">validate</a><br/>
+                   <a href="#">omAjaxSubmit</a><br/>
+                   <a href="#">omFileUpload</a><br/>
+                   <a href="#">omItemSelector</a>
+                </div>
+                
+            </div>
+            <div class="om-ui-sep"></div>
+            <div class="category">
+                <div class="title">
+                  <img alt="" src="resources/homepage/images/img2.png">
+                  <br><br>
+                  <span>Widgets</span>
+                </div>
+                <div class="components">
+                   <a href="#">omGrid</a><br/>
+                   <a href="#">omTree</a><br/>
+                   <a href="#">omButton</a><br/>
+                   <a href="#">omButtonbar</a><br/>
+                   <a href="#">omSlider</a><br/>
+                   <a href="#">omMenu</a><br/>
+                   <a href="#">omProgressbar</a><br/>
+                   <a href="#">omTooltip</a>
+                </div>
+                
+            </div>
+            <div class="om-ui-sep"></div>
+            <div class="category">
+                <div class="title">
+                  <img alt="" src="resources/homepage/images/img3.png">
+                  <br><br>
+                  <span>Layout</span>
+                </div>
+                <div class="components">
+                   <a href="#">omTabs</a><br/>
+                   <a href="#">omAccordion</a><br/>
+                   <a href="#">omBorderLayout</a><br/>
+                   <a href="#">omPanel</a>
+                </div>
+                
+            </div>
+            <div class="om-ui-sep"></div>
+            <div class="category">
+                <div class="title">
+                  <img alt="" src="resources/homepage/images/img4.png">
+                  <br><br>
+                  <span>Window</span>
+                </div>
+                <div class="components">
+                   <a href="#">omMessageBox</a><br/>
+                   <a href="#">omDialog</a><br/>
+                   <a href="#">omMessageTip</a>
+                </div>
+            </div>
+            <div class="om-ui-sep"></div>
+            <div class="category">
+                <div class="title">
+                  <img alt="" src="resources/homepage/images/img5.png">
+                  <br><br>
+                  <span>Function</span>
+                </div>
+                <div class="components">
+                   <a href="#">omDraggable</a><br/>
+                   <a href="#">omDroppable</a><br/>
+                   <a href="#">omScrollbar</a>
+                </div>
+            </div>
+       </div>
+       <div class="clear-float"></div>
+	    </div>
+	    <div id="__footer" class="footer">
+		       <div>
+		           <a href="http://www.apusic.com" target="_blank">金蝶旗下公司</a> | 
+		           <a href="team.html" target="_blank">关于我们</a> |
+		           <a href="#" target="_blank">联系我们</a> |
+		           <a href="#" target="_blank">使用条款</a> |
+		           <a href="#" target="_blank">保密声明</a>
+		       </div>
+		       <div>Copyright © Apusic System, Inc. All rights reserved</div>
+	    </div>
+	    </div>
+       
+    </body>
+</html>

@@ -1,0 +1,17 @@
+/*
+ * operamasks-ui Accordion 0.1
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+/* IE/Win - Fix animation bug - #4615 */
+.om-accordion { width: 100%; }
+.om-accordion .om-panel .om-panel-header{border-width: 0;height: 26px;line-height: 26px;padding: 0 0 0 5px;}
+.om-accordion .om-panel:nth-child(1) {margin:0px!important;}
+.om-accordion .om-panel-tool-expand{background:url(images/accordion/accordion_expand.gif);}
+.om-accordion .om-panel-tool-collapse{background:url(images/accordion/accordion_collapse.gif);}
+.om-accordion .om-panel-collapsed{background: url("images/accordion/accordion_panel_normal.gif") repeat-x ;font-weight: bold;color: #666;}
+.om-accordion .om-panel-expanded{background: url("images/accordion/accordion_panel_selected.gif") repeat-x ;font-weight: bold;color: #0653AB;}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>onChange事件</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-progressbar.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#pbar').omProgressbar({
+            	text: "已完成{value}%",
+            	width: 300,
+            	onChange: function(newvalue, oldvalue, event){
+            		if(newvalue >= 100){
+            			$("#result").html("<font color='red'>任务圆满完成！</font>")
+            	     }
+            	}
+            });
+            
+            $("#test").click(function(){
+            	var v = $("#pbar").omProgressbar("value");
+            	if(v < 100){
+            	   v = Math.floor(Math.random()*10) + v;
+            	   $("#pbar").omProgressbar("value", v);
+            	   setTimeout(arguments.callee, 200);
+            	}
+            });
+        });
+        
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div style="margin-top:20px;">
+	    <input id="test" type="button" value="开始"/>
+	    <div id="pbar"></div>
+	    <div id="result" style="height:28px;font-size:24px;"></div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        进度条提供onChange事件，当进度值改变时触发。
+        </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

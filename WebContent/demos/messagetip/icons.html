@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>messageTip提示各种图标</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-messagetip.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <style>
+        /*自定义图标，样式前加上om-messageTip，提高其优先级*/
+       .om-messageTip .om-messageTip-image-aomsdk{
+            background-image: url("aomsdk.png");
+        }
+    </style>
+    <script type="text/javascript">
+    <!--
+    //默认使用alert一样的图标
+    function showDefault(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000});
+    }
+    //使用alert图标
+    function showAlert(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'alert'});
+    }
+    //使用question图标
+    function showQuestion(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'question'});
+    }
+    //使用warning图标
+    function showWarning(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'warning'});
+    }
+    //使用waiting图标
+    function showWaiting(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'waiting'});
+    }
+    //使用success图标
+    function showSuccess(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'success'});
+    }
+    //使用error图标
+    function showError(){
+        $.omMessageTip.show({content : '提醒内容！',timeout : 2000,type : 'error'});
+    }
+    //使用自定义图标
+    function showDefined(){
+        //图片由".om-messageTip-image-aomsdk"样式指定
+        $.omMessageTip.show({content : '提醒内容！',timeout : 5000,type : 'aomsdk'});
+    }
+    //-->
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <button onclick="showDefault();">默认图标是alert</button>
+    <button onclick="showAlert();">alert图标</button>
+    <button onclick="showQuestion();">question图标</button>
+    <button onclick="showWarning();">warning图标</button>
+    <button onclick="showWaiting();">waiting图标</button>
+    <button onclick="showSuccess();">success图标</button>
+    <button onclick="showError();">error图标</button>
+    <button onclick="showDefined();">自定义图标</button>
+    <!-- view_source_end -->
+    <br/><br/>
+    <div style="color:red;font-size: 2em" id="result"></div>
+    <div id="view-desc">
+        使用$.omMessageTip.show(config)可以在页面右下角弹出各种信息提示框，可以定时关闭，也可以监听关闭事件。<br/>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

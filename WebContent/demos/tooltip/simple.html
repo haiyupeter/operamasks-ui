@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tooltip.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+      .qtip-target {
+		    background: none repeat scroll 0 0 #DFE8F6;
+		    border: 1px dotted #99BBE8;
+		    color: #15428B;
+		    cursor: default;
+		    float: left;
+		    font: bold 11px tahoma,arial,sans-serif;
+		    margin: 10px;
+		    padding: 5px 0;
+		    text-align: center;
+		    width: 100px;
+		}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tip').omTooltip({
+                trackMouse : true,
+                html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+            });
+            
+            $('#tip1').omTooltip({
+                region : 'bottom',
+                showOn : 'click',
+                anchor : true,
+                html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+            });
+            $('#tip2').omTooltip({
+                region : 'right',
+                html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+            });
+            
+            $('#tip3').omTooltip({
+                region : 'right',
+                html : '请输入数字',
+                anchor : true ,
+                offset : [-5,5]
+            });
+            $('#tip4').omTooltip({
+                html : '你点击了就会启动流程，要考虑清楚哦！'
+            });
+            $('#tip5').omTooltip({
+                html : '终于看到您老人家了',
+                delay : 2000
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div  class="qtip-target" id="tip">鼠标移上来看看</div>
+    <div style="width: 50px;float: left">&nbsp;</div>
+   	<div  class="qtip-target" id="tip1">鼠标点击一下看看</div>
+   	<div style="clear: both;"></div>
+   	<div  class="qtip-target" id="tip2">提示出现的右方</div>
+   	<div style="width: 50px;float: left">&nbsp;</div>
+   	<div  class="qtip-target" id="tip5">两秒之后出现提示</div>
+   	<div style="clear: both;"></div>
+   	<br/>
+    <input type="text" id="tip3" /><br/><br/>
+    <button id="tip4"> 按钮 </button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>对指定的目标做提示，必须设置内容，可以通过html，url，contentEl等方式设置，具体请看文档<br/>
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

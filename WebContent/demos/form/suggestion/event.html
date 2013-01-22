@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>事件监听</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        function showSendMsg(txt) {
+            var result = $('#result');
+            var old = result.html();
+            if (old.length > 0) {
+                result.html(old + '<br/>' + txt);
+            } else {
+                result.html(txt);
+            }
+        }
+        $(document).ready(function() {
+            $('#txt').omSuggestion({
+                dataSource : '../../../suggestionEvent.json',
+                cacheSize : 0,
+                onBeforeSuggest : function(text, event) {
+                    showSendMsg('发送请求之前,key=' + text);
+                },
+                onSuggesting : function(text, event) {
+                    showSendMsg('正在处理请求,key=' + text);
+                },
+                onSuccess : function(data, status ,event) {
+                    showSendMsg('请求成功之后，构造下拉框之前,key=' + $('#txt').val());
+                },
+                onSelect : function(data, index, event) {
+                    showSendMsg('选择了第' + index + '行，文本为：' + data);
+                },
+                onError : function(request, status, error, event) {
+                    $('#txt').omSuggestion('showMessage', '请求出错！');
+                    showSendMsg('请求出错！,key=' + $('#txt').val());
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+           <span >输入任何内容可以测试onBeforeSuggest、onSuggesting事件。如果内容为'e'可以测试onError事件，内容为其它时可以测试onSuccess、onSelect事件</span>
+    <br />
+    <br />
+    <!-- view_source_begin -->
+    <input id="txt" />
+    <!-- view_source_end -->
+    <div id="result" style="position: absolute; left: 200px; border: 1px solid #999999; top: 60px;font-size:12px;background-color: #D2B48C""></div>
+    <div id="view-desc">
+        支持事件：onBeforeSuggest、onSuggesting、onSuccess、onError、onSelect。<br />
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

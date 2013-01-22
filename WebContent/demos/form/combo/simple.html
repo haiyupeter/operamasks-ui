@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource : [ {text : '中国', value : 'China/PRC'}, 
+                               {text : '美国', value : 'America/USA'}, 
+                               {text : '英国', value : 'the United Kingdom/UK'}, 
+                               {text : '日本', value : 'Japan/JPN'} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="combo1" />
+    <input type="button" onclick="alert($('#combo1').omCombo('value'));" value="getValue"/>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置dataSource数据源属性，在指定的input元素中渲染combo下拉框组件。
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

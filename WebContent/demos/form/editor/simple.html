@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form action="../../../omEditor.do" method="post">
+        <textarea id="editor1" name="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+        <input type="submit" value="提交" />
+    </form>
+    <script>
+        //         
+        $(function() {
+            var editor = $('.editor').omEditor();
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    在指定的textarea元素中渲染编辑器，提交后台时，后台以textarea的name属性作为参数获取编辑器值。
+    </div>
+</body>
+</html>

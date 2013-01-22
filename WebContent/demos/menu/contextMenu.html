@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../themes/default/om-all.css">
+<link rel="stylesheet" href="../common/css/demo.css">
+<script src="../../jquery.js"></script>
+<script src="../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../ui/om-menu.js"></script>
+<title>右键菜单</title>
+<!-- view_source_begin -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#contextMenu').omMenu({
+          contextMenu : true,
+          dataSource : '../../omMenu.json'
+      });
+
+      $('#contextMenu_test').bind('contextmenu',function(e){
+          $('#contextMenu').omMenu('show',e);
+      })
+  });
+</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+    <div id="contextMenu_test" style="border: 1px solid red; width: 200px;height: 150px;">这里点击右键</div>
+    <div id="contextMenu" style="border: 1px solid gray; width: 100px;height: 50px;display: none;"></div>
+  <!-- view_source_end -->
+  <div id="view-desc">
+      <p>设置contextMenu属性为true可以将菜单转换为右键菜单，并且在某区域的Dom元素上绑定contextmenu事件，就可以实现在该区域内显示右键菜单。
+      </p>
+ </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

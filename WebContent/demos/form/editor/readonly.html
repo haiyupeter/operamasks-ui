@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>只读模式</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    <button onclick="$( '.editor' ).omEditor('setReadOnly',true);">设置为只读模式</button>
+    <script>
+        //         
+        $(function() {
+            var editor = $('.editor').omEditor();
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>调用setReadOnly方法，将编辑器设置为只读模式。</p>
+        <p>只读模式下的编辑器呈灰状态，无法输入，除"源码"，"预览"，"打印"，"查找"，"全屏"，"显示区块"，"关于"按钮可以点击外，其余按钮呈置灰状态，且无法点击。
+    </div>
+</body>
+</html>

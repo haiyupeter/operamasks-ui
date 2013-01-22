@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>bug153测试案例</title>
+    <link rel="stylesheet" href="../../../themes/default/om-core.css">
+    <link rel="stylesheet" href="../../../themes/default/om-messagebox.css">
+    <link rel="stylesheet" href="../../../themes/default/om-theme.css">
+    <script src="../../../jquery.js"></script>
+    <script src="../../../ui/om-core.js"></script>
+    <script src="../../../ui/om-mouse.js"></script>
+    <script src="../../../ui/om-draggable.js"></script>
+    <script src="../../../ui/om-position.js"></script>
+    <script src="../../../ui/om-messagebox.js"></script>
+    <script type="text/javascript">
+    <!--
+    function showAlert(){
+       $.omMessageBox.alert();
+    }
+    function showConfirm(){
+       $.omMessageBox.confirm();
+    }
+    function showPrompt(){
+       $.omMessageBox.prompt();
+    }
+    function showWaiting(){
+       $.omMessageBox.waiting();
+    }
+    //-->
+    </script>
+</head>
+<body>
+    
+    <button onclick="showAlert();">alert</button>
+    <button onclick="showConfirm();">confirm</button>
+    <button onclick="showPrompt();">prompt</button>
+    <button onclick="showWaiting();">waiting</button>
+    <div id="view-desc">
+        期望结果：点击各按钮均能弹出提示窗口，不出现任何js错误。
+    </div>
+</body>
+</html>

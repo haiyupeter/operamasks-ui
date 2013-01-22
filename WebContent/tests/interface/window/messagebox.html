@@ -1,0 +1,423 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omMessageBox tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-widget.js" ></script>
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-mouse.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-draggable.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-position.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-messagebox.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-button.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+         //properties : width, disabled, icons,  onClick
+    	/*  $('#alertBase').click(function(){
+    	     $.omMessageBox.alert({title:'提示',content:'提示内容'});
+    	 });
+    	 $('#alertTypeDefault').click(function(){
+    	     $.omMessageBox.alert({content:'提示内容'});
+    	 });
+    	 $('#alertTypeAlert').click(function(){
+    	     $.omMessageBox.alert({type:'alert',content:'提示内容'});
+    	 });
+    	 $('#alertTypeSuccess').click(function(){
+    	     $.omMessageBox.alert({type:'success',content:'提示内容'});
+    	 });
+    	 $('#alertTypeError').click(function(){
+    	     $.omMessageBox.alert({type:'error',content:'提示内容'});
+    	 });
+    	 $('#alertTypeWarning').click(function(){
+    	     $.omMessageBox.alert({type:'warning',content:'提示内容'});
+    	 });
+    	 $('#alertTypeQuestion').click(function(){
+    	     $.omMessageBox.alert({type:'question',content:'提示内容'});
+    	 });
+    	 $('#alertTitleDefault').click(function(){
+    	     $.omMessageBox.alert({content:'提示内容'});
+    	 });
+    	 $('#alertTitleDefined').click(function(){
+    	     $.omMessageBox.alert({title:'自定义标题',content:'提示内容'});
+    	 });
+    	 $('#alertTitleAdvanced').click(function(){
+    	     $.omMessageBox.alert({title:'<font color="red">红色</font>自定义标题',content:'提示内容'});
+    	 });
+    	 $('#alertContentDefault').click(function(){
+    	     $.omMessageBox.alert({});
+    	 });
+    	 $('#alertContentDefined').click(function(){
+    	     $.omMessageBox.alert({content:'自定义内容'});
+    	 });
+    	 $('#alertContentAdvanced').click(function(){
+    	     $.omMessageBox.alert({content:'<h1><font color="red">高级</font>定义内容</h1>'});
+    	 });
+    	 $('#alertOnCloseDefault').click(function(){
+    	     $.omMessageBox.alert({content:'提示内容'});
+    	 });
+    	 $('#alertOnCloseDefined').click(function(){
+    	     $.omMessageBox.alert({content:'提示内容',onClose:function(){alert('do something');}});
+    	 });
+    	 
+    	 $('#promptBase').click(function(){
+    	     $.omMessageBox.prompt({content:'输入任意内容'});
+    	 });
+    	 $('#promptTitleDefault').click(function(){
+             $.omMessageBox.prompt({content:'输入任意内容'});
+         });
+         $('#promptTitleDefined').click(function(){
+             $.omMessageBox.prompt({title:'自定义标题',content:'输入任意内容'});
+         });
+         $('#promptTitleAdvanced').click(function(){
+             $.omMessageBox.prompt({title:'<font color="red">红色</font>自定义标题',content:'输入任意内容'});
+         });
+         $('#promptContentDefault').click(function(){
+             $.omMessageBox.prompt({});
+         });
+         $('#promptContentDefined').click(function(){
+             $.omMessageBox.prompt({content:'自定义内容'});
+         });
+         $('#promptContentAdvanced').click(function(){
+             $.omMessageBox.prompt({content:'<h1><font color="red">高级</font>定义内容</h1>'});
+         });
+         $('#promptOnCloseDefault').click(function(){
+             $.omMessageBox.prompt({content:'请输入AOM'});
+         });
+         $('#promptOnCloseDefined').click(function(){
+             $.omMessageBox.prompt({content:'请输入AOM',onClose:function(value){
+                if(value===false){
+                    alert("你取消了输入");
+                }else{
+                    alert("你输入的值为："+value);
+                }
+             }});
+         });
+         $('#promptOnCloseDefined2').click(function(){
+             $.omMessageBox.prompt({content:'请输入AOM',onClose:function(value){
+                if(value===false){
+                    alert("你取消了输入");
+                }else{
+                    if(value==="AOM")
+                        alert("输入正确");
+                    else{
+                        alert("请输入AOM");
+                        return false;
+                    }
+                }
+             }});
+         });
+         $('#confirmBase').click(function(){
+             $.omMessageBox.confirm({content:'确认内容'});
+         });
+    	 $('#confirmTitleDefault').click(function(){
+             $.omMessageBox.confirm({content:'确认内容'});
+         });
+         $('#confirmTitleDefined').click(function(){
+             $.omMessageBox.confirm({title:'自定义标题',content:'确认内容'});
+         });
+         $('#confirmTitleAdvanced').click(function(){
+             $.omMessageBox.confirm({title:'<font color="red">红色</font>自定义标题',content:'确认内容'});
+         });
+         $('#confirmContentDefault').click(function(){
+             $.omMessageBox.confirm({});
+         });
+         $('#confirmContentDefined').click(function(){
+             $.omMessageBox.confirm({content:'自定义内容'});
+         });
+         $('#confirmContentAdvanced').click(function(){
+             $.omMessageBox.confirm({content:'<h1><font color="red">高级</font>定义内容</h1>'});
+         });
+         $('#confirmOnCloseDefault').click(function(){
+             $.omMessageBox.confirm({content:'确定删除吗？'});
+         });
+         $('#confirmOnCloseDefined').click(function(){
+             $.omMessageBox.confirm({content:'确定删除吗？',onClose:function(value){
+                if(value===false){
+                    alert("你不同意");
+                }else{
+                    alert("你同意了");
+                }
+             }});
+         });
+         
+         
+         $('#waitingBase').click(function(){
+             $.omMessageBox.waiting({content:'服务器正在处理你的请求...'});
+         });
+         $('#waitingTitleDefault').click(function(){
+             $.omMessageBox.waiting({content:'服务器正在处理你的请求...'});
+         });
+         $('#waitingTitleDefined').click(function(){
+             $.omMessageBox.waiting({title:'自定义标题',content:'服务器正在处理你的请求...'});
+         });
+         $('#waitingTitleAdvanced').click(function(){
+             $.omMessageBox.waiting({title:'<font color="red">红色</font>自定义标题',content:'服务器正在处理你的请求...'});
+         });
+         $('#waitingContentDefault').click(function(){
+             $.omMessageBox.waiting({});
+         });
+         $('#waitingContentDefined').click(function(){
+             $.omMessageBox.waiting({content:'自定义内容'});
+         });
+         $('#waitingContentAdvanced').click(function(){
+             $.omMessageBox.waiting({content:'<h1><font color="red">高级</font>定义内容</h1>'});
+         });
+         $('#waitingCloseMethod').click(function(){
+             $.omMessageBox.waiting({content:'服务器正在处理你的请求...'});
+             setTimeout("$.omMessageBox.waiting('close');",3000);
+         }); */
+         
+         
+         $('#longContentEn').click(function(){
+             $.omMessageBox.alert({content:'EnglishadadadaaAAACAdaafdadsadsadsadasdsascdasaccxaawwxcx Adad Adfa afdad 12 Faadad afasfaf ad2axasasxad asdsa2dsa23adsadadsad'});
+         });
+         $('#longContentCn').click(function(){
+             $.omMessageBox.alert({content:'中文件工在地甘工在二○一在基革地一于和主产品成本产一 产不能男子这样工在一上海市在于如期而至 工区域性左基基 工菲薄中华全国工商联合会 在于 工基地荭工基 忆苦思甜'});
+         });
+         $('#longContentMix').click(function(){
+             $.omMessageBox.alert({content:'EnglishadadadaaAAACAdaafdadsadsadsadasdsascdasaccxaawwxcx A中文件工在地甘工在二○一在基革地一于和主dad afasfaf ad2axasasxad asdsa2dsa23adsadadsad商联合会 在于 工基地荭工基 忆苦思甜'});
+         });
+    }); 
+</script>
+ 
+</head> 
+<body> 
+  <div class="total">
+		messageBox测试案例，API属性总共 <span class="apiNo" number="0"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;">1</span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+	<!-- 	<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li> -->
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<!-- 
+	<div id="tabs-1">
+		不需要测试，没有属性。请进行“功能测试”和“边界值测试”
+	</div>
+	
+	<div id="tabs-2">
+        <div class="testPoint">
+            <span class="title">功能测试点1：测试$.omMessageBox.alert(config)基本功能</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，弹出一个模态的提示窗口，标题为“提示”，内容为“提示内容”，内容左边有图标，窗口右上角有关闭按钮，点击右上角关闭按钮或“确定”按钮或按“ESC”键均可关闭窗口。鼠标放在标题栏上时可以拖动窗口（非标题栏的地方不能拖动，拖动时只能在窗口可视区(document)内拖动，不可以拖到窗口可视区的外面）。不可以变化窗口的大小</div>
+            <div  class="tpDIV">
+                <button id="alertBase">alert</button>
+            </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">功能测试点2：测试$.omMessageBox.alert(config)的type属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提示”，内容都是“提示内容”。<br/>点default和alert按钮时窗口左边图标为"i"形图标。点success按钮时窗口左边图标为"√"形图标。点error按钮时窗口左边图标为"X"形图标。点warning按钮时窗口左边图标为"!"形图标。点question按钮时窗口左边图标为"?"形图标</div>
+            <div  class="tpDIV">
+                <button id="alertTypeDefault">default</button>
+                <button id="alertTypeAlert">alert</button>
+                <button id="alertTypeSuccess">success</button>
+                <button id="alertTypeError">error</button>
+                <button id="alertTypeWarning">warning</button>
+                <button id="alertTypeQuestion">question</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点3：测试$.omMessageBox.alert(config)的title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，内容都是“提示内容”。点击按钮1弹出的窗口标题是“提示”，点击按钮2弹出的窗口标题是“自定义标题”，点击按钮3弹出的窗口标题是“红色自定义标题”其中红色两字是红色的</div>
+            <div  class="tpDIV">
+                <button id="alertTitleDefault">default</button>
+                <button id="alertTitleDefined">defined</button>
+                <button id="alertTitleAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点4：测试$.omMessageBox.alert(config)的content属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提示”。点击按钮1弹出的窗口内容是空白，点击按钮2弹出的窗口内容是“自定义内容”，点击按钮3弹出的窗口内容是“高级自定义内容”其中高级两字是红色的且所有字体都是24px</div>
+            <div  class="tpDIV">
+                <button id="alertContentDefault">default</button>
+                <button id="alertContentDefined">defined</button>
+                <button id="alertContentAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点5：测试$.omMessageBox.alert(config)的onClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提示”内容都是“提示内容”。点击按钮1弹出的窗口点击确定或按ESC按钮将直接关闭弹出窗口。点击按钮2弹出的窗口点击确定后将先弹出一个"do something"提示然后才关闭弹出窗口，点击按钮2弹出的窗口按ESC后将不弹出"do something"提示而是直接关闭窗口</div>
+            <div  class="tpDIV">
+                <button id="alertOnCloseDefault">default</button>
+                <button id="alertOnCloseDefined">defined</button>
+            </div>
+        </div>
+        
+        
+        <div class="testPoint">
+            <span class="title">功能测试点6：测试$.omMessageBox.prompt(config)的基本功能</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，弹出一个模态的提示窗口，标题为“请输入”，内容为“输入任意内容”下面有一单行输入框，内容左边有图标，窗口右上角有关闭按钮，点击右上角关闭按钮或“确定”按钮或“取消”按钮或按“ESC”键均可关闭窗口。鼠标放在标题栏上时可以拖动窗口（非标题栏的地方不能拖动，拖动时只能在窗口可视区(document)内拖动，不可以拖到窗口可视区的外面）。不可以变化窗口的大小</div>
+            <div  class="tpDIV">
+                <button id="promptBase">prompt</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点7：测试$.omMessageBox.prompt(config)的title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口。点击按钮1弹出的窗口标题是“请输入”，点击按钮2弹出的窗口标题是“自定义标题”，点击按钮3弹出的窗口标题是“红色自定义标题”其中红色两字是红色的</div>
+            <div  class="tpDIV">
+                <button id="promptTitleDefault">default</button>
+                <button id="promptTitleDefined">defined</button>
+                <button id="promptTitleAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点8：测试$.omMessageBox.prompt(config)的content属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口。点击按钮1弹出的窗口内容区单行输入框上的文字是空白，点击按钮2弹出的窗口内容区单行输入框上的文字是“自定义内容”，点击按钮3弹出的窗口内容区单行输入框上的文字是“高级自定义内容”其中高级两字是红色的且所有字体都是24px</div>
+            <div  class="tpDIV">
+                <button id="promptContentDefault">default</button>
+                <button id="promptContentDefined">defined</button>
+                <button id="promptContentAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点9：测试$.omMessageBox.prompt(config)的onClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“请输入”内容都是“请输入AOM”下面有一单行输入框，点击右上角关闭按钮或按ESC都会直接关闭窗口，不会有任何提示。<br/>
+                    点击按钮1弹出的窗口不管在输入框中输入什么值，点“确定”或“取消”按钮时不会有任何提示，将直接关闭弹出窗口。<br/>
+                    点击按钮2弹出的窗口不管在输入框中输入什么值，点“取消”按钮时会先提示“你取消了输入”然后才关闭弹出窗口。点击“确定”按钮会先提示<u>“你输入的值为：”+输入框的值</u>然后才关闭弹出窗口。<br/>
+                    点击按钮3弹出的窗口不管在输入框中输入什么值，点“取消”按钮时会先提示“你取消了输入”然后才关闭弹出窗口。点击“确定”按钮时如果输入的值是"AOM"则提示“输入正确”然后才关闭弹出窗口；如果输入的值不是"AOM"则提示“请输入AOM”并且弹出窗口不会关闭。
+            </div>
+            <div  class="tpDIV">
+                <button id="promptOnCloseDefault">default</button>
+                <button id="promptOnCloseDefined">defined</button>
+                <button id="promptOnCloseDefined2">defined</button>
+            </div>
+        </div>
+        
+        
+        <div class="testPoint">
+            <span class="title">功能测试点10：测试$.omMessageBox.confirm(config)的基本功能</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，弹出一个模态的提示窗口，标题为“确认”，内容为“确认内容”，内容左边有"?"形图标，窗口右上角有关闭按钮，下面有“确定”和“取消”两个按钮，点击右上角关闭按钮或“确定”按钮或“取消”按钮或按“ESC”键均可关闭窗口。鼠标放在标题栏上时可以拖动窗口（非标题栏的地方不能拖动，拖动时只能在窗口可视区(document)内拖动，不可以拖到窗口可视区的外面）。不可以变化窗口的大小</div>
+            <div  class="tpDIV">
+                <button id="confirmBase">confirm</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点11：测试$.omMessageBox.confirm(config)的title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，内容都是“确认内容”。点击按钮1弹出的窗口标题是“确认”，点击按钮2弹出的窗口标题是“自定义标题”，点击按钮3弹出的窗口标题是“红色自定义标题”其中红色两字是红色的</div>
+            <div  class="tpDIV">
+                <button id="confirmTitleDefault">default</button>
+                <button id="confirmTitleDefined">defined</button>
+                <button id="confirmTitleAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点12：测试$.omMessageBox.confirm(config)的content属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“确认”。点击按钮1弹出的窗口内容是空白，点击按钮2弹出的窗口内容是“自定义内容”，点击按钮3弹出的窗口内容是“高级自定义内容”其中高级两字是红色的且所有字体都是24px</div>
+            <div  class="tpDIV">
+                <button id="confirmContentDefault">default</button>
+                <button id="confirmContentDefined">defined</button>
+                <button id="confirmContentAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点13：测试$.omMessageBox.confirm(config)的onClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“确认”内容都是“确定删除吗？”，点击右上角关闭按钮或按ESC都会直接关闭窗口，不会有任何提示。<br/>
+                    点击按钮1弹出的窗口，点“确定”或“取消”按钮时不会有任何提示，将直接关闭弹出窗口。<br/>
+                    点击按钮2弹出的窗口，点“取消”按钮时会先提示“你不同意”然后才关闭弹出窗口。点击“确定”按钮会先提示“你同意了”然后才关闭弹出窗口。<br/>
+            </div>
+            <div  class="tpDIV">
+                <button id="confirmOnCloseDefault">default</button>
+                <button id="confirmOnCloseDefined">defined</button>
+            </div>
+        </div>
+        
+        
+        <div class="testPoint">
+            <span class="title">功能测试点14：测试$.omMessageBox.waiting(config)的基本功能</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，弹出一个模态的提示窗口，标题为“请等待”，内容为“服务器正在处理你的请求...”，内容左边有表示正在处理的图标，<font color="red">窗口右上角没有关闭按钮，下面也没有“确定”和“取消”两个按钮，按“ESC”键不可关闭窗口</font>。鼠标放在标题栏上时可以拖动窗口（非标题栏的地方不能拖动，拖动时只能在窗口可视区(document)内拖动，不可以拖到窗口可视区的外面）。不可以变化窗口的大小。<font color="red">弹出窗口无法关闭，要测试其它内容请按F5刷新页面</font></div>
+            <div  class="tpDIV">
+                <button id="waitingBase">waiting</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点15：测试$.omMessageBox.waiting(config)的title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，内容都是“服务器正在处理你的请求...”。点击按钮1弹出的窗口标题是“请等待”，点击按钮2弹出的窗口标题是“自定义标题”，点击按钮3弹出的窗口标题是“红色自定义标题”其中红色两字是红色的。<font color="red">弹出窗口无法关闭，要测试其它内容请按F5刷新页面</font></div>
+            <div  class="tpDIV">
+                <button id="waitingTitleDefault">default</button>
+                <button id="waitingTitleDefined">defined</button>
+                <button id="waitingTitleAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点16：测试$.omMessageBox.waiting(config)的content属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“请等待”。点击按钮1弹出的窗口内容是空白，点击按钮2弹出的窗口内容是“自定义内容”，点击按钮3弹出的窗口内容是“高级自定义内容”其中高级两字是红色的且所有字体都是24px。<font color="red">弹出窗口无法关闭，要测试其它内容请按F5刷新页面</font></div>
+            <div  class="tpDIV">
+                <button id="waitingContentDefault">default</button>
+                <button id="waitingContentDefined">defined</button>
+                <button id="waitingContentAdvanced">advanced</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点17：测试$.omMessageBox.confirm('close')方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，均弹出显示窗口，标题都是“请等待”，内容是“服务器正在处理你的请求...”，3秒后自动关闭。</div>
+            <div  class="tpDIV">
+                <button id="waitingCloseMethod">default</button>
+            </div>
+        </div>
+        -->
+	</div>
+	
+	<div id="tabs-3">
+		<div class="testPoint">
+            <span class="title">边界测试点1：测试content内容很长时的情况</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，不管内容是中文还是英文还是混合的，内容长了后会自动换行。</div>
+            <div  class="tpDIV">
+                <button id="longContentEn">全是英文</button>
+                <button id="longContentCn">全是中文</button>
+                <button id="longContentMix">中英混合</button>
+            </div>
+        </div>
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

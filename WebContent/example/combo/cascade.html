@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>动态级联下拉</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../demos/common/css/demo.css" />
+    <style>
+        span {
+            font-size: 12px;
+            line-height:1em;
+        }
+    </style>
+<!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var dataUrl='../../cascadeComboData.json'; 
+            $('#org').omCombo({
+                dataSource : dataUrl,
+                valueField:'id',
+                optionField:'text',
+                onValueChange : function(target, newValue, oldValue) {
+                   $('#subOrg').val('').omCombo('setData', dataUrl+'?topOrg='+newValue);
+                   $('#user').val('').omCombo( 'setData', []);
+                }
+            });
+            $('#subOrg').omCombo({
+                editable:false,
+                dataSource:[],
+                valueField:'id',
+                optionField:'text',
+                onValueChange : function(target, newValue, oldValue) {
+                   $('#user').val('').omCombo( 'setData', dataUrl+'?subOrg='+newValue);
+                }
+            });
+            $('#user').omCombo({
+                editable:false,
+                dataSource:[],
+                valueField:'userid',
+                optionField:'username',
+                textField:'username'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+
+</head>
+<body style="line-height: 3em">
+    <!-- view_source_begin -->
+    <span>一级部门：</span><input id="org" /><br /> 
+    <span>子级部门：</span><input id="subOrg" /><br /> 
+    <span>选择人员：</span><input id="user" /><br /> 
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>在选择前一个combo记录里，可以将选择的记录的value与下一个combo的dataSource拼接成一个新的url，然后通过setData方法可将新url设置到指定的combo，相当于修改了combo的数据源，从而达到级联的效果。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../demos/common/js/themeloader.js"></script>
+</html>

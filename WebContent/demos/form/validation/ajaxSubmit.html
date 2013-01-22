@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>简单校验</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <script type="text/javascript" src="../../../ui/om-ajaxsubmit.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+       label.error{
+        background: #fff6bf url(images/alert.png) center no-repeat;
+		background-position: 5px 50%;
+		text-align: left;
+		padding: 2px 20px 2px 25px;
+		border: 1px solid #ffd324;
+		display: none;
+		width: 200px;
+		margin-left: 10px;
+       }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          //将form校验对象保存到remote里
+          var  remote = $("#ajaxsubmit").validate({
+                rules : {
+                    userName : {
+                        required : true
+                    }
+                },
+                messages : {
+                    userName : {
+                        required : "请输入用户名"
+                    }
+                },
+                //显示隐藏错误信息
+                showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){
+ 	                   $.each(errorList,function(index,obj){
+ 	                       $(obj.element).next().show();
+ 	                   });
+ 	                   this.defaultShowErrors();
+                    }else{
+                        $(this.currentElements).next('.error').hide();
+                    }
+                  //submitHandler：当form在客户端校验成功之后会执行里面的代码，
+                  //此处当校验通过之后调用ajaxSubmit提交表单。
+                },submitHandler : function() {
+                    $('#ajaxsubmit').omAjaxSubmit({success:function(responseText, statusText, xhr, $form){
+                        if(responseText=='false'){
+                            //调用校验对象的showErrors方法，传入显示错误的字段名称和错误信息
+                            remote.showErrors({"userName": $('#userName').val()+"已经被注册,请重新输入用户名！"});
+                        }else{
+                            $('#userName').val('');
+                            alert('提交成功！');
+                        }
+                    }});
+                    return false; // 阻止浏览器默认行为
+                }
+            });
+             $("#sub").omButton(); 
+             $("#sub1").omButton();
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form id="ajaxsubmit" action="../../../omButtonServlet">
+        <label>用户名：</label> <input type="text" name="userName" id="userName"/>
+        <br/><br/>
+         <input type="submit" value="提交" id="sub1"/>
+    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+                       本例演示使用ajax提交的情况下如何使用校验框架，有两种方式供选择：<br/>
+         1、使用校验框架的submitHandler属性，当客户端校验通过之后再调用ajaxSubmit提交表单，必须阻止浏览器默认事件。(代码见本示例源码)<br/>
+         2、使用valid方法，监听form的submit事件，当$('#form').valid()返回true的时候再提交。<br/>
+<pre>
+    //通过监听form的submit事件，对form进行ajax提交。
+ $('#formId').submit(function() {
+     if (!$("#formId").valid()) 
+         return false;
+     $(this).omAjaxSubmit({});
+     return false; //此处必须返回false，阻止常规的form提交
+ });
+</pre>
+    </div>
+</body>
+</html>

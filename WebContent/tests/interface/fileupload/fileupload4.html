@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omFileUpload Test</title>
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script>
+<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<style type="text/css">
+   .VPDIV{
+	width: 400px;
+	height: 200px;
+   }
+	#upload13Uploader{
+		border: 1px solid red;
+	}
+	#upload14Uploader{
+		border: 1px solid red;
+	}
+</style>
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#upload10").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   width: 130,
+		   height: 45,
+		   buttonImg: 'images/newbutton.png'
+	   });
+       $("#upload11").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   buttonText: '请上传小文件'
+	   });
+       $("#upload4").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   fileExt: "*.jpg;*.png;*.gif",
+		   fileDesc: "Image Files"
+	   });
+       $("#upload13").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   width: 200
+	   });
+	   
+	   $("#upload14").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   height: 50
+	   });
+	   $("#upload1").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do"
+	   });
+	   $("#upload3").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   sizeLimit: 1024
+	   });
+	   $("#upload9").omFileUpload({
+		   action: "/operamasks-ui/omFileUpload.do",
+		   method: "GET",
+		   actionData:{'name':'file1'},
+		   onComplete : function(ID,fileObj,response,data,event){
+		    	var jsonData = eval("("+response+")");
+		    	alert('actionData:name ='+jsonData.name);
+		    }
+	   });
+	   
+	   $('#upload1').nextAll('a:first').click(function(){
+	       $('#upload1').omFileUpload({action:'error.do'});
+	   });
+	   $('#upload3').nextAll('a:first').click(function(){
+	       $('#upload3').omFileUpload({'sizeLimit':102400});
+	   });
+	   $('#upload4').nextAll('a:first').click(function(){
+	       $('#upload4').omFileUpload({fileExt:'*.png'});
+	       $('#upload4').omFileUpload({fileDesc:'only png'});
+	   });
+	   $('#upload9').nextAll('a:first').click(function(){
+	       $('#upload9').omFileUpload({actionData:{name:'file2'}});
+	   });
+	   $('#upload10').nextAll('a:first').click(function(){
+	       $('#upload10').omFileUpload({buttonImg:'images/newcancel.png'});
+	   });
+	   $('#upload11').nextAll('a:first').click(function(){
+	       $('#upload11').omFileUpload({buttonText:'上传文件撒'});
+	   });
+	   $('#upload13').nextAll('a:first').click(function(){
+	       $('#upload13').omFileUpload({width:250});
+	   });
+	   $('#upload14').nextAll('a:first').click(function(){
+	       $('#upload14').omFileUpload({height:60});
+	   });
+	   
+   });
+</script>
+</head>
+<body>
+   <div class="testPoint">
+			<span class="title">option测试点1：测试action属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     1、不点击“修改action属性” ，按照正常流程可以完成上传文件。<br/>
+			     2、点击“修改action属性”之后，上传文件报错。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload1" name="upload1"/>
+			    <a href="javascript:void(0)">修改action属性</a>
+			    </br>
+			    <a href="javascript:void(0)" onclick="$('#upload1').omFileUpload('upload');return false;">上传文件</a> 
+			</div>
+   </div>
+   <div class="testPoint">
+			<span class="title">option测试点2：测试sizeLimit属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			    限制上传的文件大小不超过1024B，在点击“修改sizeLimit属性为1024000B”之前，上传超过1024B的资源报错
+			  点击之后文件能正常上传。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload3" name="upload3" />
+			    <a href="javascript:void(0)" >修改sizeLimit属性为1024000B</a> 
+			    </br>
+			    <a href="javascript:void(0)" onclick="$('#upload3').omFileUpload('upload');return false;">上传文件</a> 
+			</div>
+   </div>
+   <div class="testPoint">
+			<span class="title">option测试点3：测试fileExt与fileDesc属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     只能上传“jpg、gif、png”图片，并且在选择文件的弹出窗口中的“文件类型”下拉框中显示“Image Files”。
+			  如果点击了“属性修改”链接，则只能上传png，且“文件类型”下拉框中显示“only png”
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload4" name="upload4" />
+			    <a href="javascript:void(0)">属性修改</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">option测试点4：测试actionData属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     点击“修改actionData”链接后，上传完成后弹出框中显示“actionData：name=file2”。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload9" name="upload9" />
+			    <a href="javascript:void(0)">修改actionData</a>
+			    <a href="javascript:void(0)" onclick="$('#upload9').omFileUpload('upload');return false;">上传文件</a>
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">option测试点5：测试buttonImg属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     点击“修改按钮背景图片”链接，上传按钮的背景图片被替换
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload10" name="upload10" />
+			    <a href="javascript:void(0)">修改按钮背景图片</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">option测试点6：测试buttonText属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮下面显示的文字为"请上传小文件"。
+			     点击“修改buttonText”链接，按钮文字改成“传文件撒”
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload11" name="upload11" />
+			    <a href="javascript:void(0)" >修改buttonText</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">option测试点7：测试width属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮所在的DIV的宽度为200px。
+			   点击“修改width为250”链接，按钮宽度将变成250px
+			</div>
+
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload13" name="upload13" />
+			    <a href="javascript:void(0)">修改width为250</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">option测试点8：测试height属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     上传按钮所在的DIV的高度为50px。
+			  点击“修改height为60”链接，上传按钮组件高度变成了60px
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload14" name="upload14" />
+			    <a href="javascript:void(0)">修改height为60</a> 
+			</div>
+   </div>
+</body>
+</html>

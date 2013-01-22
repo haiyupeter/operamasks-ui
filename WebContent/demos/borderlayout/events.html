@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>事件监听</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	#page{
+    		width: 650px;
+    		height: 400px;
+    	}
+    </style>    
+    <script type="text/javascript">
+    	function logEventMsg(msg){
+    		$("#center-panel").append($("<p style='display:none'>"+msg+"</p>").fadeIn());
+    	}
+        $(document).ready(function() {
+            element = $('#page').omBorderLayout({
+           	   panels:[{
+           	        id:"north-panel",
+           	        title:"This is north panel",
+           	        region:"north",
+           	        resizable:true,
+           	        collapsible:true,
+           	     	closable: true,
+           	     	onCollapse:function(){
+           	     		logEventMsg("收缩 north 区域完成");
+           	     	},
+           	     	onBeforeCollapse:function(){
+           	     		logEventMsg("准备收缩 north 区域");
+           	     	},
+           	     	onExpand:function(){
+           	     		logEventMsg("展开 north 区域完成");
+           	     	},
+           	     	onBeforeExpand:function(){
+           	     		logEventMsg("准备展开 north 区域");
+           	     	},
+           	     	onOpen:function(){
+           	     		logEventMsg("打开 north 区域完成");
+           	     	},
+           	     	onBeforeOpen:function(){
+           	     		logEventMsg("准备打开 north 区域");
+           	     	},
+           	     	onClose:function(){
+           	     		logEventMsg("关闭 north 区域完成");
+           	     	},
+           	     	onBeforeClose:function(){
+           	     		logEventMsg("准备关闭 north 区域");
+           	     	},
+           	     	height:80
+           	    },{
+           	        id:"south-panel",
+           	        region:"south",
+           	        header:false,
+           	        height:80
+           	    },{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is west panel",
+           	        region:"west",
+           	        width:150
+           	    },{
+           	        id:"east-panel",
+           	        title:"This is east panel",
+           	        region:"east",
+           	        width:150
+           	    }],
+           	    onBeforeDrag : function(element,event){
+           	    	logEventMsg("开始拖拽 "+element.attr("region")+" 区域");
+           	    },
+           	    onAfterDrag : function(element,event){
+           	    	logEventMsg("拖拽 "+element.attr("region")+" 区域结束");
+           	    }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="page">
+    	<div id="north-panel">north</div>
+    	<div id="center-panel"></div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="south-panel">sorth</div>
+    </div>
+    <button onclick="element.omBorderLayout('openRegion','north');">打开north区域</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        borderLayout布局组件中监听的是omPanel的基本事件和拖拽改变面板大小的事件。上面的示例中对north区域panel的操作和对各个区域的拖拽操作会触发相应的回调函数并把信息打印在center区域的panel里。</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>拖动限制</title>
+ <script src="../../jquery.js"></script>
+ <script src="../../ui/om-core.js"></script>
+ <script src="../../ui/om-mouse.js"></script>
+ <script src="../../ui/om-draggable.js"></script>
+ <link rel="stylesheet" href="../../themes/default/om-all.css">
+ <link rel="stylesheet" href="../common/css/demo.css">
+ <!-- view_source_begin -->
+  <style>
+	.draggable { 
+		width: 90px; 
+		height: 90px; 
+		float: left; 
+		margin: 0 10px 10px 0;
+		background: #F0F0F0;
+	}
+	#draggable { 
+		cursor: n-resize; 
+	}
+	#draggable2 { 
+		cursor: e-resize;
+	}
+	#containment-wrapper { 
+		width: 95%;
+	    height:150px;
+	    border:2px solid #ccc; 
+	    padding: 10px; 
+    }
+	#draggable5 {
+		border: 1px solid #aaaaaa; 
+		background: #cccccc;
+	}
+	h3.docs { 
+		clear:left; 
+		font-weight:normal; 
+		padding:0 0 1em; 
+		margin:0; }
+  </style>
+	<script>
+	$(document).ready(function() {
+		$( "#draggable" ).omDraggable({ axis: "y" });
+		$( "#draggable2" ).omDraggable({ axis: "x"});
+		$( "#draggable3" ).omDraggable({ containment: "#containment-wrapper", scroll: false });
+		$( "#draggable4" ).omDraggable({ containment: "#demo" });
+		$( "#draggable5" ).omDraggable({ containment: "parent" });
+		$(".draggable").addClass("om-widget-content");
+	});
+	</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+	<h3 class="docs ">设置拖动的方向:</h3>
+		
+	<div id="draggable" class="draggable">
+		<p>垂直拖动！</p>
+	</div>
+	
+	<div id="draggable2" class="draggable">
+		<p>水平拖动！</p>
+	</div>
+	
+	<h3 class="docs">设置拖动的范围:</h3>
+	<div id="containment-wrapper">
+	<div id="draggable3" class="draggable">
+		<p>只能在这个框里活动！</p>
+	</div>
+	
+	<div id="draggable4" class="draggable">
+		<p>活动范围更大！</p>
+	</div>
+	
+	<div class="draggable">
+		<p id="draggable5">活动范围最小！</p>
+	</div>
+	</div>
+<!-- view_source_end -->
+<div id="view-desc">
+      <p>设置axis属性可以限制拖动的方向，"x"为水平拖动，"y"为垂直拖动。</p>
+      <p>设置containment属性，指定拖动的范围，不能拖动到该范围以外的地方。</p>
+      <p>设置scroll属性，指定在拖动时是否出现滚动条。</p>
+    </div>	
+</body>
+</html>

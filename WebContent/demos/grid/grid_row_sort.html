@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>行拖动排序</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-sortable.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <style type="text/css">
+    	.placeholder{
+    		height:25px;
+    		background-color: #e87b10;
+    	}
+    </style>
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+        var $grid = $('#grid').omGrid({
+            dataSource : 'data.json',
+            height : 480,
+            showIndex : true,
+            colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                         {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                         {header : '地址', name : 'address', align : 'left', width : 'autoExpand'
+                         } ]
+        });
+        var start = 0;
+        //使grid支持行拖动重新排序
+        $grid.sortable({
+           	items:"tr.om-grid-row",//表示 $grid.find("tr.om-grid-row") 的结果集是可拖动的，也就是行可拖动。
+           	placeholder : "placeholder",//把一行拖走时，会创建一个空行放在原来的位置，这个是空行的样式类名
+			start : function(ui , event){//开始拖动事件
+			    start = getId($grid , ui);
+			    $grid.find("tr.placeholder").html("<td colspan=4></td>");//由于拖动时添加的行为空行，必须添加td才会使背景生效
+           	},
+           	stop : function(ui , event){//结束拖动事件
+           	 	var end = getId($grid , ui);
+           	    alert(start + "放在" + end + "后面");
+           	    location.href = "grid_row_sort.html";
+           	}
+        });
+    });
+    /**
+		@params : ui.item表示tr
+		@returns : 返回ui.item对应的行的rowData的id
+    */
+    function getId($grid , ui){
+        var $allTr = $grid.find("tr.om-grid-row");//注意，那个空行不要包括进来，这样下面计算索引才正确 
+        //$allTr.index(ui.item)  找出ui.item对应的行在所有行中的索引
+        //找出 $grid.omGrid("getData").rows[index] : 找出索引为index的行的行数据(rowData)
+	    return $grid.omGrid("getData").rows[$allTr.index(ui.item)].id;
+    }
+    </script>
+</head>
+<body>	
+	<table id="grid"></table>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

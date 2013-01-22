@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omAjaxsubmit test</title>
+<script src="../../../demos/common/js/json2.js"></script>
+<script src="../../../jquery.js"></script>
+<link rel="stylesheet" href="../common/css/qunit.css">
+<script src="../common/js/qunit.js"></script>
+<script src="../common/js/jquery.simulate.js"></script>
+
+<script src="../../../ui/om-core.js"></script>
+<script src="../../../ui/om-ajaxsubmit.js"></script>
+
+<script src="ajaxsubmit_core.js"></script>
+<script src="ajaxsubmit_options.js"></script>
+<script src="ajaxsubmit_utils.js"></script>
+<script src="ajaxsubmit_events.js"></script>
+<script src="../common/js/qunit-junit-outputter.js"></script>
+</head>
+<body>
+<h1 id="qunit-header">Operamasks UI omAjaxSubmit Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+     <form id="form1" action="../../../qunitAjaxSubmit" method="get"><div>
+                <input name="Hidden" value="hiddenValue" type="hidden">
+                <input name="Name" value="MyName1" type="text">
+                <input name="Password" type="password">
+                <select name="Multiple" multiple="multiple">
+                    <optgroup label="block 1">
+                        <option value="one" selected="selected">One</option>
+                        <option value="two">Two</option>
+                        <option value="three">Three</option>
+                    </optgroup>
+                    <optgroup label="block 2">
+                        <option value="four" selected="selected">Four</option>
+                        <option value="five">Five</option>
+                        <option value="six" selected="selected">Six</option>
+                    </optgroup>
+                </select>
+                <select name="Single">
+                    <option value="one" selected="selected">One</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                </select>
+                <select name="Single2">
+                    <optgroup label="block 3">
+                        <option value="A" selected="selected">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </optgroup>
+                    <optgroup label="block 3">
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                    </optgroup>
+                </select>
+                <input name="Check" value="1" type="checkbox">
+                <input name="Check" value="2" checked="checked" type="checkbox">
+                <input name="Check" value="3" type="checkbox">
+                <input name="Radio" value="1" type="radio">
+                <input name="Radio" value="2" checked="checked" type="radio">
+                <input name="Radio" value="3" type="radio">
+                <input name="action" value="1" type="text">
+                <input name="method" value="2" type="text">
+                <textarea name="Text" rows="2" cols="20">This is Form1</textarea>
+                <input name="submitButton" value="Submit1" type="submit">
+                <input name="submitButton" value="Submit2" type="submit">
+                <input name="submitButton" value="Submit3" type="submit">
+                <input name="submitButton" value="Submit4" src="submit.gif" type="image">
+                <input name="resetButton " value="Reset" type="reset">
+        </div></form>
+
+        <!-- form2 -->
+        <form id="form2" action="../../../qunitAjaxSubmit" method="get"><div>
+            <input name="a" type="text">
+            <textarea name="b" rows="1" cols="1"></textarea>
+            <input name="c" type="text">
+            <select name="d"><option selected="selected" value="x">x</option></select>
+            <textarea name="e" rows="1" cols="1"></textarea>
+            <input name="f" type="text">
+            <input name="resetButton " value="Reset" type="reset">
+        </div></form>
+
+        <!-- form3 -->
+        <form id="form3" action="../../../qunitAjaxSubmit" method="post"><div>
+            <input name="a" type="text">
+        </div></form>
+
+        <!-- form4 -->
+        <form id="form4" action="../../../qunitAjaxSubmit" method="get"><div>
+            <input name="a" type="text">
+            <input id="submitForm4" type="submit">
+            <input id="submitForm4withName" name="form4inputName" type="submit">
+            <input id="form4imageSubmit" name="myImage" src="submit.gif" type="image">
+        </div></form>
+
+        <!-- form5 -->
+        <form id="form5" action="../../../qunitAjaxSubmit?test=form" method="get"><div>
+            <input name="a" type="text">
+            <input type="submit">
+            <input name="form5inputName" type="submit">
+            <input id="form5imageSubmit" name="myImage" src="submit.gif" type="image">
+        </div></form>
+
+        <!-- form6, 'option' testing -->
+        <form id="form6" action="../../../qunitAjaxSubmit" method="get"><div>
+            <select name="A">
+                <option value="" selected="selected">EMPTY_STRING</option>    <!-- TEST A: value === empty string -->
+            </select>
+            <select name="B">
+                <option selected="selected">MISSING_ATTR</option>             <!-- TEST B: no value attr -->
+            </select>
+            <select name="C" multiple="multiple">
+                <option value="" selected="selected">EMPTY_STRING</option>
+                <option selected="selected">MISSING_ATTR</option>
+            </select>
+        </div></form>
+
+        <!-- form7, 'enctype' testing -->
+        <form id="form7" action="../../../qunitAjaxSubmit" method="post" enctype="text/css"><div>
+            <textarea name="doc">body { padding: 0}</textarea>
+        </div></form>
+
+        <form id="form8" action="../../../qunitAjaxSubmit" method="post"><div>
+            <textarea name="ta">blah</textarea>
+            <input id="submitForm8" type="submit">
+        </div></form>
+
+        <form id="form9" action="../../../qunitAjaxSubmit" method="post"><div>
+            <textarea name="ta">blah</textarea>
+            <input id="submitForm9" type="submit">
+        </div></form>
+
+        <!-- pseudo-form -->
+        <div id="pseudo">
+            <input name="a" type="text">
+            <input name="Check" value="1" type="checkbox">
+            <input name="Check" value="2" checked="checked" type="checkbox">
+            <select name="Select">
+                <option value="opt1">
+                </option><option value="opt2" selected="selected">
+            </option></select>
+            <input value="button" type="submit">
+        </div>
+
+        <div id="targetDiv"></div>
+        
+        
+        
+        <!-- field test form -->
+        <form style="display:none" id="fieldTest" action="../../../qunitAjaxSubmit" method="post"><div>
+        <select name="A">
+            <option value="1" selected="selected">ONE</option>
+            <option value="2">TWO</option>
+        </select>
+        <select name="B" multiple="multiple">
+            <option value="3" selected="selected">ONE</option>
+            <option value="4" selected="selected">TWO</option>
+            <option value="4b">THREE</option>
+        </select>
+        <input name="C" value="5" type="hidden">
+        <input name="D" value="6" type="text">
+        <textarea name="E">7</textarea>
+        <input name="F" value="8" checked="checked" type="checkbox">
+        <input name="F" value="9" type="checkbox">
+        <input name="F" value="10" checked="checked" type="checkbox">
+        <input name="G" value="11" type="radio">
+        <input name="G" value="12" checked="checked" type="radio">
+        <input name="G" value="13" type="radio">
+        <input name="H" id="password" value="14" type="password">
+        <input name="I" value="15" type="submit">
+        <input name="J" value="16" type="reset">
+    </div></form>
+
+    <form style="display:none" id="actionTest1" action="#" method="post"><div>
+        <input name="A" value="1" type="hidden">
+    </div></form>
+    <form style="display:none" id="actionTest2" action="#blah" method="post"><div>
+        <input name="A" value="1" type="hidden">
+    </div></form>
+    <form style="display:none" id="actionTest3" action="" method="post"><div>
+        <input name="A" value="1" type="hidden">
+    </div></form>
+    <form style="display:none" id="actionTest4" method="post"><div>
+        <input name="A" value="1" type="hidden">
+    </div></form>
+
+
+    <ol id="tests"><li class="pass"><b>'action' and 'method' form attributes <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">form 'action'</li><li class="pass">form 'method'</li></ol></li><li class="pass"><b>formToArray: multi-select <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">type check</li><li class="pass">array length</li><li class="pass">multi-select</li></ol></li><li class="pass"><b>formToArray: 'action' and 'method' inputs <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">type check</li><li class="pass">input name=action</li><li class="pass">input name=method</li></ol></li><li class="pass"><b>formToArray: semantic test <b style="color:black;">(<b class="fail">0</b>, <b class="pass">6</b>, 6)</b></b><ol style="display: none;"><li class="pass">match value at index=0</li><li class="pass">match value at index=1</li><li class="pass">match value at index=2</li><li class="pass">match value at index=3</li><li class="pass">match value at index=4</li><li class="pass">match value at index=5</li></ol></li><li class="pass"><b>formToArray: text promotion for missing value attributes <b style="color:black;">(<b class="fail">0</b>, <b class="pass">8</b>, 8)</b></b><ol style="display: none;"><li class="pass">Name: A = A</li><li class="pass">Value:  = </li><li class="pass">Name: B = B</li><li class="pass">Value: MISSING_ATTR = MISSING_ATTR</li><li class="pass">Name: C = C</li><li class="pass">Value:  = </li><li class="pass">Name: C = C</li><li class="pass">Value: MISSING_ATTR = MISSING_ATTR</li></ol></li><li class="pass"><b>serialize: param count <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">type check</li><li class="pass">string array length</li></ol></li><li class="pass"><b>serialize: pseudo form <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">type check</li><li class="pass">string array length</li></ol></li><li class="pass"><b>resetForm (text input) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: MyName1</li><li class="pass">update: test</li><li class="pass">success: MyName1</li></ol></li><li class="pass"><b>resetForm (select) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: one</li><li class="pass">update: two</li><li class="pass">success: one</li></ol></li><li class="pass"><b>resetForm (textarea) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: This is Form1</li><li class="pass">udpate: test</li><li class="pass">success: This is Form1</li></ol></li><li class="pass"><b>resetForm (checkbox) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: true</li><li class="pass">update: false</li><li class="pass">success: true</li></ol></li><li class="pass"><b>resetForm (radio) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: true</li><li class="pass">update: false</li><li class="pass">success: true</li></ol></li><li class="pass"><b>clearForm (text input) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: MyName1</li><li class="pass">success: </li></ol></li><li class="pass"><b>clearForm (select) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: one</li><li class="pass">success: null</li></ol></li><li class="pass"><b>clearForm: (hidden input) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: hiddenValue</li><li class="pass">success: hiddenValue</li></ol></li><li class="pass"><b>clearForm: (submit input) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: Submit1</li><li class="pass">success: Submit1</li></ol></li><li class="pass"><b>clearForm (checkbox) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: true</li><li class="pass">success: false</li></ol></li><li class="pass"><b>clearForm (radio) <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">beforeSubmit: true</li><li class="pass">success: false</li></ol></li><li class="fail"><b>ajaxSubmit: target == String <b style="color:black;">(<b class="fail">2</b>, <b class="pass">0</b>, 2)</b></b><ol style="display: none;"><li class="fail">Test timed out</li><li class="fail">Expected 2 assertions, but 1 were run</li></ol></li><li class="pass"><b>ajaxSubmit: target == jQuery object <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">post-callback</li><li class="pass">targetDiv updated</li></ol></li><li class="pass"><b>ajaxSubmit: target == DOM element <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">post-callback</li><li class="pass">targetDiv updated</li></ol></li><li class="pass"><b>ajaxSubmit: load target with scripts <b style="color:black;">(<b class="fail">0</b>, <b class="pass">6</b>, 6)</b></b><ol style="display: none;"><li class="pass">success-callback</li><li class="pass">targetDiv updated</li><li class="pass">first script block executed</li><li class="pass">second script block executed</li><li class="pass">third script block executed</li><li class="pass">scripts executed once: 1</li></ol></li><li class="pass"><b>ajaxSubmit: pre-submit callback <b style="color:black;">(<b class="fail">0</b>, <b class="pass">4</b>, 4)</b></b><ol style="display: none;"><li class="pass">pre-submit callback</li><li class="pass">type check array</li><li class="pass">type check jQuery</li><li class="pass">jQuery arg == 'form': form</li></ol></li><li class="fail"><b>ajaxSubmit: post-submit callback <b style="color:black;">(<b class="fail">2</b>, <b class="pass">0</b>, 2)</b></b><ol style="display: none;"><li class="fail">Test timed out</li><li class="fail">Expected 3 assertions, but 1 were run</li></ol></li><li class="fail"><b>ajaxSubmit: function arg <b style="color:black;">(<b class="fail">1</b>, <b class="pass">0</b>, 1)</b></b><ol style="display: none;"><li class="fail">Test timed out</li></ol></li><li class="pass"><b>ajaxSubmit: semantic test <b style="color:black;">(<b class="fail">0</b>, <b class="pass">9</b>, 9)</b></b><ol style="display: none;"><li class="pass">pre-submit callback</li><li class="pass">type check</li><li class="pass">type check jQuery</li><li class="pass">match value at index=0</li><li class="pass">match value at index=1</li><li class="pass">match value at index=2</li><li class="pass">match value at index=3</li><li class="pass">match value at index=4</li><li class="pass">match value at index=5</li></ol></li><li class="pass"><b>ajaxSubmit: dataType == json <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">json data type</li><li class="pass">json data contents</li></ol></li><li class="pass"><b>ajaxSubmit: dataType == script <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">script evaluated</li><li class="pass">script returned</li></ol></li><li class="pass"><b>ajaxSubmit: dataType == xml <b style="color:black;">(<b class="fail">0</b>, <b class="pass">2</b>, 2)</b></b><ol style="display: none;"><li class="pass">data type xml</li><li class="pass">xml data query</li></ol></li><li class="pass"><b>ajaxSubmit: existing args in action attr <b style="color:black;">(<b class="fail">0</b>, <b class="pass">1</b>, 1)</b></b><ol style="display: none;"><li class="pass">post callback</li></ol></li><li class="pass"><b>ajaxSubmit: cancel submit <b style="color:black;">(<b class="fail">0</b>, <b class="pass">3</b>, 3)</b></b><ol style="display: none;"><li class="pass">pre-submit callback</li><li class="pass">type check</li><li class="pass">type check jQuery</li></ol></li></ol>
+
+</div>
+</body>
+</html>

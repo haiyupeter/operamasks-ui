@@ -1,0 +1,39 @@
+#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}

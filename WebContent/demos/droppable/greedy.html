@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>事件传播</title>
+<script src="../../jquery.js"></script>
+ <script src="../../ui/om-core.js"></script>
+ <script src="../../ui/om-mouse.js"></script>
+ <script src="../../ui/om-draggable.js"></script>
+ <script src="../../ui/om-droppable.js"></script>
+ <link rel="stylesheet" href="../../themes/default/om-all.css">
+ <link rel="stylesheet" href="../common/css/demo.css">
+  <!-- view_source_begin -->
+ <style>
+   #draggable{
+		width:60px;
+		height:60px;
+		border:2px solid #d3d3d3;
+		background-color:#86A3C4; 
+		float:left;
+		margin: 20px;
+	}
+	p{
+	    margin: 15px;
+	    color: #000;
+	}
+	.droppable{
+	    float: left;
+	    border: 2px solid #cccccc;
+	    margin: 10px;
+	    
+	}
+	.backcolor{
+        background-color: #F0F0F0;	    
+	}
+	#droppable1, #droppable2 { 
+		 width: 200px;
+		 height: 200px;
+	 }
+	#droppable1-inner, #droppable2-inner {
+		 width: 150px; 
+		 height: 100px;
+	 }
+ </style>
+	<script>
+	$(document).ready(function() {
+		$( "#draggable" ).omDraggable();
+
+		$( "#droppable1, #droppable1-inner" ).omDroppable({
+			activeClass: "om-state-hover",
+			hoverClass: "om-state-active",
+			onDrop: function( source, event ) {
+				$(this).removeClass("backcolor").addClass( "om-state-highlight" )
+					.find( "> p" ).html( "已放置!" );
+			}
+		});
+
+		$( "#droppable2, #droppable2-inner" ).omDroppable({
+			greedy: true,
+			activeClass: "om-state-hover",
+			hoverClass: "om-state-active",
+			onDrop: function( source, event ) {
+				$(this).removeClass("backcolor").addClass( "om-state-highlight" )
+					.find( "> p" ).html( "已放置！" );
+			}
+		});
+	});
+	</script>
+  <!-- view_source_end -->
+</head>
+<body>
+ <!-- view_source_begin -->
+		<div id="draggable"></div>
+		<div id="droppable1" class="droppable backcolor">
+			<p>外部 droppable</p>
+			<div id="droppable1-inner" class="droppable backcolor">
+				<p>内部 droppable</p>
+			</div>
+		</div>
+		<div id="droppable2" class="droppable backcolor">
+			<p>外部 droppable</p>
+			<div id="droppable2-inner" class="droppable backcolor">
+				<p>内部 droppable(事件不传播)</p>
+			</div>
+		</div>
+<!-- view_source_end -->
+ <div id="view-desc" style="clear: left;">
+        <p>设置greedy属性，指定是否在嵌套的droppable元素中阻止事件传播，默认为false，不阻止事件传播。</p>
+ </div>	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../themes/default/om-all.css">
+<link rel="stylesheet" href="../common/css/demo.css">
+<script src="../../jquery.js"></script>
+<script src="../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../ui/om-menu.js"></script>
+<title>事件支持</title>
+<!-- view_source_begin -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#menu_json').omMenu({
+          minWidth : 150,
+          maxWidth : 230,
+          dataSource : [{id:'001',label:'百度',url:'http://www.baidu.com',seperator:true},
+                        {id:'002',label:'谷歌',url:'http://www.google.com.hk',icon : 'images/calendar.gif',children:[
+                                                               {id:'002001',label:'谷歌翻译',url:'http://translate.google.cn/?hl=en'},
+                                                               {id:'002002',icon : 'images/calendar.gif',label:'谷歌地图',url:'http://maps.google.com/maps?hl=en&tab=Tl'}
+                                                               ]
+                        }
+                       ],
+          onSelect : function(item,event){
+              window.open(item.url);
+          }
+      });
+      $('#btn1').click(function(){
+          $('#menu_json').omMenu('show',this);
+      });
+  });
+</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+    <input type="button" id="btn1" value="响应点击事件的menu">
+    <div id="menu_json"></div>
+  <!-- view_source_end -->
+  <div id="view-desc">
+      <p>omMenu提供事件支持，示例中演示的为选择菜单时触发的事件。
+      </p>
+ </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

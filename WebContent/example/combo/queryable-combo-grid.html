@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>comboGrid（多列展示，支持过滤）</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../demos/common/css/demo.css" />
+    <style>
+    input{width:275px;}
+    table{width:476px;border-collapse: collapse;margin: 15px; }
+    th,td{border:1px solid green;}
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var buildTr=function(rowData){
+                return '<tr><td>' + rowData.type + '</td><td>' + rowData.name + '</td><td>' + rowData.shortName + '</td></tr>';
+            }
+            $('#web').omCombo({
+                dataSource : [ {type : 'Browser Scripting', name : 'JavaScript', shortName : 'js'}, 
+                               {type : 'Browser Scripting', name : 'HTML DOM', shortName : 'DOM'},
+                               {type : 'Browser Scripting', name : 'Dynamic HTML', shortName : 'DHTML'},
+                               {type : 'Browser Scripting', name : 'VBScript', shortName : 'vs'},
+                               {type : 'Browser Scripting', name : 'AJAX', shortName : 'AJAX'},
+                               {type : 'Browser Scripting', name : 'jQuery', shortName : 'jq'},
+                               {type : 'Browser Scripting', name : 'JavaScript for XML', shortName : 'E4X'},
+                               {type : 'Browser Scripting', name : 'WMLScript', shortName : 'WML'},
+                               {type : 'Server Scripting', name : 'Structured Query Language', shortName : 'SQL'},
+                               {type : 'Server Scripting', name : 'Active Server Pages', shortName : 'ASP'},
+                               {type : 'Server Scripting', name : 'Java Server Pages', shortName : 'JSP'},
+                               {type : 'Server Scripting', name : 'ActiveX Data Objects', shortName : 'ADO'},
+                               {type : 'Server Scripting', name : 'Hypertext Preprocessor', shortName : 'PHP'},
+                               {type : 'HTML', name : 'Hypertext Markup Language', shortName : 'html'},
+                               {type : 'HTML', name : 'eXtensible HyperText Markup Language', shortName : 'xhtml'},
+                               {type : 'HTML', name : 'Cascading Style Sheets', shortName : 'CSS'}],
+                //让下拉框宽度与输入框宽度可以不一样
+                listAutoWidth:true,
+                //让下拉框不出现垂直滚动条，有多高就显示多高
+                listMaxHeight:'auto',
+                //选择记录后回填时把记录的name值回填到输入框里
+                inputField : 'name',
+                //选择记录后回填时虽然输入框里显示的是name值，但是实际上getValue时得到的是shortName值
+                valueField : 'shortName',
+                //所有记录按下面的方法的算法渲染到下拉框里面
+                listProvider : function(container,records){
+                    var html='<table cellpadding="3" cellspacing="0">'
+                                +'<thead><tr><th width="120">分类</th><th width="300">全称</th><th width="50">简称</th></tr></thead>'
+                                +'<tbody>';
+                    $(records).each(function(){
+                        html += buildTr(this);
+                    });
+                    html +=      '</tbody>'
+                             +'</table>';
+                    $(html).appendTo(container);
+                    //只有tbody里的tr可以选择和高亮，其它的都不可以
+                    return container.find('tbody>tr');
+                },
+                //输入框里输入任意字符时用下面的方法进行过滤
+                filterStrategy:function(text,record){
+                    //只要type或name或shortName中包含输入的字符串就可以。（比较时忽略大小写）
+                    var text=text.toLowerCase();
+                    return record.type.toLowerCase().indexOf(text)>-1 || record.name.toLowerCase().indexOf(text)>-1 || record.shortName.toLowerCase().indexOf(text)>-1;
+                },
+                //选择任意记录后在输入框右边打印出选择的值（注意是valueField表示的那个shortName属性的值，而不是输入框里显示出来的inputField的值）
+                onValueChange:function(target, newValue, oldValue){
+                    $('#msg').html(newValue);
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="web" />你选择的值为：<span id="msg"></span>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        通过自定义<code>listProvider</code>可以将下拉框定制为 table。如果在输入框里输入字符时将对表格进行过滤，只要任意列包含输入的字符即可过滤成功。
+    </div>
+</body>
+<script type="text/javascript" src="../../demos/common/js/themeloader.js"></script>
+</html>

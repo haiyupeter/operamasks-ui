@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>事件触发</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-numberfield.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#count').omNumberField({
+                onBlur:function(value,event){
+                    $("#money").text(value || '0');
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    请输入金额:<input id="count" />
+    <br/>
+  您输入的金额数为:<span id="money" style="color:red">0</span>$
+    <!-- view_source_end -->
+    <div id="view-desc">
+        在输入框失去焦点时进行某些处理，并且又想获得输入框已经修正后的值，可以监听onBlur事件。</div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>跨域请求数据</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <style>
+    .itemFloatLeft {
+        float: left;
+        font-size:12px;
+    }
+    
+    .itemFloatRight {
+        float: right;
+        color: green;
+    }
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#txt').omSuggestion({
+                dataSource : 'http://suggest.taobao.com/sug?code=utf-8&extras=1',
+                queryName:'q',
+                crossDomain:true,
+                preProcess:function(text,data){
+                    //将淘宝返回的数据转换为omSuggestion所需要的数据
+                    data=data.result;
+                    var result={valueField:'text',data:[]};
+                    $(data).each(function(index){
+                        result.data[index]={'text':this[0],'count':this[1]};
+                    });
+                    return result;
+                },
+                clientFormatter : function(data,index){
+                    return '<div class="itemFloatLeft">' + data.text
+                         + '</div><div class="itemFloatRight">约' + data.count + '个宝贝</div>';
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="txt" style="width:346px"/>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置crossDomain:true，从淘宝上跨域获取数据，并且在clientFormatter格式化显示数据。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

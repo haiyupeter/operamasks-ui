@@ -1,0 +1,294 @@
+h2,h3{ font-size:12px; font-weight:normal;}
+.price_m{ text-decoration:line-through; font-family:Arial, Helvetica, sans-serif}
+.price_d{ font-family:Arial, Helvetica, sans-serif; color:#c30}
+.login_content{ width:700px; margin:0 auto; padding:20px 10px 0 10px; background:#fff; line-height:20px; font-size:12px; font-family:Arial,"锟斤拷锟斤拷"; color:#404040;}
+.login_content a{ text-decoration:none;color:#1A66B3; font-family:"锟斤拷锟斤拷"}
+.login_content a:hover{ text-decoration:underline}
+.login_content .login_content_dash{ padding-right:3px; width:747px; background:#e8e8e8; position:relative;}
+.login_content .login_content_dasht{ display:block; width:3px; height:3px; line-height:0; font-size:0; overflow:hidden; background:#fff; position:absolute; right:0; top:0;}
+.login_content .login_content_dashb{ font-size:0; line-height:0; height:3px; width:700px; clear:both; background:#e8e8e8; margin-left:3px;}
+.login_content .login_content_border{ padding:4px 5px; width:735px; border:1px solid #bfbfbf; background:#fff; clear:both;}
+.login_content_border h2{ display:block; width:735px; height:54px; background:url(../../images/dangdang/bg_login_t.gif) no-repeat 0 0;}
+
+.login_content_border h2 span img{ display:block; float:left; margin-top:-6px;}
+.login_content_border h2 a,.login_content_border h2 a:hover{ color:#666;}
+
+.reg_title{display:block;height:31px;padding:21px 15px 0 20px;width:620px;}
+.reg_title .img_welcome{ float:left;}
+.regprompt{float:right;}
+.regprompt span{}
+.regprompt .txt_blue{ color:#3366cc;}
+.regprompt .txt_red{ color:#cc3300;}
+
+/*注锟斤拷*/
+/*
+.login_content_border .login_title{ height:21px; width:717px; background:#efefef; padding:0 6px 0 12px; color:#b4b4b4;}
+.login_content_border .login_title p{ float:left; width:239px;}
+.login_content_border .login_title p span{ float:left; display:block; line-height:21px;}
+.login_content_border .login_title p .num{ width:96px; text-align:right; height:21px;}
+.login_content_border .login_title p.one .num{ width:111px;}
+.login_content_border .login_title p.two .num{ width:101px;}
+.login_content_border .login_title p.nonce span,.login_content_border .login_title p.nonce2 span,.login_content_border .login_title p.nonce3 span{ color:#ff7100;}
+.login_content_border .login_title p.nonce .num{ background:url(../../images/dangdang/pic_login_num1.gif) no-repeat right 2px; font-size:0; line-height:0;}
+.login_content_border .login_title p.nonce2 .num{ background:url(../../images/dangdang/pic_login_num2.gif) no-repeat right 2px; font-size:0; line-height:0;}
+.login_content_border .login_title p.nonce3 .num{ background:url(../../images/dangdang/pic_login_num3.gif) no-repeat right 2px; font-size:0; line-height:0;}
+*/ /*100716 cychai锟睫革拷*/
+.login_content_border .login_title{ background:url(../../images/dangdang/email_reg_titlebar.gif) no-repeat; height:25px;}
+.login_content_border .reg_complete{ background:url(../../images/dangdang/email_reg_titlebar_1.gif) no-repeat; height:25px;}
+.login_content_border .login_title p{ float:left; width:239px;padding-top:1px;}
+.login_content_border .login_title p span{ float:left; display:block; line-height:25px;}
+.login_content_border .login_title p.one{ padding-left:137px;}
+.login_content_border .login_title p.two{ padding-left:120px; color:#999999;}
+.login_content_border .login_title p.nonce{ font-weight:bold; color:#663300;}
+
+.login_content_border .login_form{ width:735px; padding-top:20px;}
+.login_content_border .login_form p{ height:46px; width:735px; clear:both;}
+.login_content_border .login_form p *{ display:block; float:left;}
+.login_content_border .login_form p label{ height:34px; padding-top:12px; *height:33px; *padding-top:13px; text-align:right; width:182px; font-size:14px;}
+.login_form_input{ height:21px; width:210px; margin-top:10px; padding:3px 0 0 10px; border-color:#686868 #b6b6b6 #b6b6b6 #686868; border-style:solid; border-width:1px; background:url(../../images/dangdang/bg_login_input.gif) no-repeat 0 0}
+.login_form_input input{ width:200px; border:none; margin:0; background:none; height:19px; font:bold 15px/19px Arial}
+.login_content_border .login_form p a,.login_content_border .login_form p a:hover{ display:inline-block; float:none; color:#1a66b3}
+.login_form p.hint{ background:#edffd5;}
+/*.login_form p.wrong{ background:#feeec2;}*/
+.login_form p.wrong .login_form_input{ background:url(../../images/dangdang/bg_login_input2.gif) no-repeat 0 0}
+
+.login_form_hint,.login_form_wrong,.login_form_ok{ width:300px; height:37px; padding:7px 0 0 10px; *height:36px; *padding-top:8px; line-height:33px;}
+
+.login_form_hint span,.login_form_wrong span{ clear:both; float:none!important; vertical-align:middle; line-height:16px!important;}
+.login_form_hint{ color:#6e932d;}
+.login_form_wrong{ width:167px!important; background:url(../../images/dangdang/bg_login_wrong.gif) no-repeat 3px 4px; color:#c30; padding-left:14px!important; padding-right:2px;}
+.login_form_ok{ background:url(../../images/dangdang/pic_login_ok.gif) no-repeat 7px 17px;}
+.login_form_input .validate{ color:#878787; font-size:12px; font-weight:normal;}
+.login_content_border .login_form .form_validate{ height:54px;}
+.login_form_validate{ width:220px; height:50px; border:1px solid #e2e2e2; margin-top:2px;}
+.form_validate .login_form_hint{ line-height:48px!important; color:#878787;}
+.login_content_border .login_form p.form_validate_btn{ padding-left:183px; height:54px; width:552px;}
+.form_validate_btn .form_refer,.form_validate_btn .form_refer_02{ width:154px; height:39px; margin-top:8px; background:url(../../images/dangdang/btn_login_refer1.gif) no-repeat 0 0; font-size:0; line-height:0; text-indent:-999px;border:none; cursor:pointer;}
+.form_validate_btn .form_refer_02{ background:url(../../images/dangdang/btn_login_refer2.gif) no-repeat 0 0}
+
+.login_content_border .login_form p.form_copyright{ padding:18px 0 9px 183px; width:552px;}
+.login_form .form_copyright input{ margin:3px 9px 0 0; *margin:-2px 5px -4px -4px;}
+.form_copyright .login_form_wrong{ margin-top:-15px;}
+.login_content_border .login_form p.form_copyright a,.login_content_border .login_form p.form_copyright a:hover{ color:#404040;}
+
+
+/*锟斤拷锟斤拷锟斤拷证*/
+.login_content_border .login_mail_border{ height:168px;}
+.login_mail_border .login_mail_title{ width:551px; padding:40px 50px 17px 134px; background:url(../../images/dangdang/icon_mail.gif) no-repeat 75px 35px; line-height:22px; font-size:14px;}
+.login_mail_border .login_mail_title span{ font:bold 14px/22px Arial; display:inline-block; padding:0 6px;}
+
+.login_mail_border .login_button{ text-align:center; padding:0 0 19px 0; background:url(../../images/dangdang/bg_button_b.gif) no-repeat center bottom;}
+.login_mail_border .login_button a,.form_repeat_btn a{ display:inline-block; height:33px; background:url(../../images/dangdang/btn_r.gif) no-repeat right top; color:#712a00!important; font-size:14px; font-weight:bold; line-height:33px;}
+.login_mail_border .login_button a .login_button_l,.form_repeat_btn a .login_button_l{ display:inline-block; height:33px; padding:0 17px; background:url(../../images/dangdang/btn_l.gif) no-repeat 0 0; cursor:pointer;}
+.login_mail_border .login_button a .login_button_l span,.form_repeat_btn a .login_button_l span{ font-family:Arial; display:inline-block; padding:0 5px;}
+.login_mail_border .login_button a:hover,.form_repeat_btn a:hover{ color:#712a00!important; background-position:right bottom; text-decoration:none;}
+.login_mail_border .login_button a:hover .login_button_l,.form_repeat_btn a:hover .login_button_l{ background-position:left bottom;}
+
+.login_questing_border{ width:640px; padding:21px 0 26px 95px; background:url(../../images/dangdang/bg_3x169.gif) repeat-x 0 0;}
+.login_questing_border h3,.login_questing_border p{ padding:0 0 0 40px; font-size:14px; color:#666;}
+.login_questing_border h3{ font-weight:bold; height:29px; line-height:29px; background:url(../../images/dangdang/icon_question.gif) no-repeat 0 0;}
+.login_questing_border p{ line-height:22px; height:22px; padding-top:9px;}
+.login_questing_border p a.button{ display:inline-block; margin-left:6px; height:22px; *height:21px; *padding-top:1px; width:75px; font-size:14px; color:#404040; background:url(../../images/dangdang/btn_75x22.gif) no-repeat 0 0; text-align:center;}
+.login_questing_border p a.button:hover{ background:url(../../images/dangdang/btn_75x22_mo.gif) no-repeat 0 0; text-decoration:none;}
+
+
+/*锟截凤拷锟斤拷证锟绞硷拷*/
+.login_content_border p.msg_hint{ height:33px; width:431px; padding:2px 0 0 174px; font-size:14px;}
+.login_content_border .login_form p.form_repeat_btn{ padding:12px 0 29px 231px; width:504px; background:url(../../images/dangdang/bg_button_b2.gif) no-repeat 231px bottom; height:33px; margin-bottom:8px;}
+.login_content_border .login_form p.form_repeat_btn a{ font-size:16px;}
+
+
+/*锟斤拷锟斤拷锟斤拷锟截凤拷锟斤拷证锟绞硷拷*/
+.login_content_border p.msg_hint2{ height:33px; width:465px; padding:2px 0 0 140px; font-size:14px;}
+.login_content_border .login_form2 p label{ width:231px; font-size:14px;}
+.login_form2 .login_form_hint,.login_form2 .login_form_wrong,.login_form2 .login_form_ok{ width:272px; padding-left:10px;}
+.login_form_wrong2{ width:181px!important; background:url(../../images/dangdang/bg_login_wrong2.gif) no-repeat 3px 4px; color:#c30;}
+
+
+/*锟斤拷锟斤拷锟斤拷锟截凤拷锟斤拷证锟绞硷拷锟缴癸拷*/
+.login_mail_border2 .login_mail_point{ padding:27px 50px 0 134px; line-height:22px; font-size:14px; color:#c30;}
+.login_mail_border2 .login_mail_point span{ font:bold 14px/22px Arial; display:inline-block; padding:0 6px;}
+.login_mail_border2 .login_mail_title{ padding:10px 50px 17px 134px; line-height:22px; background-position:75px 5px}
+
+
+/*注锟斤拷晒锟�/
+.login_content_border .login_succeed_border{ height:350px;} /*20100718 cychai锟睫革拷*/
+.login_succeed_border .login_mail_title{ padding:26px 50px 17px 180px; width:505px; background:url(../../images/dangdang/icon_succeed.gif) no-repeat 101px 32px; line-height:24px;}
+.login_succeed_goon{ padding:0 0 0 101px; background:url(../../images/dangdang/dash_3x1.gif) repeat-x 0 0; margin:17px auto 0}
+.login_succeed_goon p{ font-size:14px; padding:24px 0 0 0}
+.login_succeed_goon p span{ font-weight:bold; font-family:Arial; color:#2f8500;}
+.login_succeed_goon p a,.login_succeed_goon p a:hover{ font-size:12px; color:#1a66b3;}
+
+.login_succeed_goon .form_repeat_btn{ padding:7px 25px 29px 0; background:url(../../images/dangdang/bg_button_b3.gif) no-repeat 0 bottom; height:33px; float:left;}
+.login_succeed_area{ float:left; display:inline-block; margin-top:12px; height:23px; background:url(../../images/dangdang/bg_area_c.gif) repeat-x 0 0; color:#333333; line-height:23px;}
+.login_succeed_area span{ display:block; float:left; height:23px;}
+.login_succeed_area span font.txt_go{ color:#cc3300;}
+.login_succeed_area .bg_l{ width:4px; background:url(../../images/dangdang/bg_area_l.gif) no-repeat left 0; padding-right:5px;}
+.login_succeed_area .bg_r{ width:4px; background:url(../../images/dangdang/bg_area_r.gif) no-repeat right 0; padding-left:5px;}
+.login_succeed_area span a,.login_succeed_area span a:hover{ display:inline-block;padding-left:8px; color:#1a66b3;} /*20100718 cychai锟睫革拷*/
+
+
+/*锟揭伙拷锟斤拷锟斤拷*/
+.back_tips { background:url(../../images/dangdang/bg_login_b.gif) left top no-repeat; width:633px; height:17px; padding:33px 0 0 102px; font-size:14px;}
+.login_content_border .login_form3 p label{ width:208px; font-size:14px;}
+.login_form3 .login_form_hint,.login_form3 .login_form_wrong,.login_form3 .login_form_ok{ width:295px; padding-left:10px;}
+.login_content_border .login_form3 p.form_repeat_btn{ padding-left:208px; width:527px; background-position:208px bottom;}
+
+.back_mail { padding-bottom:70px;}
+.login_content_border .reset_form { padding-top:31px; background:url(../../images/dangdang/bg_login_b.gif) left top no-repeat;}
+.login_content_border .reset_form p label{ width:214px; font-size:14px;}
+.reset_form .login_form_hint,.reset_form .login_form_wrong,.reset_form .login_form_ok{ width:289px; padding-left:10px;}
+.login_content_border .reset_form p.form_repeat_btn,.login_content_border .reset_form p.form_repeat_btn2{ padding-left:214px; width:521px; background:url(../../images/dangdang/bg_button_b3.gif) no-repeat 214px bottom; font-size:14px;}
+.login_content_border .reset_form p.form_repeat_btn a .login_button_l{ padding:0 30px}
+
+.login_content_border .login_form p.passwordok{ width:588px; margin-left:102px; padding-left:45px; line-height:28px; height:28px; font-size:14px; background:url(../../images/dangdang/icon_passwordok.gif) left top no-repeat;}
+.login_content_border .reset_form p.form_repeat_btn2{ padding-left:147px; background-position:194px bottom;}
+.login_content_border .reset_form p.form_repeat_btn2 a{ font-size:14px;}
+.form_repeat_btn2 span{ line-height:33px; margin-right:5px;}
+.form_repeat_btn2 .back{ margin-left:20px}
+.form_repeat_btn2 .back a,.form_repeat_btn2 .back a:hover{ background:none; color:#1a66b3!important; font-weight:normal;}
+.form_repeat_btn2 .back a:hover{ text-decoration:underline;}
+.login_content_border .reset_form p.form_repeat_btn2 a .login_button_l{ padding:0 17px; margin:0}
+
+
+/*锟斤拷帧锟斤拷转锟狡硷拷*/
+.homepage_prefer{ width:720px; margin:29px auto 0}
+.homepage_prefer h2{ width:707px; height:25px; background:url(../../images/dangdang/bg_prefer_1x26.gif) repeat-x bottom; margin:0 auto; padding:0 0 1px 13px;}
+.homepage_prefer h2 span{ display:block; float:left; width:99px; height:20px; padding:5px 6px 0 0; *height:19px; *padding-top:6px; background:url(../../images/dangdang/bg_prefer01.gif) no-repeat 0 0; text-align:center; cursor:pointer; position:relative; line-height:normal;}
+.homepage_prefer h2 .nonce{ background:url(../../images/dangdang/bg_prefer02.gif) no-repeat; width:102px; height:26px; padding:8px 3px 0 0; *height:25px; *padding-top:9px; margin:-2px 0 -7px 0; color:#853200; font-weight:bold; font-size:14px; z-index:20}
+.homepage_prefer h2 span img{ position:absolute; z-index:30px; right:2px}
+.homepage_prefer h2 span .hot{ width:23px; height:11px; top:-4px}
+.homepage_prefer h2 .nonce .hot{ top:-2px}
+.homepage_prefer h2 span .buy{ width:27px; height:18px; top:-10px}
+.homepage_prefer h2 .nonce .buy{ top:-8px}
+.homepage_prefer ul{ padding:7px 1px 0 2px; display:block; border:1px solid #c3c3c3; border-top:none; width:715px; margin:0 auto; height:347px}/*10-3-19 qsy锟睫革拷*/
+.homepage_prefer ul li{ width:110px; float:left; display:block; padding:10px 16px 7px 17px; height:151px; overflow:hidden}/*10-3-19 qsy锟睫革拷*/
+.homepage_prefer ul li p{ display:block}
+.homepage_prefer ul li .pic{ width:100px; margin:0 auto 5px; text-align:center; height:100px; overflow:hidden}/*10-3-19 qsy锟睫革拷*/
+.homepage_prefer ul li .name{ width:110px; overflow:hidden; word-break:break-all; height:32px; text-align:left; line-height:16px}
+.homepage_prefer ul li .price{ text-align:center}
+.homepage_prefer ul li .price_m{ font-size:10px}
+.homepage_prefer ul li .price_d{ font-weight:bold}
+.homepage_prefer a,.homepage_prefer a:hover{ color:#404040;}
+
+/*10-7-16 cychai锟睫革拷*/
+.help{text-align:right;padding-right:12px;}
+.help a{ color:#333333;}
+.step span{ color:#999999;}
+
+.login_email_validate{ background:url("../../images/dangdang/icon_mail.gif") no-repeat scroll 101px 32px transparent;line-height:24px;padding:26px 50px 17px 180px;width:505px; height:100px;}
+.login_email_validate p{ font-size:14px;}
+.login_email_validate p span{ font-weight:bold; font-family:Arial; color:#2f8500;}
+.login_email_validate p a,.login_succeed_goon p a:hover{ font-size:12px; color:#1a66b3;}
+
+.login_email_validate .form_repeat_btn{ padding:7px 25px 29px 0; background:url(../../images/dangdang/bg_button_b3.gif) no-repeat 0 bottom; float:left;}
+
+.login_know{ clear:left;padding:10px 0 30px 180px;}
+.login_know > p{}
+.login_mail_border .login_know p{ font-size:12px;}
+.login_know .login_succeed_area{ font-family:serif;}
+.login_know p{}
+.login_know p span.txt_red{ color:#cc3300;}
+
+.login_mail_border2 .linemsg1{padding:27px 50px 0 200px;}
+
+.border-bot{ border-bottom:1px dotted #999999;}
+
+.login_content_border p.msg_warn{padding:2px 0 0 110px;width:620px;}
+.login_content_border .login_form p.msg_warn font{} 
+.txt_email{ color:#333333; font-size:14px;font-weight:bold;}
+
+/* 锟斤拷锟斤拷锟斤拷证锟缴癸拷*/
+.login_content_border .layout-reg{ height:100px;}
+.login_mail_border p{font-size:14px;}
+.login_mail_border p.reg_sucess{padding:27px 50px 0 180px;line-height:22px;}
+.login_mail_border p.reg_login{padding:5px 0 0 260px;}
+
+/* 锟斤拷锟斤拷锟斤拷证失锟斤拷*/
+.login_content_border .reg_fail{padding-left:178px;}
+.reg_fail p{}
+.reg_fail p.row1{ padding-top:20px; font-weight:bold;}
+.reg_fail p.row2{ padding:10px 0 5px;}
+.reg_fail ul.row3{}
+.row3{}
+.row3 li{ background:url(../../images/dangdang/ico_item_point.gif) no-repeat 0 5px; padding-left:18px; height:24px; font-size:14px;}
+
+/* 锟街伙拷注锟斤拷*/
+.mobile_login_title{ background:url(../../images/dangdang/mobile_reg_bar.gif) no-repeat; height:25px;}
+.mobile_login_title p{ float:left;padding-top:2px;}
+.mobile_login_title p.one{ padding-left:87px;}
+.mobile_login_title p.two{ padding-left:140px;}
+.mobile_login_title p.three{ padding-left:160px;}
+.mobile_login_title p.nonce{font-weight:bold; color:#663300;}
+.mobile_login_title p.gray{ color:#999999;}
+
+.login_content_border .login_form p.form_mobile{ background-color:#edffd5;}
+.form_mobile span{}
+.form_mobile span.login_form_hint{ padding:13px 0 0 10px;}
+
+/* 锟斤拷写锟街伙拷锟斤拷证锟斤拷*/
+.shortmsg{ margin:0 auto;}
+.msg_title_bar_2{ background:url(../../images/dangdang/mobile_reg_bar_2.gif)}
+.mobile_login_content{padding:20px 0 20px 100px;font-size:14px;border-bottom:1px dotted #999999;}
+.mobile_login_content p{}
+.mobile_login_content p.ct{color:#333333;font-weight:bold;padding-bottom:10px;}
+.mobile_login_content p span{}
+.mobile_login_content p span.lbl_mobile{}
+
+.mobile_login_form{padding-top:20px;width:735px;padding-left:60px;}
+.mobile_login_form p{clear:both;height:30px;width:735px;}
+.mobile_login_form p *{ display:block; float:left;}
+.mobile_login_form p label{font-size:14px;text-align:right;width:182px;}
+.mobile_login_form p span.txt_mobile{ font-size:14px; font-weight:bold;}
+.mobile_login_form p span.btn_changeMobile{ margin-left:20px; color:#3366cc;cursor:pointer;}
+.mobile_validate{ margin-top:0px;}
+
+.btn_binding{ background:url(../../images/dangdang/btn_bindmobile.gif) no-repeat; display:block; height:39px; width:154px; margin:10px 0 10px 182px;}
+.btn_binding_hover{ background:url(../../images/dangdang/btn_bindmobile_hover.gif) no-repeat; display:block; height:39px; width:154px; margin:10px 0 10px 182px;}
+p.memo{width:450px;padding-left:40px;}
+.memo span{}
+.memo span.s1{ float:left; padding-right:5px;}
+.memo span.btn_resendmsg{ padding-left:8px;background: url(../../images/dangdang/lbl_sendmsg.gif) no-repeat;width:151px; text-align:center;}
+ 
+.layout-changemobile{ width:465px;height:272px; border:1px solid #999999; background:#fff;}
+.layout-changemobile span{}
+.mobile_form{}
+.mobile_form{padding-top:20px;}
+.mobile_form p{ height:46px;clear:both;font-size:12px; width:460px;}
+.mobile_form p *{ display:block; float:left;}
+.mobile_form p label{ height:34px; padding-top:12px; *height:33px; *padding-top:13px; text-align:right; width:120px; font-size:14px;}
+ 
+p.btn_changemobile button.form_refer{background:url(../../images/dangdang/btn_changemobile.gif) no-repeat;border:medium none;cursor:pointer;font-size:0;height:39px;line-height:0;margin-top:8px;text-indent:-999px;width:154px;}
+.mobile_form p span.login_form_hint,.mobile_form p span.login_form_wrong, 
+.mobile_form p span.login_form_ok{ width:100px;}
+.dialog_title{border-bottom:1px solid #999999;height:30px;}
+.dialog_title h3{font-size:14px;font-weight:bold;padding:8px; float:left;}
+.dialog_title span.btn_close{float:right; display:block; background:url(../../images/dangdang/btn_close.gif) no-repeat 0 center; width:20px; height:30px;}
+.mobile_form p.btn_changemobile{ padding:18px 0 0 120px; width:160px;}
+ 
+.login_form_hint font.lfh_f{width:50px;}
+.login_form_hint a.lfh_a{}
+.mobile_login_form_wrong{ width:100px!important; color:#c30; padding-left:14px!important; padding-right:2px; line-height:44px;}
+/* Email锟斤拷址锟斤拷写锟缴癸拷*/
+
+.login_content_border h2.reg_success_title{ background:url(../../images/dangdang/reg_success_bar.jpg) no-repeat 0 bottom;}
+.reg_success_title p{color:#333333;font-size:14px;padding:10px;}
+.reg_memo{padding:20px 0 0 180px;}
+.reg_memo p{ font-size:12px; color:#999999;}
+.login_content_border .login_mobile_border{height:210px;}
+
+/* 锟斤拷锟斤拷锟斤拷写Email*/
+.reg_mail_border{height:194px;}
+.reg_mail_border .login_mail_title{ width:551px; padding:40px 50px 17px 134px; background:url(../../images/dangdang/icon_mail.gif) no-repeat 75px 35px; line-height:22px; font-size:14px;}
+.reg_mail_border .login_mail_title span{ font:bold 14px/22px Arial; display:inline-block; padding:0 6px;}
+.reg_mail_title{padding:0 0 20px 148px;}
+.reg_mail_title p{}
+.reg_mail_title p span{}
+.reg_mail_title p span.btn_submit{ padding-left:221px;margin-top:10px; background:url(../../images/dangdang/btn_submit_email.gif) no-repeat 180px 0; display:block; width:77px; height:26px; cursor: pointer;}
+
+.msg_title_bar_3{ background:url(../../images/dangdang/mobile_reg_bar_3.gif) no-repeat;}
+	
+.windows_btnrepeat{ position:absolute; left:20px; top:20px; height:36px; border:1px solid #727272; background:#fff8cc; padding:6px 13px 0; display:none; float:left; line-height:16px; font-size:12px;}
+.windows_btnrepeat p{ height:36px; position:relative; float:left;}
+.windows_btnrepeat span{ display:block;}
+.windows_btnrepeat p img{ position:absolute; bottom:-8px; left:42%;}

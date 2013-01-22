@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>修改默认导航条样式</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-slider.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-slider.css"/>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	.slider-demo{
+    		width: 500px;
+    		height: 375px;
+    		border: 1px solid #0092D2;
+    	}
+    	.om-slider .om-slider-nav-classical{
+    		top: 5px;
+    	}
+    	.om-slider-nav-classical li{
+    		color: #F60;
+    	}
+    	.om-slider-nav-classical li.nav-selected{
+    		background-color: #F60;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slider').omSlider();
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="slider" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>覆盖om-slider-nav-classical样式的 top 和 left 属性，改变导航条的位置；<br/>
+            覆盖li的 color 和 background-color 属性，改变导航条的字体颜色和背景颜色。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>综合</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-grid.js"></script>
+    <script src="../../ui/jquery.ui.core.js"></script>
+    <script src="../../ui/jquery.ui.widget.js"></script>
+    <script src="../../ui/jquery.ui.mouse.js"></script>
+    <script src="../../ui/jquery.ui.draggable.js"></script>
+    <script src="../../ui/jquery.ui.position.js"></script>
+    <script src="../../ui/jquery.ui.resizable.js"></script>
+    <script src="../../ui/om-button.js"></script>
+    <script src="../../ui/om-dialog.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" href="../../themes/default/jquery.ui.resizable.css">
+    <link rel="stylesheet" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#delete').bind('click', function(e) {
+                var trs = $('#grid .om-state-highlight');
+                if (trs.length == 0) {
+                    alert('至少选择一行记录');
+                    return false;
+                }
+                var grid = gridTable.get(0).grid; //注意omGrid()方法返回的gridTable是一个数组
+                var delNum = 0;
+                $('#grid tr').each(function(i) {
+                    if ($(this).hasClass('om-state-highlight')) {
+                        grid.data.rows.splice(i - delNum, 1);
+                        delNum++;
+                    }
+                });
+                grid.data.total = grid.data.total - delNum;
+                gridTable.omGrid('refresh');//根据grid.data重新刷新表格
+    
+            });
+            var edit_state = "add";
+            $('#create').bind('click', function() {
+                // change the edit state
+                edit_state = "add";
+                $("input").val("");
+                $("#dialog-form").omDialog("option", "title", "新增");
+                $("#dialog-form").omDialog("open");
+            });
+            $('#modify').bind('click', function() {
+                var trs = $('.om-grid #grid .om-state-highlight');
+                if (trs.length > 1) {
+                    alert('一次只能修改一行记录');
+                    return false;
+                }else if(trs.length <= 0){
+                    alert('请选要择修改的记录');
+                    return false;
+                }
+                var grid = gridTable.get(0).grid;
+                $('#grid tr').each(function(i) {
+                    if ($(this).hasClass('om-state-highlight')) {
+                        var rowData = grid.data.rows[i];
+                        $("input[name=city]").val(rowData.city);
+                        $("input[name=address]").val(rowData.address);
+                        $("input[name=start]").val(rowData.start);
+                        $("input[name=end]").val(rowData.end);
+                    }
+                });
+                // change the edit state
+                edit_state = "edit";
+                $("#dialog-form").omDialog("option", "title", "修改");
+                $("#dialog-form").omDialog("open");
+            });
+    
+            var gridTable = $('#grid').omGrid({
+                url : 'griddata.do?method=fast',
+                width : 586,
+                height : 300,
+                showIndex : true,
+                showCheckbox : true,
+                toolbar : 'tbdiv', //设置为一个div的ID,将会把该div剪切到omGrid的上方作为工具条
+                pageStat : '共 {total} 条数据',
+                //colModel
+                colModel : [ {header : 'ID', name : 'id', width : 20, align : 'center', sortable : true }, 
+                             {header : '地区', name : 'city', width : 120, sortable : true }, 
+                             {header : '地址', name : 'address', width : 'autoExpand', sortable : true},
+                             {header : '起始', name : 'start'},
+                             {header : '结束', name : 'end'}]
+            });
+            
+            function buildJSON() {
+                var result = {};
+                result['id'] = 500 + Math.floor( Math.random()*100000 + 1 );
+                result['city'] = $("input[name=city]").val();
+                result['address'] = $("input[name=address]").val();
+                result['start'] = $("input[name=start]").val();
+                result['end'] = $("input[name=end]").val();
+                return result;
+            }
+            
+            $("#dialog-form").omDialog({
+                autoOpen : false,
+                modal : true,
+                buttons : {
+                    "提交" : function() {
+                        var grid = gridTable.get(0).grid;//注意omGrid()方法返回的gridTable是一个数组
+                        if(edit_state == 'add') {
+                            var data = grid.data;
+                            data.rows.splice(0, 0, buildJSON());
+                            data.total = data.total + 1;
+                        } else if(edit_state == "edit") {
+                            $('#grid tr').each(function(i) {
+                                if ($(this).hasClass('om-state-highlight')) {
+                                    var rowData = grid.data.rows[i];
+                                    rowData.city = $("input[name=city]").val();
+                                    rowData.address = $("input[name=address]").val();
+                                    rowData.start = $("input[name=start]").val();
+                                    rowData.end = $("input[name=end]").val();
+                                }
+                            });
+                        }
+                        gridTable.omGrid('refresh');//根据grid.data重新刷新表格
+                        $("#dialog-form").omDialog("close"); 
+                    },
+                    "取消" : function() {
+                        $("#dialog-form").omDialog("close"); 
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="dialog-form">
+        <form name="info">
+            <table>
+                <tr>
+                    <td>名称：</td>
+                    <td><input name="city" /></td>
+                </tr>
+                <tr>
+                    <td>地址：</td>
+                    <td><input name="address" /></td>
+                </tr>
+                <tr>
+                    <td>起始：</td>
+                    <td><input name="start" /></td>
+                </tr>
+                <tr>
+                    <td>结束：</td>
+                    <td><input name="end" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="tbdiv">
+        <button id="delete">删除</button>
+        <button id="create">新增</button>
+        <button id="modify">修改</button>
+        <input></input>
+    </div>
+    <table id="grid"></table>
+    <!-- view_source_end -->
+   <div id="view-desc"><p>本示例只操作客户端的数据模型，并未涉及到后台交互。</p>
+        <p>首先修改grid对象的data属性，该属性保存了表格当前页的数据，修改后调用refresh方法刷新表格。</p>
+        <p>注意：omGrid方法返回的是一个jQuery对象，是个数组，所以获取表格对象的方式为： var grid = gridTable.get(0).grid;</p>
+        <p>本示例中引入omDialog和omButton作为信息提示框，使界面更友好。</p> 
+    </div>
+</body>
+</html>

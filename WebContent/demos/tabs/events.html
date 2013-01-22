@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>页签事件</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-tabs.js"></script>
+    <script src="../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script>
+        $(function() {
+            var id = 0;
+            function getTime () {
+                return '<span style="color:red;"> [' + $.omCalendar.formatDate(new Date(), 'yy-mm-dd H:i:s') + ']</span>';
+            }
+            function updateScroller() {
+                var log = $('#log')[0]; 
+                log.scrollTop = log.scrollHeight;
+            }
+            $('#make-tab').omTabs({
+                switchMode : 'click',
+                width: 550,
+                height: 250,
+                closable : true,
+                onActivate : function(n,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '选中了第' + (n+1) + '个页签').insertBefore($('#end-scroll'));
+                    updateScroller();
+                },
+                onBeforeActivate : function(n,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '即将选中第' + (n+1) + '个页签...').insertBefore($('#end-scroll'));
+                    updateScroller();
+                },
+                onClose : function(n,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '关闭了第' + (n+1) + '个页签').insertBefore($('#end-scroll'));
+                    updateScroller();
+                },
+                onBeforeClose : function(n,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '即将关闭第' + (n+1) + '个页签...').insertBefore($('#end-scroll'));
+                    updateScroller();
+                },
+                onAdd : function(config,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '已经在第' + (config.index+1) + '个位置增加了一个页签').insertBefore($('#end-scroll'));
+                    updateScroller();
+                },
+                onBeforeAdd : function(config,event) {
+                    $('<br/>').insertBefore($('#end-scroll'));
+                    $('<span></span>').html( getTime() + '即将在第' + (config.index+1) + '个位置增加一个页签...').insertBefore($('#end-scroll'));
+                    updateScroller();
+                }
+            });
+            $('#empty-log').click(function(){
+                $('#end-scroll').siblings().remove();
+            });
+            $('#addLast').click(function(){
+                id ++ ;
+                $('#make-tab').omTabs('add',{
+                        title : 'NewTitle' + id, 
+                        content : 'New Body' + id
+                });
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="make-tab" >
+        <ul>
+            <li><a href="#tab1">苹果</a></li>
+            <li><a href="#tab2">草莓</a></li>
+            <li><a href="#tab3">葡萄</a></li>
+        </ul>
+        <div id="tab1" >
+            <img alt="" src="images/pg.jpg" style="float: left;margin-right: 10px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;苹果，落叶乔木，叶子椭圆形，花白色带有红晕。果实圆形，味甜或略酸，
+            是常见水果，具有丰富营养成分，有食疗、辅助治疗功能。苹果原产于欧洲、
+            中亚、西亚和土耳其一带，于十九世纪传入中国。中国是世界最大的苹果生产国，
+            在东北、华北、华东、西北和四川、云南等地均有栽培。
+        </div>
+        <div id="tab2" >
+          <img alt="" src="images/cm.jpg" style="float: left;margin-right: 10px;">
+             &nbsp;&nbsp;&nbsp;&nbsp;草莓又叫红莓、洋莓、地莓等，是一种红色的水果。草莓是对蔷薇科草莓属植物的
+             通称，属多年生草本植物。草莓的外观呈心形，鲜美红嫩，果肉多汁，含有特殊的浓
+             郁水果芳香。草莓营养价值高，含丰富维生素C ，有帮助消化的功效，与此同时，草
+             莓还可以巩固齿龈，清新口气，润泽喉部。
+        </div>
+        <div id="tab3" >
+        <img alt="" src="images/pt.jpg" style="float: left;margin-right: 10px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;葡萄，葡萄属（Vitis）落叶藤本植物，掌叶状，3-5缺裂，复总状花序，通常呈圆锥
+        形，浆果多为圆形或椭圆，色泽随品种而异。人类在很早以前就开始栽培这种果树，几乎
+        占全世界水果产量的四分之一；其营养价值很高，可制成葡萄汁、葡萄干和葡萄酒。粒大
+        、皮厚、汁少、优质、皮肉难分离、耐贮运的欧亚种葡萄又称为提子。</div>
+    </div>
+    <br/>
+    <button id="addLast">增加一个页签</button><button id="empty-log">清空日志</button>
+    <br/><br/>
+    <fieldset style="width: 530px;height: 200px">
+    <legend>操作日志</legend>
+        <div id="log" style="height: 185px;overflow-x: hidden;overflow-y: scroll;">
+            <div id="end-scroll"></div>
+        </div>
+    </fieldset>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        omTabs提供了丰富的事件，用户可以监听标签页的“添加/关闭/激活/内容加载完成”等事件来进行特殊处理。
+    </div>
+</body>
+</html>

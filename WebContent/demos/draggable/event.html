@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>事件监听</title>
+ <script src="../../jquery.js"></script>
+ <script src="../../ui/om-core.js"></script>
+ <script src="../../ui/om-mouse.js"></script>
+ <script src="../../ui/om-draggable.js"></script>
+ <link rel="stylesheet" href="../../themes/default/om-all.css">
+ <link rel="stylesheet" href="../common/css/demo.css">
+ <!-- view_source_begin -->
+  <style>
+    #draggable { 
+	    width: 16em; 
+	    padding: 0 1em; 
+    }
+	#draggable ul li { 
+		margin: 1em 0; padding: 0.5em 0; 
+	} 
+	* html #draggable ul li { 
+		height: 1%;
+	}
+	#draggable ul li span.ui-icon {
+	 	float: left; 
+	 }
+	#draggable ul li span.count { 
+		font-weight: bold; 
+	}
+  </style>
+	<script>
+	$(document).ready(function() {
+		var $start_counter = $( "#event-start" ),
+		$drag_counter = $( "#event-drag" ),
+		$stop_counter = $( "#event-stop" ),
+		counts = [ 0, 0, 0 ];
+
+	$( "#draggable" ).omDraggable({
+		onStart: function(ui,event) {
+			counts[ 0 ]++;
+			updateCounterStatus( $start_counter, counts[ 0 ] );
+		},
+		onDrag: function(ui,event) {
+			counts[ 1 ]++;
+			updateCounterStatus( $drag_counter, counts[ 1 ] );
+		},
+		onStop: function(ui,event) {
+			counts[ 2 ]++;
+			updateCounterStatus( $stop_counter, counts[ 2 ] );
+		}
+	});
+
+	function updateCounterStatus( $event_counter, new_count ) {
+		if ( !$event_counter.hasClass( "om-state-hover" ) ) {
+			$event_counter.addClass( "om-state-hover" )
+				.siblings().removeClass( "om-state-hover" );
+		}
+		$( "span.count", $event_counter ).text( new_count );
+	}
+	});
+	</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+	<div id="draggable" class="om-widget om-widget-content">
+	
+		<p>拖动我能触发一系列的事件.</p>
+	
+		<ul class="om-helper-reset">
+			<li id="event-start" class="om-state-default om-corner-all">"start" 触发 <span class="count">0</span>次</li>
+			<li id="event-drag" class="om-state-default om-corner-all">"drag" 触发 <span class="count">0</span>次</li>
+			<li id="event-stop" class="om-state-default om-corner-all">"stop" 触发 <span class="count">0</span>次</li>
+		</ul>
+	</div>
+<!-- view_source_end -->
+ <div id="view-desc">
+      <p>拖动功能提供开始拖动事件，拖动时事件，拖动停止事件。</p>
+      <p>每一个事件接收两个参数event和ui，ui为Objec对象，包括四个属性：helper，position(当前位置)，originalPosition(原始位置)，offset(偏移量)。</p>
+    </div>
+</body>
+</html>

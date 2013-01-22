@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>自定义节点图标</title>
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+	<link rel="stylesheet" href="../../demos/common/css/demo.css">
+    <!-- view_source_begin -->
+	<style type="text/css">
+	   .om-tree ul li span.parenticon, .om-tree li.expandable span.parenticon{
+	     background:url("images/parent.png") no-repeat;
+	   }
+	   .om-tree ul li span.leaf1, .om-tree li.expandable span.leaf1{
+	     background:url("images/leaf1.png") no-repeat;
+	   }
+	   .om-tree ul li span.leaf2, .om-tree li.expandable span.leaf2{
+	     background:url("images/leaf2.png") no-repeat;
+	   }
+	</style>
+    <script type="text/javascript">
+        var data1 = [{
+            "text": "node1",
+            "classes": "parenticon",
+            "children":[{
+                "text": "node11",
+                "classes": "leaf1"
+            }, {
+                "text": "node12",
+                "classes": "leaf1"
+            }]
+        }, {
+            "text": "node2",
+            "expanded": true,
+            "classes": "parenticon",
+            "children":[{
+                "text":"node21",
+                "expanded": true,
+                "classes": "leaf1",
+                "children": [{
+                    "text":"node211",
+                    "classes": "leaf2"
+                },{
+                    "text":"node212",
+                    "classes": "leaf2"
+                }]
+            },{
+                "text":"node22",
+                "classes": "parenticon",
+                "children": [{
+                    "text":"node211"
+                },{
+                    "text":"node212"
+                }]
+            }]
+        }, {
+            "text": "node3"
+        }, {
+            "text": "node4"
+        }];
+       
+        $(document).ready(function(){
+            $("#mytree1").omTree({
+                dataSource : data1,
+                showCheckbox : true
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="main">
+   <ul id="mytree1"></ul>     
+    </div> 
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>自定义节点图标，只需给节点数据添加classes属性，属性值为自定义图标背景样式，如示例代码所示。对于非叶节点有
+        展开状态与收缩状态，所以图标样式还需要覆盖expandable状态样式。对于没有定义classes属性的节点，沿用默认图标。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>异步加载</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource : '../../../omCombo.json'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="combo1" />
+    <input type="button" onclick="alert($('#combo1').omCombo('value'));" value="getValue"/>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置dataSource为URL链接，由omCombo自动发送请求到后台获取JSON数组格式数据，
+        返回的数据必须为JSON[Array]，如[{"value":"001","text":"张三"},{"value":"002","text":"李四"}]
+        </p>
+        <p>
+        <b>注意：</b>JSON数据必须严格遵守JSON规范（一定要使用双引号将JSON key-value对中的key包裹起来）。
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

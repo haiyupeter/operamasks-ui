@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>去掉focus虚线框</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#aButton').omButton({});
+            $('#submitButton').omButton({});
+            $('#buttonButton').omButton({});
+            $('#resetButton').omButton({});
+            $('#button').omButton({});
+        });
+    </script>
+    <style type="text/css">
+	   a,input,button{
+		   outline:none;
+		   hide-focus:expression(this.hideFocus=true) \9; 
+	   }
+	  button::-moz-focus-inner,input::-moz-focus-inner{border:none;}
+    </style>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <a id="aButton" href="javascript:void(0)">跳转</a>
+    <input id="submitButton" type="submit" value="提交"/>
+    <input id="buttonButton" type="button" value="重置"/>
+    <input id="resetButton" type="reset" value="删除"/>
+    <button id="button">修改</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>通过覆盖样式，去除按钮获取焦点时的虚线框。<br/>
+        <b>注意：</b><br/>
+                 去掉button或者是a的虚线框有两种方式:<br/>
+                 一种就是js，当focus的时候使用this.blur()的方式使之失去焦点，这样没有浏览器兼容性问题，但是会污染事件；<br/>
+               另一种就是使用css样式控制，但是这种方式会有浏览器兼容性问题，基本的设置情况和对应版本情况如下：<br/>
+        <table>
+            <tr><td>outline:none</td><td>IE8 | Firefox | Webkit |Opera</td></tr>
+            <tr><td>hidefocus</td><td>IE</td></tr>
+            <tr><td>:focus{outline:none;}</td><td>IE8 | Firefox | Webkit | Opera</td></tr>
+            <tr><td>:active{outline:none;}</td><td>同上，但在tab的时候，IE将保留虚线框</td></tr>
+            <tr><td>::-moz-focus-inner{outline:none;}</td><td>Firefox 的input 须要去这个伪状态下的边框</td></tr>
+        </table>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

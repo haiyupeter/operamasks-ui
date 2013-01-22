@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>多种格式化日期</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-calendar.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <style type="text/css">
+    tr td:nth-child(1) {
+        font-size: 12px;
+        font-family: Segoe UI, Arial, sans-serif;
+    }
+    
+    tr td span {
+        color: #0B559B;
+    }
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#chinese').omCalendar({
+                dateFormat : "yy年mm月dd日"
+            });
+            $('#iso8601').omCalendar({
+                dateFormat : "yy-mm-dd"
+            });
+            $('#short').omCalendar({
+                dateFormat : "d M, y"
+            });
+            $('#full').omCalendar({
+                dateFormat : "DD, d MM, yy"
+            });
+            $('#showtime').omCalendar({
+                dateFormat : "yy-mm-dd H:i:s A",
+                showTime : true
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table style="padding: 10px;">
+        <tr>
+            <td>格式(中国)：<span>yy年mm月dd日</span>
+            <td>
+            <td><div>
+                    <input id="chinese" style="width: 200px;" />
+                </div>
+            <td>
+        </tr>
+        <tr>
+            <td>格式(ISO 8601)：<span>yy-mm-dd</span>
+            <td>
+            <td><input id="iso8601" style="width: 200px;" />
+            <td>
+        </tr>
+        <tr>
+            <td>格式(简短)：<span>d M, y </span>
+            <td>
+            <td><input id="short" style="width: 200px;" />
+            <td>
+        </tr>
+        <tr>
+            <td>格式(全写)：<span>DD, d MM, yy </span>
+            <td>
+            <td><input id="full" style="width: 200px;" />
+            <td>
+        </tr>
+        <tr>
+            <td>格式(显示时间)：<span>yy-mm-dd H:i:s A </span>
+            <td>
+            <td><input id="showtime" style="width: 200px;" />
+            <td>
+        </tr>
+    </table>
+    <!-- view_source_end -->
+    <div id="view-desc">配置dateFormat属性，自定义日期显示格式。</div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

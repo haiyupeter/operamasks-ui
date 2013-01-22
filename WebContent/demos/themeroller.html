@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Operamasks UI 主题皮肤</title>
+<script>
+	var theme = location.hash;
+	if(theme == '') theme='default';
+	if(theme.indexOf('#') == 0) theme = theme.substring(1);
+	document.write("<link rel='stylesheet' href='themes/"+theme+"/operamasks-ui.min.css'>");
+</script>
+<script src="../jquery.js"></script>
+<script src="operamasks-ui.min.js"></script>
+<style>
+html,body{margin: 0;padding: 0;height: 100%;font-size: 12px;}
+h2{font-size: 14px;}
+#theme{
+	background-color: black;
+	height: 40px;
+	position: fixed;
+	width: 100%;
+	z-index: 20000;
+}
+#theme ul{
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+}
+#theme ul li{
+	text-align: center;
+	border-bottom: 3px solid #D84600;
+	line-height: 30px;
+	float: left;
+	margin: 0 10px;
+}
+#theme ul a{
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+#components{
+	position: relative;
+	top: 50px;
+	padding: 5px;
+}
+.group{
+	float: left;
+	padding-left: 20px;
+}
+.group h2{
+	color: #D84600;
+}
+.filesave{background: url('accordion/images/java.png') no-repeat;}
+</style>
+<script>
+	function showAlert(){
+	    $.omMessageBox.alert({
+	        content:'您还没有选择要删除的记录'
+	    });
+	 }
+    function showSuccess(){
+        $.omMessageBox.alert({
+             type:'success',
+             title:'成功',
+             content:'操作成功'
+         });
+     }
+     function showError(){
+        $.omMessageBox.alert({
+            type:'error',
+            title:'失败',
+            content:'不能删除<font color="red">admin</font>用户'
+        });
+     }
+     function showWaiting(){
+         $.omMessageBox.waiting({
+             title:'请等待',
+             content:'服务器正在处理请求，约需3秒时间...'
+         });
+         setTimeout("$.omMessageBox.waiting('close');",3000);
+      }
+     
+    $(function() {
+        $('#button').omButton();
+        
+        $('#calendar').omCalendar({
+            popup : false
+        });
+        
+        $('#combo').omCombo({
+            dataSource : [ {text : '中国', value : 'China/PRC'}, 
+                           {text : '美国', value : 'America/USA'}, 
+                           {text : '英国', value : 'the United Kingdom/UK'}, 
+                           {text : '日本', value : 'Japan/JPN'} ]
+        });
+        
+        $('#numberfield').omNumberField();
+        
+        $('#suggestion').omSuggestion({
+            dataSource : '../simpleSuggestion.json'
+        });
+        
+        $('#fileupload').omFileUpload({
+    	    action   : '/operamasks-ui/omFileUpload.do'
+    	});
+        
+        $('#grid').omGrid({
+        	dataSource : 'griddata.do?method=fast',
+            title : 'IP数据',
+            width : 370,
+            height : 250,
+            //colModel
+            colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                         {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                         {header : '地址', name : 'address', align : 'left', width : 200} ],
+            autoFit:true,
+            //展开行时使用下面的方法生成详情，必须返回一个字符串
+            rowDetailsProvider:function(rowData,rowIndex){
+                return '第'+rowIndex+'行，ID='+rowData.id+'<br/><b>'
+                            +rowData.city+rowData.address
+                            +'</b>的IP地址范围是：<font color="red">'+rowData.start+'~'+rowData.end+'</font>';}
+        });
+        
+        var treeData = [{
+            "text": "node1",
+            "id": "n1",
+            "children":[{
+                "text": "node11",
+                "id": "n11"
+            }, {
+                "text": "node12",
+                "id": "n12"
+            }]
+        }, {
+            "text": "node2",
+            "expanded": true,
+            "id": "n2",
+            "children":[{
+                "text":"node21",
+                "id": "n21",
+                "expanded": true,
+                "children": [{
+                    "id": "n211",
+                    "text":"node211"
+                },{
+                    "id": "n212",
+                    "text":"node212"
+                }]
+            },{
+                "text":"node22",
+                "id": "n22"
+            }]
+        }, {
+            "text": "node3",
+            "id": "n3"
+        }, {
+            "text": "node4",
+            "id": "n4"
+        }];
+        $("#tree").omTree({
+            dataSource : treeData
+        });
+        
+		$( "#dialog" ).omDialog({
+			height: 140,
+			modal: true,
+			autoOpen: false
+		});
+		
+        $('#tabs').omTabs({
+            width: 350,
+            height: 200,
+            closable : true
+        });
+        
+	    $("#accordion").omAccordion({
+	        width : 350,
+	        height : 300
+	    });
+        $('#pbar').omProgressbar({
+        	value: 30,
+        	text: "已完成{value}%"
+        });
+        $('#tip').omTooltip({
+            trackMouse : true,
+            html : '<span style="color:red;">欢迎使用omTooltip组件！</span>'
+        });
+        $('#menu_simple').omMenu({
+            minWidth : 150,
+            maxWidth : 200
+        });
+        $('#menu-btn').click(function(){
+            $('#menu_simple').omMenu('show',this);
+        });
+        $('#selector').omItemSelector({
+            availableTitle : '可选择省份',
+            selectedTitle : '已选择省份',
+            dataSource : [
+                {text:'北京市',value:'beijing'},{text:'天津市',value:'tianjin'},
+                {text:'重庆市',value:'chongqing'},{text:'上海市',value:'shanghai'},
+                {text:'河北省',value:'hebei'},{text:'山西省',value:'shanxi'},
+                {text:'辽宁省',value:'liaoning'},{text:'吉林省',value:'jilin'},
+                {text:'黑龙江省',value:'heilongjiang'},{text:'江苏省',value:'jiangsu'},
+                {text:'浙江省',value:'zhejiang'},{text:'安徽省',value:'anhui'},
+                {text:'福建省',value:'fujian'},{text:'江西省',value:'jiangxi'},
+                {text:'山东省',value:'shandong'},{text:'河南省',value:'henan'},
+                {text:'湖北省',value:'hubei'},{text:'湖南省',value:'hunan'},
+                {text:'广东省',value:'guangdong'},{text:'海南省',value:'hainan'},
+                {text:'四川省',value:'sichuan'},{text:'贵州省',value:'guizhou'},
+                {text:'云南省',value:'yunnan'},{text:'陕西省',value:'shaanxi'},
+                {text:'甘肃省',value:'gansu'},{text:'青海省',value:'qinghai'}
+            ],
+            value:['hubei','shaanxi']
+        });
+        $("#panel").omPanel({
+            width:'350px',
+            height:'180px',
+            iconCls: "apple",
+            header: true,
+            title:'苹果公司简介',
+            collapsed: false,
+            collapsible: true,
+            closable: true,
+            url:'panel/apple-desc.html',
+        });
+        $('#borderlayout').omBorderLayout({
+        	   panels:[{
+        	        id:"north-panel",
+        	        title:"This is north panel",
+        	        region:"north",
+        	        resizable:true,
+        	        collapsible:true,
+        	     	closable: true
+        	    },{
+        	        id:"south-panel",
+        	        title:"This is south panel",
+        	        region:"south",
+        	        resizable:true,
+        	        collapsible:true,
+        	        height:80
+        	    },{
+        	        id:"center-panel",
+        	     	header:false,
+        	        region:"center"
+        	    },{
+        	        id:"west-panel",
+        	        resizable:true,
+        	        collapsible:true,
+        	        title:"This is west panel",
+        	        region:"west",width:120
+        	    },{
+        	        id:"east-panel",
+        	        resizable:true,
+        	        collapsible:true,
+        	        title:"This is east panel",
+        	        region:"east",
+        	        width:120
+        	    }]
+         });
+        $('#menu-btn').click();
+    });
+</script>
+</head>
+<body>
+	<div id="theme">
+		<span style="color: #FFFFFF;float: left;margin-left: 20px;line-height: 40px;font-size: 14px;font-weight: bold;">OperaMasks UI主题皮肤：</span>
+		<ul>
+			<li><a id="theme_default" href="themeroller.html#default" onclick="location.href='themeroller.html#default';location.reload();">default</a></li>
+			<li><a id="theme_eac" href="themeroller.html#eac" onclick="location.href='themeroller.html#eac';location.reload();">eac</a></li>
+			<li><a id="theme_start" href="themeroller.html#start" onclick="location.href='themeroller.html#start';location.reload();">start</a></li>
+		</ul>
+	</div>
+	<div id="components">
+		<div id="group-form" class="group">
+			<h2>button</h2>
+			<div>
+		        <button id="button">使用button的按钮</button>
+	        </div>
+	        <h2>calendar</h2>
+	        <div id="calendar"></div>
+	        
+	        <h2>combo</h2>
+	        <div>
+	        	<input id="combo" />
+	        </div>
+	        
+	        <h2>numberfield</h2>
+	        <div>
+	        	<input id="numberfield" />
+	        </div>
+	        	        
+	        <h2>suggestion</h2>
+	        <div>
+	        	<input id="suggestion" />
+	        </div>
+	        
+	        <h2>fileupload</h2>
+	        <div>
+	        	<input id="fileupload" name="fileupload" type="file" />
+	        </div>
+	        
+	        <h2>itemselector</h2>
+	        <div>
+	        	<div id="selector" ></div>
+	        </div>
+		</div>
+		<div id="group-widgets" class="group">
+	        <h2>grid</h2>
+	        <div>
+	        	<table id="grid"></table>
+	        </div>			
+	        <h2>tree</h2>
+	        <div>
+		        <ul id="tree">
+		        </ul>
+	        </div>	
+	        
+	        <h2>progressbar</h2>
+	        <div>
+	        	<div id="pbar" style="margin-top:20px"></div>
+	        </div>		
+	        
+	        <h2>tooltip</h2>
+	        <div>
+	        	<div  class="qtip-target" id="tip">鼠标移上来看看</div>
+	        </div>
+	        
+	        <h2>menu</h2>
+	        <div>
+	        	    <div id="menu_simple">
+				       <ul>
+				        <li>
+						 <a href="#">
+							<img class="icon" src="menu/images/blank.png">
+							<span>节点0</span>
+						</a>
+						</li>
+					    <li>
+					      <a href="#">
+						    <img  src="menu/images/blank.png">
+						    <span>节点一</span>
+						  </a>
+					    </li>
+					    <li>
+					      <a href="#">
+						    <img class="icon" src="menu/images/calendar.gif">
+						    <span>节点二</span>
+						    <span role="popup"></span>
+						  </a>
+						  <ul>
+						     <li class="">
+						        <a href="#">
+								    <img class="icon" src="menu/images/calendar.gif">
+								    <span>节点一一</span>
+								 </a>
+						     </li>
+						     <li class="">
+						        <a href="#">
+								    <img src="menu/images/calendar.gif">
+								    <span>节点一二</span>
+								 </a>
+						     </li>
+						     <li class="">
+						        <a href="#">
+								    <img src="menu/images/calendar.gif">
+								    <span>节点一三</span>
+								 </a>
+						     </li>
+						  </ul>
+					    </li>
+					    <li>
+							<a href="#">
+							  <img class="icon" src="menu/images/blank.png">
+							  <span>节点3</span>
+							</a>
+						</li>
+					  </ul>
+				    </div>
+				    <input type="button" id="menu-btn" value="页面编写dom节点生成menu">
+	        </div>
+		</div>
+		<div id="group-layout" class="group">
+			<h2>panel</h2>
+			<div>
+				<div id="panel"></div>
+			</div>
+	        <h2>tabs</h2>
+			<div id="tabs" >
+				<ul>
+					<li><a href="#tab1">首页</a></li>
+					<li><a href="#tab2">产品介绍</a></li>
+					<li><a href="#tab3">应用案例</a></li>
+					<li><a href="#tab4">新闻动态</a></li>
+				</ul>
+				<div id="tab1">
+					Tab Body 1<br /> 
+				</div>
+				<div id="tab2">
+					Tab Body 2<br /> 
+				</div>
+				<div id="tab3">
+					Tab Body 3<br />
+				</div>
+				<div id="tab4">
+					Tab Body 4<br /> 
+				</div>
+			</div>
+			<h2>accordion</h2>
+			<div id="accordion" > 
+			    <ul> 
+			        <li><a href="#accordion-1" iconCls="filesave">accordion-1</a></li> 
+			        <li><a href="#accordion-2" iconCls="filesave">accordion-2</a></li> 
+			        <li><a href="#accordion-3" iconCls="filesave">accordion-3</a></li> 
+			    </ul> 
+			    <div id="accordion-1">
+			    	<p>accordion-1</p>
+			    </div>
+			    <div id="accordion-2">
+			    	<p>accordion-2</p>
+			    </div>
+			    <div id="accordion-3">
+			    	<p>accordion-3</p>
+			    </div>
+			</div>
+			<h2>borderlayout</h2>
+			<div>
+			    <div id="borderlayout" style="width: 350px;height: 300px">
+			    	<div id="north-panel">north</div>
+			    	<div id="center-panel">center</div>
+			    	<div id="east-panel">east</div>
+			    	<div id="west-panel">west</div>
+			    	<div id="south-panel">sorth</div>
+			    </div>
+			</div>
+		</div>
+		<div id="group-window" class="group">
+	        <h2>dialog</h2>
+	        <div>
+	        	<button onclick="$( '#dialog' ).omDialog('open');">打开对话框</button>
+	        </div>
+		    <div id="dialog" title="模态窗口">
+		        <p>显示模态对话框，在关闭对话框之前不能操作页面内容.</p>
+		    </div>
+		    <h2>messagebox</h2>
+		    <div>
+	    	    <button onclick="showAlert();">alert</button>
+			    <button onclick="showSuccess();">success</button>
+			    <button onclick="showError();">error</button>
+			    <button onclick="showWaiting();">waiting</button>
+		    </div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</body>
+<script type="text/javascript">
+document.getElementById('theme_'+theme).style.color="#D84600";
+</script>
+</html>

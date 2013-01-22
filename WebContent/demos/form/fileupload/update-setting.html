@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>动态修改参数</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+		    action : '../../../omFileUpload.do',
+		    swf : '../../../ui/om-fileupload.swf'
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="修改buttonText" onclick="$('#file_upload').omFileUpload({'buttonText':'我是一个按钮'})">修改buttonText</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>omFileUpload在初始化后可以动态修改里面的一些参数。包括：['buttonImg','buttonText','fileDesc','fileExt','height','action','actionData','sizeLimit','width']</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

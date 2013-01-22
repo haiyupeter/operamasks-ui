@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>模态窗口</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-draggable.js"></script>
+    <script src="../../ui/om-position.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script src="../../ui/om-dialog.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+	<script>
+	$(function() {
+		$( "#dialog-modal").omDialog({
+			autoOpen: false,
+			height: 140,
+			modal: true
+		});
+		$( "#dialog-modaless").omDialog({
+            autoOpen: false,
+            height: 140
+        });
+	});
+	function showModelDialog(){
+	   $( "#dialog-modal").omDialog('open');
+	}
+	function showModelessDialog(){
+	   $( "#dialog-modaless").omDialog('open');
+	}
+	</script>
+	 <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <button onclick="showModelessDialog();">非模态窗口</button>
+    <button onclick="showModelDialog();">模态窗口</button>
+    <div id="dialog-modaless" title="非模态窗口">
+        <p>显示非模态对话框，在关闭对话框之前可以操作页面内容.</p>
+    </div>
+    <div id="dialog-modal" title="模态窗口">
+        <p>显示模态对话框，在关闭对话框之前不能操作页面内容.</p>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>模态对话框会给页面加一个遮罩层，在关闭对话框之前页面内容不能操作。非模态对话框则没有遮罩层，对话框出现后还可以操作页面其它内容。</p>
+        <p><strong>注意：由于omDialog渲染后dom节点会移位到body节点下，所以如果要给omDialog中的子节点添加自己的样式，在写样式时
+        要注意层级结构。</strong></p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

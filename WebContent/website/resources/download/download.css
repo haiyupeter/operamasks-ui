@@ -1,0 +1,163 @@
+.download-frame{
+	margin: 0 auto;
+	width: 960px;
+}
+.header-download{
+	height:50px;
+	border-bottom: 1px solid gray;
+}
+.header-download span{
+	display: block;
+    font-size: 28px;
+    line-height: 120%;
+}
+.content-download{
+	margin-top: 15px;
+}
+.left{
+    float: left;
+    width: 79%;	
+}
+.right{
+	float:left;
+	width: 20%;
+}
+.builds .builds{
+	background: url("images/builds.png") no-repeat scroll 4px 4px transparent;
+    display: block;
+    font-size: 20px;
+    height: 46px;
+    line-height: 46px;
+    padding-left: 50px;
+}
+.builds-content{
+	margin-top : 15px;
+	border-bottom: 1px solid #DDDDDD;
+	width: 95%;
+}
+.gradient-box{
+	margin-top:10px;
+	margin-left: 30px;
+	font-size: 13px;
+}
+.builds-download{
+	background: url("images/package.gif") no-repeat scroll 4px 4px transparent;
+    display: block;
+    font-size: 20px;
+    height: 46px;
+    line-height: 46px;
+    padding-left: 42px;
+    margin-left: 5px;
+}
+.right-panel{
+	background: -moz-linear-gradient(center bottom , #F4F4F4 9%, #FEFEFE 78%) repeat scroll 0 0 #E9E9E9;
+    border: 1px solid #ECECEC;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 #CCCCCC, 0 1px 0 #FFFFFF inset;
+    height: 34px;
+    line-height: 34px;
+    margin: 0;
+    padding: 0 10px;
+    text-shadow: 0 1px 0 #FFFFFF;
+    text-transform: uppercase;
+}
+.right p{
+	padding-left: 10px;
+}
+#builds-form{
+	position: relative;
+}
+.builds-content .component-group {
+	border-bottom: 1px dotted #666;
+	padding: 25px 15px 15px;
+	position: relative;
+}
+.builds-content .component-group-desc {
+	float: left;
+	width: 250px;
+}
+.builds-content .component-group-desc h3 {
+	font-size: 18px;
+}
+.builds-content .component-group-desc p {
+	margin: 11px 0;
+	width: 70%;
+	font-size: 14px;
+	color: #666;
+}
+.builds-content .component-group-list {
+	float: left;
+	width: 400px;
+	margin: 0;
+	padding: 0;
+}
+.builds-content fieldset {
+	border: 0;
+	outline: 0;
+}
+.builds-content div.field-pair {
+	margin: 10px 0 16px;
+}
+.builds-content div.field-pair input {
+	float: left;
+	margin-right: 6px;
+}
+.builds-content label span.component-title {
+	font-size: 14px;
+	font-weight: bold;
+	float: left;
+	width: 110px;
+	margin-right: 10px;
+}
+.builds-content label span.component-desc {
+	font-size: 13px;
+}
+.builds-content a:hover, .builds-content a:active {
+	color: #0B559B;
+	text-decoration: underline;
+}
+.builds-content a:link, .builds-content a:visited {
+	color: #1B75BB;
+	text-decoration: none;
+}
+.builds-content .select-all {
+	font-size: 13px;
+	position: absolute;
+	right: 15px;
+	top: 12px;
+	padding-left: 12px;
+	background: url(images/select_all_icon.png) 0 2px no-repeat;
+}
+#download-zip {
+	cursor: pointer;
+	margin: 15px 0 0;
+	width: 140px;
+	text-align: center;
+	font-size: 15px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	background: #222 url(images/download_button_on.png) 0 50% repeat-x;
+	color: #EEE;
+	border: 2px solid #AAA;
+	font-weight: bold;
+	padding: 4px 0;
+}
+.download-btn-state-disabled{
+	opacity: .35;
+	filter: Alpha(Opacity=35);
+	background-image: none;
+	cursor: default !important;
+}
+#more-release{
+	display: none;
+}
+#more-release li{
+	line-height: 25px;
+}
+
+div#theme-select{
+	position: absolute;
+	right: 150px;
+	top: 8px;
+	font-weight: bold;
+}

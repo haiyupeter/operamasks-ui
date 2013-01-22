@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>omTabs iframe形式加载</title>
+		<script src="../../../jquery.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				parent.$("#inner-frame").height( $(document).height() );
+			};
+		</script>
+		<style type="text/css">
+			body{
+				padding:0;
+				margin:0;
+			}
+		</style>
+	</head>
+	<body>
+		<p style="padding:10px">
+			<img alt="" src="../images/cm.jpg" style="float: left;margin-right: 10px;">
+			     &nbsp;&nbsp;&nbsp;&nbsp;草莓又叫红莓、洋莓、地莓等，是一种红色的水果。草莓是对蔷薇科草莓属植物的
+			     通称，属多年生草本植物。草莓的外观呈心形，鲜美红嫩，果肉多汁，含有特殊的浓
+			     郁水果芳香。草莓营养价值高，含丰富维生素C ，有帮助消化的功效，与此同时，草
+			     莓还可以巩固齿龈，清新口气，润泽喉部。
+		</p>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unit test - OperamasksUI Test Cases</title>
+<link rel="stylesheet" href="../common/css/test-all.css" type="text/css" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../ui/om-core.js"></script>
+<link rel="stylesheet" type="text/css" href="../../themes/default/om-theme.css" />
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#nav_tree').load('nav-tree.html', function(response, status, xhr) {
+            if (status == "error") {
+                var msg = "Sorry but there was an error: ";
+                $("#nav_tree").html(msg + xhr.status + " " + xhr.statusText);
+            }
+        });
+        
+        var winHeight = $(window).height();
+        $('.demos-c').css({height:winHeight - 150});
+        
+        $(window).resize(function(){
+            $('.demos-c').css({height:$(window).height() - 150});
+        })
+        
+        $('#nav_tree .demos-n a[href="#"]').click(function(){
+            $(this).addClass('selected');
+        });
+    });
+    function open1(url,me) {
+        $('.demos-n').find('a[style]').removeAttr('style');
+        $(me).css('background-color' , '#555555').css('color','white');
+        if(url == '') return;
+        $('#testcase').attr('src', url);
+    }
+
+</script>
+</head>
+<body>
+
+	<div id="header">
+		<div id="header-inner">
+			<table cellpadding="0" cellspacing="0" style="width: 100%;">
+				<tr>
+					<td rowspan="2" style="width: 20px;"></td>
+					<td style="height: 52px;">
+						<div style="color: #fff; font-size: 22px; font-weight: bold;">
+							<span
+								style="color: #fff; font-size: 22px; font-weight: bold; text-decoration: none">OperamasksUI
+								unit test</span>
+
+						</div>
+						<div style="color: #fff">
+							<span style="color: #fff; text-decoration: none">Operamasksui
+								help you build your web page easily!</span>
+						</div></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+	<div id="mainwrap">
+		<div id="content">
+		  <table style="width:100%;">
+		    <tr>
+		      <td style="vertical-align: top; width: 10%;">
+		        <div id="nav_tree"></div>
+		      </td>
+		      <td style="vertical-align: top; width: 90%;">
+		        <div class="demos-c">
+					<iframe id="testcase" frameborder="0" scrolling="auto"
+						src="form/numberfield.html"
+						style="width: 100%; height: 100%"></iframe>
+			    </div>
+		      </td>
+		    </tr>
+		  </table>
+			<div style="clear: both"></div>
+		</div>
+	</div>
+	<div id="footer">
+		<div>Copyright 2000-2011 © Apusic System, Inc. All rights reserved</div>
+	</div>
+</body>
+</html>
+

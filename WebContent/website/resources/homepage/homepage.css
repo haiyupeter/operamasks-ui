@@ -1,0 +1,121 @@
+.om-ui-intro,.om-ui-features,.om-ui-components {
+	margin: 0 auto;
+}
+.om-ui-intro {
+	background: url(images/banner-bg.png) repeat-x scroll 0 0 transparent;
+	height: 295px;
+	margin: 15px auto 30px;
+	width: 960px;
+	position: relative;
+}
+.om-ui-intro .om-ui-component-slider-bg{
+	background: url("images/computer.png") no-repeat scroll 0 0 transparent;
+	_background-image: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/homepage/images/computer.png');
+    height: 291px;
+    width: 550px;
+    position: relative;
+    top: 0px;
+    left: 390px;
+}
+.om-ui-intro .om-ui-component-slider{
+	width: 356px;
+	height: 222px;
+	position: absolute;
+	top: 19px;
+	left: 96px;
+}
+.om-ui-intro .intro-font{
+	position: absolute;
+	top:30px;
+	left:20px;
+}
+.om-ui-intro .download-button{
+	position: absolute;
+	top: 190px;
+	left: 30px;
+}
+.om-ui-intro .banner-bro{
+	position: absolute;
+	top: 250px;
+	left: 50px;
+}
+.om-ui-intro .om-ui-homepage-desc:first-letter {
+	font-size: 24px;
+}
+.om-ui-features {
+    padding: 7px 5px;
+}
+.om-ui-features .om-ui-feature {
+	width: 29%;
+	float: left;
+	padding: 0 15px;
+}
+.clear-float {
+	clear: both;
+}
+.om-ui-customs {
+	border-top: 1px solid #CCCCCC;
+}
+.om-ui-feature-title {
+	height: 65px;
+	padding-left: 70px;
+	word-wrap: break-word;
+	white-space: normal;
+	word-break: break-all;
+}
+.om-ui-feature-titleMain {
+	font-weight: bold;
+	font-size: 14px;
+}
+.om-ui-feature-base {
+	background: url("images/icon-basecore.png") no-repeat scroll 0 0
+		transparent;
+}
+.om-ui-feature-toolkit{
+	background: url("images/icon-uitoolkit.png") no-repeat scroll 0 0
+		transparent;
+}
+.om-ui-feature-open {
+	background: url("images/icon-protecol.png") no-repeat scroll 0 0 transparent;
+}
+.om-ui-components {
+	border: 1px solid gray;
+    height: 130px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 10px 0;
+    background: url("images/foot-bg.png") repeat-x;
+}
+.om-ui-components .category{
+	float : left;
+	width: 16.5%;
+	_width: 16%;
+	margin: 0 15px;
+}
+.om-ui-components .om-ui-sep{
+	background: url("images/sep_line.png") no-repeat scroll 0 0 transparent;
+	width: 2px;
+	height: 136px;
+	float: left;
+}
+.om-ui-components div{
+	float: left;
+}
+.om-ui-components .components{
+	margin-left: 10px;
+}
+.om-ui-components .components a{
+	text-decoration: none;
+}
+.download-button img{
+	border: none;
+}
+.om-ui-components a:hover, .om-ui-components a:active {
+	color: #0B559B;
+	text-decoration: underline;
+}
+.om-ui-components a:link, .om-ui-components a:visited {
+	color: #1B75BB;
+	text-decoration: none;
+}

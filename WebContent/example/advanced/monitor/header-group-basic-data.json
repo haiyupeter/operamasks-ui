@@ -1,0 +1,11 @@
+{"rows":[
+	{"company":"Kingdee","majorProduct":"金蝶ERP","address":"深圳南山科技园","tel":"400-836-836","website":"www.kingdee.com"},
+	{"company":"Apusic","majorProduct":"Apusic Server","address":"深圳南山科技园","tel":"400-830-830","website":"www.apusic.com"},
+	{"company":"Alcatel","majorProduct":"数据网线","address":"Paris,FRA","tel":"330-140-7610","website":"www.alcatel.com"},
+	{"company":"Tencent","majorProduct":"QQ","address":"南山腾讯大厦","tel":"86-75-83765566","website":"www.alcatel.com"},
+	{"company":"NetBase","majorProduct":"大话西游","address":"天河软件园","tel":"020-83568089","website":"www.163.com"},
+	{"company":"Sina","majorProduct":"新浪资讯","address":"北京市北四环西路","tel":"8610--82628888","website":"www.sina.com"},
+	{"company":"Sohu","majorProduct":"搜狐门户","address":"广州市珠江新城华夏路","tel":"8620--85115666","website":"www.sohu.com"},
+	{"company":"Dell","majorProduct":"计算机","address":"Round Rock,USA","tel":"512-338-4400","website":"www.dell.com"},
+	{"company":"Alibaba","majorProduct":"电子商务","address":"中国杭州市滨江区","tel":"86-51-85022088","website":"www.alibaba.com"}
+],"total":9}

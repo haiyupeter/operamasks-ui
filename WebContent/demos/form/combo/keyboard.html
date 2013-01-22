@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>键盘操作</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource:[  {code:'0755',name:'深圳',type:'市'},
+                              {code:'010',name:'北京',type:'直辖市'},
+                              {code:'021',name:'上海',type:'直辖市'},
+                              {code:'0473',name:'乌海',type:'市'},
+                              {code:'027',name:'武汉',type:'市'},
+                              {code:'0935',name:'武威',type:'市'},
+                              {code:'029',name:'西安',type:'市'},
+                              {code:'020',name:'广州',type:'市'},
+                              {code:'0753',name:'梅州',type:'市'},
+                              {code:'0768',name:'潮州',type:'市'},
+                              {code:'0728',name:'天门',type:'市'},
+                              {code:'022',name:'天津',type:'直辖市'} ],
+                optionField : function(data, index) {
+                    return '<font color="blue">' + data.name
+                            + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                autoFilter : false,
+                listMaxHeight : 100
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="combo1" />
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>支持完善的键盘操作。</p>
+        <p>
+        1、esc键：关闭下拉框；<br/>
+        2、down键：如果下拉框没有显示将先显示下拉框，如果下拉框显示则将选中值向下移动，如果已经是最后一条将跳到第一条；<br/>
+        3、up键：选中值向上移动，如果已经是第一条则跳到最后一条；<br/>
+        4、enter键：回填选中值。<br/>
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

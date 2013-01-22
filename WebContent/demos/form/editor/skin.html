@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>自定义皮肤</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tabs.js"></script>
+	<script type="text/javascript" src="../../../ui/om-panel.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />  
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+ 	<div id="skin-tab">
+    	<ul>
+    		<li><a href="#kama">kama</a></li>
+    		<li><a href="#v2">v2</a></li>
+    		<li><a href="#office2003">office2003</a></li>
+    	</ul>
+    	<div id="kama">
+	    	<textarea id="editor_kama" class="editor">&lt;p&gt;skin_kama&lt;/p&gt;</textarea>
+    	</div>
+    	<div id="v2">
+		    <textarea id="editor_v2" class="editor">&lt;p&gt;skin_v2&lt;/p&gt;</textarea>
+    	</div>
+    	<div id="office2003">
+		    <textarea id="editor_office2003" class="editor">&lt;p&gt;skin_office2003&lt;/p&gt;</textarea>
+    	</div>
+    </div>    
+    <script>
+        //         
+        $(function() {
+        	$('#skin-tab').omTabs();
+            $('#editor_kama').omEditor({
+                skin : 'kama'
+            });
+            $('#editor_v2').omEditor({
+                skin : 'v2'
+            });
+            $('#editor_office2003').omEditor({
+                skin : 'office2003'
+            });
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+	   设置skin属性，使编辑器展现不同的皮肤样式，skin可选项为kama，v2，office2003。
+	</div>
+</body>
+</html>

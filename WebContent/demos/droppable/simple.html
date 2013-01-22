@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>基本功能</title>
+<script src="../../jquery.js"></script>
+ <script src="../../ui/om-core.js"></script>
+ <script src="../../ui/om-mouse.js"></script>
+ <script src="../../ui/om-draggable.js"></script>
+ <script src="../../ui/om-droppable.js"></script>
+ <link rel="stylesheet" href="../../themes/default/om-all.css">
+ <link rel="stylesheet" href="../common/css/demo.css">
+ <!-- view_source_begin -->
+ <style>
+   #draggable{
+		width:60px;
+		height:60px;
+		border:2px solid #d3d3d3;
+		background-color:#86A3C4; 
+		float:left;
+		margin: 20px;
+	}
+	p{
+	    margin: 10px; 
+	} 
+	#droppable { 
+		width: 150px; 
+		height: 150px; 
+		float: left;
+		border: 2px solid #cccccc;
+	 }
+	</style>
+	<script>
+	$(document).ready(function() {
+		$("#draggable").omDraggable();
+		$("#droppable").omDroppable({
+			onDrop: function( event, source ) {
+				$(this).addClass( "om-state-highlight" )
+					.find( "p" ).html( "已接受!" );
+			}
+		});
+	});
+	</script>
+<!-- view_source_end --> 
+</head>
+<body>
+<!-- view_source_begin -->
+	<div id="draggable" class="draggable">
+	</div>
+	<div id="droppable">
+		<p>目的地</p>
+	</div>
+	<br/>
+	<br/>
+<!-- view_source_end -->
+ <div id="view-desc" style="clear: left;">
+        <p>任何Dom元素都可以具有放置功能，即可以作为拖动元素的目的地。</p>
+        <p>并且为具有放置功能的Dom元素提供各种事件，详情见组件文档。</p>
+ </div>
+</body>
+</html>

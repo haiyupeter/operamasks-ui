@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>列渲染</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-button.js"></script>
+    <script type="text/javascript" src="../../ui/om-combo.js"></script>
+    <script type="text/javascript" src="../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-headergroup.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-rowexpander.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-sort.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-roweditor.js"></script>
+	<script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript"> 
+    	//这是每次新增记录时的id,会自增1
+    	var guid = 1000;
+    	var genderOptions = {
+       		    dataSource : [{text:"女生" , value:0},{text:"男生",value:1},{text:"保密",value:-1}],
+       		    editable: false
+        	};
+    	//新增手机号码检验规则，请情请看  validate 校验组件。
+    	$.validator.addMethod("mobilPhone", function(value) {
+            var regu =/(^[1][3][0-9]{9}$)|(^[1][5][0-9]{9}$)|(^[1][8][0-9]{9}$)|(^[0][1-9]{1}[0-9]{9}$)/; 
+            var reg = new RegExp(regu);
+            return reg.test(value);  // 手机验证 13x 15x 18x 以此类推
+        }, '不是有效的手机号码');
+    	
+    	//omGrid的colModel
+    	var colModel = 
+    	    [
+    	     	//第一行
+    	     	[{header:"人员信息" , colspan:7}],
+    	     	
+    	     	//第二行
+    	     	[{header:"编号" , name:"id" , rowspan:2 , width:60 , align:"right" , 
+    	     	    sort:function(first,second){return Number(first.id)-Number(second.id);}},
+    	     	 {header:"姓名" , name:"name" , rowspan:2 , width:80 , align:"center" , editor:{rules:["required",true,"岂可为无名之辈!"]}},
+    	     	 {header:"联系方式" , colspan:2 , editor:{}},
+    	     	 {header:"性别" , name:"gender" , rowspan:2 , width:50 , align:"center" , 
+    	     	     editor:{type:"omCombo", name:"gender" ,options:genderOptions},renderer:genderRenderer},
+    	     	 {header:"住址" , colspan:2 , width:100 , editor:{}}],
+    	     	
+    	     	//第三行
+    	     	[{header:"邮箱" , name:"email" , width:100 , align:"right" , editor:{rules:["email",true,"非法邮箱地址!"]}},
+    	     	 {header:"手机号码" , name:"phone" , width:100 , editor:{rules:["mobilPhone",true,"请输入11位手机号!"]}},
+    	     	 {header:"省" , name:"province" , width:80 , editor:{}},
+    	     	 {header:"市" , name:"city" , width:80 , editor:{}}]
+    	     ];
+ 		
+    	//"性别"一列的自定义渲染函数
+    	function genderRenderer(value){
+	        if("0" == value){
+	            return "<span style='color:blue'>美女</span>";
+	        }else if("1" == value){
+	            return "<span style='color:orange'>帅哥</span>";
+	        }else{
+	            return "<span style='color:red'>保密</span>";
+	        }
+    	}
+	
+        $(document).ready(function() {
+            var $grid = $('#grid').omGrid({
+                title : '人员列表',
+                limit : 5,
+                autoFit : true,
+                dataSource : '../../complexGridData.do',
+                height : 300,
+                showIndex : true,
+                singleSelect : false,
+                colModel : colModel,
+                //展开行时使用下面的方法生成详情，必须返回一个字符串
+                rowDetailsProvider:function(rowData , rowIndex){
+                    return rowData.name+"，员工号为"+rowData.id+"，籍贯为"+rowData.province+rowData.city;
+                }
+            });
+        	
+            $("#add").click(function(){
+                $grid.omGrid("insertRow",{id:guid++ , name:"新同事" , "phone":"13785412451"});
+            });
+            $("#del").click(function(){
+                var dels = $grid.omGrid("getSelections");
+                dels.sort(function(first , second){
+                    return second - first;
+                });
+                $(dels).each(function(index , value){
+                    //必须从最大索引值开始删除
+                	$grid.omGrid("deleteRow" , value);
+                });
+            });
+            $("#save").click(function(){
+                var changes = $grid.omGrid("getChanges");
+                //保存到后台中去，一般是自己利用ajax提交数据到后台，然后在成功回调函数中再调用下边的  saveChanges方法。
+                //这里只进行模拟，省去与后台服务端的交互。
+                $grid.omGrid("saveChanges");
+            });
+            $("#cancle").click(function(){
+                $grid.omGrid("cancelChanges");
+            });
+        });
+        
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input type="button" id="add" value="新增"/>
+    <input type="button" id="del" value="删除"/>
+    <input type="button" id="save" value="保存修改"/>
+    <input type="button" id="cancle" value="取消修改"/>
+    <div style="">
+    	<table id="grid"></table>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    本示例集成了omGrid所有的插件。对于增删改，只有点击了“保存修改”按钮后才会生效，此外点击“取消修改”可以取消上次点击“保存修改”按钮后的所有修改。
+    <strong>请注意，由于本示例只演示了前台的操作，没有真正持久化到后台数据库中去，所以一旦跳转页数，数据会恢复到原始状态。另外，“编号”列是可以进行客户端排序的。最后说明一点，如果点击了排序，那么所有未保存的修改都会丢失。</strong>
+    </div>
+</body>
+
+</html>

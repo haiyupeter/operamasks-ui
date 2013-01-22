@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>类淘宝注册页面</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-ajaxsubmit.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="taobao.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+       var validator;
+       $(document).ready(function(){
+              validator = $("#regform").validate({
+               errorClass : "om", 
+               errorElement : "span", 
+               focusInvalid : false,
+               onkeyup : false,
+               //定制错误信息展示，一般对于较复杂的demos结构需要使用此属性
+               errorPlacement : function(error, element) { 
+                   //查找到需要容纳并显示错误信息的dom元素
+                   var attentionElement = $(element).parent().next().children().eq(1);
+                   attentionElement.show();
+                   attentionElement.html(error);
+   	           }, 
+               rules : {
+                   userName : {
+                       required : true,
+                       rangelength : [5, 20], 
+                       isAllNumber : true,
+                       //向服务器端发起校验请求，根据返回的true/false判断验证是否通过
+                       remote: '../../../omButtonServlet'
+                   },
+                   password : {
+                       required : true,
+                       minlength : 5,
+                       isAllNumber : true
+                   },
+                   confirmPassword : {
+                       required : true,
+                       equalTo : "#password",
+                       minlength : 5,
+                       isAllNumber : true
+                   },
+                   code : {
+                       required : true
+                   }
+               },
+               messages : {
+                   userName : {  
+                    	required : "请输入用户名",
+                    	rangelength : jQuery.validator.format("会员名称只能输入{0}到{1}个字符"),
+                        remote : "此用户已经被注册"
+                   },
+                   password : {
+                       required : "密码不能为空",
+                       minlength : "密码长度不能小于5"
+                   },
+                   confirmPassword : {
+                       required : "确认密码不能为空", 
+                       equalTo : "两次输入的密码不一致"
+                   },
+                   code : {
+                       required : "验证码不能为空"
+                   }
+               }, 
+               //处理实时错误信息，根据配置的响应事件执行，如配置了keyup则每次keyup将执行校验
+               //如果配置的是blur，则blur的时候执行校验
+               showErrors: function(errorMap, errorList) {
+                   if(errorList && errorList.length > 0){
+	                   $.each(errorList,function(index,obj){
+	                       var attentionElement = $(obj.element).parent().next().children().eq(1);
+	                       $(obj.element).parent().next().children().eq(2).hide();
+	                       attentionElement.show();
+	                   });
+	                   this.defaultShowErrors();
+                   }else{
+                       $(this.currentElements).parent().next().children().eq(1).hide();
+                       $(this.currentElements).parent().next().children().eq(2).show();
+                       $('.naked').css('border','none');
+                   }
+                   $(this.currentElements).each(function(index,item){
+                       if($(item).hasClass("valid")){
+                           $(item).parent().next().children(".error").hide();
+                       }
+                   });
+               }
+           });
+              
+              $('#regform').submit(function() {
+                  if($('#regform').valid()){
+                     $(this).omAjaxSubmit({success:function(res){
+  	                    if(res != '' && res != '1' && res != '0'){
+  	                        eval(res);
+  	                    }else if(res == '1'){
+  	                        alert('提交成功！');
+  	                    }else if(res == '0'){
+  	                        return ;
+  	                    }
+                      }
+                    });
+                  }
+                return false;//返回false,阻止浏览器默认行为
+              });
+           
+           //计算输入字符的个数并显示出来
+           $('#userName').bind('keyup',function(key){
+               var len = $('#userName').val().length;
+               $('#num').text(len);
+               var target = $('#userName').parent().next().next().children();
+               target.show().find('span').text(len);
+           });
+           //在输入的时候展示输入密码强弱
+           $('#password').bind('keyup',function(key){
+               var len = $.trim($('#password').val()).length;
+               var target = $('#password').parent().next().next().children();
+               target.show();
+               if(len >0 && len <= 5){
+                   target.children().eq(1).find('span').css('width','25%');
+                   target.children().eq(2).text('弱');
+               }else if(5 < len && len <= 10){
+                   target.children().eq(1).find('span').css('width','65%');
+                   target.children().eq(2).text('中');
+               }else if(len > 10){
+                   target.children().eq(1).find('span').css('width','85%');
+                   target.children().eq(2).text('强');
+               }
+           });
+           
+          //自定义校验规则isAllNumber,非法用户名校验
+          $.validator.addMethod("isAllNumber", function(value) {
+               return !isNum(value);
+           }, '不能全部是数字');
+          //自定义校验规则codeConfirm，校验验证码是否正确
+          $.validator.addMethod("codeConfirm", function(value) {
+              if(value === 'uebd'){
+                  $('#code').parent().next().children().eq(1).hide();
+                  $('#code').parent().next().children().eq(2).show();
+                  return true;
+              }else{
+                  $('#code').parent().next().children().eq(2).hide();
+                  return false;
+              }
+          }, '验证码不正确');
+           //控制样式，当input focus的时候显示hover样式
+           $('.content .reg-form .field input').bind('focus',function(){
+               $(this).parent().parent().addClass('hover');
+               //当错误信息和提交成功信息都不存在的情况下，鼠标focus显示提示信息
+               if($(this).parent().next().children().eq(2).css('display') == 'none' && 
+                       $(this).parent().next().children().eq(1).css('display') == 'none'){
+	              $(this).parent().next().children().eq(0).show();
+               }
+           }).bind('blur',function(){
+               $(this).parent().parent().removeClass('hover');
+               $(this).parent().next().children().eq(0).hide();
+           });
+           
+       });
+       function showCodeError()
+       {
+           validator.showErrors({"code": "验证码输入错误！"});
+       }
+       function isNum(s)
+       {
+	      return /^\d+(\.\d+)?$/.test(s);
+       }
+       
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div class="content">
+      <div class="hd"><h2>免费注册，请填写注册信息</h2></div>
+      <div class="bd">
+        <div class="reg-form">
+           <form id="regform" action="../../../omButtonServlet">
+              <dl>
+                <dd>
+                   <ul>
+                   
+                     <li class="field">
+                       <div class="input">
+                         <label for="userName">会员名：</label>
+                         <input type="hidden" id="method" name="method" value="taobao">
+                         <input class="field-text" id="userName" name="userName">
+                       </div>
+                       
+                         <div class="msg show-error" id="userName_att">
+                            <p class="attention">会员名称只能输入5-20个字符</p>
+						    <p class="error"></p>
+						    <p class="ok naked">&nbsp;</p>
+                         </div>
+                         
+                         <div class="tools">
+                           <div class="count">
+                             <span id="num"></span>个字符
+                           </div>
+                           
+                         </div>
+                       
+                     </li>
+                     
+                     <li class="field">
+                       <div class="input">
+                         <label for="password">登陆密码：</label>
+                         <input class="field-text" id="password" name="password" type="password">
+                       </div>
+                         <div class="msg show-error" id="userName_att">
+                            <p class="attention">密码长度必须大于5</p>
+						    <p class="error"></p>
+						    <p class="ok naked">&nbsp;</p>
+                         </div>
+                         <div class="tools">
+                           <div class="count">
+                             <span class="trigger">密码强度</span>
+                             <span class="status-bar"><span>&nbsp;</span></span>
+                             <span class="status-result"></span>
+                           </div>
+                         </div>
+                       
+                     </li>
+                     <li class="field">
+                       <div class="input">
+                         <label for="confirmPassword">确认密码：</label>
+                         <input class="field-text" id="confirmPassword" name="confirmPassword" type="password">
+                       </div>
+                       <div class="msg show-error" id="userName_att">
+                            <p class="attention">请再次输入密码</p>
+						    <p class="error"></p>
+						    <p class="ok naked">&nbsp;</p>
+                         </div>
+                     </li>
+                     <li class="field code-field">
+                       <div class="input">
+                         <label for="code">验证码：</label>
+                         <input class="field-text" id="code" name="code">
+                         <img id="J_CheckCode" class="code-img" align="absmiddle" src="images/code.bmp">
+                       </div>
+                       <div class="msg show-error" id="userName_att">
+                            <p class="attention">请输入验证码</p>
+						    <p class="error"></p>
+						    <p class="ok naked">&nbsp;</p>
+                         </div>
+                     </li>
+                     <li class="submit-field">
+                       <div class="input">
+                          <input type="submit" class="submit-btn" value=" "/>
+                       </div>
+                     </li>
+                     
+                   </ul>
+                </dd>
+              </dl>
+           </form>
+        </div>
+      </div>
+    </div>
+     <!-- view_source_end -->
+    <div id="view-desc">
+                   此demos模拟了taobao注册页面的校验场景，使用了operamasks-ui的校验框架实现。<br/>
+                  信息展示分三种，一为提示信息；二为错误信息；三为校验通过之后的提示信息。<br/>
+       通过如下操作可以感受到这些校验：<br>
+       1、用户名称输入admin，将提示用户已经被注册，此处适合向后台发ajax请求校验的场景。<br/>
+       2、用户名输入少于5个字符或者超过20个字符，会提示“会员名称只能输入5-20个字符”，属于长度校验<br/>
+       3、用户名称输入全部为数字，会提示“不能全部是数字”，此场景适合使用正则表达式校验。<br/>
+       4、密码输入不一致，将提示“两次输入密码不一致”，此场景展示了校验框架的高级应用。<br/>
+       5、每次输入正确之后会在后面使用绿色的勾做为提示<br/>
+       6、还包括了字符个数的提示、密码强度的提示等功能。
+    </div>
+    <!-- view_source_end -->
+</body>
+</html>

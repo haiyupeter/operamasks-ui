@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>获取和设置omTabs的状态</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-tabs.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script>
+        $(function() {
+            var id = 0;
+            $('#make-tab').omTabs({
+                width : 580,
+                height : 250
+            });
+            $('#make-tab2').omTabs({
+                switchMode : 'click',
+                tabWidth : 'auto'
+            });
+            $('#set2').click(function() {
+                $('#make-tab').omTabs('activate', 0);
+            });
+            $('#getActivated').click(function() {
+                alert($('#make-tab').omTabs('getActivated'));
+            });
+            $('#getLength').click(function() {
+                alert($('#make-tab').omTabs('getLength'));
+            });
+            $('#close').click(function() {
+                $('#make-tab').omTabs('close');
+            });
+            $('#add').click(function() {
+                id ++ ;
+                $('#make-tab').omTabs('add', {
+                    title : 'New Title ' + id,
+                    content : 'New Content ' + id
+                });
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="make-tab" style="width: 100%">
+        <ul>
+            <li><a href="#tab1" id="apple">苹果</a></li>
+            <li><a href="#tab2" id="strawberry">草莓</a></li>
+            <li><a href="#tab3" id="grape">葡萄</a></li>
+        </ul>
+        <div id="tab1" >
+            <img alt="" src="images/pg.jpg" style="float: left;margin-right: 10px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;苹果，落叶乔木，叶子椭圆形，花白色带有红晕。果实圆形，味甜或略酸，
+            是常见水果，具有丰富营养成分，有食疗、辅助治疗功能。苹果原产于欧洲、
+            中亚、西亚和土耳其一带，于十九世纪传入中国。中国是世界最大的苹果生产国，
+            在东北、华北、华东、西北和四川、云南等地均有栽培。
+        </div>
+        <div id="tab2" >
+          <img alt="" src="images/cm.jpg" style="float: left;margin-right: 10px;">
+             &nbsp;&nbsp;&nbsp;&nbsp;草莓又叫红莓、洋莓、地莓等，是一种红色的水果。草莓是对蔷薇科草莓属植物的
+             通称，属多年生草本植物。草莓的外观呈心形，鲜美红嫩，果肉多汁，含有特殊的浓
+             郁水果芳香。草莓营养价值高，含丰富维生素C ，有帮助消化的功效，与此同时，草
+             莓还可以巩固齿龈，清新口气，润泽喉部。
+        </div>
+        <div id="tab3" >
+        <img alt="" src="images/pt.jpg" style="float: left;margin-right: 10px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;葡萄，葡萄属（Vitis）落叶藤本植物，掌叶状，3-5缺裂，复总状花序，通常呈圆锥
+        形，浆果多为圆形或椭圆，色泽随品种而异。人类在很早以前就开始栽培这种果树，几乎
+        占全世界水果产量的四分之一；其营养价值很高，可制成葡萄汁、葡萄干和葡萄酒。粒大
+        、皮厚、汁少、优质、皮肉难分离、耐贮运的欧亚种葡萄又称为提子。</div>
+    </div>
+    <br />
+    <button id="getActivated">获取页签的tabId</button>
+    <button id="getLength">获取总数</button>
+    <button id="set2">选中第一个</button>
+    <button id="close">关闭当前页签</button>
+    <button id="add">在末尾新增页签</button>
+
+    <!-- view_source_end -->
+    <div id="view-desc">
+        omTabs提供多丰富的API方法，允许用API动态添加、关闭标签页，允许用API得到、切换当前激活的标签页等操作，方法的具体说明请参考说明文档。
+    </div>
+</body>
+</html>

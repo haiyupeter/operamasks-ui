@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Operamasks UI omAccordion Test Suite</title>
+
+	<link rel="stylesheet" href="../../../themes/default/om-all.css">
+	<link rel="stylesheet" href="../../../themes/default/om-accordion.css">
+	<link rel="stylesheet" href="../../../themes/default/om-panel.css">
+
+	<script src="../../../jquery.js"></script>
+	
+	<script src="../../../ui/om-core.js"></script>	
+	<script src="../../../ui/om-panel.js"></script>
+	<script src="../../../ui/om-accordion.js"></script>
+
+	<link rel="stylesheet" href="../common/css/qunit.css">
+	<script src="../common/js/qunit.js"></script>	
+
+	<!-- testcase -->
+	<script src="om-accordion-test-helpers.js"></script>
+	<script src="om-accordion-core.js"></script>
+	<script src="om-accordion-options.js"></script>
+	<script src="om-accordion-methods.js"></script>
+	<script src="om-accordion-events.js"></script>
+    <script src="om-accordion-set-options.js"></script>
+    
+    <script src="../common/js/qunit-junit-outputter.js"></script>
+
+    
+	<style>
+	#accordionId, #accordionId *, #om-panel-header, #om-panel-header  * {
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		line-height: 15px;
+	}
+	</style>	
+
+</head>
+<body>
+<h1 id="qunit-header">Operamasks UI Accordion Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+	
+	<div id="accordionId" > 
+	    <ul> 
+	        <li><a href="#accordion-1" iconCls="filesave">文件保存</a></li> 
+	        <li><a href="#accordion-2" iconCls="download" >下载管理</a></li> 
+	        <li><a href="#accordion-3" iconCls="user" >用户信息</a></li> 
+	    </ul> 
+	    <div id="accordion-1">
+	    	<p><strong>This content was loaded via ajax.</strong>
+	    	</p>
+	    	<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.
+	    	</p>
+
+	    </div>
+	    <div id="accordion-2">
+	    	<p>
+				Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+				Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+				ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+				lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+			</p>
+			<ul>
+				<li>List item one</li>
+				<li>List item two</li>
+				<li>List item three</li>
+			</ul>
+	    </div>
+	    <div id="accordion-3">
+	    	<p>
+				Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				mauris vel est.
+			</p>
+			<p>
+				Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+				Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+				inceptos himenaeos.
+			</p>
+	    </div>
+	</div>
+</div>
+</body>
+</html>

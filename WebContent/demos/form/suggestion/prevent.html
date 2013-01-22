@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>定制组件是否发送请求</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#txt').omSuggestion({
+                dataSource : '../../../simpleSuggestion.json',
+                cacheSize : 0,
+                onBeforeSuggest : function(text) {
+                    if (text == 'NO')
+                        return false;
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    输入'NO'将不会发送Ajax请求且下拉框会隐藏；输入其它内容则继续发送请求并且会在下拉框中显示出提示结果。
+    <br />
+    <!-- view_source_begin -->
+    <input id="txt" />
+    <!-- view_source_end -->
+    <div id="result" style="position: absolute; left: 200px; border: 1px solid #999999; top: 60px"></div>
+    <div id="view-desc">
+        在onBeforeSuggest方法中返回false，阻止请求发送，无返回值或者返回非false的值则继续发送请求。一般用于一些特殊处理，比如某些搜索引擎不允许搜索不文明用语。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

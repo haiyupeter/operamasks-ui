@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>calendar unit test </title>
+		<link rel="stylesheet" href="../../../themes/default/om-all.css">
+		<script src="../../../jquery.js"></script>
+		<script src="../../../ui/om-core.js"></script>
+		<script src="../../../ui/om-calendar.js"></script>
+		
+		<link rel="stylesheet" href="../common/css/qunit.css">
+		<script src="../common/js/qunit.js"></script>
+		<script src="calendar_options.js"></script>
+		<script src="calendar_set_options.js"></script>
+		<script src="calendar_methods.js"></script>
+		<script src="calendar_events.js"></script>
+		<script src="calendar_tools.js"></script>
+    </head>
+    <body>
+        <h1 id="qunit-header">Operamasks UI calendar Test Suite</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">
+			<div id="optionsTest">
+			    <div class="date">
+			        <input/>
+			        <input/>
+                </div>
+                <div class="dateFormat">
+                    <input/>
+                    <input/>
+                    <input/>
+                </div>
+                <div class="disabled">
+                    <input/>
+                    <input/>
+                </div>
+                <div class="disabledDays">
+                    <input/>
+                    <input/>
+                </div>
+                <div class="disabledFn">
+                    <input/>
+                    <input/>
+                </div>
+                <!--  测不了，无法模拟按键
+                <div class="editable">
+                    <input/>
+                    <input/>
+                </div>
+                 -->
+                <div class="maxDate">
+                    <input/>
+                    <input/>
+                </div>
+                <div class="minDate">
+                    <input/>
+                    <input/>
+                </div>
+                <div class="pages">
+                    <input/>
+                </div>
+                <div class="popup">
+                    <div/>
+                </div>
+                <div class="readOnly">
+                    <input/>
+                    <input/>
+                    <input/>
+                </div>
+                <div class="showTime">
+                    <input/>
+                    <input/>
+                    <input/>
+                </div>
+                <div class="startDay">
+                    <input/>
+                    <input/>
+                </div>
+			</div>
+			<div id="methodsTest">
+			    <div class="disableEnable">
+                    <input/>
+                    <input/>
+                </div>
+                <div class="getDateSetDate">
+                    <input/>
+                </div>
+			</div>
+			<div id="eventsTest">
+                <div class="onSelect">
+                    <input/>
+                </div>
+			</div>
+		</div>
+    </body>
+</html>

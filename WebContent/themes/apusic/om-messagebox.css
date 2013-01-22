@@ -1,0 +1,44 @@
+/*
+ * $Id: om-messagebox.css,v 1.4 2012/06/14 07:56:13 chentianzhen Exp $
+ * operamasks-ui messageBox @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or LGPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+div.om-messageBox { position: absolute; width: 248px; overflow: hidden; outline:0; border: 1px solid #3F5572;}
+.om-messageBox .om-messageBox-titlebar { height: 49px; position: relative; background: url("images/messagebox/title-bg.png") no-repeat scroll 0 0 #B7C6DA; border: none; }
+.om-messageBox .om-messageBox-title { float: left; margin: 0.7em 16px 0.1em 0.5em; }
+
+.om-messageBox .om-messageBox-titlebar-close { position: absolute; top:0px;right:0px;width: 30px;height: 22px; }
+.om-messageBox .om-messageBox-titlebar-close:hover{background:url("images/messagebox/close-hover.png") no-repeat;}
+.om-messageBox .om-messageBox-titlebar-close span { display: block; margin: 1px; }
+.om-messageBox .om-messageBox-titlebar-close:focus {background:url("")}
+.om-messageBox .om-icon-closethick {background: url("images/messagebox/close.png") no-repeat 50% 50%;width: 28px;}
+
+.om-messageBox .om-messageBox-content { position: relative; border-width:0 1px;border-color:#D6DEE8; padding:0 1em 0.5em; background: none; zoom: 1;background-color:#ABBBD2 }
+.om-messageBox .om-messageBox-buttonpane { text-align: center; border-width: 0 1px 1px; border-color: #D6DEE8; background-image: none; padding: .3em 1em .5em 1em;  background-color:#ABBBD2}
+.om-messageBox .om-messageBox-buttonpane button { cursor: pointer; }
+.om-messageBox .no-button{border-bottom-width:1px;}
+.om-messageBox .om-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .om-messageBox-titlebar { cursor: move; }
+
+.om-messageBox .om-messageBox-buttonset {padding-top:6px}
+
+.om-messageBox-content table{ table-layout: fixed; width: 226px }
+.om-message-content-html{ word-wrap: break-word; word-break: break-all; }
+.om-message-content-html input{ height: 18px; width: 156px }
+.om-messageBox-imageTd{ width: 60px; height: 32px; }
+
+
+.om-messageBox-image{ background: none no-repeat scroll 0 0 transparent; position: absolute; top: 0px; left: 30px; overflow: hidden; height: 32px; width: 32px; }
+.om-messageBox-image-success{ background: url("images/messagebox/messagebox-icons.png") -128px 0px; }
+.om-messageBox-image-error{ background: url("images/messagebox/messagebox-icons.png") -64px 0px;}
+.om-messageBox-image-warning{ background: url("images/messagebox/messagebox-icons.png") -96px 0px;}
+.om-messageBox-image-confirm{ background: url("images/messagebox/messagebox-icons.png") -32px 0px; }
+.om-messageBox-image-question{ background: url("images/messagebox/messagebox-icons.png") -32px 0px; }
+.om-messageBox-image-alert{ background: url("images/messagebox/messagebox-icons.png") 0px 0px;}
+.om-messageBox-image-prompt{ background: url("images/messagebox/messagebox-icons.png") -160px 0px; }
+.om-messageBox-image-waiting{ background-image: url("images/messagebox/waiting.png"); }

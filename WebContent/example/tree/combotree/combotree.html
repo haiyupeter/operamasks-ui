@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>下拉菜单</title>
+    <script src="../../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tree.js"></script>
+    <script src="../../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../js/data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+	<link rel="stylesheet" href="../../../demos/common/css/demo.css">
+	 <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#tree").omTree({
+                dataSource : "../../../omTree.json?method=position",
+                onSelect: function(nodedata){
+                	   var ndata = nodedata, text = ndata.text;
+            		   ndata = $("#tree").omTree("getParent",ndata);
+                	   while(ndata){
+                		   text = ndata.text +"-" +text;
+                		   ndata = $("#tree").omTree("getParent",ndata);
+                	   }
+                	   $("#position").val(text);
+                	   hideDropList();
+                },
+               onBeforeSelect: function(nodedata){
+            	   //如果选中的是非叶子叶节点不回填
+            	   if(nodedata.children){
+            		   return false;
+            	   }
+               }
+            });
+            //点击下拉按钮显示下拉列表
+            $("#choose").click(function(){
+            	showDropList();
+            });
+            //点击输入框显示下拉列表
+            $("#position").val("").click(function(){
+            	showDropList();
+            });
+            function showDropList(){
+            	var cityInput = $("#position");
+            	var cityOffset = cityInput.offset();
+            	var topnum = cityOffset.top+cityInput.outerHeight();
+            	if($.browser.msie&&($.browser.version == "6.0"||$.browser.version == "7.0")){
+            		topnum = topnum + 2;
+            	}
+            	$("#droplist").css({left: cityOffset.left + "px",top: topnum +"px"})
+            	              .show();
+            	//body绑定mousedown事件，当事件对象非下拉框、下拉按钮等下拉列表隐藏。
+            	$("body").bind("mousedown", onBodyDown);
+            }
+            function hideDropList() {
+    			$("#droplist").hide();
+    			$("body").unbind("mousedown", onBodyDown);
+    		}
+    		function onBodyDown(event) {
+    			if (!(event.target.id == "choose" || event.target.id == "droplist" || $(event.target).parents("#droplist").length>0)) {
+    				hideDropList();
+    			}
+    		}
+        });
+    </script>
+     <!-- view_source_end -->
+    <style type="text/css">
+     #droplist{
+        display:none; 
+        position: absolute; 
+        width:158px;
+        /* 兼容IE6,7 */
+        *width:154px;
+        /* 兼容IE8 */
+        width:156px\0;
+        height:200px;
+        border:1px solid;
+        overflow: auto;
+     }
+     body{
+        height:500px;    
+     }
+    </style>
+</head>
+<body>
+<!-- view_source_begin -->
+            <div id="demo" style="height:300px;width:400px;margin:50px">
+                                                     选择职务：
+                <span class="om-combo om-widget om-state-default">
+                    <input type="text" id="position">
+                    <span id="choose" class="om-combo-trigger"></span>
+                </span>
+            </div>
+	    
+    <div id="droplist" >
+	    <ul id="tree" style="text-align:left;"></ul>
+	</div>
+	<!-- view_source_end -->
+	<div id="view-desc">
+        点击下拉按钮或输入框都会显示下拉列表，选中一个叶子节点后，会将该节点的父节点信息一起回填到输入框中。<br/>
+        本示例中的下拉框是由三部分组成：输入框、下拉按钮图片、下拉列表。实现的关键是控制下拉框的显示和隐藏，并且将其定位在输入框的下面。
+        这些都可以通过css来实现。<br/>
+        回填效果是在onSelect回调函数中获取选中节点的父节点信息，将它们一起回填。
+    </div> 
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

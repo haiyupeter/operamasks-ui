@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>自动过滤</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js" ></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js" ></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript" >
+        var cities = [ {code:'0755', name:'深圳', type:'市'},
+                       {code:'010', name:'北京', type:'直辖市'},
+                       {code:'021', name:'上海', type:'直辖市'},
+                       {code:'0473', name:'乌海', type:'市'},
+                       {code:'027', name:'武汉', type:'市'},
+                       {code:'0935', name:'武威', type:'市'},
+                       {code:'029', name:'西安', type:'市'},
+                       {code:'020', name:'广州', type:'市'},
+                       {code:'0753', name:'梅州', type:'市'},
+                       {code:'0768', name:'潮州', type:'市'},
+                       {code:'0728', name:'天门', type:'市'},
+                       {code:'022', name:'天津', type:'直辖市'} ];
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource : cities,
+                optionField : function(data, index) {
+                  return '<font color="blue">' + data.name + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                autoFilter : false
+            });
+    
+            $('#combo2').omCombo({
+                dataSource : cities,
+                optionField : function(data, index) {
+                    return '<font color="blue">' + data.name + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                filterStrategy : 'first'
+            });
+            $('#combo3').omCombo({
+                dataSource : cities,
+                optionField : function(data, index) {
+                    return '<font color="blue">' + data.name + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                filterStrategy : 'last'
+            });
+            $('#combo4').omCombo({
+                dataSource : cities,
+                optionField : function(data, index) {
+                    return '<font color="blue">' + data.name
+                            + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                filterStrategy : 'anywhere'
+            });
+            $('#combo5').omCombo({
+                dataSource : cities,
+                optionField : function(data, index) {
+                    return '<font color="blue">' + data.name + '</font>' + data.type;
+                },
+                valueField : 'code',
+                inputField : 'name',
+                filterStrategy : function(value, data) {
+                    return data.code.indexOf(value) > -1 || data.name.indexOf(value) > -1;
+                },
+                width : 240,
+                emptyText : '输入区号或市名中包含的任意字符过滤'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+
+</head>
+<body style="font-size:14px">
+	<!-- view_source_begin -->
+	这个在输入时不会自动过滤：<input id="combo1"/><br/><br/>
+	根据下拉框的蓝色部分进行左匹配（相当于startWith）：<input id="combo2"/><br/><br/>
+	根据下拉框的蓝色部分进行右匹配（相当于endWith）：<input id="combo3"/><br/><br/>
+	根据下拉框的蓝色部分进行任意位置匹配（相当于contains）：<input id="combo4"/><br/><br/>
+	自定义function方式过滤，规则是“只要区号或市名里任意位置包含输入的值”都能过滤成功：<input id="combo5"/>
+	<!-- view_source_end -->
+    <div id="view-desc"  >
+        <p>设置 autoFilter 和 filterStrategy 属性配置 combo 自动过滤功能。</p>
+        <p>autoFilter 为 true，filterStrategy 值可选匹配位置：左匹配、右匹配、任意位置匹配。同时 filterStrategy 属性可设置为函数，允许自定义复杂的匹配功能。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

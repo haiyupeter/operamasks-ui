@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>懒加载页签</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-tabs.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script>
+        $(function() {
+            var id = 0;
+            $('#make-tab').omTabs({
+                width : 500,
+                height : 250,
+                lazyLoad : true,
+                onLoadComplete : function(tabId) {
+                    var index = $('#make-tab').omTabs('getAlter', tabId) + 1;
+                    alert('第'  + index + '个页签加载完毕');
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="make-tab">
+        <ul>
+            <li><a href="#tab1">苹果</a></li>
+            <li><a href="./ajax/content1.html">草莓</a></li>
+            <li><a href="#tab3">葡萄</a></li>
+        </ul>
+        <div id="tab1" >
+            <img alt="" src="images/pg.jpg" style="float: left;margin-right: 10px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;苹果，落叶乔木，叶子椭圆形，花白色带有红晕。果实圆形，味甜或略酸，
+            是常见水果，具有丰富营养成分，有食疗、辅助治疗功能。苹果原产于欧洲、
+            中亚、西亚和土耳其一带，于十九世纪传入中国。中国是世界最大的苹果生产国，
+            在东北、华北、华东、西北和四川、云南等地均有栽培。
+        </div>
+        <div id="tab3" >
+        <img alt="" src="images/pt.jpg" style="float: left;margin-right: 10px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;葡萄，葡萄属（Vitis）落叶藤本植物，掌叶状，3-5缺裂，复总状花序，通常呈圆锥
+        形，浆果多为圆形或椭圆，色泽随品种而异。人类在很早以前就开始栽培这种果树，几乎
+        占全世界水果产量的四分之一；其营养价值很高，可制成葡萄汁、葡萄干和葡萄酒。粒大
+        、皮厚、汁少、优质、皮肉难分离、耐贮运的欧亚种葡萄又称为提子。</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置lazyLoad为true，实现标签页懒加载（页面显示时不加载标签页里的内容以提高页面显示速度，在该标签页第一次被激活时才开始加载，加载完后会触发onLoadComplete事件）。
+    </div>
+</body>
+</html>

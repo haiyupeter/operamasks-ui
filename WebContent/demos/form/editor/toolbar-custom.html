@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>自定义工具条</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin --> 
+    <textarea id="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    <script>
+        //<![CDATA[
+        $(function(){
+            var config = {
+     	 	      toolbar_MyToolbar:[
+                            { name: 'document', items : [ 'Preview' ] },
+                          	{ name: 'clipboard', items : ['PasteFromWord','-','Undo','Redo' ] },
+                          	{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','Scayt' ] },
+                          	{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+                            '/',
+                          	{ name: 'styles', items : [ 'Styles','Format' ] },
+                          	{ name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
+                          	{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+                          	{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+                          	{ name: 'tools', items : [ 'Maximize','-','About' ] }
+                        ],
+                   	toolbar:'MyToolbar'};
+     	   var editor = $( '.editor' ).omEditor(config);
+     	});
+        //]]>
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        定义JSON数组toolbar_MyToolbar，JSON对象代表工具条的分类。<br/>
+        name属性：分类的名字；<br/>
+        items属性：分类中包含哪些操作按钮。<br/>
+        设置toolbar属性为'toolbar_MyToolbar'，工具条内容按照toolbar_MyToolbar配置显示。
+    </div>
+</body>
+</html>

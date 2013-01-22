@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>高级定制下拉框</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <style>
+    <!--
+    .om-droplist td,th {
+        border: 1px solid black;
+    }
+    
+    .om-droplist th {
+        color: purple;
+        background-color: #CAD9EA;
+    }
+    -->
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource : [ {country : '中国', locale : 'zh_CN', flag : 'china.jpg'}, 
+                               {country : '美国', locale : 'en_US', flag : 'usa.jpg'}, 
+                               {country : '英国', locale : 'en', flag : 'uk.jpg'}, 
+                               {country : '日本', locale : 'ja', flag : 'japan.jpg' } ],
+                listAutoWidth : true,
+                //将记录的locale属性作为value,如果选择'中国'，然后调用getValue方法将得到'zh_CN'
+                valueField : 'locale', 
+                listProvider : function(container, records) {
+                    var len = records.length;
+                    var html = '<table cellpadding="3" cellspacing="0"><thead><tr><th>国旗</th><th>国家</th><th>语言简写</th></tr></thead><tbody>';
+                    for ( var i = 0; i < len; i++) {
+                        html += '<tr><td>' + records[i].flag + '</td><td>' + records[i].country 
+                                + '</td><td>' + records[i].locale + '</td></tr>';
+                    }
+                    html += '</tbody></table>';
+                    $(html).appendTo(container);
+                    return container.find('tbody tr');
+                },
+                inputField : function(data, index) {
+                    //选择'中国'后输入框的文字显示成'中国(zh_CN)'
+                    return data.country + '(' + data.locale + ')';
+                },
+                value : 'zh_CN'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="combo1" />
+    <input type="button" onclick="alert($('#combo1').omCombo('value'));" value="getValue"/>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置listProvider属性，完全自定制下拉框。</div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

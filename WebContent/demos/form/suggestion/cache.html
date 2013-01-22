@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>缓存数据</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        function showSendMsg(txt) {
+            var result = $('#result');
+            var old = result.html();
+            if (old.length > 0) {
+                result.html(old + '<br/>' + txt);
+            } else {
+                result.html(txt);
+            }
+        }
+        $(document).ready(function() {
+            $('#txt').omSuggestion({
+                dataSource : '../../../simpleSuggestion.json',
+                cacheSize : 3,
+                onSuccess : function(data) {
+                    showSendMsg('发送了请求,key=' + $('#txt').val());
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="txt" />
+    <button onclick="$('#txt').omSuggestion('clearCache');">清除缓存</button>
+    <!-- view_source_end -->
+    <div id="result" style="position: absolute; left: 200px; border: 1px solid #999999; top: 40px;font-size:12px;background-color: #D2B48C"></div>
+    <div id="view-desc">
+        omSuggestion组件默认会缓存10次取数结果。可以修改cacheSize参数来调整cache的大小，设成0表示不缓存。<br />
+        本示例中设置为3，只缓存3次，可以随意输入字符，并根据输入的结果查看是否与期望的一致。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

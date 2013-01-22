@@ -1,0 +1,34 @@
+/*
+ * operamasks-ui messageBox 0.1
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+.om-messageBox { position: absolute; padding: .2em; width: 300px; overflow: hidden; outline:0}
+.om-messageBox .om-messageBox-titlebar { padding: .4em 1em; position: relative;  }
+.om-messageBox .om-messageBox-title { float: left; margin: .1em 16px .1em 0; }
+.om-messageBox .om-messageBox-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+.om-messageBox .om-messageBox-titlebar-close span { display: block; margin: 1px; }
+.om-messageBox .om-dialog-titlebar-close:hover, .om-messageBox .om-messageBox-titlebar-close:focus { padding: 0; }
+.om-messageBox .om-messageBox-content { position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+.om-messageBox .om-messageBox-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+.om-messageBox .om-messageBox-buttonpane .om-messageBox-buttonset { float: right; }
+.om-messageBox .om-messageBox-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
+.om-messageBox .om-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .om-messageBox-titlebar { cursor: move; }
+
+.om-messageBox-content table{ table-layout: fixed; width: 276px }
+.om-message-content-html{ word-wrap: break-word; word-break: break-all; }
+.om-message-content-html input{ height: 18px; width: 206px }
+.om-messageBox-imageTd{ width: 60px; height: 48px; }
+.om-messageBox-image{ background: url("images/messagebox/messageBox-icons.png") no-repeat scroll 0 0 transparent; position: absolute; top: 10px; left: 10px; overflow: hidden; height: 48px; width: 48px; }
+.om-messageBox-image-success{ background-position: 0 0; }
+.om-messageBox-image-error{ background-position: 0 -48px; }
+.om-messageBox-image-warning{ background-position: 0 -96px; }
+.om-messageBox-image-confirm,.om-messageBox-image-question{ background-position: 0 -144px; }
+.om-messageBox-image-alert{ background-position: 0 -192px; }
+.om-messageBox-image-prompt{ background-position: 0 -240px; }
+.om-messageBox-image-waiting{ background: url("images/messagebox/messageBox-waiting.gif") no-repeat scroll 0 0 transparent; }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>operamasks-ui v2.0 版本说明</title>
+<style>
+	body{
+		font-family: verdana,Tahoma,Arial,"微软雅黑","宋体",sans-serif;
+		color: #6D7581;
+	}
+	#wraper{
+		text-align: center;
+		min-width: 980px;
+	}
+	#doc {
+	    width: 980px;
+	    margin: 0 auto;
+	}
+	#content{
+		text-align: left;
+	}
+	#content h3 {
+	    color: #303030;
+	    font-size: 26px;
+	    font-style: italic;
+	    font-weight: normal;
+	    margin: 20px 0 15px;
+	}
+	.feature-section{
+		 padding: 10px 0 30px;
+	}
+	#main-feature{
+		text-align: left
+	}
+	#main-feature h2{
+		text-align: left;
+		font-size: 35px;
+		color: #303030;
+	}
+	.separator{
+		height: 10px;
+		background-color: #DBE9F5
+	}
+	p{
+		text-indent: 2em;
+	}
+</style>
+</head>
+<body>
+	<div id="wraper">
+		<div id="doc">
+			<div id="main-feature">
+				<h2>Operamasks-UI v2.0</h2>
+				<p>
+					经过差不多两个月时间的努力，2.0版本终于与大家见面了。这个版本最大的特色就是采用了全新的样式皮肤，使组件的组合效果更佳。此外，还添加了不少新特性和改进，如omGrid支持多行表头，新的omItemSelector
+					、omScrollbar组件等。
+				</p>
+			</div>
+			<div id="content">
+				<div id="new-features" class="feature-section">
+					<div class="separator"></div>
+					<h3>新特性</h3>
+					<div class="subcontent">
+						重写omItemSelector组件，新增omScrollbar,omButtonbar组件，新增omGrid多表头插件。
+							<ul>
+							   	<li>omItemSelector: 全新组件，用于替换v1.2版本的omItemSelector。</li>
+						  	</ul>
+						  	<ul>
+							   	<li>omScrollbar: 新组件，在简单场景中可以用于替代浏览器滚动条,使用便捷。</li>
+						  	</ul>
+						  	<ul>
+							   	<li>omButtonbar: 新组件，按钮工具条组件用于放置多个按钮，并且按钮之间可以进行分组。</li>
+						  	</ul>
+						  	<ul>
+							   	<li>omGrid: 新功能，增加多表头插件 —— om-grid-headergroup.js，使用此插件可以使omGrid支持多表头。</li>
+						  	</ul>
+					</div>
+				</div>
+				<div class="separator"></div>
+				<div id="improvement" class="feature-section">
+					<h3>改进</h3>
+					<div class="subcontent">
+						<ul>
+						    <li>demo示例中心新增换肤机制，可以在default和apusic皮肤之间进行切换。</li>
+							<li>omBorderlayout栏目展开收起按钮进行了改善，使其更美观。</li>
+							<li>omGrid行编辑插件添加事件支持,deleteRow、insertRow方法改进，editor配置项添加getValue方法。</li>
+							<li>omGrid添加宽高自适应，宽高可以配置为'fit'，并且提供了便捷的resize方法。</li>
+							<li>omBorderLayout 添加配置左边和右边面板可以拉伸至顶部或底部的功能。</li>
+							<li>omTree节点的单击事件由原来的只能点击文字触发，改进为点击节点图标也触发事件。</li>
+							<li>omCombo 新增强制选择特性。</li>
+							<li>omTabs添加右键菜单功能。</li>
+						</ul>
+					</div>
+				</div>
+				<div class="separator"></div>
+				<div id="upgrade" class="feature-section">
+					<h3>升级说明(从v1.2  到  v2.0)</h3>
+					<div>
+						<ul>
+							<li>组件omGrid方法"cancleChanges"与"cancleEdit"改名为"cancelChanges"与"cancelEdit"。</li>
+							<li>组件omGrid行编辑的insertRow方法在v1.2版本中会立即出现编辑条，并且即使点了“取消”按钮数据行也已经插入了。现在改为
+								点“取消”按钮时回滚此行数据(之后再次编辑此行数据再点“取消”就不能回滚了)。此外，如果想实现insertRow时不弹出编辑框，
+								可以设置第三个参数为true,详看api文档说明。
+								</li>
+							<li>omItemSelector删除了toolbarIcons配置项。</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="separator"></div>
+				<div>
+					<h3>重要bug修复</h3>
+					<ul>
+						<li>[AOM-584] - omGrid 在拖动表格上下滚动条之后进行行编辑时编辑框错位。</li>
+						<li>[AOM-587] - omTab新增页签的时候会发送多余请求。</li>
+						<li>[AOM-588] - omGrid在一个页面同时实例化两个的时候会报js错误。</li>
+						<li>[AOM-608] - omTooltip使用contentEl属性的时候会导致页面出现两份相同的dom节点。</li>
+						<li>[AOM-609] - validate 如果某个必须要验证的输入框一开始有数据,删除后，blur并没有触发验证。</li>
+						<li>[AOM-610] - validate 如果设置默认属性值，会报异常,例如:onkeyup: true；onfocusout: true。</li>
+						<li>[AOM-615] - omGrid在没有数据的时候调用$('#grid').omGrid('getSelections',true);会报错。</li>
+						<li>[AOM-617] - omCalendar 与 validate 插件一起用时当选择日期后无法清除原有的校验错误。</li>
+						<li>[AOM-627] - omPanel 当数据正在加载或加载失败时，点击收缩按钮，loadMessage没有收缩起来。</li>
+						<li>[AOM-630] - omGrid中onRefresh方法中调用setSelections出错。</li>
+						<li>[AOM-631] - omDialog 在拖拽后内容的高度不会变化。</li>
+						<li>[AOM-637] - omTree 拖动叶节点到父节点或者与父节点同级的节点时,该节点看不到了。</li>
+						<li>[AOM-641] - omMenu 使用本地json数据 那个点击菜单中的菜单项，会发现菜单项越来越长了。</li>
+						<li>[AOM-644] - omMessageBox在IE7下内容区域出现滚动条。</li>
+						<li>[AOM-664] - borderLayout自适应窗口大小示例出现滚动条 。</li>
+						<li>[AOM-676] - om-tab关闭当前页签之后无法展现前一个页面的内容。</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>F7弹出窗口选择数据</title>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../ui/om-core.js"></script>
+    <script src="../../../ui/om-mouse.js"></script>
+    <script src="../../../ui/om-draggable.js"></script>
+    <script src="../../../ui/om-position.js"></script>
+    <script src="../../../ui/om-resizable.js"></script>
+    <script src="../../../ui/om-dialog.js"></script>
+    <link rel="stylesheet" href="../../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../../../demos/common/css/demo.css">
+    <style>
+    .userIDHidden{display: none;}
+    #myform{padding: 20px 0 0 20px;line-height: 30px;}
+	.om-dialog .om-dialog-content {
+		padding: 0!important;
+		margin: 0!important;
+	}
+    </style>
+    <!-- view_source_begin -->
+    <script>
+     //focusInput是按的F7的那个输入框,一会回填时会自动回填到到这个输入框
+     var focusInput; 
+     function fillBackAndCloseDialog(user){
+        //把弹出窗口中回填的user对象的username填到按F7的那个输入框里
+        //然后把user对象的userid填到此输入框后台的那个隐藏输入框里
+        //最后关闭弹出窗口
+        $(focusInput).val(user.username).next('.userIDHidden:eq(0)').val(user.userid);
+        $( "#dialog-modal").omDialog('close');
+     };
+    $(function() {
+        $( "#dialog-modal").omDialog({
+            autoOpen: false,
+            width:535,
+            height: 465,
+            modal: true
+        });
+        
+        $('input').keydown(function(e){
+            if(e.keyCode==118){ //如果按的键是F7
+                focusInput=this; 
+                $( "#dialog-modal").omDialog('open');
+                //下面是缓加载iframe页面（提高性能），如果不弹出dialog则iframe页面永不加载
+                var frameLoc=window.frames[0].location;
+                if(frameLoc.href=='about:blank'){
+                    frameLoc.href='select-user.html';
+                }
+                return false;
+            }else{
+                return false; //禁用输入其它内容
+            }
+        });
+        
+        //点击按钮时显示出按钮前面的那个用户的userID
+        $('#myform').submit(function() {
+            alert('userID1='+$('#userID1').val()+',userID2='+$('#userID2').val()+',userID3='+$('#userID3').val());
+            return false;//返回false,阻止浏览器默认行为
+        });
+    });
+    </script>
+     <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    请在下面各输入框里按F7。
+    <form id="myform">
+        用户1：<input class="userNameDisplay"/><input id="userID1" name="userID1" class="userIDHidden"/><br/>
+        用户2：<input class="userNameDisplay"/><input id="userID2" name="userID2" class="userIDHidden"/><br/>
+        用户3：<input class="userNameDisplay"/><input id="userID3" name="userID3" class="userIDHidden"/><br/>
+        <input type="submit" value="查看结果" />
+    </form>
+    <div id="dialog-modal" title="选择用户">
+        <iframe frameborder="0" style="width:100%;height:99%;height:100%\9;" src="about:blank"></iframe>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        在各输入框中按F7可以弹出窗口，在弹出窗口中左边选择不同的部门时右边显示对应的人，可以进行查询（本部门内查找），在表格中双击一行后会把选择的用户回填到按F7的那个输入框中。
+    </div>
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

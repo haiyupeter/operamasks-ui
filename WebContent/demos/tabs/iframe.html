@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>基本功能</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-tabs.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <style type="text/css">
+    	body{
+    		padding:0;
+    		margin:0;
+    	}
+    	#tab1,#tab2{
+    		padding:0;
+    	}
+    </style>
+    <!-- view_source_begin -->
+    <script>
+        $(function() {
+            var tab = $('#make-tab').omTabs({
+                closable : true
+            });
+            $("#add").click(function(){
+                tab.omTabs("add" , {
+                    title:"草莓",
+                    content:"<iframe id='inner-frame' border=0 frameBorder='no' name='inner-frame' src='./ajax/cm.html' width='100%'></iframe>",
+                    closable: false
+                });
+                $(this).attr("disabled" , true);
+            });
+            $("#tab1 > iframe").attr("src", "http://ui.operamasks.org");
+            $("#tab2 > iframe").attr("src", "http://www.operamasks.org");
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+	<input id="add" type="button" value="添加"/>
+    <!-- view_source_begin -->
+    <div id="make-tab" >
+        <ul>
+            <li><a href="#tab1">AOM UI</a></li>
+            <li><a href="#tab2">Operamasks</a></li>
+        </ul>
+        <div id="tab1">
+        	<iframe src="" width="100%" height="250px" border=0 frameBorder='no'></iframe>
+        </div>
+        <div id="tab2">
+        	<iframe src="" width="100%" height="250px" border=0 frameBorder='no' ></iframe>
+        </div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        理论上，omTabs组件各个页签的内容可以为任何东西，包括iframe，但如果为iframe的话，并且在创建组件时没有指定宽度和高度，那么一般情况下，
+        我们要设置iframe的宽和高，另外，在待加载进来的页面中我们也可以监听window.onload事件来设置iframe的宽高。
+    </div>
+</body>
+</html>

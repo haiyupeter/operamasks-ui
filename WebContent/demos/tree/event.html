@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>树节点事件</title>
+    
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        var data = [{
+            "text": "node1",
+            "children":[{
+                "text": "node11"
+            }, {
+                "text": "node12"
+            }]
+        }, {
+            "text": "node2",
+            "expanded": true,
+            "children":[{
+                "text":"node21",
+                "expanded": true,
+                "children": [{
+                    "text":"node211"
+                },{
+                    "text":"node212"
+                }]
+            },{
+                "text":"node22"
+            }]
+        }, {
+            "text": "node3"
+        }, {
+            "text": "node4"
+        }];
+        $(document).ready(function(){
+            $("#mytree").omTree({
+                dataSource : data,
+                showCheckbox: true,
+                onClick: function(node,event) {
+                    $("#event_name").html("onClick事件");
+                    $("#event_target").html(node.text);
+                },
+                onSelect: function(node,event) {
+                    $("#event_select").html(node.text);
+                },
+                onBeforeExpand: function(node,event) {
+                    $("#event_name").html("onBeforeExpand事件");
+                    $("#event_target").html(node.text);
+                },
+                onExpand: function(node,event) {
+                    $("#event_name").html("onExpand事件");
+                    $("#event_target").html(node.text);
+                },
+                onCollapse: function(node,event) {
+                    $("#event_name").html("onCollapse事件");
+                    $("#event_target").html(node.text);
+                },
+                onCheck: function(node,event) {
+                    $("#event_name").html("onCheck事件");
+                    $("#event_target").html(node.text);
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="main">
+        <ul id="mytree" style="position:relative;">
+        </ul>
+    </div>
+    <div id="event_content" style="dispaly:none;">
+        事件名称：<span id="event_name"></span><br/>
+        事件源：<span id="event_target"></span><br/>
+        选中节点：<span id="event_select"></span><br/>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+      <p>支持常规的树节点选中事件，点击事件，展开与收缩事件。</p>
+      <p>每一个事件接收一个node参数，node参数为该节点的JSON格式数据。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本方法</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	#page{
+    		width: 650px;
+    		height: 400px;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            element = $('#page').omBorderLayout({
+           	   panels:[{
+           	        id:"north-panel",
+           	        title:"This is north panel",
+           	        region:"north",
+           	        resizable:true,
+           	        collapsible:true,
+           	     	closable: true
+           	    },{
+           	        id:"south-panel",
+           	        region:"south",
+           	        header:false,
+           	        height:80
+           	    },{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is west panel",
+           	        region:"west",
+           	        width:250
+           	    },{
+           	        id:"east-panel",
+           	        title:"This is east panel",
+           	        region:"east",
+           	        width:150
+           	    }]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="page">
+    	<div id="north-panel">north</div>
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="south-panel">sorth</div>
+    </div>
+    <p>点击按钮对north区域的panel进行操作：
+    <button onclick="element.omBorderLayout('collapseRegion','north');">收缩</button>
+    <button onclick="element.omBorderLayout('expandRegion','north');">展开</button>
+    <button onclick="element.omBorderLayout('closeRegion','north');">关闭</button>
+    <button onclick="element.omBorderLayout('openRegion','north');">打开</button>
+    </p>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        borderLayout布局区域的panel可以进行收缩、展开、关闭和打开操作。
+        调用这些方法的时候都需要传入一个region的名称作为参数。region参数可以是"north"、"west"、"east"或"south"。注意center区域不支持这些操作。</div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>综合</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-ajaxsubmit.js"></script>
+    <script type="text/javascript" src="../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../../ui/om-combo.js"></script>
+    <script type="text/javascript" src="../../ui/om-tabs.js"></script>
+    <script type="text/javascript" src="../../ui/om-button.js"></script>
+    <script type="text/javascript" src="../../ui/om-validate.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css"/>
+    <!-- view_source_begin -->
+    <style type="text/css">
+    	input.error {border: 1px solid red;}
+        body {font-size:12px;}
+        .om-button {font-size:12px;}
+        #nav_cont{width:585px;margin-left:auto;margin-right:auto;}
+        input {border: 1px solid #A1B9DF; vertical-align: middle; width:96%; }
+        input:focus{border: 1px solid #3A76C2;}
+        .om-calendar input:focus, .om-combo input:focus{border: none;}
+        .sex {width: auto;border:none;}
+        .sex:focus{border:none;}
+        .input_slelct {width: 81%;}
+        .textarea_text {border: 1px solid #A1B9DF; height: 40px;width: 445px;}
+        table.grid_layout tr td {font-weight: normal; height: 15px; padding: 5px 0; vertical-align: middle;}
+        .color_red { color: red; }
+        .toolbar { padding: 12px 0 5px;text-align: center; }
+        .separator { border-top:1px solid #adadad; height: 2px; line-height: 2px; overflow: hidden; }
+        .address {width:445px;}
+        .om-span-field input:focus {border:none;}
+        .errorImg{background: url("images/msg_bg.png") no-repeat scroll 0 0 transparent;height: 16px;width: 16px;cursor: pointer;}
+        .errorMsg{border: 1px solid gray;background-color: #FCEFE3;display: none;position: absolute;margin-top: -18px;margin-left: 18px;}
+        .display {color: gray;font-size: 13px;}
+	    .querycontent {color: blue; font-size: 12px; width: 500px;}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#wrapper').hide();
+            $('input[name=birthday]').omCalendar(); //初始化Calendar
+            $('input[name=country]').omCombo({			//初始化Combo
+                dataSource : [ {text : '中国', value : 'China/PRC'}, 
+                               {text : '美国', value : 'America/USA'}, 
+                               {text : '英国', value : 'the United Kingdom/UK'}, 
+                               {text : '日本', value : 'Japan/JPN'} ],
+                width : 150
+            });
+            $('input[name=married]').omCombo({          //初始化Combo
+                dataSource : [ {text : '已婚', value : 'male'}, 
+                               {text : '未婚', value : 'female'}, 
+                               {text : '保密', value : 'unknown'} ],
+                width : 150,
+                value : 'unknown'
+            });
+            $("#submit").omButton();
+            $("#reset").omButton();
+            $("#nav_cont table tr td:nth-child(5n-4)").attr('align', 'right');
+            var options = {
+                beforeSubmit : showRequest,
+                success : showResponse
+            };
+            
+          	//自定义校验
+          	$.validator.addMethod("isValidBloodType", function(value) {
+                var reg =/^(A|B|AB|O)$/i; 
+                return reg.test(value);
+            }, '不是有效的血型');
+          	//对form进行校验
+            $('#formId').validate({
+                focusInvalid: false,
+                rules: {
+                    id: {
+                        required : true
+                    },
+                    blood_type : {
+                        required : true,
+                        isValidBloodType : true
+                    }
+                },
+                messages : {
+                  	id: {
+                  	    required : '必须输入id'
+                  	},
+                  	blood_type : {
+                  	    required : '必须输入血型'
+                  	}
+                },
+                errorPlacement : function(error, element) { 
+                    if(error){
+	                    $(element).parents().map(function(){
+	                        if(this.tagName.toLowerCase()=='td' && $(error).text() != ''){
+	                            var attentionElement = $(this).next().children().eq(0);
+	                            attentionElement.css('display','block');
+	    	                    attentionElement.next().html(error);
+	                        }
+	                    });
+                    }
+    	        },
+    	        showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){
+                        $.each(errorList,function(index,obj){
+                            var msg = this.message;
+                            $(obj.element).parents().map(function(){
+    	                        if(this.tagName.toLowerCase()=='td'){
+    	                            var attentionElement = $(this).next().children().eq(0);
+    	                            attentionElement.show();
+    	    	                    attentionElement.next().html(msg);
+    	                        }
+    	                    });
+ 	                   });
+                    }else{
+                        $(this.currentElements).parents().map(function(){
+	                        if(this.tagName.toLowerCase()=='td'){
+	                            $(this).next().children().eq(0).hide();
+	                            
+	                        }
+	                    });
+                    }
+                    this.defaultShowErrors();
+                },
+            	submitHandler : function(){
+                    alert('提交成功！');
+                    return false;
+                }
+            });
+            
+          	$('.errorImg').bind('mouseover',function(){
+                $(this).next().css('display','block');
+            }).bind('mouseout',function(){
+                $(this).next().css('display','none');
+            });
+            
+            
+            //通过监听form的submit事件，对form进行ajax提交。
+            $('#formId').submit(function() {
+                if (!$("#formId").valid()) 
+                    return false;
+                $(this).omAjaxSubmit(options);
+                return false; //此处必须返回false，阻止常规的form提交。
+            });
+          	
+          	
+        });
+    
+        function showRequest(formData, jqForm, options) {
+            var queryString = $.param(formData);
+            $('#send').text(queryString);
+            var senttime = '(时间：' + $.omCalendar.formatDate(new Date(), "yy-mm-dd H:i:s ") + ')';
+            $('#sendtime').text(senttime);
+            $('#wrapper').show();
+            return true;
+        }
+    
+        function showResponse(responseText, statusText, xhr, $form) {
+            var res = ('status: ' + statusText + '\n\nresponseText: \n'
+                    + responseText + '\n\nThe output div should have already been updated with the responseText.');
+    
+            var gettime = '(时间：' + $.omCalendar.formatDate(new Date(), "yy-mm-dd H:i:s ") + ')';
+            $('#receivetime').text(gettime);
+            $('#output').text(res);
+        }
+        
+        
+        
+        
+        
+        
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form id="formId" action="result.jsp">
+	    <div id="nav_cont">
+	        <table class="grid_layout">
+	            <tr>
+	                <td width="80px"><span class="color_red">*</span>档案编号：</td>
+	                <td ><input name="id" /></td>
+	                <td width="30px"><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td width="80px">职工编号：</td>
+	                <td ><input name="no" /></td>
+	            </tr>
+	            <tr>
+	                <td>姓名：</td>
+	                <td ><input name="username" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>英文姓名：</td>
+	                <td ><input name="en_name" /></td>
+	            </tr>
+	            <tr>
+	                <td>出生地：</td>
+	                <td ><input name="birthplace"/></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>性别：</td>
+	                <td >
+	                    <span>男</span><input type="radio" name="sex" class="sex" value="1" />
+	                    <span>女</span><input type="radio" name="sex" class="sex" value="2" />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>出生日期：</td>
+	                <td ><input name="birthday" style="width:130px;" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>国籍：</td>
+	                <td >
+	                    <input name="country" />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td><span class="color_red">*</span>血型：</td>
+	                <td ><input name="blood_type" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>婚姻状况：</td>
+	                <td >
+	                    <input name="married" />
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>最高学历：</td>
+	                <td ><input name=education /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>电子邮箱：</td>
+	                <td ><input name="email" /></td>
+	            </tr>
+	            <tr>
+	                <td>入职时间：</td>
+	                <td ><input name="emtry_time" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>职务：</td>
+	                <td ><input name="position" /></td>
+	            </tr>
+	            <tr>
+	                <td>移动电话：</td>
+	                <td ><input name="mobile_phone" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>办公电话：</td>
+	                <td ><input name="office_phone" /></td>
+	            </tr>
+	            <tr>
+	                <td>外语水平：</td>
+	                <td ><input name="lan_level" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg" ></span></td>
+	                <td>语种：</td>
+	                <td ><input name="lan_type" /></td>
+	            </tr>
+	            <tr>
+	                <td>现住址：</td>
+	                <td colspan="4"><input name="address" class="address" /></td>
+	            </tr>
+	            <tr>
+	                <td>自我评价：</td>
+	                <td colspan="4"><label>
+	                  <textarea name="self_evuluation" class="textarea_text"></textarea>
+	                </label></td>
+	            </tr>
+	        </table>
+	        <div class="separator"></div>
+	        <div class="toolbar">
+	            <button id="submit" type="submit">提交</button> 
+	            <button id="reset" type="reset">重置</button>
+	        </div>
+	    </div>
+    </form>
+    <br />
+    <div id="wrapper">
+        <div class="display">请求串<span id="sendtime"></span></div>
+        <div id="send" class="querycontent"></div>
+        <div class="display">响应内容<span id="receivetime"></span></div>
+        <div id="output" class="querycontent"></div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    	本示例为一个综合示例，尽量将常用的表单组件囊括进来，包括omCombo, omCalendar, omButton等等，并使用校验组件进行非空校验和自定义校验，最后提交的时候使用omAjaxSubmit进行Ajax提交。<br/>
+    	“档案编号”为非空校验；<br/>
+    	“血型”为非空校验，同时还有有效性校验（血型只接受A,B,AB,0型4种）
+    	
+    </div>
+</body>
+</html>

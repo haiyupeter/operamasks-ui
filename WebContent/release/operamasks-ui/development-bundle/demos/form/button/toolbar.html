@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>工具条按钮</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../../../ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+		#toolbar {padding: 6px 4px;}
+	    #toolbar .om-btn {border:none;}
+	    #toolbar *  {background-color: transparent;background-image: none}
+		#toolbar .om-state-hover .om-btn-bg {background: url(images/button-hover-bg.png);}
+		#toolbar .om-state-focus .om-btn-bg {background: url(images/button-focus-bg.png);}
+		#toolbar .om-state-active .om-btn-bg {background: url(images/button-mousedown-bg.png);}
+		#toolbar .om-btn .om-btn-left {background-position: 100% 0px;background-repeat: no-repeat;}
+		#toolbar .om-btn .om-btn-center {background-position: 100% -24px;background-repeat: repeat-x;}
+		#toolbar .om-btn .om-btn-right {background-position: 100% -48px;background-repeat: no-repeat;}
+		span.om-widget-header { background: url("images/header_bg.png") repeat-x scroll 0 0 transparent; color: #23466D; font-weight: bold;}
+	</style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#simpleButton').omButton({});
+            
+            $('a#button-width').omButton({
+       	     width : 180,
+       	     label : '宽度被设置成180px的按钮'
+       	    });
+            
+            $('a#button-disabled1').omButton({
+       	     disabled : true
+       	    });
+            $('a#button-icons').omButton({
+       	     icons : {left : 'images/edit_add.png'}
+       	 	});
+            $('a#button-icons1').omButton({
+       	     icons : {right : 'images/edit_add.png'}
+       	 	});
+            $('a#button-icons2').omButton({
+       	     icons : {left : 'images/edit_add.png',right : 'images/edit_add.png'}
+       	 	});
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <span id="toolbar" class="om-widget-header om-corner-all">
+        <a id="simpleButton" href="javascript:void(0)">金蝶中间件</a>
+        <a id="button-width"  href="javascript:void(0)"></a>
+        <a id="button-disabled1"  href="javascript:void(0)">被disabled的按钮</a>
+        <a id="button-icons" href="javascript:void(0)">有左icon的按钮</a>
+    </span>
+    <!-- view_source_end -->
+    <div id="view-desc">
+       	 <p>支持将按钮放在工具条上面，主要是通过覆盖omButton相关样式来实现。</p>
+    </div>
+</body>
+</html>

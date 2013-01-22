@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+input.om-numberfield-disabled, .om-widget-content input.om-numberfield-disabled{
+	background-color: #EBEBE4;
+}

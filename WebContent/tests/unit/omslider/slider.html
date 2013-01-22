@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../common/css/qunit.css">
+<script src="../../../jquery.js"></script>
+<script src="../common/js/qunit.js"></script>
+
+<link rel="stylesheet" href="../../../themes/default/om-all.css">
+<script src="../../../ui/om-core.js"></script>
+<script src="../../../ui/om-widget.js"></script>
+<script type="text/javascript" src="../../../ui/om-slider.js"></script>
+
+<script src="om-slider-methods.js"></script>
+<script src="om-slider-options.js"></script>
+
+<script src="../common/js/qunit-junit-outputter.js"></script>
+<style type="text/css">
+ html, body {
+    font-family: "Arial","Helvetica","Verdana","sans-serif";
+    font-size: 12px;
+}
+.slider-demo{
+    		width: 500px;
+    		height: 375px;
+    		border: 1px solid #0092D2;
+    	}
+    	.om-slider .om-slider-nav-classical{
+    		top: 5px;
+    	}
+    	.om-slider-nav-classical li{
+    		color: #F60;
+    	}
+    	.om-slider-nav-classical li.nav-selected{
+    		background-color: #F60;
+    	}
+#activeNavCls .my-nav-selected{
+   background-color: #F60;
+}
+</style>
+
+</style>
+<title>numberfield unit test </title>
+</head>
+<body>
+<h1 id="qunit-header">Operamasks UI numberfield Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture">
+<div id="optionsTest">
+     <div id="activeNavCls" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+    <!-- 
+     <div id="autoPlay" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+     -->
+     <div id="controlNav" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+     <div id="interval" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+     <div id="directionNav" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+     <div id="startSlide" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+
+   
+</div>
+<div id="methodTest">
+   <div id="next" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+   <div id="prev" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+   <div id="slideTo" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+   <div id="onAfterSlide" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+   <div id="onBeforeSlide" class="slider-demo">
+        <img src="images/turtle.jpg" />
+        <a href="#"><img src="images/rabbit.jpg" /></a>
+        <img src="images/penguin.jpg" />
+        <img src="images/lizard.jpg" />
+        <img src="images/crocodile.jpg" />
+    </div>
+</div>
+</div>
+</body>
+</html>

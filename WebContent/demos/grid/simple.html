@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                title : '表格',
+                dataSource : 'griddata.do?method=fast',
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand'} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    
+    <div id="view-desc">
+        设置dataSource和colModel属性，在table元素中渲染表格。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

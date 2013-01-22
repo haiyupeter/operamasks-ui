@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>复杂案例</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script src="../../ui/om-draggable.js"></script>
+    <script src="../../ui/om-position.js"></script>
+    <script src="../../ui/om-combo.js"></script>
+    <script type="text/javascript" src="../../ui/om-button.js"></script>
+    <script src="../../ui/om-numberfield.js"></script>
+    <script src="../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../ui/om-dialog.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-roweditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <style type="text/css">
+    	#view-desc p {
+			text-indent: 2em;
+		}
+		table.config-desc{
+			border-collapse:collapse;
+		}
+		table.config-desc td{
+			border: 1px solid #DDDDDD;
+		}
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.validator.addMethod("birthday", function(value) {
+                return /^\d{4}年\d{2}月\d{2}日$/.test(value);
+         	}, '生日格式必须为 xxxx年xx月xx日');
+            
+            var genderOptions = {
+    		    dataSource : [{text:"请选择",value:""},{text:"女生" , value:"female"},{text:"男生",value:"male"},{text:"未知",value:"unknowned"}],
+    		    editable: false
+    		};
+            
+            var ageOptions = {
+            	allowDecimals:false,
+            	allowNegative:false
+            };
+            
+            var birthdayOptions = {
+            	dateFormat:"yy年mm月dd日"    
+            };
+            
+            $('#grid').omGrid({
+                limit:10,
+                title : '表格',
+                width:600,
+                height : 300,
+                colModel : [{header:"编号",name:"id",width:50,renderer:idRenderer,editor:{editable:false}},//没有提供editor配置说明不可编辑
+		                      {header:"姓名",name:"name",width:70,editor:{rules:["required",true,"姓名是必填的"],type:"text",editable:true,name:"userName"}},//虽然提供了editor属性，但提供了editable的话(没有则可以编辑)，只有editable=true或者
+							  {header:"年龄",name:"age",width:40,editor:{rules:[["max",100,"想活过100岁，还要多多努力才行"],["min",18,"未成年，再等等吧"]],type:"omNumberField",name:"age",options:ageOptions,editable:function(){return true;}}},
+							  {header:"生日",name:"birthday",width:130,editor:{rules:[["birthday"]],type:"omCalendar",name:"birthday",options:birthdayOptions}},
+							  {header:"性别",name:"gender",width:100,editor:{type:"omCombo", name:"gender" ,options:genderOptions},renderer:genderRenderer},
+							  {header:"操作",name:"operation",editor:{editable:false}}],
+				dataSource : "data.json"
+            });
+            
+            function genderRenderer(value){
+		        if("female" === value){
+		            return "<span style='color:blue'>美女</span>";
+		        }else if("male" === value){
+		            return "<span style='color:orange'>帅哥</span>";
+		        }else if("unknowned" === value){
+		            return "<span style='color:red'>未知</span>";
+		        }else{
+		            return "";
+		        }
+		    }
+            $('#userName').live('focus',function(){
+            	$( "#dialog").omDialog('open');
+            });
+            function idRenderer(value){
+                var color = ["red" , "green" , "blue"];
+                return "<span style='color:"+color[parseInt(value) % 3]+"'>"+value+"</span>";
+            }
+            
+            $( "#dialog").omDialog({
+    			autoOpen: false,
+    			height: 240,
+    			modal: true
+    		});
+            
+            $("#mytree").omTree({
+                dataSource : "../../omTree.json?method=simpleModel",
+                simpleDataModel: true,
+                onBeforeExpand : function(node){
+                	var nodeDom = $("#"+node.nid);
+                	if(nodeDom.hasClass("hasChildren")){
+                		nodeDom.removeClass("hasChildren");
+                		$.ajax({
+                            url: '../../omTree.json?content=children',
+                            method: 'POST',
+                            dataType: 'json',
+                            success: function(data){
+                                $("#mytree").omTree("insert", data, node);
+                            }
+                        });
+                	}
+                	return true;
+                },
+                onDblClick : function(nodeData, event){
+                	$('#userName').val(nodeData.text);
+                	$( "#dialog").omDialog('close');
+                }
+            });
+
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div style="margin-left:30px;margin-top:20px">
+    	<table id="grid"></table>
+    </div>
+     <div id="dialog" title="人员选择">
+        <ul id="mytree"></ul>
+     </div>
+    <!-- view_source_end -->
+    
+    <div id="view-desc">
+       <p>
+                       输入域需要复杂的操作来录入值的时候，比如弹出树组件，选择之后回填，弹出grid选择之后回填，此例就演示选择树组件值然后回填，请进行行编辑，然后focus到姓名栏。
+       </p>
+       <p>
+        omGrid行编辑插件可以为omGrid提供行编辑的功能，它支持修改行信息，动态添加新行，动态删除行，取消行编辑，回滚编辑操作等一系列的功能，详情请看omGrid组件关于行编辑插件的方法
+        (cancleEdit,cancleChanges,editRow,deleteRow,getChanges,insertRow,saveChanges)。</p>
+		<p>
+                       要使omGrid成为行可编辑的，只需要配置editor选项。如下<br/>
+        <pre>
+        $('#grid').omGrid({
+            colModel : 
+                [{	
+        		    header:"编号",
+        	        name:"id",
+        		    editor:{editable:false}
+        		},
+		        {
+		        	header:"姓名",
+		        	name:"name",
+		        	editor:{
+		        	    rules:["required",true,"姓名是必填的"],
+		        	    type:"text",
+		        	    editable:true,
+		        	    name:"userName"}}
+            });
+        </pre>
+        editor配置项详细说明如下:
+        <table class='config-desc' cellspacing=0>
+        	<tr>
+        		<td>配置项</td>
+        		<td>说明</td>
+        	</tr>
+        	<tr>
+        		<td>type</td>
+        		<td>列编辑的类型，支持"text","omCalendar","omCombo","omNumberField"，默认值为"text"</td>
+        	</tr>
+        	<tr>
+        		<td>options</td>
+        		<td>创建所对应类型组件所需的配置项 ，详情请看各个类型的组件文档。</td>
+        	</tr>
+        	<tr>
+        		<td>name</td>
+        		<td>由于检验时需要输入域拥有name属性，此属性作为这些输入域的name属性和id属性，如果不提供此属性，则用colModel中列配置项的name属性 </td>
+        	</tr>
+        	<tr>
+        		<td>rules</td>
+        		<td>	[]或者[[],[]]。列编辑框的检验规则，跟omValidate的校验规则是一致的。如["required",true,"此域不可以为空"]或者[["min",10,"不可以小于10"],["max",100,"不可以大于100"]]，
+你也可以用$.validator.addMethod("methodName", functionName,defaultMessage)添加自定义校验规则，详情请看omValidate校验插件。  </td>
+        	</tr>
+        	<tr>
+        		<td>editable</td>
+        		<td>列是否可编辑，为Boolean或者function。当为function时，返回false表示此列不可编辑。</td>
+        	</tr>
+        	<tr>
+        		<td>renderer(value , rowData)</td>
+        		<td>如果列是不可编辑的，并且提供了此属性（是个方法），那么此方法的返回值会替代默认产生的只读input域 </td>
+        	</tr>
+        	<tr>
+        		<td>getValue</td>
+        		<td>当使用“custom”类型(其它类型无效)在点击“确定”按钮时，组件通过此方法获取值进行回填。</td>
+        	</tr>
+        </table>
+        <br/>
+        特别说明:
+        <ul>
+        	<li>如果某个列配置项没有editor属性，则认为此列不可编辑，默认在编辑时渲染成一个只读的input</li>
+        	<li>如果配置了editor属性，但editor没有editable属性，则列是可编辑的，否则要看editable的值:
+        		<ul>
+        			<li>editable=true表示可编辑,editable=false表示不可编辑</li>
+        			<li>editable为一个函数时，返回true表示可编辑，false表示不可编辑</li>
+        		</ul>
+        	</li>
+        	<li>如果所有的列都不可编辑，那么默认情况下行编辑插件会失效。如果想新增行，并进行编辑，要设置editMode属性，详见属性editMode的说明。</li>
+        </ul>
+        </p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

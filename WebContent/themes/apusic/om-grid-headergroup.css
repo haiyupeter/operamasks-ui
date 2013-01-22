@@ -1,0 +1,40 @@
+.om-grid div.hDiv th.group-header-1{
+	border-bottom: 1px solid #B8C5D5;
+}
+.om-grid div.hDiv th.group-header-2{
+	border-bottom: 1px solid #B8C5D5;
+}
+.om-grid div.hDiv th.group-header-3{
+	border-bottom: 1px solid #B8C5D5;
+}
+.om-grid div.hDiv th.group-header-4{
+	border-bottom: 1px solid #B8C5D5;
+}
+.om-grid div.hDiv-group-header{
+	background: none;
+	background-color:#C7D2E4;
+}
+.data-header-1{
+	background: url("images/grid-group/data-header-1.png") repeat-x bottom center;
+}
+.data-header-2{
+	background: url("images/grid-group/data-header-2.png") repeat-x bottom center;
+}
+.data-header-3{
+	background: url("images/grid-group/data-header-3.png") repeat-x bottom center;
+}
+.data-header-4{
+	background: url("images/grid-group/data-header-4.png") repeat-x bottom center;
+}
+.group-header-1{
+	background: url("images/grid-group/group-header-1.png") repeat-x bottom center;
+}
+.group-header-2{
+	background: url("images/grid-group/group-header-2.png") repeat-x bottom center;
+}
+.group-header-3{
+	background: url("images/grid-group/group-header-3.png") repeat-x bottom center;
+}
+.group-header-4{
+	background: url("images/grid-group/group-header-4.png") repeat-x bottom center;
+}

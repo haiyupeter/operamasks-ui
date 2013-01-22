@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+<link rel="stylesheet" type="text/css" href="../css/taobao.css" />
+<link rel="stylesheet" href="../../../demos/common/css/demo.css">
+<!-- view_source_begin -->
+<script type="text/javascript">
+	$(document).ready(function() {	    
+	    //设置一级类别的选中样式
+	    $("#searchTabs a").click(function(){
+	        $("#searchTabs li.current").removeClass("current");
+	        $(this).parent().addClass("current");
+	        $("#type").val($(this).attr("data-areas"));
+	        //如果想要改变请求url参数的话，必须使用 setData 方法重新设置整个请求的url
+	        $('#omsearch').omSuggestion("setData" , "../../../taobaoSearch.do?areas="+$("#type").val());
+	        return false;
+	    });
+	    //omSuggestion组件的构造
+	    var omSearch = $('#omsearch').omSuggestion({
+	        //默认在"宝贝"区域进行搜索
+	        dataSource : '../../../taobaoSearch.do?areas=bb',
+	        queryName : "searchKey",
+	        //自定义格式化下拉列表每一条记录的内容
+	        clientFormatter : function(data,index) {
+	            if(data.subarea){
+	                return '<div class="itemFloatLeft">'+data.subType; 
+	            }else{
+	                var text = omSearch.val()+"<span style='font-weight:bold'>"+data.text.slice(omSearch.val().length)+"</span>";
+	                return '<div class="itemFloatLeft">'+text+'</div><div class="itemFloatRight">约<font color="red">'+data.count+'</font>条记录</div>';         
+	            }
+            },
+            onSelect:function(rowData , text , index){
+                //传给后台数据中，如果subtype不为空，则认为是在二级类别中进行搜索
+	   			$("#subtype").val(rowData.subarea? rowData.subType : "");
+             	if(!omSearch.val()){
+             	    alert("请先输入搜索内容");
+             	    return false;
+             	}
+	   			$(".searchForm").submit();
+           }
+	       //提醒：如果要进行跨域请求的话，必须设置crossDomain:true
+	    });
+	    $("#search").click(function(event){
+	        doSubmit();
+	    });
+	    /**
+	    *因为在选择下拉列表时按回车我们自己提交了表单(onSelect中)，那现在如果没有下拉列表我们又想在搜索框中按回车提交表单，怎么办?
+	    *自己注册keydown事件就可以了
+	    **/
+	    omSearch.keydown(function(event){
+	        //如果在搜索框中按了回车键，并且这时候没有下拉列表框，那直接提交表单
+	        if(event.keyCode === 13 && omSearch.omSuggestion("getDropList").is(":hidden")){
+	            doSubmit();
+	        }
+	    });
+	    function doSubmit(){
+		    if(!omSearch.val()){
+	     	    alert("请先输入搜索内容");
+	     	    return false;
+	     	}
+	        $("#subtype").val("");
+	        $(".searchForm").submit();
+		}
+	});
+</script>
+<!-- view_source_end -->
+<title>淘宝搜索</title>
+</head>
+<body>
+<!-- view_source_begin -->
+	<form action="subSearch.jsp" class="searchForm"  method="GET">
+		<ul id="searchTabs" class="search-tab om-helper-clearfix switchable-nav">
+		    <!--使用data-areas来标志不同的领域，如用"bb"表示"宝贝",data-*作为元素的扩展属性是符合html5标准的 -->
+            <li class="current"><a href="#" data-areas="bb">宝贝</a></li>
+            <li><a data-areas="b2c">淘宝商城</a></li>
+            <li><a data-areas="dp">店铺</a></li>
+            <li><a data-areas="pm">拍卖</a></li>
+            <li><a data-areas="tb">淘吧</a></li>
+            <li><a data-areas="fx">哇哦</a></li>
+			<li><a data-areas="hb">画报</a></li>
+        </ul>
+		<div class="search-auto">
+			<div class="input">
+				<input id="omsearch" name="q"/>
+				<!-- 默认在"宝贝"一级类别中进行搜索 -->
+				<input id="type" name="type" value="bb" class="om-helper-hidden"/>
+				<!-- 二级类别 -->
+				<input id="subtype" name="subtype" class="om-helper-hidden"/>		
+			</div>
+			<!--这里的type='button'非常重要，如果设为submit,那么回车选中下拉列表后会立即提交表单，而不会触发omSearch的onSelect方法，那么二级类别的值可能就不正确-->
+			<input type="button" id="search" value="搜索"/>
+		</div>
+	</form>
+<!-- view_source_end -->
+	<div id="view-desc">
+        omSuggestion淘宝搜索案例。由于使用的是本地数据源，数据有限，请选择"宝贝"，并输入"衣服"进行测试。
+    </div>
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

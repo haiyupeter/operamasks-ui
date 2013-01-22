@@ -1,0 +1,25 @@
+/*
+Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+Dual licensed under the MIT or LGPL Version 2 licenses.
+*/
+
+@import url("reset.css");
+@import url("mainui.css");
+@import url("panel.css");
+@import url("toolbar.css");
+@import url("menu.css");
+@import url("richcombo.css");
+@import url("elementspath.css");
+@import url("icons.css");
+@import url("presets.css");
+
+/* Restore the container visibility */
+html .cke_skin_office2003
+{
+	visibility: inherit;
+}
+
+html.cke_skin_office2003_container
+{
+	visibility: visible;
+}

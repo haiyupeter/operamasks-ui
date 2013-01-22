@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	#page{
+    		width: 650px;
+    		height: 400px;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var element = $('#page').omBorderLayout({
+           	   panels:[{
+           	        id:"north-panel",
+           	        title:"This is north panel",
+           	        region:"north",
+           	        resizable:true,
+           	        collapsible:true,
+           	     	closable: true
+           	    },{
+           	        id:"south-panel",
+           	        title:"This is south panel",
+           	        region:"south",
+           	        resizable:true,
+           	        collapsible:true,
+           	        height:80
+           	    },{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is west panel",
+           	        region:"west",width:250
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is east panel",
+           	        region:"east",
+           	        width:150
+           	    }]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="page">
+    	<div id="north-panel">north</div>
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="south-panel">sorth</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        borderLayout布局组件的基本应用。把页面分为5个区域center,south,north,west,east（上、下、左、中、右）。每个区域（除center之外）的panel都可以收缩。north区域的panel可以关闭。</div>
+</body>
+</html>

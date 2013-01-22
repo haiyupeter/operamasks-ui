@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omFileUpload Test</title>
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script>
+<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<style type="text/css">
+   .VPDIV{
+	width: 400px;
+	height: 200px;
+   }
+</style>
+<script type="text/javascript">
+   $(document).ready(function(){
+	   $("#upload1").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   onSelect: function(ID,fileObj,event){
+		                alert("您选择的上传文件是："+fileObj.name);	   
+		             }
+		   });
+	   $("#upload2").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   onComplete: function(ID,fileObj,response,data,event){
+		                alert("刚才文件上传的平均速度是："+data.speed);	   
+		             }
+		   });
+	   
+	   $("#upload3").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   onAllComplete: function(data,event){
+		                alert(data.filesUploaded +" 个文件上传成功");
+           },
+		   multi : true
+   		   });
+	   
+	   $("#upload4").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   actionData: {testcase:'onerror'},
+		   method: "GET",
+		   onError: function(ID,fileObj,errorObj,event){
+		                alert(errorObj.type+"出错信息为："+errorObj.info);	   
+		             }
+		   });
+	   
+	   $("#upload5").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   onCancel: function(ID,fileObj,data,event){
+			   alert('The upload of ' + fileObj.name + ' has been canceled!');	   
+		             }
+		   });
+	   
+	   $("#upload6").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   onProgress: function(ID,fileObj,data,event){
+		                $("#response6").html("上传的文件的平均速度是："+data.speed+" KB\/s");	   
+		             }
+		   });
+	   
+	   $("#upload7").omFileUpload({
+		   action:'/operamasks-ui/omFileUpload.do',
+		   queueSizeLimit: 3,
+		   multi: true,
+		   onQueueFull: function(queueSizeLimit,event){
+			   alert("上传文件已经饱和了不要再增加文件了!");
+			      return false;
+		       }
+		   });
+	   });
+   
+   function cancelUpload(){
+	   $("#upload5").omFileUpload("cancel",0);
+   }
+</script>
+</head>
+
+<body>
+   <div class="testPoint">
+			<span class="title">事件测试点1：测试onSelect事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     选择上传的文件后，会有提示框弹出显示上传文件的名字。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload1" name="upload1"/>
+			    <a href="#" onclick="$('#upload1').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">事件测试点2：测试onComplete事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件上传后，会弹出一个提示框，显示文件上传的平均速度。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload2" name="upload2"/>
+			    <a href="#" onclick="$('#upload2').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">事件测试点3：测试onAllComplete事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件上传后，会弹出一个提示框，显示n个文件已经上传。n表示文件上传的数量。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload3" name="upload3"/>
+			    <a href="#" onclick="$('#upload3').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">事件测试点4：测试onError事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件上传出错后，会有HTTP出错信息弹出。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload4" name="upload4"/>
+			    <a href="#" onclick="$('#upload4').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">事件测试点5：测试onCancel事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   点击取消上传按钮后，会有信息框弹出提示“The upload of ... has been canceled!”，
+			   并且将上传列表中的第一个上传文件给删除  。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload5" name="upload5"/>
+			    <a href="#" onclick="$('#upload5').omFileUpload('upload');return false;">Upload Files</a> 
+			    <input type="button" id="btn2" value="取消上传" onclick="cancelUpload()"/>
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">事件测试点6：测试onProgress事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     文件上传后，会在上传按钮的下方显示文件上传的平均速度。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload6" name="upload6"/>
+			    <a href="#" onclick="$('#upload6').omFileUpload('upload');return false;">Upload Files</a> 
+			    <div id="response6" style="font-weight: bold;color: red;"></div>
+			</div>
+   </div>
+      
+   <div class="testPoint">
+			<span class="title">事件测试点7：测试onQueueFull事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			    当选择第四个上传文件时，会有提示框弹出，提示上传文件已经饱和 。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload7" name="upload7"/>
+			    <a href="#" onclick="$('#upload7').omFileUpload('upload');return false;">Upload Files</a> 
+			</div>
+   </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../common/js/test.js"></script>
+<script type="text/javascript">
+  function openPage(obj){
+      $('#testcase').attr('src', obj.href);
+  }
+</script>
+</head>
+<body>
+  
+  <table id="testDescriptionTable" cellspacing="0">
+      <thead>
+        <tr>
+          <td colspan="3" style="text-align: left;">
+					omGrid测试案例，API属性总共 
+					 <!-- 请输入API属性个数 -->
+					  <span class="apiNo" number="49"></span> 个，
+					案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；
+					功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+					边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个。
+          </td>
+        </tr>
+        <tr>
+          <td>分类</td>
+          <td>测试页面</td>
+          <td>测试属性</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- 根据你的测试案例行数设置number值 ，即是class="api"的行数-->
+          <td rowspan="{number}">属性测试案例</td>
+          <td>
+            <a href="grid_1.html" onclick="openPage(this)">test1</a>
+          </td>
+          <td class="api">onmouseout(测试点1), onmouseover(测试点2), onmouseup(测试点3), rendered(测试点4), style(测试点5)</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="grid_2.html" onclick="openPage(this)">test2</a>
+          </td>
+          <td  class="api">onmouseout(测试点6), onmouseover(测试点7), onmouseup(测试点8), rendered(测试点9), style(测试点10)</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="grid_3.html" onclick="openPage(this)">test3</a>
+          </td>
+          <td  class="api">onmouseout(测试点11), onmouseover(测试点12), onmouseup(测试点13), rendered(测试点14), style(测试点15)</td>
+        </tr>
+        
+        <tr>
+          <!-- 根据你的测试案例行数设置number值 ，即是class="fun"的行数-->
+          <td rowspan="{number}">功能测试案例</td>
+          <td>
+            <a href="grid_4.html" onclick="openPage(this)">test4</a>
+          </td>
+          <td class="fun">onmouseout(测试点16), onmouseover(测试点17), onmouseup(测试点18), rendered(测试点19), style(测试点20)</td>
+        </tr>
+        
+        <tr>
+          <!-- 根据你的测试案例行数设置number值 ，即是class="bor"的行数-->
+          <td rowspan="{number}">边界测试案例</td>
+          <td>
+            <a href="grid_5.html" onclick="openPage(this)">test5</a>
+          </td>
+          <td class="bor">onmouseout(测试点21), onmouseover(测试点22), onmouseup(测试点23), rendered(测试点24), style(测试点25)</td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2011-7-12 下午11:04:37                                                        
+
+     jsdoc-builder used to build the jsdoc api auto and unified format in our company
+                   
+     chenhaiyu                                                                
+     ====================================================================== -->
+<project name="operamasks-ui" default="release">
+    <description>
+            description
+    </description>
+    <property file="build.properties"></property>
+    
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="lib/ant-contrib.jar" />  
+    <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="lib/ant-contrib.jar" />
+    
+    <!-- ================================= 
+          target: default              
+         ================================= -->
+    <target name="default" description="description">
+        <antcall target="release"></antcall>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="build-docs" description="build docs">
+        <delete dir="${docs.dir}"></delete>
+        <mkdir dir="${docs.dir}"/>
+    	<copy todir="../ui/" file="../ui/editor/_source/om-editor.js">
+    	</copy>
+        <java jar="${jsdoc.lib.dir}/jsrun.jar" fork="true">
+            <arg value="${jsdoc.lib.dir}/app/run.js"/>
+            <!-- the path of the jsdoc templates-->
+            <arg value="-t=${jsdoc.builder.dir}/operamasks-templates"/>
+            <!-- the source path of the js -->
+            <arg value="../ui/"/>
+            <!-- the output path of the generated jsdoc -->
+            <arg value="-d=${docs.dir}" />
+        </java>
+    	<delete file="../ui/om-editor.js"></delete>
+    </target>
+    
+    <target name="init">
+        <delete dir="${release.dir}"></delete>
+        <mkdir dir="${release.dir}" />
+    </target>
+
+    <!-- compress the js files -->
+    <target name="compress-js">
+        <delete dir="${release.development.dir}/ui/minified"></delete>
+        <mkdir dir="${release.development.dir}/ui/minified"/>
+        <foreach param="js.file" target="compress-single-js">
+            <path>
+                <fileset dir="${release.development.dir}/ui">
+                    <include name="*.js"/>
+                </fileset>
+            </path>
+        </foreach>
+    </target>
+    
+    <target name="compress-single-js">
+        <echo>processing the ${js.file}</echo>
+        <propertyregex property="js.min.file" input="${js.file}" regexp="(.*)([\/\\].*)(.js)" replace="\1/minified\2.min\3" casesensitive="false"></propertyregex>
+        <echo>minified ${js.min.file}</echo>
+        <java jar="lib/yuicompressor-2.4.2.jar" fork="true">
+            <arg value="${js.file}"/>
+            <arg value="--charset"/>
+            <arg value="UTF-8"/>
+            <arg value="-o"/>
+            <arg value="${js.min.file}"/>
+        </java>
+    </target>
+    
+    <!-- concat the js files -->
+    <target name="concat-js-files">
+        <echo>concat the js files</echo>
+        <property name="core_js" value="
+            om-core.js
+            om-mouse.js
+            om-position.js
+            om-draggable.js
+            om-droppable.js
+            om-resizable.js
+            om-sortable.js
+        	om-panel.js
+        	om-grid.js
+        ">
+        </property>
+        <concat destfile="${release.development.dir}/ui/operamasks-ui.js" encoding="UTF-8">
+            <!-- concat the core js first -->
+            <filelist dir="${release.development.dir}/ui/" files="${core_js}"></filelist>
+            <!-- then concat the widget js exclude the core js. these widget js dependent the core js. -->
+            <fileset dir="${release.development.dir}/ui/" includes="*.js">
+                <patternset excludes="${core_js}"></patternset>
+            	<patternset excludes="om-editor.js"></patternset>
+            </fileset>
+        </concat>
+        <delete dir="${release.dir}/${project.name}/js"></delete>
+        <mkdir dir="${release.dir}/${project.name}/js"/>
+        <!-- zip the operamasks-ui.js -->
+        <java jar="lib/yuicompressor-2.4.2.jar" fork="true">
+            <arg value="${release.development.dir}/ui/operamasks-ui.js"/>
+            <arg value="--charset"/>
+            <arg value="UTF-8"/>
+            <arg value="-o"/>
+            <arg value="${release.dir}/${project.name}/js/operamasks-ui.min.js"/>
+        </java>
+        <!-- zip the jquery.js -->
+        <java jar="lib/yuicompressor-2.4.2.jar" fork="true">
+            <arg value="${release.development.dir}/jquery.js"/>
+            <arg value="--charset"/>
+            <arg value="UTF-8"/>
+            <arg value="-o"/>
+            <arg value="${release.dir}/${project.name}/js/jquery.min.js"/>
+        </java>
+    	
+        <!-- copy the swf -->
+        <delete dir="${release.dir}/${project.name}/swf"></delete>
+        <mkdir dir="${release.dir}/${project.name}/swf"/>
+    	<copy file="${release.development.dir}/ui/om-fileupload.swf" todir="${release.dir}/${project.name}/swf"></copy>
+    </target>
+    
+    <!-- concat the css files -->
+    <target name="concat-theme-css-files">
+    	<property name="core_css" value="
+    	            om-theme.css
+    	            om-resizable.css
+    	        	om-panel.css
+    	    		om-grid.css
+    	">
+    	</property>
+        <echo>concat the themes css files</echo>
+        <concat destfile="${release.development.dir}/themes/${theme.name}/om-${theme.name}.css" encoding="UTF-8">
+        	<filelist dir="${release.development.dir}/themes/${theme.name}" files="${core_css}"></filelist>
+            <fileset dir="${release.development.dir}/themes/${theme.name}" includes="*.css">
+                <patternset excludes="${core_css} om-${theme.name}.css om-base.css om-all.css"></patternset>
+            </fileset>
+        </concat>
+        <delete dir="${release.dir}/${project.name}/css/${theme.name}"></delete>
+        <mkdir dir="${release.dir}/${project.name}/css/${theme.name}"/>
+        <copy todir="${release.dir}/${project.name}/css/${theme.name}">
+            <fileset dir="${release.development.dir}/themes/${theme.name}">
+                <include name="om-${theme.name}.css"/>
+            </fileset>
+            <fileset dir="${release.development.dir}/themes/${theme.name}">
+                <exclude name="*.css"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="replace-version">
+        <replaceregexp match="@VERSION" replace="${release.version}" flags="g" byline="true" encoding="UTF-8">
+            <fileset dir="${release.development.dir}/ui/" includes="*.js"/>
+            <fileset dir="${release.development.dir}/themes/" includes="**/*.css"/>
+        </replaceregexp>
+        <echo message="Replaced all @VERSION to ${release.version}." />
+    </target>
+
+    <target name="release">
+        <antcall target="init"></antcall>
+        <antcall target="build-docs"></antcall>
+        
+        <copy todir="${release.development.dir}">
+            <fileset dir="../">
+                <include name="docs/**"/>
+                <include name="ui/**"/>
+                <include name="themes/**"/>
+                <include name="jquery.js"/>
+            </fileset>
+        </copy>
+    	
+        <copy todir="${release.dir}/${project.name}">
+            <fileset dir="../">
+                <include name="readme.txt"/>
+                <include name="LGPL-LICENSE.txt"/>
+                <include name="MIT-LICENSE.txt"/>
+                <include name="release-note.html"/>
+            </fileset>
+        </copy>
+        
+        <antcall target="replace-version"></antcall>
+        <antcall target="compress-js"></antcall>
+        
+        <antcall target="concat-js-files"></antcall>
+    	
+    	<foreach list="${themes}" param="theme.name" target="concat-theme-css-files" delimiter=",">
+    	</foreach>
+        
+    	 <tstamp prefix="deploy.">  
+	        <format property="tstamp" pattern="yyyyMMdd.hhmmss"/>  
+	    </tstamp>  
+        <zip destfile="${release.dir}/${project.name}-${release.version}-${deploy.tstamp}.zip">
+            <fileset dir="${release.dir}/${project.name}">
+                <include name="**/*"/>
+            </fileset>
+        </zip>
+    	
+        <antcall target="demo-zip"></antcall>
+    </target>
+	
+	<path id="classpath">
+	   <fileset dir="../WEB-INF/lib">
+	    <include name="*.jar"/>
+	   	<exclude name="servlet-api-2.5-6.1.9.jar"/>
+	   </fileset>
+		<pathelement location="lib/warlib/servlet-api.jar"/>
+     </path>
+	
+	<target name="war-init">
+		<!-- compile -->
+		<delete dir="${build.dir}" />
+        <mkdir dir="${build.dir}/classes"/>
+		<javac srcdir="../../src" destdir="${build.dir}/classes"
+         classpathref="classpath" source="1.5" encoding="UTF-8"
+		 includeantruntime="on">
+		</javac>
+		<!-- 拷贝servlet源代码到classes目录 -->
+		<copy todir="${build.dir}/classes/org/operamasks/servlet">
+			<fileset dir="../../src/org/operamasks/servlet">	
+				<include name="*.java"/>
+			</fileset>
+		</copy>
+		<!-- 拷贝工程文件-->
+		<copy todir="${build.project}">
+			<fileset dir="../">
+	        	<exclude name="tests/**" />
+	        	<exclude name="build/**" />
+	        	<exclude name="release/**" />
+	        	<exclude name="website/**" />
+				<exclude name="index.html" />
+				<exclude name="readme.txt" />
+				<exclude name="release-note.html" />
+				<exclude name="WEB-INF/lib/ant.jar"/>
+			</fileset>
+			<fileset dir="./">
+				<include name="index.html" />
+				<include name="readme.txt" />
+			</fileset>
+		</copy>
+	    <war destfile="${build.dir}/${project.name}.war" webxml="${build.project}/WEB-INF/web.xml">
+	        <fileset dir="${build.project}"></fileset>
+	    	<classes dir="${build.dir}/classes"></classes>
+	    </war>
+	</target>
+	
+	<target name="demo-zip" depends="war-init">
+   	 	<tstamp prefix="deploy.">  
+	        <format property="tstamp" pattern="yyyyMMdd.hhmmss"/>  
+	    </tstamp>  
+        <zip destfile="${build.dir}/${project.name}-${release.version}-demo-${deploy.tstamp}.zip">
+            <fileset dir="${build.dir}">
+                <include name="${project.name}.war"/>
+            </fileset>
+        	<fileset dir="${build.project}">
+        		<include name="readme.txt" />
+        	</fileset>
+        </zip>
+		<delete dir="${build.project}"></delete>
+	</target>
+
+</project>

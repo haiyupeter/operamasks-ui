@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>京东商城注册</title>
+<link href="css/360buy/regist.css" rel="stylesheet" type="text/css" />
+<link href="css/360buy/regist.personal.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../../demos/common/css/demo.css" />
+<script src="../../jquery.js" type="text/javascript"></script>
+<script src="../../ui/om-validate.js" type="text/javascript"></script>
+<!-- view_source_begin -->
+<script type="text/javascript">
+<!--
+// 鼠标聚焦后的提示信息
+var focusMsg = {
+		username:'4-20位字符，可由中文、英文、数字及“_”、“-”组成',
+		pwd:'6-16位字符，可由英文、数字及“_”、“-”组成',
+		pwd2:'请再次输入密码',
+		mail:'请输入常用的邮箱，将用来找回密码、接收订单通知等',
+		authcode:'请输入图片中的字符，不区分大小写'
+};
+$(function(){
+    // 自定义校验规则codeConfirm，校验验证码是否正确
+    $.validator.addMethod("codeConfirm", function(value) {
+    	return value === '38aa';
+    }, '验证码不正确');
+    // 在输入的时候展示输入密码强弱
+    $('#pwd').bind('keyup',function(key){
+        var element = $("#pwdstrength");
+        var value = $("#pwd").val();
+        var strength = 0;
+        if (value.length >= 6) {
+            $("#pwd_error").empty();
+            element.show();
+            if (/\d/i.test(value)) {
+                strength += 1;
+            }
+            if (/[a-z]/i.test(value)) {
+                strength += 1;
+            }
+            if (/[-_]/i.test(value)) {
+                strength += 1;
+            }
+            switch (strength) {
+                case 1:
+                    element.removeClass().addClass("strengthA");
+                    break;
+                case 2:
+                    element.removeClass().addClass("strengthB");
+                    break;
+                case 3:
+                    element.removeClass().addClass("strengthC");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            element.hide();
+        }
+    });
+    // 在鼠标聚焦到输入框的时候更改样式
+	$('#formpersonal input').bind('focus',function(){
+		var item = $(this);
+		item.removeClass('highlight2').addClass('highlight1');
+		var name = item.attr('name');
+		item.parent().find('#' + name + '_error').attr('class','focus').html(focusMsg[name]);
+	}).bind('blur',function(){
+		var item = $(this);
+		item.removeClass('highlight1');
+		if(item.hasClass('highlight2')){
+			return;
+		}
+		var name = item.attr('name');
+		item.parent().find('#' + name + '_error').attr('class','null').html('');
+	});
+    var test = $("#formpersonal").validate({
+    	focusInvalid:false,
+    	onkeyup:false,
+        rules : {
+            username : {
+                required : true,
+                minlength : 4,
+                maxlength : 20,
+                // 服务端校验用户名是否已经存在
+                remote : '../../omRegValidateServlet'
+            },
+            pwd : {
+                required : true,
+                minlength : 6,
+                maxlength : 16
+            },
+            pwd2 : {
+                required : true,
+                minlength : 6,
+                maxlength : 16,
+                equalTo : '#pwd'
+            },
+            mail : {
+            	email : true,
+            	required : true,
+            	maxlength : 50
+            },
+            authcode : {
+            	required : true,
+            	codeConfirm : true
+            }
+        },
+        messages : {
+            username : {
+                required : "请输入用户名",
+                minlength : "用户名长度只能在4-20位字符之间",
+                maxlength : "用户名长度只能在4-20位字符之间",
+                remote : "此用户已经被注册"
+            },
+            pwd : {
+                required : "请输入密码",
+                minlength : "密码长度只能在6-16位字符之间",
+                maxlength : "密码长度只能在6-16位字符之间"
+            },
+            pwd2 : {
+                required : "请输入密码",
+                minlength : "密码长度只能在6-16位字符之间",
+                maxlength : "密码长度只能在6-16位字符之间",
+                equalTo : "两次输入密码不一致"
+            },
+            mail : {
+            	email : '邮箱格式不正确',
+            	required : '请输入邮箱',
+            	maxlength : '您填写的邮箱过长，邮件地址只能在50个字符以内'
+            },
+            authcode : {
+            	required : '请输入验证码'
+            }
+        },
+        submitHandler : function(){
+            alert('提交成功！');
+            $("#pwdstrength").hide();
+            $(this.currentForm).find('label.succeed').removeClass('succeed');
+            this.currentForm.reset()
+            return false;
+        },
+        showErrors: function(errorMap, errorList) {
+            if(errorList && errorList.length > 0){
+                $.each(errorList,function(index,obj){
+                	var item = $(obj.element); 
+            		var name = item.attr('name');
+            		// 给输入框添加出错样式
+            		item.addClass('highlight2');
+            	    // 填写出错信息
+            		item.parent().find('#' + name + '_error').attr('class','error').html(obj.message);
+            	    // 隐藏输入框成功提示
+            		item.parent().find('#' + name + '_succeed').removeClass('succeed');
+                });
+            }else{
+            	var item = $(this.currentElements);
+            	var name = item.attr('name');
+            	// 显示输入框成功提示
+            	item.parent().find('#' + name + '_succeed').addClass('succeed');
+            	// 删除出错信息
+            	item.parent().find('#' + name + '_error').attr('class','null').html("");
+            	// 移除出错样式
+            	item.removeClass('highlight2');
+            }
+        }
+    });
+    //添加校验，当form表单全部通过之后才能提交
+   /* $('#formpersonal').submit(function() {
+        if($('#formpersonal').valid()){
+           return true;
+        }else{
+	      return false;//返回false,阻止浏览器默认行为
+        }
+    });*/
+});
+//-->
+</script>
+<!-- view_source_end -->
+</head>
+<body>
+	<!-- view_source_begin -->
+	<div class="w" id="regist">
+		<div class="mt">
+			<h2>注册新用户</h2>
+			<b></b>
+		</div>
+		<div class="mc">
+			<ul class="tab">
+				<li class="curr">个人用户</li>
+				<li class="line"><a
+					href="#">企业用户</a>
+				</li>
+				<li><a href="#">校园用户</a>
+				</li>
+			</ul>
+			<form id="formpersonal" method="post" onsubmit="return false;">
+				<div class="form">
+					<ul class="service">
+						<li class="fore bl1">正品行货 品质保证机打发票</li>
+						<li class="bl2">211限时达 上午下单当日送达</li>
+						<li class="bl3">全场免运费 不限金额不限地区</li>
+						<li class="bl4">售后100分 收检100分钟内给出处理意见</li>
+					</ul>
+					<div class="item">
+						<span class="label"><b class="ftx04">*</b>用户名：</span>
+						<div class="fl">
+							<input type="text" id="username" name="username" class="text"
+								tabindex="1" sta="0"> <label id="username_succeed"
+								class="blank"> </label> <span class="clr"></span>
+							<div id="username_error" class="null"></div>
+						</div>
+					</div>
+					<div id="o-password">
+						<div class="item">
+							<span class="label"><b class="ftx04">*</b>设置密码：</span>
+							<div class="fl">
+								<input type="password" id="pwd" name="pwd" class="text"
+									tabindex="2" sta="0"> <label id="pwd_succeed"
+									class="blank"> </label><span class="clr"></span> <label class="hide"
+									id="pwdstrength"> <span class="fl">安全程度：</span><b></b>
+								</label> <label id="pwd_error" class="null"></label>
+							</div>
+						</div>
+						<div class="item">
+							<span class="label"><b class="ftx04">*</b>确认密码：</span>
+							<div class="fl">
+								<input type="password" id="pwd2" name="pwd2" class="text"
+									tabindex="3"> <label id="pwd2_succeed" class="blank">
+								</label> <span class="clr"></span> <label id="pwd2_error"> </label>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<span class="label"><b class="ftx04">*</b>邮箱：</span>
+						<div class="fl">
+							<input type="text" id="mail" name="mail" class="text"
+								tabindex="4"> <label id="mail_succeed" class="blank">
+							</label> <label class="ftx23"> 免费邮箱：</label><a target="_blank"
+								href="http://login.mail.sohu.com/rapidReg/cooregister.jsp?form=360buy"
+								class="flk13">搜狐</a> <a target="_blank"
+								href="http://reg.email.163.com/mailregAll/reg0.jsp?from=360buy"
+								class="flk13">网易</a> <span class="clr"></span>
+							<div id="mail_error"></div>
+						</div>
+					</div>
+					<div class="item">
+						<span class="label">推荐人用户名：</span>
+						<div class="fl">
+							<input type="text" id="referrer" name="referrer" class="text"
+								value="可不填" tabindex="5"
+								style="color: rgb(153, 153, 153); font-size: 12px;"> <label
+								id="referrer_succeed" class="blank invisible"> </label> <span
+								class="clr"></span> <label id="referrer_error"> </label>
+						</div>
+					</div>
+					<div class="item">
+						<span class="label"><b class="ftx04">*</b>验证码：</span>
+						<div class="fl">
+							<input type="text" id="authcode" name="authcode"
+								class="text text-1" tabindex="6" autocomplete="off"
+								maxlength="6" sta="0"> <label class="img"> <img
+								id="JD_Verification1" ver_colorofnoisepoint="#888888"
+								src="./images/360buy/JDVerification.gif" alt=""
+								style="cursor: pointer; width: 100px; height: 26px;"> </label> <label
+								class="ftx23"> &nbsp;看不清？<a href="javascript:void(0)"
+								onclick="verc()" class="flk13">换一张</a>
+							</label> <label id="authcode_succeed" class="blank invisible"> </label> <span
+								class="clr"></span> <label id="authcode_error" class="null"></label>
+						</div>
+					</div>
+					<div class="item">
+						<span class="label">&nbsp;</span> <input type="submit"
+							class="btn-img btn-regist" id="registsubmit" value="同意以下协议，提交"
+							tabindex="8">
+					</div>
+				</div>
+			</form>
+			<!--[if !ie]>form end<![endif]-->
+			<div id="protocol-con">
+				<h4>京东商城网站用户注册协议</h4>
+			</div>
+		</div>
+		<!--[if !ie]>mc end<![endif]-->
+	</div>
+	<!-- view_source_end -->
+    <div id="view-desc">
+    <p>仿京东商城的个人注册页面，涵盖validate的内置校验、自定义校验和服务端校验功能。
+    	服务端检验发ajax请求去后台判断用户名是否存在。使用模拟数据，当用户名为admin的时候提示用户名已经存在</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../demos/common/js/themeloader.js"></script>
+</html>

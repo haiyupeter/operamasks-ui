@@ -1,0 +1,72 @@
+.om-panel {
+ 	font-size: 12px;
+    overflow: auto;
+}
+.om-panel-header {
+	background: url("images/panel/panel_title.png") repeat-x ;
+	border: 1px solid #99BBE8;
+    color: #15428B;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 12px;
+    padding: 5px;
+    position: relative;
+}
+.om-panel-with-icon {
+	padding-left: 18px;
+}
+.om-panel-icon {
+	height: 16px;
+    left: 5px;
+    position: absolute;
+    top: 4px;
+    width: 16px;
+}
+
+
+.om-panel-body {
+	border: 1px solid #99BBE8;
+    border-width: 0 1px 1px;
+    overflow: auto;
+}
+.om-panel-body-noheader {
+	border-top-width: 1px;
+}
+.om-panel-body-noborder {
+	border-width: 0;
+}
+
+
+
+
+.om-panel-tool {
+	position: absolute;
+    right: 5px;
+    top: 3px;
+}
+.om-panel-tool div {
+	cursor: pointer;
+    display: block;
+    float: right;
+    height: 16px;
+    margin-left: 2px;
+    opacity: 0.6;
+    width: 16px;
+}
+.om-panel-tool-close {
+	background : url(images/panel/panel_tools.gif) no-repeat -16px 0;
+}
+.om-panel-tool-max {
+	background : url(images/panel/panel_tools.gif) no-repeat 0 -16px;
+}
+.om-panel-tool-min {
+	background : url(images/panel/panel_tools.gif) no-repeat 0 0;
+}
+.om-panel-tool-collapse {
+	background : url(images/panel/panel_tool_collapse.gif) no-repeat 0 0;
+}
+.om-panel-tool-expand {
+	background : url(images/panel/panel_tool_expand.gif) no-repeat 0 0;
+}
+
+

@@ -1,0 +1,438 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omSlider tests</title> 
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Expires" CONTENT="0"/> 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-slider.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />  
+<style>
+	.om-slider-nav-classical li.activeNavCls{
+		background-color: red;
+		color: green;
+		font-weight: bold;
+	}
+</style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        // ****************options test***************************
+        
+        $('#animSpeed1').omSlider({
+             animSpeed:1000,
+             autoPlay:false
+         });
+         $('#animSpeed2').omSlider({
+             animSpeed:2000,
+             autoPlay:false
+         });
+         $('#animSpeed3').omSlider({
+             animSpeed:300,
+             autoPlay:false
+         });
+         $('#delay').omSlider({
+             delay:1500,
+             autoPlay:false
+         });
+         
+         $('#effect1').omSlider({
+             effect:false,
+             autoPlay:false
+         });
+         $('#effect2').omSlider({
+             effect:true,
+             autoPlay:false
+         });
+         $('#effect3').omSlider({
+             effect:'slide-v',
+             autoPlay:false
+         });
+         $('#effect4').omSlider({
+             effect:'slide-h',
+             autoPlay:false
+         });
+         $('#effect5').omSlider({
+             effect:'random',
+             autoPlay:false
+         });
+         $('#pauseOnHover').omSlider({
+             autoPlay:true,
+             interval:1000,
+             pauseOnHover:true
+         });
+         
+         //********************************************************
+       $('.tpDIV>div').css({
+            border:'2px solid red',
+            width:'200px',
+            height:'150px'
+         });
+         $('#autoPlay1').omSlider({
+             autoPlay:true,
+             interval:1000
+         });
+         $('#autoPlay2').omSlider({
+             autoPlay:false
+         });
+         $('#interval').omSlider({
+             autoPlay:true,
+             interval:2000
+         });
+         /*
+         $('#directionNav1').omSlider({
+             directionNav:true
+         });
+         $('#directionNav2').omSlider({
+             directionNav:false
+         });
+         
+         $('#controlNav1').omSlider({
+             autoPlay:true,
+             interval:1000,
+             controlNav:false
+         });
+         $('#controlNav2').omSlider({
+             controlNav:true
+         });
+         $('#controlNav3').omSlider({
+             controlNav:'dot'
+         });
+         $('#controlNav4').omSlider({
+             controlNav:'#nav',
+             autoPlay:false
+         });
+         $('#activeNavCls').omSlider({
+             activeNavCls:'activeNavCls',
+             autoPlay:false
+         });
+         
+         
+         $('#startSlide').omSlider({
+             startSlide:3,
+             autoPlay:false
+         });
+        
+         $('#methodTest').omSlider({
+             autoPlay:false
+         });
+         $('#boundTest').omSlider({
+             autoPlay:false
+         });
+         */
+         
+         // ****************method test***************************
+         
+    }); 
+    
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+        slider测试案例，API属性总共 <span class="apiNo" number="10"></span> 个，
+        案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+        边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">接口测试案例</a></li>
+    </ul>
+    <div id="tabs-1">
+    <div class="testPoint">
+            <span class="title">测试animSpeed属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">slider1每次切换时共花1秒。slider2每次切换时共花2秒。slider3每次切换时共花0.3秒</div>
+            <div  class="tpDIV">
+                <div id="animSpeed1">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="animSpeed2">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="animSpeed3">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">测试delay属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">快速地把鼠标移动到导航条上面来切换图片，可以看到并不是每次移动都会真正切换，而是在鼠标移动到导航条上后大约1.5秒才处理一次</div>
+            <div  class="tpDIV">
+                <div id="delay">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">属性测试点7：测试effect属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">slider1切换时没有动画效果。slider2切换时有淡入淡出效果。slider3切换时有垂直滑动效果。slider4切换时有水平滑动效果。slider5随机切换效果。</div>
+            <div  class="tpDIV">
+                <div id="effect1">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="effect2">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="effect3">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="effect4">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="effect5">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">测试pauseOnHover属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">不用作任何操作，图片会自动切换。但是把鼠标放在slider上时将会临时停止切换（不再切换，鼠标移开后又继续切换）。</div>
+            <div  class="tpDIV">
+                <div id="pauseOnHover">
+				    <img src="images/turtle.jpg" />
+				    <img src="images/rabbit.jpg" />
+				    <img src="images/penguin.jpg" />
+				    <img src="images/lizard.jpg" />
+				    <img src="images/crocodile.jpg" />
+				</div>
+            </div>
+        </div>
+    
+    
+   <!-- 
+        <div class="testPoint">
+            <span class="title">属性测试点1：测试activeNavCls属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">导航条上选中的那个的样式背景红色文字绿色（其它slider导航条上选中的默认都是蓝色背景白色字）。</div>
+            <div  class="tpDIV">
+                <div id="activeNavCls">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+    -->   
+        <div class="testPoint">
+            <span class="title">属性测试点3：测试autoPlay属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">第一个slider不用作任何操作，图片会自动切换，每隔1秒切换一次。第二个则不会自动切换</div>
+            <div  class="tpDIV">
+                <div id="autoPlay1">
+				    <img src="images/turtle.jpg" />
+				    <img src="images/rabbit.jpg" />
+				    <img src="images/penguin.jpg" />
+				    <img src="images/lizard.jpg" />
+				    <img src="images/crocodile.jpg" />
+				</div>
+				<div id="autoPlay2">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+     <!-- 
+        <div class="testPoint" style="position: relative;">
+            <span class="title">属性测试点4：测试controlNav属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">slider1没有导航条。slider2使用默认的导航条（跟属性测试点3的导航条是一样的）。slider3使用圆点导航条。slider4使用自定义的导航条(第一个/第二个/第三个/第四个)</div>
+            <div  class="tpDIV">
+                <div id="controlNav1">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="controlNav2">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="controlNav3">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <div id="controlNav4">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+                <div id="nav" style="position: relative;bottom:35px;left:240px">
+                    <span style="margin: 0 10px;border:1px solid gray;background-color: #cccccc">第一个</span>
+                    <span style="margin: 0 10px;border:1px solid gray;background-color: #cccccc">第二个</span>
+                    <span style="margin: 0 10px;border:1px solid gray;background-color: #cccccc">第三个</span>
+                    <span style="margin: 0 10px;border:1px solid gray;background-color: #cccccc">第四个</span>
+                </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">属性测试点6：测试directionNav属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">鼠标移到slider1上时，会出现切换上一个或下一个面板的方向导航键。鼠标移到slider2上时，不会出现切换上一个或下一个面板的方向导航键。</div>
+            <div  class="tpDIV">
+                <div id="directionNav1">
+				    <img src="images/turtle.jpg" />
+				    <img src="images/rabbit.jpg" />
+				    <img src="images/penguin.jpg" />
+				    <img src="images/lizard.jpg" />
+				    <img src="images/crocodile.jpg" />
+				</div>
+                <div id="directionNav2">
+				    <img src="images/turtle.jpg" />
+				    <img src="images/rabbit.jpg" />
+				    <img src="images/penguin.jpg" />
+				    <img src="images/lizard.jpg" />
+				    <img src="images/crocodile.jpg" />
+				</div>
+            </div>
+        </div>
+        -->
+        <div class="testPoint">
+            <span class="title">属性测试点8：测试interval属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">不用作任何操作，图片会自动切换，每隔2秒切换一次</div>
+            <div  class="tpDIV">
+                <div id="interval">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+        
+        <!--  
+        <div class="testPoint">
+            <span class="title">属性测试点10：测试startSlide属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">显示完后默认激活第4个图片（其它的都是默认激活第1个）</div>
+            <div  class="tpDIV">
+                <div id="startSlide">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+            </div>
+        </div>
+        
+        <div  class="testPoint">
+            <span class="title">功能测试点1：测试prev()和next()方法和slideTo(index)方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击“上一个”切换到上一个，点击“下一个”切换到下一个，点击“转换到第3个”转换到第3个</div>
+            <div  class="tpDIV">
+                <div id="methodTest">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <button onclick="$('#methodTest').omSlider('prev');">上一个</button>
+                <button onclick="$('#methodTest').omSlider('next');">下一个</button>
+                <button onclick="$('#methodTest').omSlider('slideTo',2);">转换到第3个</button>
+            </div>
+        </div>
+        <div style="margin:20px">需求设计中的各场景的测试请直接进入demos中测试，demos中的示例刚好是这些场景的覆盖。</div>
+    
+        <div  class="testPoint">
+            <span class="title">边界值测试点1：测试和slideTo(index)参数非法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮后，不进行切换，但是也不要出其它问题</div>
+            <div  class="tpDIV">
+                <div id="boundTest">
+                    <img src="images/turtle.jpg" />
+                    <img src="images/rabbit.jpg" />
+                    <img src="images/penguin.jpg" />
+                    <img src="images/lizard.jpg" />
+                    <img src="images/crocodile.jpg" />
+                </div>
+                <button onclick="$('#boundTest').omSlider('slideTo','aa');">转换到第'aa'个</button>
+            </div>
+        </div>
+        -->
+    </div>
+    
+        
+    
+</div>
+
+    
+</body> 
+</html>

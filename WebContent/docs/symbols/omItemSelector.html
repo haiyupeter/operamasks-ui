@@ -1,0 +1,1337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omItemSelector</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omItemSelector
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#events">事件</a></li>
+                    
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    左移右移组件。两个多选列表框，可以从左边将一些item移到右边，也可以从右边将一些item移到左边。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>可以使用本地数据源，也可以使用远程数据源</li>
+     <li>支持鼠标拖动排序操作</li>
+     <li>包含常用的【左移】【右移】【全部左移】【全部右移】【上移】【下移】【置顶】【置底】操作</li>
+     <li>提供丰富的事件</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#itemselector').omItemSelector({
+        dataSource:[
+                 {text:'Java',value:'1'},
+                 {text:'JavaScript',value:'2'},
+                 {text:'C',value:'3'},
+                 {text:'PHP',value:'4'},
+                 {text:'ASP',value:'5'}
+        ],
+        width:250,
+        height:200
+    });
+});
+&lt;/script>
+
+&lt;div id="itemselector"/>
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-itemselector.js.html">om-itemselector.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omItemSelector</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            构造函数.
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象：{}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-autoSort">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">autoSort</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否自动排序。设为true后每次将item左移或右移时将会对item进行排序（按照dataSource中数据源的顺序）。<b>注意：启用此功能后将无法使用拖动排序功能，也不会显示【上移】【下移】【置顶】【置底】这几个按钮。</b>
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>autoSort : true</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-availableTitle">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">availableTitle</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'可选项'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        左边可选项的标题。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>availableTitle : '可加入的用户组'</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-clientFormatter">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">clientFormatter</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Function</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        每个dataSource中每个item如何显示到列表中。默认仅显示item数据的text属性值。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>//对于{text:'中国',value:'zh_CN'}将显示成'中国(zh_CN)'这样
+clientFormatter  : function(itemData,index){
+    return itemData.text+'('+itemData.value)+')';//返回一段html代码
+}
+
+//对于{name:'张三',role:'经理',value:'PM'}将显示成红色的'张三(经理)'这样
+//对于{name:'李四',role:'普通员工',value:'EMP'}将显示成黑色的'李四'这样
+clientFormatter  : function(itemData,index){
+    if(itemData.role=='经理'){
+        return '&lt;font color="red">'+itemData.name+'('+itemData.value)+')&lt;/font>';
+    }else{
+        return itemData.name;
+    }
+}</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-dataSource">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">dataSource</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Array[JSON],URL</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        数据源属性，可以设置为“后台获取数据的URL”或者“JSON数据”
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>dataSource : '/data/items.json' 
+或者
+dataSource : [{"value":"001","text":"张三"},{"value":"002","text":"李四"}]
+或者下面这种(这种非标准的itemData一定要配合clientFormatter使用)
+dataSource : [{"value":"001","name":"张三"},{"value":"002","name":"李四"}]</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-height">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">height</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'200px'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>height : '300px'</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-preProcess">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">preProcess</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Function</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">无</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        给Ajax返回的原始数据的进行预处理的函数。其中参数data是服务器返回的数据。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>preProcess  : function(data){
+    return data;//这里返回处理后的数据
+}</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-selectedTitle">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">selectedTitle</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'已选项'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        右边已选项的标题。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>selectedTitle : '已加入的用户组'</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-toolbarIcons">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">toolbarIcons</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Arrat[Number]</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[1,2,3,4]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        工具栏显示哪些功能图标。各图标的序号分别是：<ul>
+    <li>0：留下空白区域</li>
+    <li>1：“全部右移”图标</li>
+    <li>2：“右移”图标</li>
+    <li>3：“左移”图标</li>
+    <li>4：“全部左移”图标</li>
+    <li>5：“置顶”图标</li>
+    <li>6：“上移”图标</li>
+    <li>7：“下移”图标</li>
+    <li>8：“置底”图标</li>
+</ul>。比如：<br/><ul>
+    <li>[2,3]表示仅显示“右移”图标和“左移”图标，且“右移”图标在前“左移”图标在后。</li>
+    <li>[3,2]表示仅显示“右移”图标和“左移”图标，且“左移”图标在前“右移”图标在后。</li>
+    <li>[1,2,3,4,5,6,7,8]表示显示所有图标，且按上面序号标示的顺序。</li>
+    <li>[1,2,3,4,0,5,6,7,8]表示显示所有图标，且按上面序号标示的顺序，其中“全部左移”和“置顶”之间有个空白区域。</li>
+    <li>[1,0,2,0,3,0,4]表示显示“全部右移”、“右移”、“左移”、“全部左移”4个图标，且任意两个之间都有个空白区域。</li>
+</ul>
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>toolbarIcons : [1,2,0,3,5,6,7,8]</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-value">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">value</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Array[JSON]</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        初始值。如dataSource:[{text:'abc',value:1},{text:'def',value:2},{text:'xyz',value:3}]且value:[2]，则左边显示1、3两条，右边显示第2条。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>value : [1,3]</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-width">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">width</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'250px'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>width : '300px'</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-value">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">value</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omItemSelector.html#value">value</a></b>(v)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    得到或设置组件的value值。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>v</b>&nbsp;-
+	                                                设置的值，不设置表示获取值
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>如果没有参数时表示getValue()返回combo的value值，比如dataSource:[{text:'abc',value:true},{text:'def',value:2},{text:'xyz',value:'x'}]选择了第2条和第三条，则getValue返回[2,'x']。如果有参数时表示setValue(newValue)返回jQuery对象。</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                               
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+          <!-- doc_events_begin -->
+          <div id="events">
+            <!-- ============================== event details ========================= -->     
+            <h2 class="top-header">事件</h2>
+            <div id="events-list">
+	            <ul class="events-list">
+	                
+	                    <li class="event" id="event-onBeforeItemDeselect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onBeforeItemDeselect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(itemDatas, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            从右边将item移到左边之前执行的动作。如果返回false，则item不会进行移动。用户可以在这个事件中进行一些其它有用的处理，比如能实现“员工是基本角色，不可以退出该角色”的功能
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>itemDatas</b>&nbsp;-
+	                                        正在移动的item对应的数据组成的数组，比如dataSource是[{text:'A',value:0},{text:'B',value:1}]，则移动A时itemDatas是[{text:'A',value:0}]；移动B时itemDatas是[{text:'B',value:1}]，同时移动A、B时itemDatas是[{text:'A',value:0},{text:'B',value:1}]
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onBeforeItemDeselect:function(itemDatas,event){
+    $.each(itemDatas,function(index,data){
+        if(data.text=='员工'){
+            alert('员工是基本角色，不可以退出该角色！');
+            return false;
+        } 
+    });
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onBeforeItemSelect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onBeforeItemSelect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(itemDatas, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            从左边将item移到右边之前执行的动作。如果返回false，则item不会进行移动。用户可以在这个事件中进行一些其它有用的处理，比如监听此方法然后return selectedItems.length &lt; 3就能实现“最多只能选择3个item”的功能
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>itemDatas</b>&nbsp;-
+	                                        正在移动的item对应的数据组成的数组，比如dataSource是[{text:'A',value:0},{text:'B',value:1}]，则移动A时itemDatas是[{text:'A',value:0}]；移动B时itemDatas是[{text:'B',value:1}]，同时移动A、B时itemDatas是[{text:'A',value:0},{text:'B',value:1}]
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onBeforeItemSelect:function(itemDatas,event){
+    alert('即将加入到:'+itemDatas.length+'个群中');
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onError">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onError</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(xmlHttpRequest, textStatus, errorThrown, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            以Ajax方式加载数据出错时的回调函数。可以在这里进行一些处理，比如以人性化的方式提示用户。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>xmlHttpRequest</b>&nbsp;-
+	                                        XMLHttpRequest对象
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>textStatus</b>&nbsp;-
+	                                        错误类型
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>errorThrown</b>&nbsp;-
+	                                        捕获的异常对象
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onError:function(xmlHttpRequest, textStatus, errorThrown,event){ 
+     alert('取数出错');
+ }</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onItemDeselect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onItemDeselect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(itemDatas, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            从右边将item移到左边之后执行的动作。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>itemDatas</b>&nbsp;-
+	                                        正在移动的item对应的数据组成的数组，比如dataSource是[{text:'A',value:0},{text:'B',value:1}]，则移动A时itemDatas是[{text:'A',value:0}]；移动B时itemDatas是[{text:'B',value:1}]，同时移动A、B时itemDatas是[{text:'A',value:0},{text:'B',value:1}]
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onItemDeselect :function(itemDatas,event){
+     alert('你刚刚去掉了'+itemDatas.length+'个条目');
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onItemSelect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onItemSelect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(itemDatas, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            从左边将item移到右边之后执行的动作。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>itemDatas</b>&nbsp;-
+	                                        正在移动的item对应的数据组成的数组，比如dataSource是[{text:'A',value:0},{text:'B',value:1}]，则移动A时itemDatas是[{text:'A',value:0}]；移动B时itemDatas是[{text:'B',value:1}]，同时移动A、B时itemDatas是[{text:'A',value:0},{text:'B',value:1}]
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onItemSelect:function(itemDatas,event){
+     alert('你刚刚选择了'+itemDatas.length+'个条目');
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onSort">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onSort</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(itemData, oldIndex, newIndex, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            改变排序之后执行的动作。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>itemData</b>&nbsp;-
+	                                        正在移动的item对应的数据，比如dataSource是[{text:'A',value:0},{text:'B',value:1}]，则移动A时itemData是{text:'A',value:0}；移动B时itemData是{text:'B',value:1}
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>oldIndex</b>&nbsp;-
+	                                        原来的序号（从0开始）
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>newIndex</b>&nbsp;-
+	                                        新的序号（从0开始）
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onSort :function(itemData,oldIndex,newIndex,event){
+     alert('你刚刚将：'+itemData.text+'从第'+(oldIndex+1)+'行移到了第'+(newIndex+1)+'行');
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onSuccess">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onSuccess</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(data, textStatus, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            以Ajax方式加载数据成功时的回调函数。此方法在渲染可选项item之前执行。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>data</b>&nbsp;-
+	                                        Ajax请求返回的数据
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>textStatus</b>&nbsp;-
+	                                        响应的状态
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>onSuccess:function(data, textStatus, event){
+    if(data.length==0){
+         alert('没有数据！');
+    } 
+}</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	            </ul>
+            </div>
+          </div>
+          <!-- doc_events_end -->
+       
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:59 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

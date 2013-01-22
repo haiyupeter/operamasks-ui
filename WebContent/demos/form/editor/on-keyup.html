@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>onKeyUp事件</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    <div>
+        你已经输入：<span id="countHTML"></span>个字符。（字数统计包含HTML代码。）
+    </div>
+    <div>
+        你已经输入：<span id="countText"></span>个文字。（字数统计包含纯文本。）
+    </div>
+    <script>
+        //         
+        function count(event) {
+            $('#countHTML').text($('.editor').omEditor('getData').length);
+            $('#countText').text($('.editor').omEditor('getPlainText').length);
+        }
+        $(function() {
+            var editor = $('.editor').omEditor({
+                onKeyUp : count
+            });
+            count();
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置onKeyUp属性，键盘输入内容后可以在此事件监听方法中获取编辑器的内容，或者内容长度，可实现字符/文字的统计功能。<br/>
+            可通过编辑器的 getData 和 getPlainText 方法获取当前编辑器的字符总数和文字总数。</p>
+    </div>
+</body>
+</html>

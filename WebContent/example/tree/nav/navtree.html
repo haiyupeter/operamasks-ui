@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>导航树</title>
+    
+    <script src="../../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+	<link rel="stylesheet" type="text/css" href="../../../demos/common/css/base.css" />
+	<link rel="stylesheet" href="../../../demos/common/css/demo.css">
+    <script type="text/javascript" src="../js/data.js"></script>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#navtree").omTree({
+                dataSource : navdata,
+                onSelect: function(nodedata){
+                	if(nodedata.nav){
+                		document.getElementById("content-frame").src = "http://"+nodedata.nav;
+                	}else if(nodedata.page){
+                		document.getElementById("content-frame").src = nodedata.page;
+                	}else if(nodedata.children){
+                		document.getElementById("content-frame").src = "inprogress.html";
+                	}
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+     <style type="text/css">
+    #body-table{
+       width:700px;
+    }
+    </style>
+</head>
+<body>
+      <!-- view_source_begin --> 
+	    <div id="content">
+		    <table id="body-table">
+		        <tr>
+		            <td class="left-panel" valign="top">
+		                <ul id="navtree">
+		                </ul>
+		            </td>   
+		            <td class="center-panel" valign="top">
+		                <div style="float:left;">
+		                    <div id="demo-frame"  style="width:580px;float:left;">
+		                        <iframe id="content-frame" name="content-frame" frameborder="0" src="default.html" style=" border: none;width: 580px;_width:590px;height:450px;"></iframe>
+		                    </div>
+		                </div>
+		                
+		            </td>
+		        </tr>
+	    	</table>
+	    </div>
+	<!-- view_source_end -->
+	<div id="view-desc">
+        点击左边的树节点可以导航内容区域显示的页面，这些页面可以通过http访问，也可以是本地页面。<br/>
+        树节点的json数据结构灵活，除了一些关键属性如：text,children,expanded等，还可以增加其他属性，本示例就是将页面地址保存在“nav”属性中。
+    </div>   
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

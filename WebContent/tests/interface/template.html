@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui {0} tests</title> 
+
+
+<script type="text/javascript" src="../jquery.js"></script> 
+<script type="text/javascript" src="../ui/om-core.js" ></script>
+<script type="text/javascript" src="../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../tests/common/js/test.js" ></script>
+<link rel="stylesheet" type="text/css" href="../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../themes/default/om-core.css" />
+<link rel="stylesheet" type="text/css" href="../themes/default/om-tabs.css" />
+<link rel="stylesheet" type="text/css" href="../themes/default/om-theme.css" />
+<!-- 如上文件必须引入 -->
+ 
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+
+      //*******************you javascript********************
+      
+      //*******************you javascript********************
+        
+       
+    }); 
+</script> 
+ 
+</head> 
+<body> 
+
+  <div class="total">
+		***测试案例，API属性总共 
+		 <!-- 请输入API属性个数 -->
+		  <span class="apiNo" number="30"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个。
+  </div>
+
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	
+	<!-- 下面是API测试的相关代码 -->
+	<div id="tabs-1">
+		<!-- 针对某一个属性的测试单元 -->
+		<div  class="testPoint">
+			<span class="title">属性测试点1：测试***属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">****<!-- 对预期结果的说明 --></div>
+			<div  class="tpDIV">
+				<!-- 此处放置你的测试代码 -->
+			</div>
+	    </div>
+	    <!-- 针对某一个属性的测试单元 -->
+	    
+	</div>
+	
+	<!-- 下面是功能测试的相关代码 -->
+	<div id="tabs-2">
+		<div  class="testPoint">
+			<span class="title">功能测试点1：测试***功能</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">****<!-- 对预期结果的说明 --></div>
+			<div  class="tpDIV">
+				<!-- 此处放置你的测试代码 -->
+			</div>
+	   </div>
+	</div>
+	
+	<!-- 下面是边界值测试的相关代码 -->
+	<div id="tabs-3">
+		<div  class="testPoint">
+			<span class="title">边界值测试点1：测试***边界</span>
+			<br />
+			<p>输入值：</p>
+			<div class="textresult">
+			    <ul>
+			      <li>+100 和 -100 （边界值）</li>
+			      <li>101 和 -101 （大于最大值和小于最小值）</li>
+			      <li>0 和 99 （边界值以内值）</li>
+			    </ul>
+			    另外说明*****<!-- 对输入值的说明 -->
+			 </div>
+			<p>操作和预期结果：</p>
+			<div class="textresult">*****<!-- 对预期结果的说明 --></div>
+			<div  class="tpDIV">
+				<!-- 此处放置你的测试代码 -->
+			</div>
+	   </div>
+	</div>
+</div>
+
+	
+</body> 
+</html>

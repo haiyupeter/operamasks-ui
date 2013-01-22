@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>messageTip右下角提示</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-messagetip.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+    <!--
+    //普通提醒，要手动关闭，关闭时无回调
+    function showSimpleTip(){
+        $.omMessageTip.show({
+            title : '操作成功',
+            content : '密码修改成功！'
+        });
+    }
+    //普通提醒（标题和内容可使用html代码），要手动关闭，关闭时无回调
+    function showHtmlTip(){
+        $.omMessageTip.show({
+            title : '<font color="blue">QQ新闻</font>',
+            content :   '标题是蓝色的看到没有？下面的文字带有链接看到没有？<br/><br/>'+
+                        '<a href="http://www.operamasks.org/news/static/NEWS00053.html" target="_blank" style="color:red">AOM V3.1正式版发布</a><br/><br/>'+
+                        '<a href="http://www.apusic.com/market/09zhaopin/home.htm" target="_blank" style="color:red">金蝶中间件诚聘英才</a><br/>'
+        });
+    }
+    //定时消失提醒，当然也可以手动关闭，关闭时无回调
+    function showTimeoutTip(){
+        $.omMessageTip.show({
+            title : '提示',
+            content : '3秒后自动消失！',
+            timeout : 3000
+        });
+    }
+    //关闭时有回调的提醒，要手动关闭
+    function showCallbackTip(){
+        $.omMessageTip.show({
+            title : '提醒4',
+            content : '关闭后会执行回调函数！',
+            onClose : function(){
+                showResult('提醒4被关闭！');
+            }
+        });
+    }
+    //关闭时有回调的提醒，定时消失提醒，当然也可以手动关闭
+    function showTimeoutCallbackTip(){
+        $.omMessageTip.show({
+            title : '提醒5',
+            content : '3秒后自动关闭（手动关闭也可以），关闭后会执行回调函数！',
+            timeout : 3000,
+            onClose : function(){
+                showResult('提醒5被关闭！');
+            }
+        });
+    }
+    
+    
+    //回调函数（显示信息到页面中）
+    function showResult(msg){
+        $('#result').html(msg).fadeIn('slow').delay(1500).fadeOut('slow');
+    }
+    //-->
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    
+    <button onclick="showSimpleTip();">普通的提醒（手动关闭）</button>
+    <button onclick="showHtmlTip();">标题和内容可用html的提醒（手动关闭）</button>
+    <button onclick="showTimeoutTip();">自动关闭的提醒（3秒后自动关闭）</button>
+    <button onclick="showCallbackTip();">关闭时执行回调函数的提醒（手动关闭）</button>
+    <button onclick="showTimeoutCallbackTip();">关闭时执行回调函数的提醒（3秒后自动关闭）</button>
+    <br/><br/>
+    <div style="color:red;font-size: 2em" id="result"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        使用$.omMessageTip.show(config)可以在页面右下角弹出各种信息提示框，可以定时关闭，也可以监听关闭事件。<br/>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

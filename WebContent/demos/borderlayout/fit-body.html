@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>自适应窗口大小</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    html, body{ width: 100%; height: 100%; padding: 0; margin: 0;overflow: hidden;}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var element = $('body').omBorderLayout({
+           	   panels:[{
+           	        id:"north-panel",
+           	        title:"This is north panel",
+           	        region:"north",
+           	        resizable:true,
+           	        collapsible:true,
+           	     	closable: true
+           	    },{
+           	        id:"south-panel",
+           	        title:"This is south panel",
+           	        region:"south",
+           	        resizable:true,
+           	        collapsible:true,
+           	        height:80
+           	    },{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is west panel",
+           	        region:"west",width:250
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	        title:"This is east panel",
+           	        region:"east",
+           	        width:150
+           	    }]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<!-- view_source_begin -->
+<body>
+   	<div id="north-panel">north</div>
+   	<div id="center-panel">
+   	    <div id="view-desc">
+       页面加了DOCTYPE声明后body和html默认是没有高度的。因此如果要自适应body大小需要给html和body加上100%的高度。另外，浏览器会默认给html和body加上页边距，所以还要设置html和body的padding和margin为0</div>
+   	</div>
+   	<div id="east-panel">east</div>
+   	<div id="west-panel">west</div>
+   	<div id="south-panel">sorth</div>
+</body>
+<!-- view_source_end -->
+</html>

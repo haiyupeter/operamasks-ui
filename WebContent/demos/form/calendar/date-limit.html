@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>日期范围</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-calendar.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var today = new Date();
+            var start = new Date();
+            var end = new Date();
+            start.setDate(5);
+            end.setDate(15);
+            $('#container').omCalendar({
+                minDate : start,
+                maxDate : end
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="container" />
+    <!-- view_source_end -->
+    <div id="view-desc">设置minData和maxDate属性指定最小最大日期限制。minDate 和 maxDate 属性类型必须是 JavaScript 中的 Date 类型。
+        <br /> 在此示例中最大日期为本月的15号 ，最小日期为 本月的6号。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

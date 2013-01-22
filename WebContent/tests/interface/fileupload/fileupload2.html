@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>omFileUpload Test</title>
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script>
+<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<style type="text/css">
+   .VPDIV{
+	width: 400px;
+	height: 200px;
+   }
+</style>
+<script type="text/javascript">
+   $(document).ready(function(){
+	   $("#upload1").omFileUpload({action:'/operamasks-ui/omFileUpload.do',multi:true});
+	   $("#upload2").omFileUpload({action:'/operamasks-ui/omFileUpload.do',multi:true});
+	   
+   });
+   
+   function upload(){
+	   $("#upload1").omFileUpload("upload",0);
+	   
+   }
+   
+   function cancelUpload(){
+	   $("#upload2").omFileUpload("cancel",0);
+   }
+</script>
+</head>
+
+<body>
+   <div class="testPoint">
+			<span class="title">方法测试点1：测试upload方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     选择多个要上传的文件，点击“上传第一个文件”后，将上传文件列表中的第一个文件上传。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload1" name="upload1"/>
+			    <input type="button" id="btn1" value="上传第一个文件" onclick="upload()"/>
+			</div>
+   </div>
+   
+   <div class="testPoint">
+			<span class="title">方法测试点2：测试cancel方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     选择多个要上传的文件，点击“取消上传”后，将上传列表中第一个文件删除掉，如果第一个文件在上传中，将停止上传并删除。
+			</div>
+			<div class="tpDIV VPDIV">
+			    <input type="file" id="upload2" name="upload2"/>
+			    <a href="#" onclick="$('#upload2').omFileUpload('upload');return false">Upload Files</a> 
+			    <input type="button" id="btn2" value="取消上传" onclick="cancelUpload()"/>
+			</div>
+   </div>
+   
+</body>
+</html>

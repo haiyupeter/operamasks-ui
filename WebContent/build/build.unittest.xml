@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="unittest" default="qunit" >
+	
+	<!--Reference other libraries -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="lib/ant-contrib.jar" />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="lib/ant-contrib.jar" />
+	
+	<!--The task of handling strings -->
+	<scriptdef name="substring" language="javascript">
+		<attribute name="text" />
+		<attribute name="start" />
+		<attribute name="end" />
+		<attribute name="dilimeter" />
+		<attribute name="property" />
+		<attribute name="path" />
+		<![CDATA[
+		       var text      = attributes.get("text");		  
+			   var start     = attributes.get("start");
+			   var end       = attributes.get("end");
+			   var dilimeter = attributes.get("dilimeter");
+			   var textPath  = "";
+			   project.setProperty(attributes.get("property"), text.substring(text.lastIndexOf(dilimeter)-start ) );
+			   project.setProperty(attributes.get("path"), text.substring(0,text.lastIndexOf(dilimeter)-start-1 ) );
+		     ]]>
+	</scriptdef>
+
+	<!-- unit test use 'qunit' and 'phantomjs' -->
+	<target name="qunit" description="qunit javascript tests via phantomjs">
+		<tstamp/>	
+		<property name="cmd.exe.file" value="cmd" />
+		<property name="phantomjs.exe.file" value="../tests/unit/common/phantomjs" />
+		<property name="unit.test.basedir" value="../tests/unit/" />
+		<property name="run-qunit.js.file" value="../js/phantomjs-qunit-runner.js" />
+		<delete dir="${unit.test.basedir}/testoutput/" />
+		<mkdir dir="${unit.test.basedir}/testoutput/" />
+		<for param="tobetesthtml" keepgoing="true">
+			<path>
+				<fileset dir="${unit.test.basedir}" includes="**/*.html" excludes="**/index.html,**/all.html">
+					<depth max="1" />
+				</fileset >
+			</path>
+			<sequential>
+				<substring text="@{tobetesthtml}" property="subtext" start="-1" end="0" dilimeter="\" path="runner_path" />
+				<substring text="${runner_path}" property="dir" start="-1" end="0" dilimeter="\" path="runner_dir" />				
+				<exec executable="${basedir}/../tests/unit/common/phantomjs/phantomjs.exe" failonerror="true" dir="${phantomjs.exe.file}" output="${unit.test.basedir}/testoutput/${subtext}_${DSTAMP}${TSTAMP}.xml">
+					<arg value="${run-qunit.js.file}" />
+					<arg value="../../${dir}/${subtext}" />
+				</exec>
+			</sequential>
+		</for>
+	</target>
+
+</project>
+

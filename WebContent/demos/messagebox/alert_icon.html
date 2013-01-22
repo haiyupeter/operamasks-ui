@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>alert图标</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-draggable.js"></script>
+    <script src="../../ui/om-position.js"></script>
+    <script src="../../ui/om-messagebox.js"></script>
+    <script src="../../ui/om-button.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <style>
+    .om-messageBox-content .om-messageBox-image-myDefined{
+       background-image: url("smile.png");
+    }
+    </style>
+    <script type="text/javascript">
+        function showAlert(){
+            $.omMessageBox.alert({
+                content:'您还没有选择要删除的记录',
+                onClose:function(v){
+                    showResult('我知道了！');
+                }
+            });
+         }
+        function showSuccess(){
+            $.omMessageBox.alert({
+                 type:'success',
+                 title:'成功',
+                 content:'操作成功',
+                 onClose:function(v){
+                     showResult('我知道了！');
+                 }
+             });
+         }
+         function showError(){
+            $.omMessageBox.alert({
+                type:'error',
+                title:'失败',
+                content:'不能删除<font color="red">admin</font>用户',
+                onClose:function(v){
+                    showResult('我知道了！');
+                }
+            });
+         }
+         function showQuestion(){
+            $.omMessageBox.alert({
+                 type:'question',
+                 title:'提示',
+                 content:'提示内容',
+                 onClose:function(v){
+                     showResult('我知道了！');
+                 }
+             });
+         }
+         function showWarning(){
+            $.omMessageBox.alert({
+                 type:'warning',
+                 title:'警告',
+                 content:'该记录已被其它用户删除了，请刷新表格！',
+                 onClose:function(v){
+                     showResult('我知道了！');
+                 }
+             });
+         }
+         function showDefined(){
+            $.omMessageBox.alert({
+                content:'自定义图标',
+                type:'myDefined',
+                onClose:function(v){
+                    showResult('我知道了！');
+                }
+            });
+         }
+         function showResult(msg){
+             $('#result').html(msg).fadeIn('slow').delay(1500).fadeOut('slow');
+         }
+      </script>
+      <!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+    <button onclick="showAlert();">alert默认图标</button>
+    <button onclick="showSuccess();">success图标</button>
+    <button onclick="showError();">error图标</button>
+    <button onclick="showQuestion();">question图标</button>
+    <button onclick="showWarning();">warning图标</button>
+    <button onclick="showDefined();">自定义的图标</button>
+    <br/><br/>
+    <div style="color:red;font-size: 2em" id="result"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        $.omMessageBox.alert(config)可以通过type属性来定义几种常见的提示图标。<br/>
+         如果要自定义图标时只需要将type设成任意字符串（如"<font color='red'>xyz</font>"），然后再在页面head中添加样式　　<span style="font-weight: bolder">.om-messageBox-image-<font color='red'>xyz</font>{background-image:url(图片路径);}　　</span>即可。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

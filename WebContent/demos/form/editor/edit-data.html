@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>操作编辑器内容</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    <button onclick="alert($( '.editor' ).omEditor('getData'))">获取HTML内容</button>
+    <button onclick="alert($( '.editor' ).omEditor('getPlainText'))">获取文本内容</button>
+    <button onclick="$( '.editor' ).omEditor('setData','Content form setData')">设置内容</button>
+    <button onclick="$( '.editor' ).omEditor('insertText','Some Text')">插入文本</button>
+    <button onclick="$( '.editor' ).omEditor('insertHtml','&lt;a href=\'#\'&gt;link &lt;/a&gt;')">插入html</button>
+    <script>
+        $(function() {
+            var editor = $('.editor').omEditor();
+        });
+    </script>
+    <!-- view_source_end -->
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>多选树</title>
+    
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        var data = [{
+                "text": "node1",
+                "id": "n1",
+                "children":[{
+                    "text": "node11",
+                    "id": "n11"
+                }, {
+                    "text": "node12",
+                    "id": "n12"
+                }]
+            }, {
+                "text": "node2",
+                "expanded": true,
+                "id": "n2",
+                "children":[{
+                    "text":"node21",
+                    "id": "n21",
+                    "expanded": true,
+                    "children": [{
+                        "id": "n211",
+                        "text":"node211"
+                    },{
+                        "id": "n212",
+                        "text":"node212"
+                    }]
+                },{
+                    "text":"node22",
+                    "id": "n22"
+                }]
+            }, {
+                "text": "node3",
+                "id": "n3"
+            }, {
+                "text": "node4",
+                "id": "n4"
+            }];
+        $(document).ready(function(){
+            $("#mytree").omTree({
+                dataSource : data,
+                showCheckbox: true
+            });
+        });
+
+        function check(){
+            var node3=$("#mytree").omTree("findNode","id","n3");
+            $("#mytree").omTree("check", node3);
+        }
+        
+        function uncheck(){
+            var node3=$("#mytree").omTree("findNode","id","n3");
+            $("#mytree").omTree("uncheck", node3);
+        }
+        
+        function checkAll(){
+            $("#mytree").omTree("checkAll", true);
+        }
+        
+        function uncheckAll(){
+            $("#mytree").omTree("checkAll", false);
+        }
+        
+        function getChecked(){
+            var nodes = $("#mytree").omTree("getChecked", true);
+            var content = "";
+            for(var i = 0; i < nodes.length; i++){
+                content += nodes[i].text + "   ";
+            }
+            $("#content").html(content);
+        }
+        
+        function isCheck(){
+            var node3=$("#mytree").omTree("findNode","id","n3");
+            var ischecked = $("#mytree").omTree("isCheck", node3);
+            var content = ischecked?"选中了节点 node3":"没有选中了节点 node3";
+            $("#content").html(content);
+        }
+       
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="main">
+        <ul id="mytree">
+        </ul>
+        <br/>
+        <button onclick="check()">勾选node3</button>
+        <button onclick="uncheck()">取消勾选node3</button>
+        <button onclick="isCheck()">是否勾选node3</button>
+        <button onclick="getChecked()">获取勾选节点</button>
+        <button onclick="checkAll()">勾选全部节点</button>
+        <button onclick="uncheckAll()">取消勾选全部节点</button>
+        <div id="content">
+        </div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+       <p>设置showCheckbox:true，每个树节点前显示勾选框列，支持树节点的选中操作。</p>
+       <p>指定一个node参数，check方法和uncheck方法选中或者取消选中node节点；
+       通过isCheck方法判断node节点是否选中。getChecked方法接收的是一个布尔值checked，若checked为true，则表示使用的是获取选中节点，若为false，
+       获取的是未选中的节点。checkAll和uncheckAll方法勾选或者取消色选全部节点。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

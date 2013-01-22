@@ -1,0 +1,365 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui htmlEditor tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/editor/omeditor.js" ></script>
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-core.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-tabs.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-theme.css" />
+
+ 
+<script type="text/javascript" > 
+	function count(event)
+	{
+		$('#countHTML').text($('#editor_onkeyup').omEditor('getData').length);			
+	}
+	$(document).ready(function() { 
+    	var editor = $( '.editor' ).omEditor();
+ 		var editor_basicEntities=$( '#editor_basicEntities' ).omEditor({basicEntities:false});
+ 		var editor_readonly=$('#editor_readonly').omEditor({readOnly:true});
+ 		var editor_startupmode=$('#editor_startupmode').omEditor({startupMode:'source'});
+ 		var editor_startupfocus=$('#editor_startupfocus').omEditor({startupFocus:true});
+ 		var editor_toolbar=$('#editor_toolbar').omEditor({toolbar:'Basic'});
+ 		var editor_undostacksize=$('#editor_undostacksize').omEditor({undoStackSize :'2'});
+ 		var editor_resizable=$('#editor_resizable').omEditor({resizable :false});
+ 		var config ={
+ 		    keystrokes:
+ 			[
+ 			    [ OMEDITOR.CTRL + 84 /*T*/, 'bold' ]
+ 			]};
+		var editor_keystrokes=$('#editor_keystrokes').omEditor(config);
+		var editor_entermode=$('#editor_entermode').omEditor({enterMode:OMEDITOR.ENTER_BR});
+		var editor_enabletabkeytools=$('#editor_enabletabkeytools').omEditor({enableTabKeyTools:false});
+		var config ={
+				blockedBrowserKeystrokes:
+	 			[
+					OMEDITOR.CTRL + 74 /*J*/
+	 			]};
+		var editor_blockedkeystokes=$('#editor_blockedbrowserkeystrokes').omEditor(config);
+		var editor_allowImageType=$('#editor_allowImageType').omEditor({filebrowserImageUploadUrl : '/operamasks-ui/omUpload.do?type=Images',allowImageType:['jpg']});
+		var editor_docType=$('#editor_docType').omEditor({docType:'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'});
+		var editor_height=$('#editor_height').omEditor({height:500});
+		var editor_width=$('#editor_width').omEditor({width:400});
+		var editor_skin=$('#editor_skin').omEditor({skin:'v2'});
+		var editor_uiColor=$('#editor_uiColor').omEditor({uiColor:'#F299CC'});
+		var editor_filebrowserImageUploadUrl=$('#editor_filebrowserImageUploadUrl').omEditor({filebrowserImageUploadUrl:'/uploadImage.do?type=Images'});
+		
+		
+		var editor_editor_onkeyup=$('#editor_onkeyup').omEditor({onKeyUp:count});
+    }); 
+   
+</script> 
+ 
+</head> 
+<body> 
+
+  <div class="total">
+		OMEditor测试案例，API属性总共 <span class="apiNo" number="18"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+  		<div class="testPoint">
+			<span class="title">属性测试点1：测试allowImageType属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击工具条中的"图象"按钮，选择"上传"页签，点击"浏览"（在Chrome下为"选择文件"），选择一张不是.jpg为后缀的文件会提示"对不起，只能上传以下格式的文件：jpg"。</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_allowImageType">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>	
+	    
+  		<div class="testPoint">
+			<span class="title">属性测试点2：测试docType属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击工具条中的"预览"按钮，在新弹出的窗口中查看HTML源代码，源代码的开头为"&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;"。
+			在其他editor中执行同样的操作，得到的源代码的开头为&lt;!DOCTYPE HTML&gt;</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_docType">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>	
+  		<div class="testPoint">
+			<span class="title">属性测试点3：测试width属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器的宽度为400px</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_width">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>	
+  		<div class="testPoint">
+			<span class="title">属性测试点4：测试height属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器内容区的高度为500px</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_height">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>	
+  		<div class="testPoint">
+			<span class="title">属性测试点5：测试skin属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器使用v2皮肤，和其他的样式明显不同</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_skin">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>	
+	    
+	   <div  class="testPoint">
+			<span class="title">属性测试点6：测试startupFocus属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">页面焦点在该编辑器内,编辑器内出现光标</div>
+			<div  class="tpDIV">
+				   <textarea id="editor_startupfocus">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    <div  class="testPoint">
+			<span class="title">属性测试点7：测试basicEntities属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击“插入内容”按钮，在编辑器区域内插入'&lt;&nbsp;&gt;&amp;',点击“源码”，仍旧显示“&lt;&nbsp;&gt;&amp;”而没有被转义。</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_basicEntities" ></textarea>
+					<button id="insert" onclick="$( '#editor_basicEntities').omEditor('insertText','< >&');">插入内容</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点8：测试blockedBrowserKeystrokes属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">在编辑器内，浏览器的CTRL+J快捷键被屏蔽，点击CTRL+J无任何反应（Fiforx浏览器本应出现下载提示窗口）</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_blockedbrowserkeystrokes" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点9：测试enableTabKeyTools属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">在编辑区域内加入2*2的表格，选中某一个单元格，键盘"table"键没有任何操作（而不是单元格的切换操作）</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_enabletabkeytools" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点10：测试enterMode属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			在编辑区域内容尾处，回车，点击“获取值”按钮，内容应该为：
+		   	<p>
+		   	&lt;p &gt;
+			测试内容
+			&lt;br/ &gt;&amp;nbsp;&lt;/p &gt;
+			</p>
+			</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_entermode" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+     				<button  onclick="alert($('#editor_entermode').omEditor('getData'));">获取值</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点11：测试keystrokes属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">选中文字，键入CTRL+T,选中文字加粗</div>
+			<div  class="tpDIV">
+				   <textarea id="editor_keystrokes" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点12：测试resizable属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器不可拖动拖动大小</div>
+			<div  class="tpDIV">
+				     <textarea id="editor_resizable" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点13：测试undoStackSize属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">先把光标置于"测试内容"的后面，然后点击"插入内容"按钮1次，在编辑器内进行ctrl+Z操作。ctrl+Z操作此处应大于2次。编辑器内内容应该为<p>测试内容段落内容1</p></div>
+			<div  class="tpDIV">
+				   <textarea id="editor_undostacksize" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+    				<button id="insert" onclick="$( '#editor_undostacksize').omEditor('insertHtml','&lt;p &gt; 段落内容1 &lt;p /&gt;').omEditor('insertHtml','&lt;p &gt; 段落内容2 &lt;p /&gt;');">插入内容</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点14：测试toolbar属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器上的工具栏为"Basic"样式，仅只有"加粗"，"倾斜"，"编号列表"，"项目列表"，"插入、取消链接"，"关于"按钮</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_toolbar" >&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点15：测试startupMode属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器默认打开"源码",而不是默认的"所见即所得"</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_startupmode">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">属性测试点16：测试readOnly属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器处于置灰状态。无法输入，除"源码"，"预览"，"打印"，"查找"，"全屏"，"显示区块"，"关于"按钮可以点击外，其余按钮呈置灰状态，且无法点击</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_readonly">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    <div  class="testPoint">
+			<span class="title">属性测试点17：测试uiColor属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">编辑器的界面颜色和其他的明显不同</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_uiColor">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+	    <div  class="testPoint">
+			<span class="title">属性测试点18：测试filebrowserImageUploadUrl属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击工具条中的"图象"按钮，弹出的窗口中包含"上传"页签</div>
+			<div  class="tpDIV">
+				  <textarea id="editor_filebrowserImageUploadUrl">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+			</div>
+	    </div>
+
+	  
+	</div>
+	<div id="tabs-2">
+		<div  class="testPoint">
+			<span class="title">方法测试点1：测试setReadOnly方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮后，编辑器置灰。无法输入，除"源码"，"预览"，"打印"，"查找"，"全屏"，"显示区块"，"关于"按钮可以点击外，其余按钮呈置灰状态，且无法点击</div>
+			<div  class="tpDIV">
+				<textarea id="editor_setreadonly" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+			    <button id="setreadonly" onclick="$('#editor_setreadonly').omEditor('setReadOnly',true);">设置为只读模式</button>
+			    <br/>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点2：测试insertText方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮后，会在光标所处的位置处插入text文本。（注意：请测试无光标和有光标两种场景）</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_inserttext" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    				<button id="inserttext" onclick="$( '#editor_inserttext' ).omEditor('insertText','text');">插入文本</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点3：测试insertHtml方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮后，会在光标所处的位置处插入link的超文本。（注意：请测试无光标和有光标两种场景，无光标标示首次）</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_inserthtml" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    				<button id="inserthtml" onclick="$( '#editor_inserthtml').omEditor('insertHtml','&lt;a href=\'#\'&gt;link &lt;/a&gt;');">插入Html内容</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点4：测试getPlainText方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮后，弹出的alert窗口内显示内容为：测试内容 (而不是&lt;p&gt;测试内容 &lt;/p&gt;)</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_getplaintext" class="editor">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+    				<button id="getplainpext" onclick="alert(($('#editor_getplaintext').omEditor('getPlainText')));">获取文字</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点5：测试getData方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮后，弹出的alert窗口内显示内容为：&lt;p&gt;测试内容 &lt;/p&gt; (而不是'测试内容')</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_getData" class="editor">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+    				<button id="getData" onclick="alert(($('#editor_getData').omEditor('getData')));">获取字符</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点6：测试setData方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击"设置内容"按钮后，编辑器的内容变为一个超链接link</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_setData" class="editor">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+    				<button id="setData" onclick="($('#editor_setData').omEditor('setData','&lt;a href=\'#\'&gt;link &lt;/a&gt;'));">设置内容</button>
+			</div>
+	    </div>
+	    
+	    <div  class="testPoint">
+			<span class="title">方法测试点7：测试updateElement方法</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">修改编辑器的内容为“新内容”后先点击“updateElement”按钮，然后再点击“获取textarea值”按钮返回的是“&lt;p&gt;新内容 &lt;/p&gt;”</div>
+			<div  class="tpDIV">
+		    	<textarea id="editor_updateElement" name="editor1" class="editor">旧内容</textarea>
+   				<button id="updateElement" onclick="$('#editor_updateElement').omEditor('updateElement')">updateElement</button>
+   				<button id="getTextareaValue" onclick="alert($('#editor_updateElement').val());">获取textarea值</button>
+			</div>
+	    </div>
+	    
+	     <div  class="testPoint">
+			<span class="title">事件测试点8：测试onKeyUp事件</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">在编辑器内输入的任何字符，下面的数字跟随变化</div>
+			<div  class="tpDIV">
+				    <textarea id="editor_onkeyup">&lt;p&gt;测试内容 &lt;/p&gt;</textarea>
+				    <div>你已经输入：<span id="countHTML"></span>个字符。（字数统计包含HTML代码。）</div>
+			</div>
+	    </div>
+	</div>
+	<div id="tabs-3">
+		
+	</div>
+	
+</div>
+
+
+	
+</body> 
+</html>

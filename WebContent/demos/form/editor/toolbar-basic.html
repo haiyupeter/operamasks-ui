@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>简单工具条</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">&lt;p&gt;Initial value &lt;/p&gt;</textarea>
+    <script>
+        //         
+        $(function() {
+            var editor = $('.editor').omEditor({
+                toolbar : 'Basic'
+            });
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置toolbar属性，定制编辑器的简单工具条，toolbar可选项'Full'和'Basic'，默认值为'Full'：<br/>
+        'Full'工具条包含了editor的所有命令；<br/>
+        'Basic'只包含了最基本的几个命令。<br/>
+        如果用户想自定义工具条，可以参看“自定义工具条”示例。
+    </div>
+</body>
+</html>

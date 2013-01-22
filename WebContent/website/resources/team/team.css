@@ -1,0 +1,108 @@
+#om-ui-team {
+    width: 960px;
+    margin: 0 auto;
+    font: 13px 微软雅黑, 宋体, Arial, Helvetica, sans-serif, simsun;
+}
+#om-ui-team .om-ui-team-person {
+	width: 170px;
+	height: 304px;
+	float: left;
+	position: relative;
+	margin: 0px 0px 15px 50px;
+}
+#om-ui-team .card-bg {
+	border: 1px solid #BCDCF5;
+	width: 170px;
+	height: 304px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;	
+}
+.card-style-1{
+	background-image: url(images/card-bg-1.png);
+	_background-image: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/team/images/card-bg-1.png');
+}
+.card-style-2{
+	background-image: url(images/card-bg-2.png);
+	_background-image: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/team/images/card-bg-2.png');
+}
+.card-style-3{
+	background-image: url(images/card-bg-3.png);
+	_background-image: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/team/images/card-bg-3.png');
+}
+.card-style-4{
+	background-image: url(images/card-bg-4.png);
+	_background-image: none;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='resources/team/images/card-bg-4.png');
+}
+#om-ui-team .om-ui-team-person .intro{
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	color: #FFFFFF;
+	z-index: 101;
+	line-height: 20px;
+}
+#om-ui-team .om-ui-team-person .title{
+	margin-top: 5px;
+	font-size: 12px;
+}
+#om-ui-team .om-ui-team-person .person-pic{
+	position: absolute;
+	top: 73px;
+	left: 1px;
+	width: 170px;
+	height: 205px;
+	z-index: 99;
+}
+.dialog-box{
+	position: absolute;
+	text-align: center;
+	line-height: 40px;
+	background: white;
+	border: 5px solid #1B75BB;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 250px;
+	z-index: 102;
+	box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+}
+.dialog-box-before{
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 40px;
+	bottom: -33px;
+	border: 16px solid;
+	border-style: solid dashed dashed solid;
+	line-height: 0;
+	border-color: #1B75BB transparent transparent #1B75BB;
+}
+.dialog-box-after { 
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 45px;
+	bottom: -20px;
+	border: 14px solid;
+	border-style: solid dashed dashed solid;
+	line-height: 0;
+	border-color: white transparent transparent white;
+}
+#om-ui-team .om-ui-team-person .team-info{
+	position: absolute;
+	bottom: 2px;
+	right: 3px;
+	color: #1B75BB;
+	z-index: 102;
+}
+

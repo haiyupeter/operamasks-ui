@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    
+    <!-- view_source_begin -->
+    <style type="text/css">
+        .apple{
+        	background-image: url(images/apple.gif);
+        }
+    </style>
+    <script type="text/javascript">
+    
+        $(function() {
+            var panel = $("#panel").omPanel({
+                width:'500px',
+                height:'180px',
+                iconCls: "apple",
+                header: true,
+                title:'苹果公司简介',
+                collapsed: false,
+                collapsible: true,
+                closable: true,
+                url:'apple-desc.html',
+                onOpen:function(){$("#log").html("<li>触发了打开事件。---onOpen</li>");},
+            	onClose:function(){$("#log").html("<li>触发了关闭事件。---onClose</li>");},
+            	onExpand:function(){$("#log").html("<li>触发了展开事件。---onExpand</li>");},
+            	onCollapse:function(){$("#log").html("<li>触发了收起事件。---onCollapse</li>");}
+            });
+            $("#open").click(function(){
+                panel.omPanel("open");
+            });
+            $("#close").click(function(){
+                panel.omPanel("close");
+            });
+            $("#bigger").click(function(){
+                panel.omPanel("resize" , {width:'600px'});
+            });
+        });
+    
+    </script>
+    <!-- view_source_end -->
+    
+<title>基本功能</title>
+</head>
+<body>
+	<!-- view_source_begin -->
+	<div style="margin-bottom:20px">
+		<input id="open" type="button" value="打开"/>
+		<input id="close" type="button" value="关闭" />
+		<input id="bigger" type="button" value="改变大小" />
+	</div>
+	<!-- 
+	<div class="om-widget om-panel" style="width: 500px; height: 180px;">
+		<div class="om-panel-header" style="width: 488px;">
+			<div class="om-icon om-panel-icon apple"></div>
+			<div class="om-panel-title">苹果公司简介</div>
+			<div class="om-panel-tool">
+				<div class="om-icon om-panel-tool-collapse"></div>
+				<div class="om-icon om-panel-tool-close"></div>
+			</div>
+			</div><div id="panel" class="om-panel-body om-widget-content" style="width: 445.2px; height: 129px;">
+	   	<p style="text-indent:2em">
+	   		苹果公司（Apple Inc.，NASDAQ：AAPL，LSE：ACP），原称苹果电脑公司（Apple Computer, Inc.）总部位于美国加利福尼亚的库比蒂诺，核心业务是电子科技产品，目前全球电脑市场占有率为7.96%。苹果的Apple II于1970年代助长了个人电脑革命，其后的Macintosh接力于1980年代持续发展。最知名的产品是其出品的Apple II、Macintosh电脑、iPod音乐播放器、iTunes商店、iPhone手机和iPad平板电脑等。它在高科技企业中以创新而闻名。
+	   	</p>
+   	</div></div>
+   	 -->
+   	
+   	<div id="panel">
+	   	
+   	</div>
+   	<br/>
+    <h3>监听信息:</h3>
+    <ul id="log" style="list-style-type:none">
+    	<li>未触发任何事件。</li>
+    </ul>
+     
+   	<!-- view_source_end -->
+    <div id="view-desc">
+      	omPanel是一个基本的布局组件，可以自定义标题和按钮，可以动态改变大小，并内置了一些工具按钮，并提供了相应的事件和方法。</p>
+    </div>
+</body>
+</html>

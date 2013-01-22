@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/qunit.css">
+	<script src="../../../jquery.js"></script>
+	<script src="../common/js/qunit.js"></script>
+    <script src="../../../ui/om-core.js"></script>
+    <script src="../common/js/jquery.simulate.js"></script>
+    
+    <script src="../../../ui/om-panel.js"></script>
+    <script src="../../../ui/om-tabs.js"></script>
+    
+    <script src="om-tabs-core.js"></script>
+    
+    <script src="om-tabs-options.js"></script>
+    <script src="om-tabs-methods.js"></script>
+    <script src="om-tabs-events.js"></script> 
+    <script src="om-tabs-set-options.js"></script>
+    
+    <script src="../common/js/qunit-junit-outputter.js"></script>
+    
+	<title>omTabs Unit Test</title>
+</head>
+<body>
+	<h1 id="qunit-header">Operamasks UI omTabs Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">
+		<!-- option test -->
+		<div id="tab-option-default" >
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	            <li><a href="#tab3" id="tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+	        <div id="tab3">tab3</div>
+        </div>
+		<div id="tab-option-active-number" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	            <li><a href="#tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+	        <div id="tab3">tab3</div>
+        </div>
+        <div id="tab-option-active-tabId" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	            <li><a href="#tab3" id="tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+	        <div id="tab3">tab3</div>
+        </div>
+        <div id="tab-option-active-ltzero" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-active-gtlength" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-border-true" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+        </div>
+        <div id="tab-option-border-false" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+        </div>
+        <div id="tab-option-closable-true" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-closable-false" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-closable-array" >
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	            <li><a href="#tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+	        <div id="tab3">tab3</div>
+        </div>
+        <div id="tab-option-height-fit-parent" style="height:200px">
+        	<div id="tab-option-height-fit" >
+		        <ul>
+		            <li><a href="#tab1">tab1</a></li>
+		            <li><a href="#tab2">tab2</a></li>
+		        </ul>
+		        <div id="tab1">tab1</div>
+		        <div id="tab2">tab2</div>
+        	</div>
+        </div>
+        <div id="tab-option-height-number">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-lazyLoad-default">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="./remote.html">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+        </div>
+        <div id="tab-option-lazyLoad-true">
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="./remote.html" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+        </div>
+        <div id="tab-option-lazyLoad-false">
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="./remote.html" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+        </div>
+        <div id="tab-option-scrollable-default">
+	        <ul>
+	            <li><a href="#tab1">tab1tab1tab1</a></li>
+	            <li><a href="#tab2">tab2tab2tab2</a></li>
+	            <li><a href="#tab3">tab3tab3tab3</a></li>
+	        </ul>
+	        <div id="tab1">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab2">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab3">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+    	</div>
+    	<div id="tab-option-scrollable-true">
+	        <ul>
+	            <li><a href="#tab1">tab1tab1tab1</a></li>
+	            <li><a href="#tab2">tab2tab1tab1</a></li>
+	            <li><a href="#tab3">tab3tab1tab1</a></li>
+	        </ul>
+	        <div id="tab1">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab2">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab3">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+    	</div>
+    	<div id="tab-option-scrollable-false">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	            <li><a href="#tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab2">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab3">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+    	</div>
+        <div id="tab-option-switchMode-click" >
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-switchMode-mouseover" >
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-switchMode-tabHeight" >
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-switchMode-tabWidth" >
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-option-width-fit-parent" style="width:400px">
+        	<div id="tab-option-width-fit" >
+		        <ul>
+		            <li><a href="#tab1">tab1</a></li>
+		            <li><a href="#tab2">tab2</a></li>
+		        </ul>
+		        <div id="tab1">tab1</div>
+		        <div id="tab2">tab2</div>
+        	</div>
+        </div>
+        <div id="tab-option-width-number">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-method-add">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-method-close">
+	        <ul>
+	            <li><a href="#tab1" id="tab1">tab1</a></li>
+	            <li><a href="#tab2" id="tab2">tab2</a></li>
+	            <li><a href="#tab3" id="tab3">tab3</a></li>
+	            <li><a href="#tab4" id="tab4">tab4</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+	        <div id="tab3">tab3</div>
+	        <div id="tab4">tab4</div>
+        </div>
+        <div id="tab-method-closeAll">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	        </ul>
+	        <div id="tab1">tab1</div>
+	        <div id="tab2">tab2</div>
+        </div>
+        <div id="tab-method-doLayout">
+	        <ul>
+	            <li><a href="#tab1">tab1</a></li>
+	            <li><a href="#tab2">tab2</a></li>
+	            <li><a href="#tab3">tab3</a></li>
+	        </ul>
+	        <div id="tab1">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab2">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+	        <div id="tab3">对组件重新布局，主要操作是刷新页签滚动箭头。如果有必要使用页签滚动箭头，则刷新滚动箭头的状态。如果没必要使用页签滚动箭头，则将存在的删除。 </div>
+        </div>
+	</div>
+	<div id="tab-method-getLength">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+    </div>
+    <div id="tab-method-reload">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+            <li><a href="./remote.html">tab3</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+    </div>
+    <div id="tab-event-onActivate">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+    </div>
+    <div id="tab-event-onAdd">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+    </div>
+    <div id="tab-event-onClose">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+            <li><a href="#tab3">tab3</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+        <div id="tab3">tab3</div>
+    </div>
+    <div id="tab-event-onCloseAll">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+            <li><a href="#tab3">tab3</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+        <div id="tab3">tab3</div>
+    </div>
+    <div id="tab-event-onLoadComplete">
+        <ul>
+            <li><a href="#tab1">tab1</a></li>
+            <li><a href="#tab2">tab2</a></li>
+        </ul>
+        <div id="tab1">tab1</div>
+        <div id="tab2">tab2</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,big,cite,code,del,em,font,img,ins,small,strong,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend
+	{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "宋体", Arial, Lucida, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 150%;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+h2 {
+	font-size: 14px;
+}
+
+a:active {
+	color: #900;
+}
+
+a:link,a:visited {
+	color: #333;
+	text-decoration: none;
+}
+a:hover {
+	color: #C00;
+	text-decoration: underline;
+}
+
+
+img {
+	vertical-align: middle;
+}
+
+a img {
+	border: 0;
+}
+
+
+#madding .mt {
+	position: relative;
+	height: 28px;
+	background:
+		url(../images/complex-content/bg1.jpg)
+		#E6E6E6 repeat-x 0 -208px;
+	overflow: visible;
+}
+
+#madding h2 {
+	float: left;
+	width: 121px;
+	height: 28px;
+	padding: 0 10px;
+	background:
+		url(../images/complex-content/bg1.jpg)
+		no-repeat -70px -237px;
+	color: white;
+	line-height: 28px;
+}
+
+#madding .tab {
+	position: absolute;
+	top: 4px;
+	right: 5px;
+}
+
+.tab li,.tab a,.tab-item {
+	float: left;
+	cursor: pointer;
+	text-align: center;
+}
+
+#madding .tab li {
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+	text-align: center;
+	background:
+		url(../images/complex-content/bg2.png)
+		no-repeat -214px -76px;
+	line-height: 20px;
+	font-family: arial;
+}
+
+#madding .tab li.curr {
+	padding-bottom: 8px;
+	background-position: -170px -76px;
+	font-weight: bold;
+	color: white;
+}
+
+#madding .mt .extra {
+	float: right;
+	width: 20px;
+	height: 28px;
+	background:
+		url(../images/complex-content/bg1.jpg)
+		no-repeat -49px -237px;
+}
+
+#slider {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #E2EBF4;
+}
+
+.list-h {
+	overflow: hidden;
+	zoom: 1;
+}
+
+#slider dl {
+	width: 235px;
+}
+
+#slider dl {
+	width: 162px;
+	padding: 0 10px;
+	text-align: center;
+}
+
+.list-h dl {
+	float: left;
+}
+
+#slider dt {
+	height: 130px;
+	zoom: 1;
+}
+
+.p-img {
+	margin: 5px 0;
+}
+
+.p-img,.p-name,.p-price,.p-market {
+	overflow: hidden;
+}
+
+#slider .p-price {
+	right: 50px;
+}
+#slider .p-img img{
+	float: left;
+}
+#slider .p-price {
+	height: 14px;
+	padding: 2px 5px;
+	background: #F33;
+	color: white;
+	font-weight: bold;
+	font-family: arial;
+	line-height: 14px;
+	margin-top: -20px;
+	float: left;
+	margin-left: 60px;
+	_margin-left: 30px;
+}

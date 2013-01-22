@@ -1,0 +1,29 @@
+/*
+ * operamasks-ui messageTip 0.1
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+.om-messageTip { position: fixed; right:5px; bottom:5px;width: 200px; overflow: hidden; outline:0; border:1px solid #3A76C2;border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;}
+.om-messageTip .om-widget-header { height: 29px; position: relative; border-radius: 4px 4px 0 0; border:none;border-bottom-width: 0; background: url("images/messagebox/title_bg.png") repeat-x scroll 0 -3px transparent;}
+.om-messageTip-title { float: left; margin: 0.7em 16px 0.1em 0.5em; }
+
+.om-messageTip-titlebar-close { position: absolute; right: 1em; top: 50%; width: 15px; margin: -12px 0 0 0; padding: 1px; height: 18px; }
+.om-messageTip-titlebar-close span { display: block; margin: 1px; }
+.om-messageTip .om-icon-closethick {background: url("images/messagebox/close.png") no-repeat scroll 0 0 transparent !important; width: 15px; height: 18px;}
+.om-messageTip a.om-state-hover,.om-messageTip a.om-state-focus,.om-messageTip a.om-state-mousedown{background-color: transparent;border: none}
+
+div.om-messageTip-content { position: relative; border:none; padding: 10px; background-color: #C6DAEF;background-image: none; overflow: auto; zoom: 1; border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;}
+.om-messageTip-content-body{ word-wrap: break-word; word-break: break-all;float:left;width:120px;margin-left: 10px;}
+
+.om-messageTip-image{ background: none no-repeat scroll 0 0 transparent; overflow: hidden; height: 48px; width: 48px; float: left;}
+.om-messageTip-image-success{ background-image: url("images/messagebox/success.png"); }
+.om-messageTip-image-error{ background-image: url("images/messagebox/error.png"); }
+.om-messageTip-image-warning{ background-image: url("images/messagebox/warning.png"); }
+.om-messageTip-image-confirm,.om-messageTip-image-question{ background-image: url("images/messagebox/question.png"); }
+.om-messageTip-image-alert{ background-image: url("images/messagebox/alert.png"); }
+.om-messageTip-image-prompt{ background-image: url("images/messagebox/prompt.png"); }
+.om-messageTip-image-waiting{ background-image: url("images/messagebox/waiting.gif"); }

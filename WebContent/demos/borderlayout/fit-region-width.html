@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>panel宽度自适应</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	#fit-center-west-east{
+    		width: 100%;
+    		height: 200px;
+    	}
+    	#fit-west-east{
+    		width: 100%;
+    		height: 200px;
+    	}
+    	#fit-east{
+    		width: 100%;
+    		height: 200px;
+    	}
+    	#fit-west{
+    		width: 100%;
+    		height: 200px;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fit-east').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center",
+           	        width:400
+           	    },{
+           	        id:"west-panel",
+           	     	header:false,
+           	        resizable:true,
+           	        region:"west",
+           	        width:120
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	     	header:false,
+           	        region:"east"
+           	    }]
+            });
+            $('#fit-west').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center",
+           	        width:400
+           	    },{
+           	        id:"west-panel",
+           	     	header:false,
+           	        resizable:true,
+           	        region:"west"
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	     	header:false,
+           	        region:"east",
+           	        width:120
+           	    }]
+            });
+            $('#fit-west-east').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center",
+           	        width:400
+           	    },{
+           	        id:"west-panel",
+           	     	header:false,
+           	        resizable:true,
+           	        region:"west"
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	     	header:false,
+           	        region:"east"
+           	    }]
+            });
+            $('#fit-center-west-east').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	     	header:false,
+           	        resizable:true,
+           	        region:"west"
+           	    },{
+           	        id:"east-panel",
+           	        resizable:true,
+           	     	header:false,
+           	        region:"east"
+           	    }]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <h3>右边面板自适应宽度</h3>
+    <div id="fit-east">
+    	<div id="center-panel">center:400px width</div>
+    	<div id="east-panel">east:fit width</div>
+    	<div id="west-panel">west:120px width</div>
+    </div>
+    <h3>左边面板自适应宽度</h3>
+    <div id="fit-west">
+    	<div id="center-panel">center:400px width</div>
+    	<div id="east-panel">east:120px width</div>
+    	<div id="west-panel">west:fit width</div>
+    </div>
+    <h3>左边、右边面板自适应宽度</h3>
+    <div id="fit-west-east">
+    	<div id="center-panel">center:400px width</div>
+    	<div id="east-panel">east:fit width</div>
+    	<div id="west-panel">west:fit width</div>
+    </div>
+    <h3>左边、中间、右边面板自适应宽度</h3>
+    <div id="fit-center-west-east">
+    	<div id="center-panel">center:fit width</div>
+    	<div id="east-panel">east:fit width</div>
+    	<div id="west-panel">west:fit width</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+       当west、center或者east面板没有设置宽度时默认都会自适应宽度。</div>
+</body>
+</html>

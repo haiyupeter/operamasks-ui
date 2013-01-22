@@ -1,0 +1,104 @@
+body {
+	font-size: 12px;
+	background-color: #FFFFFF !important;
+	font-family: "Arial", "Helvetica", "Verdana", "sans-serif";
+	padding: 0px;
+	margin: 0px;
+}
+#main-frame-center{
+	min-width: 960px;
+}
+.header-class{
+	height: 107px;
+	line-height: 123px;
+	background-color: #EEF3FF;
+	position: relative;
+	background: url("images/header-bg.png") repeat-x transparent;
+}
+
+.footer {
+	height: 30px;
+	padding: 20px 0;
+	background-color:#ECECEC;
+	text-align: center;
+}
+
+.content {
+	text-align: left;
+	background-color: white;
+	position: relative;
+	margin: 0 auto;
+	width: 960px;
+}
+
+.hdbanner {
+	width:960px;
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.hdlogo {
+	background: url("images/operamasks-logo.png") no-repeat scroll 0 0
+		transparent;
+	float: left;
+	height: 90px;
+	width: 300px;
+	margin: 10px auto auto 20px;
+}
+
+.hdmenu {
+	height:50px;
+	line-height: 50px;
+	bottom:23px;
+	_bottom:22px;
+	right:20px;
+	font-size: 16px;
+	font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif, simsun;
+	position: absolute;
+	zoom: 1;
+	z-index: 100;
+}
+
+.hdmenu div {
+	float: left;
+	padding: 0px 22px;
+    -webkit-border-top-left-radius: 5px;  
+    -webkit-border-top-right-radius: 5px;  
+    -moz-border-radius-topleft: 5px;  
+    -moz-border-radius-topright: 5px;  
+}
+
+.hdmenu span {
+	color: #0F4F86;
+	padding: 3px 4px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+div.default_selected {
+	background:url("images/header-pointer.gif") no-repeat scroll center 41px transparent;
+}
+
+.hdmenu div span{
+	color : white;
+}
+div.default_selected span{
+    color: white;
+}
+
+.footer div {
+	color: #333333;
+	font-size: 12px;
+}
+.footer div a,.footer div a:visited{
+	padding: 0 5px;
+	color: #333333;
+	text-decoration: none;
+}
+.footer div a:hover{
+    text-decoration: underline;
+}
+.clear-float {
+	clear: both;
+}

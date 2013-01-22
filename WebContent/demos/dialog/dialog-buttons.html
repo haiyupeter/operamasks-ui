@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>对话框按钮</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-draggable.js"></script>
+    <script src="../../ui/om-position.js"></script>
+    <script src="../../ui/om-button.js"></script>
+    <script src="../../ui/om-dialog.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+     <!-- view_source_begin -->
+    <script>
+    $(function() {
+        $( "#dialog-confirm" ).omDialog({
+            autoOpen : false, 
+            resizable: false,
+            height:140,
+            modal: false,
+            buttons: [{
+                text : "当然", 
+                click : function () {
+                    $("#earth").text("又一次拯救了地球, 英雄真是寂寞");
+                    $("#dialog-confirm" ).omDialog("close");
+                }
+            }, {
+                text : "暂不", 
+                click : function () {
+                    $("#earth").text("正儿女情长，拯救地球这种小事就交给奥特曼了");
+                    $("#dialog-confirm" ).omDialog("close");
+                }
+            }]
+        });
+        
+        $("#saveWorld").click(function() {
+            $( "#dialog-confirm" ).omDialog("open");
+            return false;
+        });
+    });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="earth" style="color:red;font-size: 20px;">地球需要你
+        <input id="saveWorld" value="拯救地球?" type="submit" />
+    </div>
+    
+    <div id="dialog-confirm" title="确认" style="display: none;">
+        确定要拯救世界？
+    </div>
+    <!-- view_source_end -->
+    
+    <div id="view-desc">
+        方便地定义对话框的按钮。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

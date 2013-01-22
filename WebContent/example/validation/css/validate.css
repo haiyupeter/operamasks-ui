@@ -1,0 +1,107 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border: 0 none;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+body{
+	/*background: url("../images/main_bottom_bg.jpg") no-repeat scroll right bottom #E7EEF8;*/
+    color: #333333;
+    font-family: "ËÎÌו",Arial Helvetica,sans-serif;
+    font-size: 63%;
+}
+table.grid_layout {
+    border-collapse: collapse;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.separator {
+    background: url("../images/separator.gif") repeat-x scroll 0 0 transparent;
+    height: 2px;
+    line-height: 2px;
+    overflow: hidden;
+}
+table.grid_layout tr td {
+    font-weight: normal;
+    height: 15px;
+    padding: 5px 0;
+    vertical-align: middle;
+}
+.color_red {
+    color: red;
+}
+.input_text {
+    border: 1px solid #6D869E;
+    height: 17px;
+    vertical-align: middle;
+    width: 90%;
+}
+.input_slelct {
+    width: 90%;
+    background: none repeat-x scroll center bottom transparent;
+}
+.textarea_text{ width:99%; height:100px;border:1px solid #6D869E; font-size:13px; font-weight:normal; line-height:20px;background: none repeat-x scroll center bottom transparent;}
+table.grid_layout tr td {
+    font-weight: normal;
+    height: 15px;
+    padding: 5px 0;
+    vertical-align: middle;
+}
+.text_align_c {
+    text-align: center;
+}
+.pad {
+    padding: 12px 0 5px;
+}
+.dashed {
+    background: url("../images/dashed.gif") repeat-x scroll 0 4px transparent;
+    height: 10px;
+    text-align: right;
+}
+.clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+.right {
+    background: url("../images/main_bg.jpg") repeat-x scroll 0 0 transparent;
+    font-size: 1.2em;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.clear {
+}
+#nav_cont h1.cont_tag_show {
+    clear: both;
+    display: block;
+}
+#nav_cont h1 {
+    clear: both;
+    display: none;
+    padding: 5px 20px 3px;
+}
+.button_u{ background:#fff url(../images/button_u.jpg) bottom left repeat-x; border:1px solid #B1CCE8; line-height:19px; height:21px; padding:0px 12px; color:#333333; font-size:1.0em; vertical-align:middle; cursor:pointer; overflow:visible; _padding-top:3px;_height:17px;_line-height:17px; }
+.button_f{ background:#fff url(../images/button_f.jpg) bottom left repeat-x; border:1px solid #B1CCE8; line-height:19px; height:21px; padding:0px 12px; color:#333333; font-size:1.0em; vertical-align:middle; cursor:pointer; overflow:visible;_padding-top:3px;_height:17px;_line-height:17px;}
+.button_d{ background:#fff url(../images/button_d.jpg) bottom left repeat-x; border:1px solid #B1CCE8; line-height:19px; height:21px; padding:0px 12px; color:#333333; font-size:1.01em; vertical-align:middle; cursor:pointer; overflow:visible;_padding-top:3px;_height:17px;_line-height:17px;}
+
+.x-form-invalid, textarea.x-form-invalid {
+    background-color: #FFFFFF;
+    background : url(../images/invalid_line.gif) repeat-x scroll center bottom transparent;
+    /*border-color: #CC3300;*/
+}
+.error-border{
+	border: 1px solid red !important;
+}
+.errorMsg{
+	display: none;
+}
+#view-desc { margin: 20px 10px;font-size: 13px;background: url(../images/demo-tips.gif) no-repeat;padding-left: 23px;line-height: 20px;}

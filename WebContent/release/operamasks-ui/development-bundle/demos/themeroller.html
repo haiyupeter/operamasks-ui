@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Operamasks UI 主题皮肤</title>
+<script>
+	var theme = location.hash;
+	if(theme == '') theme='default';
+	if(theme.indexOf('#') == 0) theme = theme.substring(1);
+	document.write("<link rel='stylesheet' href='../themes/"+theme+"/om-all.css'>");
+</script>
+<script src="../release/operamasks-ui/js/jquery.min.js"></script>
+<script src="../release/operamasks-ui/js/operamasks-ui.min.js"></script>
+<style>
+html,body{margin: 0;padding: 0;height: 100%;}
+h2{font-size: 14px;}
+#theme{
+	background-color: black;
+	height: 40px;
+	position: fixed;
+	width: 100%;
+	z-index: 20000;
+}
+#theme ul{
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+}
+#theme ul li{
+	text-align: center;
+	border-bottom: 3px solid #D84600;
+	line-height: 30px;
+	float: left;
+	margin: 0 10px;
+}
+#theme ul a{
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+#components{
+	position: relative;
+	top: 50px;
+	padding: 5px;
+}
+.group{
+	float: left;
+	padding-left: 20px;
+}
+.group h2{
+	color: #D84600;
+}
+.filesave{background: url('accordion/images/filesave.png') no-repeat;}
+</style>
+<script>
+	function showAlert(){
+	    $.omMessageBox.alert({
+	        content:'您还没有选择要删除的记录'
+	    });
+	 }
+    function showSuccess(){
+        $.omMessageBox.alert({
+             type:'success',
+             title:'成功',
+             content:'操作成功'
+         });
+     }
+     function showError(){
+        $.omMessageBox.alert({
+            type:'error',
+            title:'失败',
+            content:'不能删除<font color="red">admin</font>用户'
+        });
+     }
+     function showWaiting(){
+         $.omMessageBox.waiting({
+             title:'请等待',
+             content:'服务器正在处理请求，约需3秒时间...'
+         });
+         setTimeout("$.omMessageBox.waiting('close');",3000);
+      }
+     
+    $(function() {
+        $('#button').omButton();
+        
+        $('#calendar').omCalendar({
+            popup : false
+        });
+        
+        $('#combo').omCombo({
+            dataSource : [ {text : '中国', value : 'China/PRC'}, 
+                           {text : '美国', value : 'America/USA'}, 
+                           {text : '英国', value : 'the United Kingdom/UK'}, 
+                           {text : '日本', value : 'Japan/JPN'} ]
+        });
+        
+        $('#numberfield').omNumberField();
+        
+        $('#suggestion').omSuggestion({
+            dataSource : '../simpleSuggestion.json'
+        });
+        
+        $('#grid').omGrid({
+            url : 'griddata.do?method=fast',
+            title : 'IP数据',
+            width : 370,
+            height : 250,
+            showIndex : true,
+            //colModel
+            colModel : [ {header : 'ID', name : 'id', width : 50, align : 'center', sortable : true}, 
+                         {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
+                         {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
+        });
+        
+        var treeData = [{
+            "text": "node1",
+            "id": "n1",
+            "children":[{
+                "text": "node11",
+                "id": "n11"
+            }, {
+                "text": "node12",
+                "id": "n12"
+            }]
+        }, {
+            "text": "node2",
+            "expanded": true,
+            "id": "n2",
+            "children":[{
+                "text":"node21",
+                "id": "n21",
+                "expanded": true,
+                "children": [{
+                    "id": "n211",
+                    "text":"node211"
+                },{
+                    "id": "n212",
+                    "text":"node212"
+                }]
+            },{
+                "text":"node22",
+                "id": "n22"
+            }]
+        }, {
+            "text": "node3",
+            "id": "n3"
+        }, {
+            "text": "node4",
+            "id": "n4"
+        }];
+        $("#tree").omTree({
+            dataSource : treeData
+        });
+        
+		$( "#dialog" ).omDialog({
+			height: 140,
+			modal: true,
+			autoOpen: false
+		});
+		
+        $('#tabs').omTabs({
+            width: 350,
+            height: 200,
+            closable : true
+        });
+        
+	    $("#accordion").omAccordion({
+	        width : 350,
+	        height : 300
+	    });
+    });
+</script>
+</head>
+<body>
+	<div id="theme">
+		<span style="color: #FFFFFF;float: left;margin-left: 20px;line-height: 40px;font-size: 14px;font-weight: bold;">OperaMasks UI主题皮肤：</span>
+		<ul>
+			<li><a id="theme_default" href="themeroller.html#default" onclick="location.href='themeroller.html#default';location.reload();">default</a></li>
+			<li><a id="theme_eac" href="themeroller.html#eac" onclick="location.href='themeroller.html#eac';location.reload();">eac</a></li>
+			<li><a id="theme_start" href="themeroller.html#start" onclick="location.href='themeroller.html#start';location.reload();">start</a></li>
+		</ul>
+	</div>
+	<div id="components">
+		<div id="group-form" class="group">
+			<h2>button</h2>
+			<div>
+		        <button id="button">使用button的按钮</button>
+	        </div>
+	        <h2>calendar</h2>
+	        <div id="calendar"></div>
+	        
+	        <h2>combo</h2>
+	        <div>
+	        	<input id="combo" />
+	        </div>
+	        
+	        <h2>numberfield</h2>
+	        <div>
+	        	<input id="numberfield" />
+	        </div>
+	        	        
+	        <h2>suggestion</h2>
+	        <div>
+	        	<input id="suggestion" />
+	        </div>
+		</div>
+		<div id="group-widgets" class="group">
+	        <h2>grid</h2>
+	        <div>
+	        	<table id="grid"></table>
+	        </div>			
+	        <h2>tree</h2>
+	        <div>
+		        <ul id="tree">
+		        </ul>
+	        </div>			
+		</div>
+		<div id="group-layout" class="group">
+	        <h2>tabs</h2>
+			<div id="tabs" >
+				<ul>
+					<li><a href="#tab1">首页</a></li>
+					<li><a href="#tab2">产品介绍</a></li>
+					<li><a href="#tab3">应用案例</a></li>
+					<li><a href="#tab4">新闻动态</a></li>
+				</ul>
+				<div id="tab1">
+					Tab Body 1<br /> 
+				</div>
+				<div id="tab2">
+					Tab Body 2<br /> 
+				</div>
+				<div id="tab3">
+					Tab Body 3<br />
+				</div>
+				<div id="tab4">
+					Tab Body 4<br /> 
+				</div>
+			</div>
+			<h2>accordion</h2>
+			<div id="accordion" > 
+			    <ul> 
+			        <li><a href="#accordion-1" iconCls="filesave">accordion-1</a></li> 
+			        <li><a href="#accordion-2" iconCls="filesave">accordion-2</a></li> 
+			        <li><a href="#accordion-3" iconCls="filesave">accordion-3</a></li> 
+			    </ul> 
+			    <div id="accordion-1">
+			    	<p>accordion-1</p>
+			    </div>
+			    <div id="accordion-2">
+			    	<p>accordion-2</p>
+			    </div>
+			    <div id="accordion-3">
+			    	<p>accordion-3</p>
+			    </div>
+			</div>
+		</div>
+		<div id="group-window" class="group">
+	        <h2>dialog</h2>
+	        <div>
+	        	<button onclick="$( '#dialog' ).omDialog('open');">打开对话框</button>
+	        </div>
+		    <div id="dialog" title="模态窗口">
+		        <p>显示模态对话框，在关闭对话框之前不能操作页面内容.</p>
+		    </div>
+		    <h2>messagebox</h2>
+		    <div>
+	    	    <button onclick="showAlert();">alert</button>
+			    <button onclick="showSuccess();">success</button>
+			    <button onclick="showError();">error</button>
+			    <button onclick="showWaiting();">waiting</button>
+		    </div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</body>
+<script type="text/javascript">
+document.getElementById('theme_'+theme).style.color="#D84600";
+</script>
+</html>

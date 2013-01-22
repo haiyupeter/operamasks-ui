@@ -1,0 +1,2 @@
+//格式错误的json数据，用来测试组件的onError事件
+[{"text":"北京","value":"1"},{"text":"上海","value":"2"},{"text":"广州","value":"3"}

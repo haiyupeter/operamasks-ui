@@ -1,0 +1,1210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omDialog</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+		<script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omDialog
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#events">事件</a></li>
+                    
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                    <div class="author">
+                        <i>作者: </i><b>林晓民.</b><br/><br/>
+                    </div>
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    对话框组件。可以放置html。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>方便地自定义按钮</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#dialog').omDialog({
+    });
+});
+&lt;/script>
+
+&lt;div id="dialog"/>
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-dialog.js.html">om-dialog.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omDialog</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            构造函数.
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象：{}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-autoOpen">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">autoOpen</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">true</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        对话框创建完成后是否自动打开。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({autoOpen : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-buttons">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">buttons</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Array</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">[]</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        对话框中的按钮。此配置项为JSON数组。每个JSON对象具有 <code>text</code> 属性(配置按钮文字)
+和 <code>click</code> 属性配置按钮触发时的回调方法。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({buttons : [{
+     text : "确定", 
+     click : function () {...}
+ }, {
+     text : "取消", 
+     click : function () {...}
+ }]);</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-closeOnEscape">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">closeOnEscape</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">true</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        按下 Esc 键时是否关闭对话框。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({closeOnEscape : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-dialogClass">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">dialogClass</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">''</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        对话框的样式。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({dialogClass : 'class1'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-draggable">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">draggable</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">true</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件是否可拖动。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({draggable : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-height">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">height</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">'auto'</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件的高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({height : 200});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxHeight">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxHeight</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件最大高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({maxHeight : 500});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">null</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件最大宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({maxWidth : 500});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minHeight">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minHeight</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">150</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件最小高度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({minHeight : 150});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">150</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件最小宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({minWidth : 150});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-modal">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">modal</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否模态窗口。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({modal : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-resizable">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">resizable</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">true</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否可改变大小。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({resizable : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-title">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">title</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">''</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        对话框的标题。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                        
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-width">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">width</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">300</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        组件的宽度。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>  $("#select").omDialog({width : 300});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-close">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">close</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omDialog.html#close">close</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    关闭对话框.
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>支持链式操作，返回JQuery对象</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>var store = $("#select").omDialog('close');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-isOpen">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">isOpen</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omDialog.html#isOpen">isOpen</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    判断对话框是否已打开。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>如果对话框已打开返回true，否则返回false</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>var isOpen = $("#select").omDialog('isOpen');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-open">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">open</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omDialog.html#open">open</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    打开对话框。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">返回:</dt>
+	                                        
+	                                            <dd>支持链式操作，返回JQuery对象</dd>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>var store = $("#select").omDialog('open');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+          <!-- doc_events_begin -->
+          <div id="events">
+            <!-- ============================== event details ========================= -->     
+            <h2 class="top-header">事件</h2>
+            <div id="events-list">
+	            <ul class="events-list">
+	                
+	                    <li class="event" id="event-onBeforeClose">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onBeforeClose</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function()
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            对话框关闭前触发事件。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>  $("#select").omDialog({onBeforeClose : function() {doSomething...}});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onClose">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onClose</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function()
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            对话框关闭时触发事件。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>  $("#select").omDialog({onClose : function() {doSomething...}});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	                    <li class="event" id="event-onOpen">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onOpen</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function()
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            对话框打开时触发事件。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>  $("#select").omDialog({onOpen : function() {doSomething...}});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	            </ul>
+            </div>
+          </div>
+          <!-- doc_events_end -->
+       
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Nov 20 2011 10:13:15 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

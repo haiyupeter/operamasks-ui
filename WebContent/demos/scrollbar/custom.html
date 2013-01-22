@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+ 	<script src="../../ui/om-draggable.js"></script>
+ 	<script src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-scrollbar.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <style type="text/css">
+    	#bar{
+    		height:220px;
+    		width:200px;
+    		position:relative;
+    	}
+    	#bar .nav-panel {
+			padding: 0;
+		}
+    	#bar div.nav-panel{
+    		border-bottom-width:0;
+    	}
+    	.nav-panel div.nav-item{
+			line-height: 25px;
+			font-size: 13px;
+			font-weight: bold;
+			padding-left: 40px;
+			cursor: pointer;
+			list-style-type: none;
+		}
+		.nav-panel div.nav-item:hover{
+			border: 1px solid #99A8BC;
+			background-color: #C4D6EC;
+			padding-left: 39px;
+			line-height: 23px;
+		}
+		div.om-scrollbar{
+			 background-color:blue
+		}
+		div.scrollbar-state-hover{
+			 background-color:#4EBFE5;
+			 opacity: 1; filter:Alpha(Opacity=100);
+		}
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var menuPanel = [{id:"nav-panel-1" , title:"系统管理"},
+                             {id:"nav-panel-2" , title:"系统信息"},
+                             {id:"nav-panel-3" , title:"系统性能"}];
+            $(menuPanel).each(function(index , panel){
+                $("#"+panel.id).omPanel({
+                    width : 200,
+                    title : panel.title,
+                    collapsible:true,
+                    onCollapse : function(){
+                        $("#bar").omScrollbar("refresh");
+                    },
+                    onExpand : function(){
+                        $("#bar").omScrollbar("refresh");
+                    }
+                });
+            });
+
+            $("#bar").omScrollbar({
+                thick:10
+            });
+            
+        });
+        
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="bar">
+    	<div id="nav-panel-1" class="nav-panel">
+ 			<div class="nav-item">流程</div>
+ 			<div class="nav-item">触发器</div>
+ 			<div class="nav-item">闪回</div>
+   		</div>
+   		<div id="nav-panel-2" class="nav-panel">
+ 			<div class="nav-item">流程</div>
+ 			<div class="nav-item">触发器</div>
+ 			<div class="nav-item">闪回</div>
+   		</div>
+   		<div id="nav-panel-3" class="nav-panel" style="border-bottom-width:1px">
+ 			<div class="nav-item">流程</div>
+ 			<div class="nav-item">触发器</div>
+ 			<div class="nav-item">闪回</div>
+   		</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    	自定义滚动条的样式，一般就是覆盖滚动条的背景颜色，或者给它添加背景图片。把鼠标移到滚动条上面，可以看到<b><span style="color:blue">滚动条颜色是会变的。</span></b>。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

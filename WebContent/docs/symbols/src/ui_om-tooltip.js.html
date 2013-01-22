@@ -1,0 +1,396 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*
+<span class='line'>  2</span>  * $Id: om-tooltip.js,v 1.12 2012/03/20 06:40:32 luoyegang Exp $
+<span class='line'>  3</span>  * operamasks-ui omTooltip @VERSION
+<span class='line'>  4</span>  *
+<span class='line'>  5</span>  * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+<span class='line'>  6</span>  * Dual licensed under the MIT or LGPL Version 2 licenses.
+<span class='line'>  7</span>  * http://ui.operamasks.org/license
+<span class='line'>  8</span>  *
+<span class='line'>  9</span>  * http://ui.operamasks.org/docs/
+<span class='line'> 10</span>  *
+<span class='line'> 11</span>  * Depends:
+<span class='line'> 12</span>  *  om-core.js
+<span class='line'> 13</span>  */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="PUNC">;</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 16</span>      * @name omTooltip
+<span class='line'> 17</span>      * @class 提示组件，当某个链接、表单、输入框等需要做功能向导提示的时候可以使用本组件。
+<span class='line'> 18</span>      * &lt;b>特点：&lt;/b>&lt;br/>
+<span class='line'> 19</span>      * &lt;ol>
+<span class='line'> 20</span>      *      &lt;li>提示内容多样化，可以是文字，html，页面dom节点还可以是异步加载的内容&lt;/li>
+<span class='line'> 21</span>      *      &lt;li>异步加载内容的时候支持懒加载&lt;/li>
+<span class='line'> 22</span>      *      &lt;li>最大限度节约资源，只有需要使用的时候才在页面加入dom元素&lt;/li>
+<span class='line'> 23</span>      *      &lt;li>支持所有标准html元素&lt;/li>
+<span class='line'> 24</span>      * &lt;/ol>
+<span class='line'> 25</span>      * 
+<span class='line'> 26</span>      * &lt;b>示例：&lt;/b>&lt;br/>
+<span class='line'> 27</span>      * &lt;pre>
+<span class='line'> 28</span>      * &lt;script type="text/javascript" &gt;
+<span class='line'> 29</span>      * $(document).ready(function() {
+<span class='line'> 30</span>      *     $('#tip').omTooltip({
+<span class='line'> 31</span>      *         trackMouse : true,
+<span class='line'> 32</span>      *         html : '&lt;div style="color:red;"&gt;欢迎使用omTooltip组件&lt;/div&gt;'
+<span class='line'> 33</span>      *     });
+<span class='line'> 34</span>      * });
+<span class='line'> 35</span>      * &lt;/script&gt;
+<span class='line'> 36</span>      * 
+<span class='line'> 37</span>      * &lt;input id="tip" type="submit" /&gt;
+<span class='line'> 38</span>      * &lt;/pre>
+<span class='line'> 39</span>      * 
+<span class='line'> 40</span>      * @constructor
+<span class='line'> 41</span>      * @description 构造函数. 
+<span class='line'> 42</span>      * @param p 标准config对象：{}
+<span class='line'> 43</span>      */</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="NAME">$.omWidget</span><span class="PUNC">(</span><span class="STRN">'om.omTooltip'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">        </span><span class="NAME">options</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="COMM">/**@lends omTooltip# */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 47</span>              * 提示框的宽度。
+<span class='line'> 48</span>              * @type Number 
+<span class='line'> 49</span>              * @default 'auto' 
+<span class='line'> 50</span>              * @example
+<span class='line'> 51</span>              * $("#tip").omTooltip({width: 100}); 
+<span class='line'> 52</span>              */</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">            </span><span class="NAME">width</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'auto'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 55</span>              * 最小宽度，当提示内容很少的时候为了样式美观显示指定的宽度。
+<span class='line'> 56</span>              * @type Number 
+<span class='line'> 57</span>              * @default null 
+<span class='line'> 58</span>              * @example
+<span class='line'> 59</span>              * $("#tip").omTooltip({minWidth: 100}); 
+<span class='line'> 60</span>              */</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">            </span><span class="NAME">minWidth</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 63</span>              * 最大宽度，当需要根据内容自动适应宽度而又不想因为内容太多而导致太宽的情况，可以使用maxWidht设置一个最大宽度。
+<span class='line'> 64</span>              * @type Number 
+<span class='line'> 65</span>              * @default null 
+<span class='line'> 66</span>              * @example
+<span class='line'> 67</span>              * $("#tip").omTooltip({maxWidth: 200}); 
+<span class='line'> 68</span>              */</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">            </span><span class="NAME">maxWidth</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 71</span>              * 提示框的高度。
+<span class='line'> 72</span>              * @type Number 
+<span class='line'> 73</span>              * @default 'auto' 
+<span class='line'> 74</span>              * @example
+<span class='line'> 75</span>              * $("#tip").omTooltip({height: 100}); 
+<span class='line'> 76</span>              */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">            </span><span class="NAME">height</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'auto'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 79</span>              * 最大高度，高度默认自适应，当达到最大高度之后会隐藏内容 。
+<span class='line'> 80</span>              * @type Number 
+<span class='line'> 81</span>              * @default null 
+<span class='line'> 82</span>              * @example
+<span class='line'> 83</span>              * $("#tip").omTooltip({maxHeight: 100}); 
+<span class='line'> 84</span>              */</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">            </span><span class="NAME">maxHeight</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 87</span>              * 最小高度。
+<span class='line'> 88</span>              * @type Number 
+<span class='line'> 89</span>              * @default null 
+<span class='line'> 90</span>              * @example
+<span class='line'> 91</span>              * $("#tip").omTooltip({minHeight: 100}); 
+<span class='line'> 92</span>              */</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">            </span><span class="NAME">minHeight</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'> 95</span>              * 鼠标移入目标区域之后弹出提示框的延迟时间(ms) ，同时也是隐藏延迟的事件。
+<span class='line'> 96</span>              * @type Number 
+<span class='line'> 97</span>              * @default 300 
+<span class='line'> 98</span>              * @example
+<span class='line'> 99</span>              * $("#tip").omTooltip({delay: 300}); 
+<span class='line'>100</span>              */</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">            </span><span class="NAME">delay</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">300</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>103</span>              * 是否显示anchor，默认不显示，如果trackMouse为true，则显示在左上角，如果不跟随，
+<span class='line'>104</span>              * 则根据region属性确定，箭头的方向永远指向被提示的目标。
+<span class='line'>105</span>              * @type Boolean 
+<span class='line'>106</span>              * @default false 
+<span class='line'>107</span>              * @example
+<span class='line'>108</span>              * $("#tip").omTooltip({anchor: false}); 
+<span class='line'>109</span>              */</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">            </span><span class="NAME">anchor</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>112</span>              * 提示框是否跟随鼠标移动,默认不跟随鼠标移动，设置为true则跟随鼠标移动，
+<span class='line'>113</span>              * 比region优先级低。
+<span class='line'>114</span>              * @type Boolean 
+<span class='line'>115</span>              * @default false 
+<span class='line'>116</span>              * @example
+<span class='line'>117</span>              * $("#tip").omTooltip({trackMouse: false}); 
+<span class='line'>118</span>              */</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">            </span><span class="NAME">trackMouse</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>121</span>              * 显示提示框的触发方式,可选值有mouseover、click 
+<span class='line'>122</span>              * @type String 
+<span class='line'>123</span>              * @default 'mouseover' 
+<span class='line'>124</span>              * @example
+<span class='line'>125</span>              * $("#tip").omTooltip({showOn: click}); 
+<span class='line'>126</span>              */</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">            </span><span class="NAME">showOn</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"mouseover"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>129</span>              * ajax方式显示内容的时候是否延迟加载页面，必须配置了url才有效 
+<span class='line'>130</span>              * @type Boolean 
+<span class='line'>131</span>              * @default false 
+<span class='line'>132</span>              * @example
+<span class='line'>133</span>              * $("#tip").omTooltip({url:'a.html',lazyLoad: true}); 
+<span class='line'>134</span>              */</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">            </span><span class="NAME">lazyLoad</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>137</span>              * ajax加载内容的url地址,返回的内容格式dataType为html
+<span class='line'>138</span>              * @type String 
+<span class='line'>139</span>              * @default null 
+<span class='line'>140</span>              * @example
+<span class='line'>141</span>              * $("#tip").omTooltip({url:'a.html'}); 
+<span class='line'>142</span>              */</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">            </span><span class="NAME">url</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>145</span>              * 提示框显示在指定位置的偏离度,提示框有两种基准位置，一是鼠标，二是目标区域,
+<span class='line'>146</span>              *  第一个参数为top偏差值，第二个为left偏差值。
+<span class='line'>147</span>              * @type Object 
+<span class='line'>148</span>              * @default [5,5] 
+<span class='line'>149</span>              * @example
+<span class='line'>150</span>              * $("#tip").omTooltip({offset:[10,15]}); 
+<span class='line'>151</span>              */</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="WHIT">            </span><span class="NAME">offset</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NUMB">5</span><span class="PUNC">,</span><span class="NUMB">5</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>154</span>              * anchor偏移度(px),
+<span class='line'>155</span>              * 当设置anchor为top、button的时候，偏移度指相对于最左边的距离；
+<span class='line'>156</span>              * 为left、right的时候偏移度指相对于最上的距离
+<span class='line'>157</span>              * @type Number
+<span class='line'>158</span>              * @default 0
+<span class='line'>159</span>              * @example
+<span class='line'>160</span>              * $("#tip").omTooltip({anchorOffset:10}); 
+<span class='line'>161</span>              */</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">            </span><span class="NAME">anchorOffset</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>164</span>              * 提示框显示的区域,设置提示框显示的区域，如果不设置，
+<span class='line'>165</span>              * 则以鼠标的当前位置为基准点显示并跟随鼠标移动，
+<span class='line'>166</span>              * 如果设置了则以目标为基准点显示,可选值有left、right、top、bottom，
+<span class='line'>167</span>              * 比如选择了left，则提示框永远出现在目标的左边，不会进入目标。
+<span class='line'>168</span>              * @type String
+<span class='line'>169</span>              * @default null
+<span class='line'>170</span>              * @example
+<span class='line'>171</span>              * $("#tip").omTooltip({region:'bottom'}); 
+<span class='line'>172</span>              */</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">            </span><span class="NAME">region</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>175</span>              * 提示组件显示的内容，可以是html和普通字符,优先级比contentEL属性高。
+<span class='line'>176</span>              * @type String
+<span class='line'>177</span>              * @default null
+<span class='line'>178</span>              * @example
+<span class='line'>179</span>              * $("#tip").omTooltip({html:'&lt;span style="color:red;"&gt;我是omTooltip&lt;/span&gt;'}); 
+<span class='line'>180</span>              */</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">            </span><span class="NAME">html</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>183</span>              * jquery选择器，可以获取页面的dom元素作为提示内容，格式为#ID、.className、tagName等，优先级比html属性低。
+<span class='line'>184</span>              * @type selector
+<span class='line'>185</span>              * @default null
+<span class='line'>186</span>              * @example
+<span class='line'>187</span>              * $("#tip").omTooltip({contentEL:'#aa'}); 
+<span class='line'>188</span>              */</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">            </span><span class="NAME">contentEL</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">            
+<span class='line'>191</span>         </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">        </span><span class="NAME">_create</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">            </span><span class="NAME">this.tipContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'&lt;div class="tip-body">&lt;/div>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">            </span><span class="NAME">this.tipAnchor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'&lt;div class="tip-anchor">&lt;/div>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">            </span><span class="NAME">this.regionMap</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="STRN">'right'</span><span class="PUNC">:</span><span class="STRN">'left'</span><span class="PUNC">,</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="STRN">'bottom'</span><span class="PUNC">,</span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="STRN">'right'</span><span class="PUNC">,</span><span class="STRN">'bottom'</span><span class="PUNC">:</span><span class="STRN">'top'</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">            </span><span class="NAME">this.tip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">'&lt;div class="tip">&lt;/div>'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">this.tipContent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>199</span>          * 初始化方法，主要设置高宽，加载内容
+<span class='line'>200</span>          */</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">        </span><span class="NAME">_init</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.options</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">            
+<span class='line'>204</span>             </span><span class="NAME">this.tipContent.empty</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">            </span><span class="NAME">this.tip.find</span><span class="PUNC">(</span><span class="STRN">'div.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">            
+<span class='line'>207</span>             </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.anchor</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">                </span><span class="NAME">self.tip.append</span><span class="PUNC">(</span><span class="NAME">self.tipAnchor</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">            </span><span class="NAME">self.adjustWidth</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">6</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//内外边框</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">            </span><span class="NAME">self.adjustHeight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">  </span><span class="NUMB">6</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.width</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">'auto'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'width'</span><span class="PUNC">,</span><span class="NAME">options.width</span><span class="PUNC">-</span><span class="NAME">self.adjustWidth</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'width'</span><span class="PUNC">,</span><span class="STRN">'auto'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.height</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">'auto'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'height'</span><span class="PUNC">,</span><span class="NAME">options.height</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'height'</span><span class="PUNC">,</span><span class="STRN">'auto'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.minWidth</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'minWidth'</span><span class="PUNC">,</span><span class="NAME">options.minWidth</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustWidth</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.maxWidth</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'maxWidth'</span><span class="PUNC">,</span><span class="NAME">options.maxWidth</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustWidth</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.maxHeight</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'maxHeight'</span><span class="PUNC">,</span><span class="NAME">options.maxHeight</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.minHeight</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.css</span><span class="PUNC">(</span><span class="STRN">'minHeight'</span><span class="PUNC">,</span><span class="NAME">options.minHeight</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">            </span><span class="COMM">/**
+<span class='line'>235</span>              * 内容加载的优先级为url、html、contentEl，前者会覆盖后者
+<span class='line'>236</span>              */</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.url</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">options.lazyLoad</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//如果是ajax方式并且不是懒加载模式下面，初始化组件的时候就请求数据</span><span class="WHIT">
+<span class='line'>238</span> </span><span class="WHIT">                </span><span class="NAME">self._ajaxLoad</span><span class="PUNC">(</span><span class="NAME">options.url</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>239</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.html</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-body'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">options.html</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">                </span><span class="NAME">this.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-body'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">options.contentEL</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">html</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">            </span><span class="NAME">this._bindEvent</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>247</span>          * ajax方法异步加载数据，返回的数据格式为html。
+<span class='line'>248</span>          * @param url
+<span class='line'>249</span>          */</span><span class="WHIT">
+<span class='line'>250</span> </span><span class="WHIT">        </span><span class="NAME">_ajaxLoad</span><span class="PUNC">:</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>251</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">            </span><span class="NAME">$.ajax</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">                </span><span class="NAME">url</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">url</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="WHIT">                </span><span class="NAME">method</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'POST'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">                </span><span class="NAME">dataType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'html'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">                </span><span class="NAME">success</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">textStatus</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">                    </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-body'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">                </span><span class="NAME">error</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">XMLHttpRequest</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">textStatus</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorThrown</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">                    </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-body'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">$.om.lang.omTooltip.FailedToLoad</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>261</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>265</span>          * 给提示框绑定事件，同时根据配置的delay参数做延迟显示，延迟隐藏处理
+<span class='line'>266</span>          * 而且鼠标离开了目标区域，但是还停留在提示框内的时候不能隐藏
+<span class='line'>267</span>          */</span><span class="WHIT">
+<span class='line'>268</span> </span><span class="WHIT">        </span><span class="NAME">_bindEvent</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.options</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.element</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>270</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.showOn</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'mouseover'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//mouseover的时候显示</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">                </span><span class="NAME">element.bind</span><span class="PUNC">(</span><span class="STRN">'mouseover'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>272</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">self.showTime</span><span class="PUNC">)</span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">self.showTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>273</span>                     </span><span class="NAME">self.showTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">                        </span><span class="NAME">self.show</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="NAME">options.delay</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.showOn</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'click'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//click的时候显示</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">                </span><span class="NAME">self.showTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">element.bind</span><span class="PUNC">(</span><span class="STRN">'click'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">                    </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="WHIT">                        </span><span class="NAME">self.show</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>281</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="NAME">options.delay</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>282</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.trackMouse</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">                </span><span class="NAME">element.bind</span><span class="PUNC">(</span><span class="STRN">'mousemove'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">                    </span><span class="NAME">self._adjustPosition</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">            </span><span class="NAME">element.bind</span><span class="PUNC">(</span><span class="STRN">'mouseleave'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">self.showTime</span><span class="PUNC">)</span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">self.showTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>291</span>                 </span><span class="NAME">self.hideTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">self.hide</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options.delay</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>292</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">            </span><span class="NAME">self.tip.bind</span><span class="PUNC">(</span><span class="STRN">'mouseover'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">self.hideTime</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">self.hideTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">bind</span><span class="PUNC">(</span><span class="STRN">'mouseleave'</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>296</span> </span><span class="WHIT">                </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">self.hide</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options.delay</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>299</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>300</span>          * 显示组件，组件只有在显示的时候才添加到dom树，
+<span class='line'>301</span>          * 第二次显示已经存在dom树，只需要改变显示状态。
+<span class='line'>302</span>          * @name omTooltip#show
+<span class='line'>303</span>          * @function
+<span class='line'>304</span>          * @example
+<span class='line'>305</span>          * $('#mytip').omTooltip('show');
+<span class='line'>306</span>          */</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">        </span><span class="NAME">show</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.options</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>309</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">find</span><span class="PUNC">(</span><span class="NAME">self.tip</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">length</span><span class="WHIT"> </span><span class="PUNC">&lt;=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//组件没有写入dom树的情况下</span><span class="WHIT">
+<span class='line'>310</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.url</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">options.lazyLoad</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>311</span> </span><span class="WHIT">                    </span><span class="NAME">self._ajaxLoad</span><span class="PUNC">(</span><span class="NAME">options.url</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>312</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">                </span><span class="NAME">self.tip.appendTo</span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">fadeIn</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">                </span><span class="NAME">self._adjustPosition</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>315</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>316</span> </span><span class="WHIT">                </span><span class="NAME">self._adjustPosition</span><span class="PUNC">(</span><span class="NAME">e</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">                </span><span class="NAME">self.tip.fadeIn</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>319</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>321</span>          * 调整提示框的位置，如果传入了event且trackMouse为true，则会根据event计算出鼠标的位置
+<span class='line'>322</span>          * 作为提示框的基础位置，再根据设置的offset等计算最终的提示框位置
+<span class='line'>323</span>          * 如果没有传入event或者trackMouse为false，则提示框将以目标位置为基础位置，再根据offset
+<span class='line'>324</span>          * region等参数配置情况计算最终位置。
+<span class='line'>325</span>          * 这里会根据浏览器的宽度对显示做调整，如果region配置了right，二浏览器右边已经没有足够的空间
+<span class='line'>326</span>          * 容纳提示框，则会将提示框显示到左边，region配置了bottom的时候同理。
+<span class='line'>327</span>          * @param event
+<span class='line'>328</span>          */</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">        </span><span class="NAME">_adjustPosition</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.options</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'>331</span>             </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">self.element</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">,</span><span class="NAME">left</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">            </span><span class="NAME">offSet</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">offset</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>333</span> </span><span class="WHIT">           </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">options.region</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>334</span> </span><span class="WHIT">                </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.pageY</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>335</span>                 </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.pageX</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>336</span>                 </span><span class="COMM">//anchor距离最顶部的距离，使用用户设置的偏移减去tip的高度和调节高度</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">                </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="NAME">options.anchorOffset</span><span class="PUNC">+</span><span class="NUMB">3</span><span class="PUNC">,</span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="STRN">'-9px'</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">addClass</span><span class="PUNC">(</span><span class="STRN">'tip-anchor-left'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">           </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">               </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">bottomWidth</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="STRN">'borderBottomWidth'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">replace</span><span class="PUNC">(</span><span class="STRN">'px'</span><span class="PUNC">,</span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">               </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">offSet.top</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">  </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">bottomWidth</span><span class="PUNC">)</span><span class="PUNC">?</span><span class="NUMB">0</span><span class="PUNC">:</span><span class="NAME">bottomWidth</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//1px作为调节距离</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">               </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">offSet.left</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">               </span><span class="COMM">//-----------根据region配置显示固定位置--------------</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">               </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.region</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'right'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//offset向右下偏 right作为默认配置</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">                   </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">offSet.left</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">width</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.adjustWidth</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//元素的offset向右移动$(element).widht()的距离</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">                   </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.element.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>346</span>                    </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="NAME">options.anchorOffset</span><span class="PUNC">+</span><span class="NUMB">3</span><span class="PUNC">,</span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="STRN">'-9px'</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//要减去自身的高度,去掉3px的radius</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">               </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.region</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'left'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//offset向左上偏</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">                   </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">offSet.left</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.tip.width</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustWidth</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//靠左的话就要减去tip自身的宽度</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">                   </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.element.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">                   </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="NAME">options.anchorOffset</span><span class="PUNC">+</span><span class="NUMB">3</span><span class="PUNC">,</span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">self.tip.outerWidth</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">-</span><span class="NUMB">2</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//将anchor向右移动tip的宽度</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">               </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.region</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'top'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//offset向右上偏</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">                   </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self.element.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.tip.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.adjustHeight</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">                   </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>354</span> </span><span class="WHIT">                   </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="NAME">self.tip.outerHeight</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">-</span><span class="NUMB">3</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="NAME">options.anchorOffset</span><span class="PUNC">+</span><span class="NUMB">3</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">//25+4</span><span class="WHIT">
+<span class='line'>355</span> </span><span class="WHIT">               </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.region</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">'bottom'</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//offset向右下偏</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">                   </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">                   </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">options.offset</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">                   </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">9</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="NAME">options.anchorOffset</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">               </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">               </span><span class="NAME">self.tip.find</span><span class="PUNC">(</span><span class="STRN">'.tip-anchor'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">addClass</span><span class="PUNC">(</span><span class="STRN">'tip-anchor-'</span><span class="PUNC">+</span><span class="NAME">self.regionMap</span><span class="PUNC">[</span><span class="NAME">options.region</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>361</span> </span><span class="WHIT">           </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">           </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.tip.width</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NAME">document.documentElement.clientWidth</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//当右边距离过短的时候会将提示框调整到左边</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">               </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">self.tip.width</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> </span><span class="WHIT">           </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">           </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.tip.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NAME">document.documentElement.clientHeight</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">//当下边距离过短的时候会将提示框调整到上边</span><span class="WHIT">
+<span class='line'>366</span> </span><span class="WHIT">               </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">self.element.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">self.tip.height</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>367</span> </span><span class="WHIT">           </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">           </span><span class="NAME">self.tip.css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="STRN">'top'</span><span class="PUNC">:</span><span class="NAME">top</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">document</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">scrollTop</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="STRN">'left'</span><span class="PUNC">:</span><span class="NAME">left</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="NAME">document</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">scrollLeft</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>370</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>371</span>          * 隐藏组件。
+<span class='line'>372</span>          * @name omTooltip#hide
+<span class='line'>373</span>          * @function
+<span class='line'>374</span>          * @example
+<span class='line'>375</span>          * $('#mytip').omTooltip('hide');
+<span class='line'>376</span>          */</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">        </span><span class="NAME">hide</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>378</span> </span><span class="WHIT">            </span><span class="NAME">this.tip.hide</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>379</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>380</span> </span><span class="WHIT">        </span><span class="NAME">destroy</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>381</span> </span><span class="WHIT">        	</span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">this.showTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>382</span> </span><span class="WHIT">        	</span><span class="NAME">clearTimeout</span><span class="PUNC">(</span><span class="NAME">this.hideTime</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>383</span> </span><span class="WHIT">        	</span><span class="NAME">this.tip.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>384</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>385</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>386</span> </span><span class="WHIT">    </span><span class="NAME">$.om.lang.omTooltip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>387</span> </span><span class="WHIT">            </span><span class="NAME">FailedToLoad</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'加载提示信息出错！'</span><span class="WHIT">
+<span class='line'>388</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>389</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">(</span><span class="NAME">jQuery</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

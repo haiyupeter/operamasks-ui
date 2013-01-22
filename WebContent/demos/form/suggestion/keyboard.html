@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>键盘操作</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#txt').omSuggestion({
+                dataSource : '../../../simpleSuggestion.json'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="txt" />
+    <!-- view_source_end -->
+    <div id="view-desc">
+        支持用鼠标或键盘操作。<br />
+        <ul>
+            <li>在下拉框展开时：
+                <ul>
+                    <li>按“↓”键可以选择当前高亮行的下一行（会自动把值回填到输入框），如果已经是最后一行再按“↓”键会滚条第一行。</li>
+                    <li>按“↑”键可以选择当前高亮行的上一条（会自动把值回填到输入框），如果已经是第一条再按“↑”键会滚动到第一条。</li>
+                    <li>ESC键或回车键可以隐藏下拉框。</li>
+                    <li>鼠标移动到某行上，高亮该行（不会自动把值回填到输入框）。</li>
+                    <li>鼠标在某行上单击，把值回填到输入框并隐藏下拉框。</li>
+                    <li>鼠标在下拉框以外的地方单击，隐藏下拉框。</li>
+                </ul></li>
+            <li>在下拉框收缩时：
+                <ul>
+                    <li>按“↓”键或“↑”键可以展开下拉框。</li>
+                    <li>ESC键或回车键没有反应。</li>
+                </ul></li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

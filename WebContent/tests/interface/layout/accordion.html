@@ -1,0 +1,351 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui om-accordion tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-accordion.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-theme.css" /> 
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-panel.css" /> 
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-tabs.css" /> 
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-accordion.css" /> 
+ <style type="text/css">
+ 	.width-ruler{
+ 		height: 14px;
+ 		background-color: red;
+ 		font-weight: bold;
+ 		text-align: center;
+ 		margin-top: 5px;
+ 	}
+ 	.height-ruler{
+ 		background-color: red;
+ 		font-weight: bold;
+ 		margin-left: 5px;
+ 		width: 14px;
+ 	}
+ 	.filesave {
+ 		background: url('images/filesave.png');
+ 		background-repeat: no-repeat;
+ 	}
+ 	.omAccdn{
+ 		width:500px;
+ 	}
+ </style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        
+		 // test option
+
+        $('#test-accordion-interval').omAccordion({autoPlay:true,interval:2000 });
+
+        
+	    // test method
+	    $('#test-accordion-method-onActivate').omAccordion({
+	        collapsible:true,
+	        active:-1,
+	    	onActivate:function(){alert('onActivate')},
+	    	onBeforeActivate:function(){alert('onBeforeActivate')}
+	    });
+	    $('#test-accordion-method-onExpand').omAccordion({
+	        onExpand : function(n){
+	            $('#test-accordion-method-onExpand-output').text('index:' + n + 'event:onExpand');
+	        }
+	    });
+	    $('#test-accordion-method-onCollapse').omAccordion({
+	        onBeforeCollapse:function(n){
+	            alert("onBeforeCollapse");
+	        },
+	        onCollapse:function(n){
+	            alert("onCollapse");
+	        }
+	    });
+	    $('.onExpand-onCollapse-class').text('').css('color','red');
+		
+	    // test limit
+	    $('#test-accordion-limit-nest').omAccordion({height:500 });
+	    $('#test-accordion-limit-nest-1').omAccordion({width:'90%',height:350});
+	    $('#test-accordion-limit-nest-1-1').omAccordion({width:'90%',height:150});
+	    $('#test-accordion-limit-nest-2').omAccordion({width:'90%',height:200});
+	    $('#test-accordion-limit-nest-3').omAccordion({width:'90%',height:200});
+	    
+	    $('#test-accordion-limit-width').omAccordion({width:-1});
+	    $('#test-accordion-limit-height').omAccordion({height:-1});
+	    $('#test-accordion-limit-activate').omAccordion({});
+	    
+    }); 
+    
+    function activateMinus(){
+    	$('#test-accordion-limit-activate').omAccordion('activate',-1);
+    }
+    function activateSuper(){
+    	$('#test-accordion-limit-activate').omAccordion('activate',1000);
+    }
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		omAccordion测试案例，API属性总共 <span class="apiNo" number="10"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;">5</span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;">3</span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+       <div class="testPoint">
+            <span class="title">属性测试点7：测试interval属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+               抽屉每隔两秒钟自动切换。
+            </div>
+            <div class="tpDIV">
+                <div class="omAccdn" id="test-accordion-interval"> 
+                    <ul> 
+                        <li><a href="#accordion-1">TabTitle1</a></li> 
+                        <li><a href="#accordion-2">TabTitle2</a></li> 
+                        <li><a href="#accordion-3">TabTitle3</a></li> 
+                        <li><a href="#accordion-4">TabTitle4</a></li> 
+                    </ul> 
+                    <div id="accordion-1"> 
+                        <p>this is accordion 1.</p> 
+                    </div> 
+                    <div id="accordion-2"> 
+                        <p>this is accordion 2.</p> 
+                    </div> 
+                    <div id="accordion-3"> 
+                        <p>this is accordion 3.</p> 
+                    </div> 
+                    <div id="accordion-4"> 
+                        <p>this is accordion 4.</p> 
+                    </div> 
+                </div> 
+            </div>
+        </div>  
+	<div id="tabs-2">
+        <div class="testPoint">
+            <span class="title">功能测试点6：测试onBeforeActivate、onActivate事件</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+              激活任意一个抽屉,弹出一个框显示"onBeforeActivate",接着再弹出一个框显示"onActivate"。(如果抽屉已经处于激活状态，那么再点击它的头部时抽屉被收起，且不会有弹出框)
+            </div>
+            <div class="tpDIV">
+                <div class="omAccdn" id="test-accordion-method-onActivate"> 
+                    <ul> 
+                        <li><a href="#accordion-1">TabTitle1</a></li> 
+                        <li><a href="#accordion-2">TabTitle2</a></li> 
+                        <li><a href="#accordion-3">TabTitle3</a></li> 
+                    </ul> 
+                    <div id="accordion-1"> 
+                        <p>this is accordion 1.</p> 
+                    </div> 
+                    <div id="accordion-2"> 
+                        <p>this is accordion 2.</p> 
+                    </div> 
+                    <div id="accordion-3"> 
+                        <p>this is accordion 3.</p> 
+                    </div> 
+                </div> 
+            </div>
+        </div>
+
+        <div class="testPoint">
+            <span class="title">功能测试点7：测试onBeforeCollapse、onCollapse事件</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+              激活任意一个抽屉,弹出一个框显示"onBeforeCollapse",接着再弹出一个框显示"onCollapse"。(如果抽屉已经处于激活状态，那么再点击它的头部时什么事也不发生)
+            </div>
+            <div class="tpDIV">
+                <div class="omAccdn" id="test-accordion-method-onCollapse"> 
+                    <ul> 
+                        <li><a href="#accordion-1">TabTitle1</a></li> 
+                        <li><a href="#accordion-2">TabTitle2</a></li> 
+                        <li><a href="#accordion-3">TabTitle3</a></li> 
+                    </ul> 
+                    <div id="accordion-1"> 
+                        <p>this is accordion 1.</p> 
+                    </div> 
+                    <div id="accordion-2"> 
+                        <p>this is accordion 2.</p> 
+                    </div> 
+                    <div id="accordion-3"> 
+                        <p>this is accordion 3.</p> 
+                    </div> 
+                </div> 
+            </div>
+        </div>
+		
+	</div>
+	
+	<div id="tabs-3">
+		<div class="testPoint">
+			<span class="title">边界测试点1：测试accordion多重嵌套</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			  页签面板以及嵌套的页签面板显示正常
+			</div>
+			<div class="tpDIV">
+				<div class="omAccdn" id="test-accordion-limit-nest"> 
+				    <ul> 
+				        <li><a href="#accordion-1">TabTitle1</a></li> 
+				        <li><a href="#accordion-2">TabTitle2</a></li> 
+				        <li><a href="#accordion-3">TabTitle3</a></li> 
+				    </ul> 
+				    <div id="accordion-1">
+				    	<p>this is accordion 1.</p>
+				        <div id="test-accordion-limit-nest-1" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#accordion-1">TabTitle1</a></li> 
+						        <li><a href="#accordion-2">TabTitle2</a></li> 
+						        <li><a href="#accordion-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="accordion-1">
+						    	<p>this is nest accordion.</p>
+		  				        <div id="test-accordion-limit-nest-1-1" style="margin: 0 auto;"> 
+								    <ul> 
+								        <li><a href="#accordion-1">TabTitle1</a></li> 
+								        <li><a href="#accordion-2">TabTitle2</a></li> 
+								        <li><a href="#accordion-3">TabTitle3</a></li> 
+								    </ul>
+								    <div id="accordion-1">this is nest accordion 1-1.</div>
+								    <div id="accordion-2">this is nest accordion 1-2.</div>
+								    <div id="accordion-3">this is nest accordion 1-3.</div>
+							    </div> 
+						    </div>
+						    <div id="accordion-2">this is nest accordion 2.</div>
+						    <div id="accordion-3">this is nest accordion 3.</div>
+					    </div> 
+				    </div> 
+				    <div id="accordion-2"> 
+				    	<p>this is nest accordion.</p>
+				        <div id="test-accordion-limit-nest-2" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#accordion-1">TabTitle1</a></li> 
+						        <li><a href="#accordion-2">TabTitle2</a></li> 
+						        <li><a href="#accordion-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="accordion-1">this is nest accordion 1.</div>
+						    <div id="accordion-2">this is nest accordion 2.</div>
+						    <div id="accordion-3">this is nest accordion 3.</div>
+					    </div> 
+				    </div> 
+				    <div id="accordion-3"> 
+				    	<p>this is nest accordion.</p>
+				        <div id="test-accordion-limit-nest-3" style="margin: 0 auto;"> 
+						    <ul> 
+						        <li><a href="#accordion-1">TabTitle1</a></li> 
+						        <li><a href="#accordion-2">TabTitle2</a></li> 
+						        <li><a href="#accordion-3">TabTitle3</a></li> 
+						    </ul>
+						    <div id="accordion-1">this is nest accordion 1.</div>
+						    <div id="accordion-2">this is nest accordion 2.</div>
+						    <div id="accordion-3">this is nest accordion 3.</div>
+					    </div> 
+				    </div> 
+				</div> 
+			</div>
+		</div>
+		
+		<div class="testPoint">
+			<span class="title">边界测试点2：测试非法的width属性值(width = -1)</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   抽屉布局能正常显示.(此例中抽屉宽度为屏幕宽度,自动适应父容器,属正常行为.)
+			</div>
+			<div class="tpDIV">
+				<div id="test-accordion-limit-width"> 
+				    <ul> 
+				        <li><a href="#accordion-1">TabTitle1</a></li> 
+				        <li><a href="#accordion-2">TabTitle2</a></li> 
+				        <li><a href="#accordion-3">TabTitle3</a></li> 
+				    </ul> 
+				    <div id="accordion-1"> 
+				        <p>this is accordion 1.</p> 
+				    </div> 
+				    <div id="accordion-2"> 
+				        <p>this is accordion 2.</p> 
+				    </div> 
+				    <div id="accordion-3"> 
+				        <p>this is accordion 3.</p> 
+				    </div> 
+				</div> 
+			</div>
+		</div>
+		<div class="testPoint">
+			<span class="title">边界测试点3：测试非法的height属性值(height = -1)</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   抽屉布局正常显示.
+			</div>
+			<div class="tpDIV">
+				<div class="omAccdn" id="test-accordion-limit-height"> 
+				    <ul> 
+				        <li><a href="#accordion-1">TabTitle1</a></li> 
+				        <li><a href="#accordion-2">TabTitle2</a></li> 
+				        <li><a href="#accordion-3">TabTitle3</a></li> 
+				    </ul> 
+				    <div id="accordion-1"> 
+				        <p>this is accordion 1.</p> 
+				    </div> 
+				    <div id="accordion-2"> 
+				        <p>this is accordion 2.</p> 
+				    </div> 
+				    <div id="accordion-3"> 
+				        <p>this is accordion 3.</p> 
+				    </div> 
+				</div> 
+			</div>
+		</div>
+		
+		<div class="testPoint">
+			<span class="title">边界测试点4：测试activate参数的非法值(activate(-1), activate(1000))</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			   点击 activate(-1)会展开第一个抽屉,点击 activate(1000)会展开最后一个抽屉.
+			</div>
+			<div class="tpDIV">
+				<div class="omAccdn" id="test-accordion-limit-activate"> 
+				    <ul> 
+				        <li><a href="#accordion-1">TabTitle1</a></li> 
+				        <li><a href="#accordion-2">TabTitle2</a></li> 
+				        <li><a href="#accordion-3">TabTitle3</a></li> 
+				    </ul> 
+				    <div id="accordion-1"> 
+				        <p>this is accordion 1.</p> 
+				    </div> 
+				    <div id="accordion-2"> 
+				        <p>this is accordion 2.</p> 
+				    </div> 
+				    <div id="accordion-3"> 
+				        <p>this is accordion 3.</p> 
+				    </div> 
+				</div> 
+				<br/>
+				<button onclick="activateMinus()"  >activate(-1)</button>
+				<button onclick="activateSuper()"  >activate(1000)</button>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>rules自定义</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="rules.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+       label.error{
+        background: #fff6bf url(images/alert.png) center no-repeat;
+		background-position: 5px 50%;
+		text-align: left;
+		padding: 2px 20px 2px 25px;
+		border: 1px solid #ffd324;
+		display: none;
+		width: 200px;
+		margin-left: 10px;
+       }
+    </style>
+    <!-- 需要<script type="text/javascript" src="rules.js"></script> -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+             var test = $("#reg").validate({
+                rules : {
+                    isNumber : {
+                        required : true,
+                        isNum : true
+                    },
+                    isDecimal : {
+                        required : true,
+                        isDecimal : true
+                    },
+                    isInteger : {
+                        required : true,
+                        isInteger : true
+                    },
+                    isChinese : {
+                        required : true,
+                        isChinese : true
+                    },
+                    isIP : {
+                        required : true,
+                        isIP : true
+                    },
+                    isQuote : {
+                        required : true,
+                        isQuote : true
+                    },
+                    isIdCard : {
+                        required : true,
+                        isIdCard : true
+                    },
+                    ismaleOrFemalByIdCard : {
+                        required : true,
+                        isIdCard : true,
+                        ismaleOrFemalByIdCard : true
+                    }
+                },
+                submitHandler : function(){
+                    alert('提交成功！');
+                    $(this)[0].currentForm.reset()
+                    return false;
+                },
+                showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){
+ 	                   $.each(errorList,function(index,obj){
+ 	                       $(obj.element).next().show();
+ 	                   });
+ 	                   this.defaultShowErrors();
+                    }else{
+                        var hideEmpError = $(this.currentElements).next();
+                        if(hideEmpError.length > 0 && hideEmpError[0].tagName == 'LABEL' && hideEmpError.hasClass('error'))
+                           hideEmpError.hide();
+                    }
+                    $(this.currentElements).each(function(index,item){
+                        if($(item).hasClass("valid")){
+                            $(item).next(".error").hide();
+                        }
+                    });
+                }
+            });
+             
+             $("#sub").omButton(); 
+             
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form action="#" id="reg">
+      <table>
+        <tr>
+           <td><label>数字字符(不包括任何其它字符如.-)：</label></td>
+           <td><input type="text" name="isNumber" id="isNumber"/></td>
+        </tr>
+        <tr>
+           <td><label>小数(正负小数、正负整数)：</label></td>
+           <td><input type="text" name="isDecimal" id="isDecimal"/></td>
+        </tr>
+        <tr>
+           <td><label>正负整数：</label></td>
+           <td><input type="text" name="isInteger" id="isInteger"/></td>
+        </tr>
+        <tr>
+           <td><label>汉字：</label></td>
+           <td><input type="text" name="isChinese" id="isChinese"/></td>
+        </tr>
+        <tr>
+           <td><label>IP地址：</label></td>
+           <td><input type="text" name="isIP" id="isIP"/></td>
+        </tr>
+        <tr>
+           <td><label>不允许特殊字符(admin、管理员 等)：</label></td>
+           <td><input type="text" name="isQuote" id="isQuote"/></td>
+        </tr>
+        <tr>
+           <td><label>身份证：</label></td>
+           <td><input type="text" name="isIdCard" id="isIdCard"/></td>
+        </tr>
+        <tr>
+           <td><label>输入您的身份证(女人通过验证)：</label></td>
+           <td><input type="text" name="ismaleOrFemalByIdCard" id="ismaleOrFemalByIdCard"/></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td align="left">
+        	<input type="submit" value="提交" id="sub"/>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        本示例展示如何使用自定义的rules，我们整理了20个校验规则，具体rules文件请猛烈点击<a href="rules.js" target="_blank">rules.js</a>
+    </div>
+</body>
+</html>

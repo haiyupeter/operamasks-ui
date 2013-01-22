@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>抽屉组件和布局组件组合</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-accordion.js"></script>
+    <script type="text/javascript" src="../../demos/common/js/themewriter.js"></script>
+    <!-- view_source_begin -->
+    <style>
+    	html, body{ width: 100%; height: 100%; padding: 0; margin: 0;}
+        .java_icon{background: url('images/java.png') no-repeat;}
+        .c_icon{background: url('images/c.png') no-repeat;}
+        .c_plus_plus_icon{background: url('images/c_plus_plus.png') no-repeat;}
+        .om-panel-body {padding : 20px;}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var element = $('body').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	        resizable:true,
+           	        collapsible:true,
+           	    	header:false,
+           	        region:"west",
+           	        width:150
+           	    }]
+            });
+            $("#accordionId").omAccordion({
+                width : '100%',
+                height : '100%'
+            });
+            
+            $("#panel").omPanel({
+                width:'100%',
+                height:'100%',
+                header: true,
+                collapsed: false,
+                collapsible: false,
+                closable: false,
+                title : '什么是java',
+                url:'content2.html'
+            });
+            
+            $('a[href="#"]').click(function(){
+            	$("#panel").omPanel('setTitle',$(this).html());
+            	$("#panel").omPanel('reload',$(this).attr('url'));
+            });
+
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    	<div id="center-panel">
+    	    <div id="panel">
+   	        </div>
+	    </div>
+	    <div id="west-panel">
+	    	<div id="accordionId"> 
+	        <ul> 
+	            <li><a href="#accordion-1">java方面</a></li> 
+	            <li><a href="#accordion-2">web方面</a></li> 
+	        </ul> 
+	        <div id="accordion-1">
+	            <p>
+	               <ul>
+	                 <li><a href="#" url="content2.html">什么是java</a></li>
+	                 <li><a href="#" url="content1.html">多线程</a></li>
+	               </ul>
+	            </p>
+	        </div>
+	        <div id="accordion-2">
+	            <p>
+	               <ul>
+	                 <li><a href="#" url="content3.html">html5</a></li>
+	                 <li><a href="#" url="content4.html">javascript</a></li>
+	               </ul>
+	            </p>
+	        </div>
+	      </div>
+    	</div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    </div>
+</body>
+</html>

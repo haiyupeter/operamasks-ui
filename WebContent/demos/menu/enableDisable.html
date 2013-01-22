@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../themes/default/om-all.css">
+<link rel="stylesheet" href="../common/css/demo.css">
+<script src="../../jquery.js"></script>
+<script src="../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../ui/om-menu.js"></script>
+<title>菜单节点不可用</title>
+<!-- view_source_begin -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#menu_json').omMenu({
+          minWidth : 150,
+          maxWidth : 150,
+          dataSource : [{id:'001',label:'节点一'},
+                        {id:'002',label:'节点二',disabled:true,icon : 'images/calendar.gif',children:[
+                                                               {id:'002001',label:'节点二一',url:'abc.html'},
+                                                               {id:'002002',icon : 'images/calendar.gif',label:'节点二二',url:'abc.html'}
+                                                               ]
+                        }
+                       ]
+      });
+      $('#btn1').click(function(){
+          $('#menu_json').omMenu('show',this);
+      });
+      $('#btn2').click(function(){
+          $('#menu_json').omMenu('show',this);
+          $('#menu_json').omMenu('enableItem','002');
+      });
+  });
+</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+    <input type="button" id="btn1" value="节点二设置disabled属性为true">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" id="btn2" value="动态改变节点为可用">
+    <div id="menu_json"></div>
+  <!-- view_source_end -->
+  <div id="view-desc">
+      <p>设置disable属性使菜单项不可用，调用enableItem方法可以使不可用菜单项变的可用。
+      </p>
+ </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

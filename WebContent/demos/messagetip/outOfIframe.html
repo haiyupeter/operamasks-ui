@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Iframe外提示</title>
+    <script src="../../jquery.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+    <!--
+    //提示不出现在当前iframe页面，而是出现在主页面(iframe之外)右下角
+    function showTopTip(){
+        try{
+	        window.top.$.omMessageTip.show({
+	            title : '提示',
+	            content : 'iframe中的消息弹出到iframe外的主页面中！'
+	        });
+        }catch(e){
+            alert('提示失败！原因是：顶层页面没有引入提示所需要的js。');
+        }
+    }
+    //-->
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <button onclick="showTopTip();">弹到当前iframe外</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        如果当前页面位于iframe中，则提示框会显示到当前iframe的右下角。如果要显示提示框到顶层框架页面中去，需要做两件事：（1）在顶层页面（window.top）引入提示所需要的各种资源（css、js）；（2）弹出提示时使用window.top.$.omMessageTip.show(config)即可把提示框弹出到顶层页面右下角。<br/>同理也可以将window.top改成其它窗口来将提示弹出到其它iframe或顶层window中（同样需要先在那些页面引入资源）。<br/>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

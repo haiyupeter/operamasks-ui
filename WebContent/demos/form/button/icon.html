@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>显示图标</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+     <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('a#button-icons').omButton({
+       	     icons : {left : 'images/edit_add.png'}
+       	 	});
+            $('a#button-icons1').omButton({
+       	     icons : {right : 'images/down.png'}
+       	 	});
+            $('input#button-icons2').omButton({
+       	     icons : {left : 'images/edit_add.png', right: 'images/down.png'}
+       	 	});
+            $('#icon-only').omButton({
+       	     icons : {left : 'images/edit_add.png'}
+       	 	});
+        });
+    </script>
+    <style type="text/css">
+		#iconOnly .om-btn .om-btn-center {width: 17px;}
+    </style>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <a id="button-icons" href="javascript:void(0)">有左icon的按钮</a>
+    <br/><br/>
+    <a id="button-icons1" href="javascript:void(0)">有右icon的按钮</a>
+    <br/><br/>
+    <input type="submit" id="button-icons2" value="有左右icon的按钮"/>
+    <br/><br/>
+    <div id="iconOnly"  title="只显示图标的按钮">
+        <a id="icon-only" href="javascript:void(0)"></a>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置icons属性，支持左右图标显示。</p>
+        <p>如 icons : {left : 'images/edit_add.png', right: 'images/down.png'}，
+                    left表示左图标，right表示右图标，取值均为图片路径。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>快捷键</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">&lt;p&gt;CTRL+Q弹出表情选择框 &lt;/p&gt;</textarea>
+    <script>
+        //         
+        $(function() {
+            var config = {
+                keystrokes : [ [ OMEDITOR.CTRL + 81 /*Q*/, 'smiley' ] ]
+            };
+            var editor = $('.editor').omEditor(config);
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置keystrokes属性定义editor的快捷键和对应的命令。</p>
+        <p>keystrokes : [ [ OMEDITOR.CTRL + 81 /*Q*/, 'smiley' ] ]说明：OMEDITOR.CTRL常量表示键盘的CTRL键，81是键盘Q对应的ASCII码。
+            'smiley'表示弹出表情框的命令，在编辑器中按下键盘CTRL+Q会弹出表情选择框。
+        </p>
+    </div>
+</body>
+</html>

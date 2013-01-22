@@ -1,0 +1,805 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omMenu</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omMenu
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#events">事件</a></li>
+                    
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    menu组件。menu组件支持三种数据组织方式，分别为页面dom元素、json数据、url取值。<br/>
+       基本的json格式为{id:"",label:"",icon:"img/abc.png",seperator:true,disabled:true,children:[{},{}]},其中的id和label必须设置，<br/>
+       seperator为分割线，如果设置为true，则会在当前menuItem下面增加一条分割线。<br/><br/>
+       组件默认会处理的属性为上面列举的6个，即id、label、icon、seperator、disabled、children。<br/>
+       如果你自定义了某个属性，比如url，系统不会处理，它是在点击的时候交给onSelect方法处理，通过item.url获取url参数。
+<b>特点：</b><br/>
+<ol>
+     <li>支持icon自定制</li>
+     <li>灵活的事件处理机制，自由增加json属性，事件执行时获取数据进行处理</li>
+     <li>支持动态改变menuItem的disabled属性</li>
+     <li>支持右键菜单，无需指定位置，自动定位</li>
+     <li>支持菜单分组，使用showSeparator属性配置</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" &gt;
+$(document).ready(function() {
+     //menu定义
+     $('#contextMenu').omMenu({
+         contextMenu : true,
+         dataSource : '../../omMenu.json'
+     });
+     //显示menu菜单
+     $('#contextMenu_test').bind('contextmenu',function(e){
+          $('#contextMenu').omMenu('show',e);
+     });
+});
+&lt;/script&gt;
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-menu.js.html">om-menu.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omMenu</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            构造函数.
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象：{}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-contextMenu">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">contextMenu</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        是否为右键菜单
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#menu_1").omMenu({contextMenu:true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-dataSource">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">dataSource</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>String</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">local</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        数据源，可以设置为json数据，也可以是url，如果不设置则为local，默认使用页面的dom元素生成Menu
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#menu_1").omMenu({dataSource:'menuData.json'});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-maxWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">maxWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">200</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最大宽度，如果menuItem文字长度超出了最大宽度，将会隐藏，鼠标移动到上面会有全文提示
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#menu_1").omMenu({maxWidth:150});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-minWidth">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">minWidth</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">100</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        最小宽度，如果menuItem文字长度少于minWidth，则将使用空白填充。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$("#menu_1").omMenu({minWidth:50});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-disableItem">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">disableItem</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omMenu.html#disableItem">disableItem</a></b>(itemId)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    将某个menuitem设置为disabled，设置之后menuitem将不会触发事件，如果有子菜单将不能打开子菜单，必须有menuItem。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>itemId</b>&nbsp;-
+	                                                menuItem的ID
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//调用disableItem方法
+ $('#btn').click(function(){
+    $('#menu_simple').omMenu('disableItem','001');
+});</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-enableItem">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">enableItem</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omMenu.html#enableItem">enableItem</a></b>(itemId)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    将某个menuitem设置为enable。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>itemId</b>&nbsp;-
+	                                                menuItem的ID
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//调用enableItem方法
+ $('#btn').click(function(){
+    $('#menu_simple').omMenu('enableItem','001');
+});</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-hide">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">hide</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omMenu.html#hide">hide</a></b>()
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    隐藏menu，隐藏之后会清空menu当前的状态。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//调用hide方法
+ $('#btn').click(function(){
+    $('#menu_simple').omMenu('hide');
+});</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-show">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">show</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omMenu.html#show">show</a></b>(triggerEle)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    显示menu，menu不会自己显示，必须调用show方法才能显示
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>triggerEle</b>&nbsp;-
+	                                                触发显示事件的对象，如点击的button触发的就是button对象
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//通过点击button显示menu
+ $('#btn').click(function(){
+    $('#menu_simple').omMenu('show',this);
+});</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+          <!-- doc_events_begin -->
+          <div id="events">
+            <!-- ============================== event details ========================= -->     
+            <h2 class="top-header">事件</h2>
+            <div id="events-list">
+	            <ul class="events-list">
+	                
+	                    <li class="event" id="event-onSelect">
+	                      <div class="event-header">
+	                        <h3 class="event-name"><a href="#" onclick="return false;">onSelect</a></h3>
+	                        <dl>
+	                          <dt class="event-type-label"><dt class="event-type"></dt>
+	                            
+	                            function(item, event)
+	                            </dt>
+	                        </dl>
+	                      </div>
+	                      <div class="event-description">
+	                        <p>
+	                            当点击选择menu的时候触发的事件，item包含当前menuItem的所有数据。
+	                            
+	                            
+	                            
+	                            <!-- handler the other members -->
+	                            
+	                                <dl class="detailList">
+	                                <dt class="heading">参数:</dt>
+	                                
+	                                    <dt>
+	                                        <b>item</b>&nbsp;-
+	                                        当前menuItem的所有数据
+	                                        
+	                                    </dt>
+	                                
+	                                    <dt>
+	                                        <b>event</b>&nbsp;-
+	                                        jQuery.Event对象
+	                                        
+	                                    </dt>
+	                                
+	                                </dl>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </p>
+	                      </div>
+	                      
+	                      
+	                          <div class="event-examples">
+	                            <h4>示例</h4>
+	                            <dl class="event-examples-list">
+	                                
+	                                    <dd>
+	                                    <pre>$("#menu_1").omMenu({
+        onSelect:function(item,event){
+           location.href = item.url;
+        }
+});</pre>
+	                                    </dd>
+	                                
+	                            </dl>
+	                          </div>
+	                      
+	                    </li>
+	                
+	            </ul>
+            </div>
+          </div>
+          <!-- doc_events_end -->
+       
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:59 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

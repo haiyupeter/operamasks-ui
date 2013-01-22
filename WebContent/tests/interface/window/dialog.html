@@ -1,0 +1,436 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omDialog tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-widget.js" ></script>
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-mouse.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-draggable.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-position.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-resizable.js" ></script>
+<script type="text/javascript" src="../../../ui/om-button.js" ></script>  
+<script type="text/javascript" src="../../../ui/om-dialog.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<style>
+.dialogClass{
+    width:500px!important;
+    border:10px solid red;
+}
+</style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        $('#buttons1').click(function(){
+            $('#buttons1Div').omDialog({
+                title:'弹出窗口',
+                buttons:{OK:function(){alert('文字是OK');},'按钮':function(){alert('文字是按钮');}}
+            });
+        });
+        $('#buttons2').click(function(){
+            $('#buttons2Div').omDialog({
+                title:'弹出窗口',
+                buttons:[{ text:'OK',click:function(){alert('文字是OK');} },{ text:'按钮',click:function(){alert('文字是按钮');} }]
+            });
+        });
+        $('#closeOnEscape1').click(function(){
+            $('#closeOnEscape1Div').omDialog({
+                title:'弹出窗口',
+                closeOnEscape:true
+            });
+        });
+        $('#closeOnEscape2').click(function(){
+            $('#closeOnEscape2Div').omDialog({
+                title:'弹出窗口',
+                closeOnEscape:false
+            });
+        });
+        $('#dialogClass').click(function(){
+            $('#dialogClassDiv').omDialog({
+                title:'弹出窗口',
+                dialogClass:'dialogClass'
+            });
+        });
+        $('#draggable1').click(function(){
+            $('#draggable1Div').omDialog({
+                title:'弹出窗口',
+                draggable:true
+            });
+        });
+        $('#draggable2').click(function(){
+            $('#draggable2Div').omDialog({
+                title:'弹出窗口',
+                draggable:false
+            });
+        });
+        $('#height').click(function(){
+            $('#heightDiv').omDialog({
+                title:'弹出窗口',
+                height:400
+            });
+        });
+        $('#maxHeight').click(function(){
+            $('#maxHeightDiv').omDialog({
+                title:'弹出窗口',
+                maxHeight:500,
+                resizable:true
+            });
+        });
+        $('#maxWidth').click(function(){
+            $('#maxWidthDiv').omDialog({
+                title:'弹出窗口',
+                maxWidth:500,
+                resizable:true
+            });
+        });
+        $('#minHeight').click(function(){
+            $('#minHeightDiv').omDialog({
+                title:'弹出窗口',
+                minHeight:100,
+                resizable:true
+            });
+        });
+        $('#minWidth').click(function(){
+            $('#minWidthDiv').omDialog({
+                title:'弹出窗口',
+                minWidth:100,
+                resizable:true
+            });
+        });
+        $('#modal1').click(function(){
+            $('#modal1Div').omDialog({
+                title:'弹出窗口',
+                modal:false
+            });
+        });
+        $('#modal2').click(function(){
+            $('#modal2Div').omDialog({
+                title:'弹出窗口',
+                modal:true
+            });
+        });
+        $('#resizable1').click(function(){
+            $('#resizable1Div').omDialog({
+                title:'弹出窗口',
+                resizable:true,
+                modal:false
+            });
+        });
+        $('#resizable2').click(function(){
+            $('#resizable2Div').omDialog({
+                title:'弹出窗口',
+                resizable:false,
+                modal:true
+            });
+        });
+        $('#title1').click(function(){
+            $('#title1Div').omDialog({
+                title:'标题1'
+            });
+        });
+        $('#title2').click(function(){
+            $('#title2Div').omDialog({
+                title:'<font color="red">红色标题</font>'
+            });
+        });
+        $('#width').click(function(){
+            $('#widthDiv').omDialog({
+                title:'弹出窗口',
+                width:500
+            });
+        });
+        $('#onBeforeClose').click(function(){
+            $('#onBeforeCloseDiv').omDialog({
+                title:'弹出窗口',
+                onBeforeClose:function(){
+                    alert('关闭窗口之前执行的事件');
+                }
+            });
+        });
+        $('#onClose').click(function(){
+            $('#onCloseDiv').omDialog({
+                title:'弹出窗口',
+                onClose:function(){
+                    alert('关闭窗口之后执行的事件');
+                }
+            });
+        });
+        $('#onOpen').click(function(){
+            $('#onOpenDiv').omDialog({
+                title:'弹出窗口',
+                onOpen:function(){
+                    alert('打开窗口之后执行的事件');
+                }
+            });
+        });
+        $('#autoOpenDiv').omDialog({title:'弹出窗口'});
+        
+        
+        
+        //methods
+        $('#close1').click(function(){
+            $('#closeDiv').omDialog({
+                title:'弹出窗口'
+            });
+        });
+        $('#close2').click(function(){
+            $('#closeDiv').omDialog('close');
+        });
+        $('#close3').click(function(){
+            $('#closeDiv').omDialog('open');
+        });
+        $('#isOpen1').click(function(){
+            $('#isOpenDiv').omDialog({
+                title:'弹出窗口'
+            });
+        });
+        $('#isOpen2').click(function(){
+            var isOpen=$('#isOpenDiv').omDialog('isOpen');
+            alert(isOpen===true?'窗口打开了':'窗口没打开');
+        });
+        
+    }); 
+</script>
+ 
+</head> 
+<body> 
+  <div class="total">
+		dialog测试案例，API属性总共 <span class="apiNo" number="7"></span> 个，
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+	<!-- 
+        <div class="testPoint">
+            <span class="title">属性测试点1：测试autoOpen属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">页面打开后这个弹出窗口会自动弹出，不需要点任何按钮</div>
+            <div  class="tpDIV">
+                <div id="autoOpenDiv" style="display: none">测试autoOpen属性，页面打开后这个弹出窗口会自动弹出，不需要点任何按钮</div>
+            </div>
+        </div>
+		<div class="testPoint">
+            <span class="title">属性测试点2：测试buttons属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击两个按钮，均弹出一个窗口，窗口下面均有两个按钮“OK”和“按钮”。点击“OK”按钮弹出提示“文字是OK”，点击“按钮”按钮弹出提示“文字是按钮”</div>
+            <div  class="tpDIV">
+                <div id="buttons1Div"></div>
+                <div id="buttons2Div"></div>
+                <button id="buttons1">参数是JSON对象</button>
+                <button id="buttons2">参数是JSON数组</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点3：测试closeOnEscape属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出一个窗口，按ESC后窗口可以关闭。点击按钮1弹出一个窗口，按ESC后窗口不可以关闭</div>
+            <div  class="tpDIV">
+                <div id="closeOnEscape1Div"></div>
+                <div id="closeOnEscape2Div"></div>
+                <button id="closeOnEscape1">可按Esc关闭弹出窗口</button>
+                <button id="closeOnEscape2">不可按Esc关闭弹出窗口</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点4：测试dialogClass属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出一个窗口，窗口宽度为500px,外面有10px的红色边框</div>
+            <div  class="tpDIV">
+                <div id="dialogClassDiv" style="display: none">asdasdad</div>
+                <button id="dialogClass">添加了自定义样式</button>
+            </div>
+        </div>
+         -->
+        <div class="testPoint">
+            <span class="title">属性测试点1：测试draggable属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出一个窗口可以拖动位置,点击按钮2弹出一个窗口不可拖动位置</div>
+            <div  class="tpDIV">
+                <div id="draggable1Div" style="display: none">asdasdad</div>
+                <div id="draggable2Div" style="display: none">asdasdad</div>
+                <button id="draggable1">可以拖动位置</button>
+                <button id="draggable2">不可拖动位置</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点2：测试maxHeight属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出一个窗口,改变窗口大小时，最大的高度为500px，不可以把窗口的高度变成大于500px</div>
+            <div  class="tpDIV">
+                <div id="maxHeightDiv" style="display: none">内容</div>
+                <button id="maxHeight">最大高度500px</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点3：测试maxWidth属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出一个窗口,改变窗口大小时，最大的宽度为500px，不可以把窗口的宽度变成大于500px</div>
+            <div  class="tpDIV">
+                <div id="maxWidthDiv" style="display: none">内容</div>
+                <button id="maxWidth">最大宽度500px</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点4：测试minHeight属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出一个窗口,改变窗口大小时，最小的高度为100px，不可以把窗口的高度变成小于100px</div>
+            <div  class="tpDIV">
+                <div id="minHeightDiv" style="display: none">内容</div>
+                <button id="minHeight">最小高度100px</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点5：测试minWidth属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出一个窗口,改变窗口大小时，最小的宽度为100px，不可以把窗口的宽度变成小于100px</div>
+            <div  class="tpDIV">
+                <div id="minWidthDiv" style="display: none">内容</div>
+                <button id="minWidth">最小宽度100px</button>
+            </div>
+        </div>
+        <!-- 
+        <div class="testPoint">
+            <span class="title">属性测试点6：测试height属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出一个窗口,高度为400px</div>
+            <div  class="tpDIV">
+                <div id="heightDiv" style="display: none">asdasdad</div>
+                <button id="height">高度400px</button>
+            </div>
+        </div>
+        -->
+        <div class="testPoint">
+            <span class="title">属性测试点6：测试modal属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出一个非模态窗口（窗口弹出后还可以用鼠标框选主页面的文字）。点击按钮2弹出一个模态窗口（窗口弹出后不可以用鼠标框选主页面的文字，主页面上有一层蒙板）。</div>
+            <div  class="tpDIV">
+                <div id="modal1Div" style="display: none">内容</div>
+                <div id="modal2Div" style="display: none">内容</div>
+                <button id="modal1">非模态窗口</button>
+                <button id="modal2">模态窗口</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点7：测试resizable属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出的窗口可以用鼠标改变大小（在边框右下角处拖动鼠标）。点击按钮2弹出的窗口不可以用鼠标改变大小</div>
+            <div  class="tpDIV">
+                <div id="resizable1Div" style="display: none">内容</div>
+                <div id="resizable2Div" style="display: none">内容</div>
+                <button id="resizable1">可改变窗口大小</button>
+                <button id="resizable2">不可改变窗口大小</button>
+            </div>
+        </div>
+        <!-- 
+        <div class="testPoint">
+            <span class="title">属性测试点13：测试title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出的窗口标题为“标题1”。点击按钮2弹出的窗口标题为"<font color="red">红色标题</font>"且字是红色的</div>
+            <div  class="tpDIV">
+                <div id="title1Div" style="display: none">此窗口标题为"标题1"</div>
+                <div id="title2Div" style="display: none">此窗口标题为"<font color="red">红色标题</font>"</div>
+                <button id="title1">窗口标题为"标题1"</button>
+                <button id="title2">窗口标题为"红色标题"</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点14：测试width属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出的窗口宽度为500px</div>
+            <div  class="tpDIV">
+                <div id="widthDiv" style="display: none">此窗口宽度500px</div>
+                <button id="width">窗口宽度500px</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点15：测试onBeforeClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出的窗口关闭时弹出'关闭窗口之前执行的事件'提示，点“确定”后窗口才关闭</div>
+            <div  class="tpDIV">
+                <div id="onBeforeCloseDiv" style="display: none">关闭此窗口时弹出'关闭窗口之前执行的事件'提示，点“确定”后窗口才关闭</div>
+                <button id="onBeforeClose">关闭之前可以做点事</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点16：测试onClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出的窗口关闭时先关闭窗口，后弹出'关闭窗口之后执行的事件'提示</div>
+            <div  class="tpDIV">
+                <div id="onCloseDiv" style="display: none">关闭此窗口时先关闭窗口，后弹出'关闭窗口之后执行的事件'提示</div>
+                <button id="onClose">关闭之后可以做点事</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">属性测试点17：测试onOpen属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮弹出窗口后立即弹出'打开窗口后执行的事件'提示</div>
+            <div  class="tpDIV">
+                <div id="onOpenDiv" style="display: none">弹出窗口后立即弹出'打开窗口后执行的事件'提示</div>
+                <button id="onOpen">打开之后可以做点事</button>
+            </div>
+        </div>
+        -->
+	</div>
+	
+	<div id="tabs-2">
+	<!-- 
+	   <div class="testPoint">
+            <span class="title">功能测试点1：测试open和close方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1弹出一个窗口，此后可以多次点按钮2关闭这个窗口点按钮3再显示出这个窗口</div>
+            <div  class="tpDIV">
+                <div id="closeDiv" style="display: none">不要关闭此窗口，点页面按钮2此窗口被关闭，窗口关闭后点按钮3又能弹出窗口，点页面按钮2此窗口被关闭，窗口关闭后点按钮3又能弹出窗口...</div>
+                <button id="close1">弹出窗口</button>
+                <button id="close2">隐藏窗口</button>
+                <button id="close3">显示窗口</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点2：测试isOpen方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1可以弹出一个窗口。窗口显示的情况下点按钮2会提示“窗口打开了”。窗口关闭的情况下点按钮2会提示“窗口没打开”</div>
+            <div  class="tpDIV">
+                <div id="isOpenDiv" style="display: none">窗口显示的情况下点按钮2会提示“窗口打开了”。窗口关闭的情况下点按钮2会提示“窗口没打开”</div>
+                <button id="isOpen1">弹出窗口</button>
+                <button id="isOpen2">窗口打开了吗？</button>
+            </div>
+        </div>
+         -->
+	</div>
+	
+	<div id="tabs-3">
+	</div>
+</div>
+</body> 
+</html>

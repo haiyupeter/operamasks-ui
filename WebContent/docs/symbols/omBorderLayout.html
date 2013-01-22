@@ -1,0 +1,775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - omBorderLayout</title>
+
+		<style type="text/css">
+			#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+		<link type="text/css" rel="stylesheet" href="../css/docs.css">
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/om-core.js"></script>
+		<script type="text/javascript" src="../js/om-panel.js"></script>
+		<script type="text/javascript" src="../js/om-tabs.js"></script>
+		<link type="text/css" rel="stylesheet" href="../css/om-core.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-theme.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-panel.css">
+		<link type="text/css" rel="stylesheet" href="../css/om-tabs.css">
+		<script type="text/javascript">
+            $(function() {
+            	$(".widget-docs").omTabs();
+            	<!-- doc_script_begin -->
+                $(".widget-docs > div").addClass('clearfix'); //This fixes clearing of containers
+                //show details/hide details
+                $("#options #options-list, #events #events-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+            
+                $("#methods #methods-list").before('<div class="toggle-docs-links"><a class="toggle-docs-detail" href="#">显示描述</a> | <a class="toggle-docs-example" href="#">隐藏示例</a></div>');
+
+                var showExamples = true;
+                $(".toggle-docs-detail").toggle(function(e){
+                    var details = $(this).text("隐藏描述")
+                        .parent().next().find("li > div:first-child").addClass("header-open");
+                    if ( showExamples ) {
+                        details.nextAll().show();
+                    } else {
+                        details.next().show();
+                    }
+                    e.preventDefault();
+                },function(e){
+                    $(this).text("显示描述")
+                        .parent().next().find("li > div:first-child").removeClass("header-open")
+                        .nextAll().hide();
+                    e.preventDefault();
+                });
+            
+                $(".toggle-docs-example").click(function(e){
+                    if ( showExamples ) {
+                        showExamples = false;
+                        $(".toggle-docs-example").text("显示示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").hide();
+                    } else {
+                        showExamples = true;
+                        $(".toggle-docs-example").text("隐藏示例").parent().next().find("div.header-open ~ .option-examples, div.header-open ~ .event-examples, div.header-open ~ .method-examples").show();
+                    }
+                    e.preventDefault();
+                });
+                
+                //Initially hide all options/methods/events
+                $('div.option-description, div.option-examples, div.event-description, div.event-examples, div.method-description, div.method-examples').hide();
+                
+                //Make list items collapsible
+                $('div.option-header h3, div.event-header h3, div.method-header h3').live('click', function() {
+                    var details = $(this).parent().toggleClass('header-open');
+                    if ( showExamples ) {
+                        details.nextAll().toggle();
+                    } else {
+                        details.next().toggle();
+                    }
+                });
+            });
+            <!-- doc_script_end -->
+        </script>
+	</head>
+
+	<body>
+	<div id="wrapper">
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+<!-- ============================== classes index ============================ -->
+        <div id="index">
+            <!-- begin publish.classesIndex -->
+            <div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="../symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="../symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="../symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="../symbols/omBorderLayout.html">omBorderLayout</a></dd>
+                    
+                    <dd><a href="../symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="../symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="../symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="../symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="../symbols/omDraggable.html">omDraggable</a></dd>
+                    
+                    <dd><a href="../symbols/omDroppable.html">omDroppable</a></dd>
+                    
+                    <dd><a href="../symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="../symbols/omFileUpload.html">omFileUpload</a></dd>
+                    
+                    <dd><a href="../symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="../symbols/omItemSelector.html">omItemSelector</a></dd>
+                    
+                    <dd><a href="../symbols/omMenu.html">omMenu</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="../symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="../symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="../symbols/omPanel.html">omPanel</a></dd>
+                    
+                    <dd><a href="../symbols/omProgressbar.html">omProgressbar</a></dd>
+                    
+                    <dd><a href="../symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="../symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="../symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="../symbols/omTooltip.html">omTooltip</a></dd>
+                    
+                    <dd><a href="../symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="../symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+            <!-- end publish.classesIndex -->
+        </div>
+        
+        <div id="content">
+<!-- ============================== class title ============================ -->
+            <div class="classTitle">
+                
+                Class omBorderLayout
+            </div>
+
+        <!-- ============================== widget-docs ================================= -->
+        <div class="widget-docs">
+            <ul>
+                <li><a href="#overview">预览</a></li>
+                
+                    
+                    
+                        <li><a href="#options">属性</a></li>
+                    
+                
+                
+                    
+                    
+                        <li><a href="#methods">方法</a></li>
+                    
+                
+                
+            </ul>
+            <!-- doc_overview_begin -->
+            <div id="overview" style="margin:14px 8px;">
+                
+                <p class="description">
+                    <!-- ============================== class summary ========================== -->            
+                    
+                    
+                
+                    omBroderLayout是页面布局的基础组件.把页面拆分为north,south,west,center,east（上、下、左、中、右）5个区域，除了center是必须设置的之外其他的都是可选的。<br/>
+<b>特点：</b><br/>
+<ol>
+		<li>以omPanel作为子组件，五个区域(north,south,west,center,east)都用omPanel实现。即每个panel都支持omPanel中的属性设置。</li>
+		<li>在omPanel的基础上添加两个属性：region表示所属区域，resizable表示区域是否可拖拉改变大小。</li>
+		<li>可设置每个区域之间的间隔大小。</li>
+		<li>可设置borderLayout自动适应父容器的大小。</li>
+</ol>
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" &gt;
+$(document).ready(function() {
+    $('#page').omBorderLayout({
+    panels:[{ 
+       id:"north-panel", 
+       title:"This is north panel", 
+       region:"north", 
+       resizable:true, 
+       collapsible:true 
+   },{ 
+       id:"center-panel", 
+       title:"This is center panel", 
+       region:"center" 
+   },{ 
+       id:"west-panel", 
+       title:"This is west panel", 
+       region:"west", 
+       resizable:true, 
+       collapsible:true, 
+       width:200 
+   },{ 
+       id:"east-panel", 
+       title:"This is east panel", 
+       region:"east", 
+       resizable:true, 
+       collapsible:true, 
+       width:100 
+   }], 
+   spacing:3 
+});
+&lt;/script&gt;
+
+&lt;div id="page" style="width:800px;height:600px;"&gt;
+	&lt;div id="north-panel" /&gt;
+	&lt;div id="center-panel" /&gt;
+	&lt;div id="west-panel" /&gt;
+	&lt;div id="east-panel" /&gt;
+&lt;/div&gt;
+</pre>
+                    <!--
+                    
+                        <br /><i>Defined in: </i> <a href="../symbols/src/ui_om-borderlayout.js.html">om-borderlayout.js</a>.
+                    
+                    -->
+                </p>
+                    <!-- ============================== class details ==================== -->        
+                    
+                    <div class="details"><a name="constructor"> </a>
+                        <div class="option-name">
+                                <b style="color: #1B75BB;">omBorderLayout</b>(p)
+                        </div>
+                        
+                        <!--
+                        <div class="description">
+                            构造函数.
+                        </div>
+                        -->
+                        
+                        
+                            
+                                <dl class="detailList">
+                                <dt class="heading">参数:</dt>
+                                
+                                    <dt>
+                                         <b>p</b>&nbsp;-
+                                        标准config对象：{}
+                                        
+                                    </dt>
+                                        
+                                
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+        
+                    </div>
+                    
+            </div>
+            <!-- doc_overview_end -->
+            
+            	<!-- doc_options_begin -->
+                <div id="options">
+                    <!-- ============================== field details ========================== -->        
+                    <h2 class="top-header">属性</h2>
+                    <div id="options-list">
+	                    <ul class="options-list">
+	                            
+	                            
+	                                <li class="option" id="option-fit">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">fit</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        设置面板是否自动充满父容器。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#page').omBorderLayout({fit : true});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-hideCollapsBtn">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">hideCollapsBtn</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Boolean</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">false</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        设置是否隐藏panel的header上的收缩按钮，当hideCollapsBtn设置为true且panel为collapsible时收缩/展开的按钮出现在panel的分隔条上。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#page').omBorderLayout({spacing : 3});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-panels">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">panels</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Array</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">""</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        设置borderlayout每个区域的panel。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>    $('#page').omBorderLayout({
+    panels:[{ 
+       id:"north-panel", 
+       title:"This is north panel", 
+       region:"north", 
+       resizable:true, 
+       collapsible:true 
+   },{ 
+       id:"center-panel", 
+       title:"This is center panel", 
+       region:"center" 
+   },{ 
+       id:"west-panel", 
+       title:"This is west panel", 
+       region:"west", 
+       resizable:true, 
+       collapsible:true, 
+       width:200 
+   },{ 
+       id:"east-panel", 
+       title:"This is east panel", 
+       region:"east", 
+       resizable:true, 
+       collapsible:true, 
+       width:100 
+   }], 
+   spacing:3 
+});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                            
+	                                <li class="option" id="option-spacing">
+	                                  <div class="option-header">
+	                                    <h3 class="option-name"><a href="#" onclick="return false;">spacing</a></h3>
+	                                    <dl>
+	                                      
+	                                      <dt class="option-type-label">Type:</dt>
+	                                        <dd class="option-type">
+	                                        &nbsp;
+	                                        <span>Number</span></dd>
+	                                      
+	                                      
+	                                      <dt class="option-default-label">Default:</dt>
+	                                        <dd class="option-default">5</dd>
+	                                      
+	                                    </dl>
+	                                  </div>
+	                                  <div class="option-description">
+	                                    <p>
+	                                        设置区域的panel之间的间隔。只能设置为数字，单位是px。
+	                                        
+	                                        
+	                                        
+	                                        <!-- handler the other member -->
+	                                        
+	                                        
+	                                        
+	                                    </p>
+	                                  </div>
+	                                     
+	                                      <div class="option-examples">
+	                                        <h4>示例：</h4>
+	                                        <dl class="option-examples-list">
+	                                     
+	                                        
+	                                        <dd>
+	                                        <pre>$('#page').omBorderLayout({spacing : 3});</pre>
+	                                        </dd>
+	                                        
+	                                        </dl>
+	                                      </div>
+	                                       
+	                                </li>
+	                            
+	                    </ul>
+                   </div>
+                </div>
+                <!-- doc_options_end -->
+            
+            
+            	<!-- doc_methods_begin -->
+                <div id="methods">
+                    <!-- ============================== methods details ======================== -->
+                    <h2 class="top-header">方法</h2>
+                    <div id="methods-list">
+	                    <ul class="methods-list">
+	                        
+	                            <li class="method" id="method-closeRegion">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">closeRegion</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omBorderLayout.html#closeRegion">closeRegion</a></b>(region)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    关闭某个区域的panel。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>region</b>&nbsp;-
+	                                                区域名称
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//关闭north区域的panel
+$('#page').omBorderLayout('closeRegion', 'north');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-collapseRegion">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">collapseRegion</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omBorderLayout.html#collapseRegion">collapseRegion</a></b>(region)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    折叠某个区域的panel。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>region</b>&nbsp;-
+	                                                区域名称
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//折叠north区域的panel
+$('#page').omBorderLayout('collapseRegion', 'north');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-expandRegion">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">expandRegion</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omBorderLayout.html#expandRegion">expandRegion</a></b>(region)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    展开某个区域的panel。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>region</b>&nbsp;-
+	                                                区域名称
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//展开north区域的panel
+$('#page').omBorderLayout('expandRegion', 'north');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                            <li class="method" id="method-openRegion">
+	                              <div class="method-header">
+	                                <h3 class="method-name"><a href="#" onclick="return false;">openRegion</a></h3>
+	                                <dl>
+	                                    <dt class="method-signature-label">Signature:</dt>
+	                                    <dd class="method-signature">&nbsp;
+	                                        
+	                                        <b><a href="../symbols/omBorderLayout.html#openRegion">openRegion</a></b>(region)
+	                                    </dd>
+	                                </dl>
+	                              </div>
+	                              <div class="method-description">
+	                                <p>
+	                                    打开某个区域的panel。
+	                                    
+	                                    
+	    
+	                                    <!-- do the other params -->
+	                                    
+	                                        <dl class="detailList">
+	                                        <dt class="heading">参数:</dt>
+	                                        
+	                                            <dt>
+	                                                <b>region</b>&nbsp;-
+	                                                区域名称
+	                                                
+	                                            </dt>
+	                                        
+	                                        </dl>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+	                                </p>
+	                              </div>
+	                              
+	                                  <div class="method-examples">
+	                                    <h4>示例：</h4>
+	                                    <dl class="method-examples-list">
+	                                    
+	                                        <dd>
+	                                        <pre>//打开north区域的panel
+$('#page').omBorderLayout('openRegion', 'north');</pre>
+	                                        </dd>
+	                                    
+	                                    </dl>
+	                                  </div>
+	                             
+	                        </li>
+	                    
+	                </ul>
+                </div>
+            </div>
+            <!-- doc_methods_end -->
+        
+        
+       
+    </div>
+
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri May 25 2012 00:27:58 GMT+0800 (CST)
+		</div>
+		</div>
+	</body>
+</html>

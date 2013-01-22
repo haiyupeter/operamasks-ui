@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>登录校验</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+	<link rel="stylesheet" type="text/css" href="../../demos/common/css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/login-validate.css" />
+	<script type="text/javascript" src="../../jquery.js"></script>
+	<script type="text/javascript" src="../../ui/om-validate.js"></script>
+	<script type="text/javascript" src="../../ui/om-ajaxsubmit.js"></script>
+	<!-- view_source_begin -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		     //点击刷新验证码功能
+		     $('#loginForm img').click(function(){
+		         //因为浏览器默认会缓存图片，所以只要改变url就可以跳过缓存
+		         //每次在url后面添加随机数就可以保证url不重复
+		         this.src='../../validateCode.image?'+new Date().getTime();
+		     });
+		     $("#loginForm").validate({
+		          errorLabelContainer : "#errorMessages",
+		          rules : {
+                    username : "required",
+                    password : "required",
+                    validatecode : "required"
+                  },
+                  messages : {
+                    username : {required : "请输入用户名！"},
+                    password : {required : "请输入密码！"},
+                    validatecode : {required : "请输入验证码！"}
+                  },
+                  submitHandler : function(){
+                    //以ajax方式到后台进行登录
+                    $("#loginForm").omAjaxSubmit({
+                        url :'../../login.do',
+                        beforeSubmit:function(){
+                            //登录前为登录按钮添加loading效果
+                            $('#login').addClass('status'); 
+                        },
+                        success:function(responseText,statusText, xhr, $form){
+                            //登录后不管成功还是失败都去掉登录按钮的loading效果
+                            $('#login').removeClass('status');
+                            //如果登录成功转到主页面，如果登录失败把错误信息显示出来
+                            if(responseText==='true'){
+                                self.location.href='main.html';
+                            }else{
+                                $('#errorMessages').html(responseText).show();
+                            }
+                        }
+                    });
+                    return false;
+                  }
+		     });
+		});
+	</script>
+	<!-- view_source_end -->
+	</head>
+	<body>
+	   <!-- view_source_begin -->
+		<form id="loginForm">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				    <td colspan="2">
+					   <div id="errorMessages"></div>
+					</td>
+				</tr>
+				<tr>
+					<td width="75" align="right">
+					<label>用户名：</label>
+					</td>
+					<td width="245">
+					<input type="text" name="username"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+					<label>密　码：</label>
+					</td>
+					<td>
+					<input type="password" name="password"/>
+					</td>
+				</tr>
+				<tr>
+                    <td align="right">
+                    <label>验证码：</label>
+                    </td>
+                    <td>
+                    <input type="text" name="validatecode" class="validateCodeInput" />
+                    <img src="../../validateCode.image"  title="点击刷新验证码"/>
+                    </td>
+                </tr>
+				<tr>
+					<td colspan="2" align="center">
+					<button id="login" type="submit">登录</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<!-- view_source_end -->
+		<div id="view-desc">
+            <p>简单的登录效果，先在页面进行校验，校验通过后用Ajax方式提交用户名和密码到后台登录。如果登录失败把失败信息显示到页面，登录成功则转到系统主页面。<br/>
+                <b>使用的是模拟数据，只有用户名和密码一样时才可以登录成功。验证码不区分大小写。</b>
+            </p>
+        </div>
+	</body>
+	<script type="text/javascript" src="../../demos/common/js/themeloader.js"></script>
+</html>

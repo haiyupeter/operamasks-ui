@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>简单校验</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <script type="text/javascript" src="../../../ui/om-ajaxsubmit.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+       label.error{
+        background: #fff6bf url(images/alert.png) center no-repeat;
+		background-position: 5px 50%;
+		text-align: left;
+		padding: 2px 20px 2px 25px;
+		border: 1px solid #ffd324;
+		display: none;
+		width: 200px;
+		margin-left: 10px;
+       }
+    </style>
+    <script type="text/javascript">
+        var remote;
+        $(document).ready(function() {
+            $("#reg").validate({
+                rules : {
+                    userName : {
+                        required : true,
+                        remote : '../../../omButtonServlet'
+                    }
+                },
+                messages : {
+                    userName : {
+                        required : "请输入用户名",
+                        remote : "此用户已经被注册"
+                    }
+                },
+                submitHandler : function(){
+                    alert('提交成功！');
+                    $(this)[0].currentForm.reset()
+                    return false;
+                },
+                showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){ 
+ 	                   $.each(errorList,function(index,obj){
+ 	                       $(obj.element).next().show();
+ 	                   });
+ 	                  this.defaultShowErrors();
+                    }else{
+                   	   $(this.currentElements).next('.error').hide();
+                    }
+                }
+            });
+            
+            remote = $("#remotetest").validate({
+                rules : {
+                    userName1 : {
+                        required : true
+                    }
+                },
+                messages : {
+                    userName1 : {
+                        required : "请输入用户名"
+                    }
+                },
+                showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){
+ 	                   $.each(errorList,function(index,obj){
+ 	                       $(obj.element).next().show();
+ 	                   });
+ 	                   this.defaultShowErrors();
+                    }else{
+                        $(this.currentElements).next('.error').hide();
+                    }
+                }
+            });
+            /** 通过ajax方式提交表单 */
+            $('#remotetest').submit(function() {
+                $(this).omAjaxSubmit({success:function(res){
+	                    if(res != '' && res != '1' && res != '0'){
+	                        eval(res);
+	                    }else if(res == '1'){
+	                        alert('提交成功！');
+	                    }else if(res == '0'){
+	                        return ;
+	                    }
+                    }
+               });
+              return false;//返回false,阻止浏览器默认行为
+            });
+             $("#sub").omButton(); 
+             $("#sub1").omButton();
+        });
+        
+        function showError(userName){
+            remote.showErrors({"userName1": userName+"已经被注册,请重新输入用户名！"});
+            $('#userName1').val('');
+        }
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <span>一、通过校验框架的remote执行后台校验，根据返回的值判断是否校验通过（输入admin）。</span>
+    <br/>
+    <br/>
+    <form id="reg">
+        <label>用户名：</label> <input type="text" name="userName" id="userName"/>
+        <br/><br/>
+        <input type="submit" value="提交" id="sub"/>
+    </form>
+    <br/>
+    <br/>
+    <span>二、提交form表单之后后台出现错误，再调用前台js脚本显示错误（输入admin）</span>
+    <br/>
+    <br/>
+    <form id="remotetest" action="../../../omButtonServlet">
+        <input type="hidden" name="method" value="remotetest"/>
+        <label>用户名：</label> <input type="text" name="userName1" id="userName1"/>
+        <br/><br/>
+         <input type="submit" value="提交" id="sub1"/>
+    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+                      例二后台servlet调用前台js函数代码<br/>
+	     PrintWriter writer = response.getWriter();<br/>
+	     writer.write("showError(\""+userName1+"\")");<br/>
+	           其中showError为页面定义的js函数，userName1为后台校验不通过之后显示错误信息的字段。
+    </div>
+</body>
+</html>

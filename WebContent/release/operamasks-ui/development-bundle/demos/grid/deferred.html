@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>延迟加载</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                url : 'griddata.do?method=lazy',
+                lazyTotalUrl : 'griddata.do?method=lazyTotal',
+                title : 'IP数据',
+                width : 586,
+                height : 300,
+                colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center', sortable : true}, 
+                             {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
+                             {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>当表格的数据总数难以计算时，为了避免客户端等待时间过长，可以先发送部分数据到客户端表格，
+        之后通过另外的请求去计算表格总数，属性lazyTotalUrl指定了这种请求的URL。</p>
+        <p>一般来说lazyTotalUrl和url具有不同的后台逻辑，lazyTotalUrl指向一个能返回一个总数的后台逻辑。</p></div>
+</body>
+</html>

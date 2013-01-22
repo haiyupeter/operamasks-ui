@@ -1,0 +1,62 @@
+#loginForm {
+	font-size: 12px;
+}
+
+#loginForm label {
+	padding-right: 10px;
+	text-align: right;
+	width: 66px;
+}
+
+#loginForm td {
+	padding-top: 12px;
+}
+
+#loginForm input {
+	border: 1px solid #C8C8C8;
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+}
+
+#loginForm input:focus {
+	border: 1px solid #FF6633;
+}
+#loginForm .validateCodeInput {
+	width:50px;
+}
+#loginForm img{
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#loginForm button {
+	background: url("../images/loginButton.png") no-repeat scroll 0 0 transparent;
+	border: 0 none;
+	cursor: pointer;
+	height: 27px;
+	width: 86px;
+	font-size: 0;
+	line-height: 0;
+	display:  block;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+#loginForm button:hover {
+	background-position: -128px 0;
+}
+
+#loginForm button.status {
+	background-position: -253px 0;
+}
+
+#errorMessages {
+	margin-left: 20px;
+	border: 1px solid #FF8080;
+	background: url("../images/errorIcon.png") no-repeat scroll 0 0 #FFF2F2;
+	padding-left: 20px;
+	height: 18px;
+	line-height: 18px;
+	display: none;
+}

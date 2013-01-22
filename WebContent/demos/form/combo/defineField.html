@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>自定义显示字段</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <style>
+    .om-combo-list-row {
+        height: 22px;
+        padding: 1px;
+    }
+    
+    .om-combo-list-row img {
+        width: 20px;
+        height: 20px;
+        float: left;
+    }
+    
+    .om-combo-list-row span {
+        float: right;
+    }
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#combo1').omCombo({
+                dataSource : [ {country : '中国', locale : 'zh_CN', flag : 'china.jpg'}, 
+                               {country : '美国', locale : 'en_US', flag : 'usa.jpg'}, 
+                               {country : '英国', locale : 'en', flag : 'uk.jpg'}, 
+                               {country : '日本', locale : 'ja', flag : 'japan.jpg' } ],
+                //将记录的locale属性作为value,如果选择'中国'，然后调用getValue方法将得到'zh_CN'
+                valueField : 'locale', 
+                optionField : function(data, index) {
+                    return '<img src="images/'+data.flag+'"/><span>' + data.country + '</span>';
+                },
+                inputField : function(data, index) {
+                    //选择'中国'后输入框的文字显示成'中国(zh_CN)'
+                    return data.country + '(' + data.locale + ')'; 
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="combo1" />
+    <input type="button" onclick="alert($('#combo1').omCombo('value'));" value="getValue"/>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置optionsField、inputField和valueField自定义combo的显示字段。</p>
+        <p>optionsField：显示在下拉框里的文字；<br/>
+           inputField：选择下拉框中一个后input框中显示什么；<br/>
+           valueField：通过getValue方法取到的value值是什么。<br />
+           3个参数都可以设置成dataSource对应的字段字符串，也可以设置成一个函数来定义该字段的显示内容，函数参数说明请参考说明文档。
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>messageBox基本功能</title>
+	<script src="../../jquery.js"></script>
+	<script src="../../ui/om-core.js"></script>
+	<script src="../../ui/om-mouse.js"></script>
+	<script src="../../ui/om-draggable.js"></script>
+	<script src="../../ui/om-position.js"></script>
+	<script src="../../ui/om-messagebox.js"></script>
+	<script src="../../ui/om-button.js"></script>
+	<link rel="stylesheet" href="../../themes/default/om-all.css">
+	<link rel="stylesheet" href="../common/css/demo.css">
+	<!-- view_source_begin -->
+    <script type="text/javascript">
+    <!--
+    function showAlert(){
+       $.omMessageBox.alert({
+           content:'您还没有选择要删除的记录',
+           onClose:function(v){
+               showResult('我知道了！');
+           }
+       });
+    }
+    function showConfirm(){
+       $.omMessageBox.confirm({
+           title:'确认删除',
+           content:'删除用户后，它所有的发帖和回帖将同时删除（不可恢复），你确定要这样做吗？',
+           onClose:function(v){
+               showResult(v?'开始删除吧':'不删除了');
+           }
+       });
+    }
+    function showPrompt(){
+       $.omMessageBox.prompt({
+           title:'商品数量',
+           content:'请输入你要购买的商品的数量（你的余额最多只能购买12千克）：',
+           onClose:function(v){
+               if(v===false){
+                   showResult('取消购买');
+                   return;
+               }
+               if(v==''){
+                   alert('数量不能为空');
+                   return false;
+               }
+               if(v-0+'' === v){
+                   if(v>0 && v<=12){
+                       showResult('开始购买'+v+'千克商品');
+                   }else{
+                       alert('请输入0-12之间的数字（可带小数）');
+                       return false;
+                   }
+               }else{
+                   alert('只能输入数字');
+                   return false;
+               }
+           }
+       });
+    }
+    function showWaiting(){
+       $.omMessageBox.waiting({
+           title:'请等待',
+           content:'服务器正在处理请求，约需3秒时间...'
+       });
+       setTimeout("$.omMessageBox.waiting('close');",3000);
+    }
+    function showResult(msg){
+        $('#result').html(msg).fadeIn('slow').delay(1500).fadeOut('slow');
+    }
+    //-->
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    
+    <button onclick="showAlert();">alert</button>
+    <button onclick="showConfirm();">confirm</button>
+    <button onclick="showPrompt();">prompt</button>
+    <button onclick="showWaiting();">waiting</button>
+    <br/><br/>
+    <div style="color:red;font-size: 2em" id="result"></div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        使用$.omMessageBox.alert(config)或$.omMessageBox.confirm(config)或$.omMessageBox.prompt(config)或$.omMessageBox.waiting(config)定义各种信息提示框。<br/>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

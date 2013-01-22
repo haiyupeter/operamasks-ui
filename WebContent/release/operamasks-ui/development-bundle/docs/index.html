@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<title>JsDoc Reference - Index</title>
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<style type="text/css">
+		#index {
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 190px;
+	margin-right: 5px;
+}
+
+.classTitle {
+    font-size: 32px;
+    line-height: 130%;
+    padding-top: 10px;
+}
+
+.detailList {
+	line-height: 15px;
+	margin-left: 20px;
+}
+
+.detailList dt {
+	margin-left: 20px;
+}
+
+.detailList .heading {
+	font-weight: bold;
+	margin-left: 0;
+	padding-bottom: 6px;
+}
+
+.fineprint {
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+	</head>
+	
+	<body>
+		<div id="header">
+</div>
+		
+		<div id="index">
+			<div align="center"><a href="index.html">Class Index</a>
+| <a href="files.html">File Index</a></div>
+<hr />
+<h2><span style="color:#E87B10">Classes</span></h2>
+<table class="layout-grid" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+             <td class="left-nav">
+                 <dl class="demos-nav">
+                    
+                    <dd><i><a href="symbols/_global_.html">_global_</a></i></dd>
+                    
+                    <dd><a href="symbols/omAccordion.html">omAccordion</a></dd>
+                    
+                    <dd><a href="symbols/omAjaxSubmit.html">omAjaxSubmit</a></dd>
+                    
+                    <dd><a href="symbols/omButton.html">omButton</a></dd>
+                    
+                    <dd><a href="symbols/omCalendar.html">omCalendar</a></dd>
+                    
+                    <dd><a href="symbols/omCombo.html">omCombo</a></dd>
+                    
+                    <dd><a href="symbols/omDialog.html">omDialog</a></dd>
+                    
+                    <dd><a href="symbols/omEditor.html">omEditor</a></dd>
+                    
+                    <dd><a href="symbols/omGrid.html">omGrid</a></dd>
+                    
+                    <dd><a href="symbols/omMessageBox.html">omMessageBox</a></dd>
+                    
+                    <dd><a href="symbols/omMessageTip.html">omMessageTip</a></dd>
+                    
+                    <dd><a href="symbols/omNumberField.html">omNumberField</a></dd>
+                    
+                    <dd><a href="symbols/omSlider.html">omSlider</a></dd>
+                    
+                    <dd><a href="symbols/omSuggestion.html">omSuggestion</a></dd>
+                    
+                    <dd><a href="symbols/omTabs.html">omTabs</a></dd>
+                    
+                    <dd><a href="symbols/omTree.html">omTree</a></dd>
+                    
+                    <dd><a href="symbols/validate.html">validate</a></dd>
+                    
+                 </dl>
+             </td>
+         </tr>
+     </tbody>
+</table>
+		</div>
+		
+		<div id="content">
+			<h1 class="classTitle">Class Index</h1>
+			
+			
+			<div>
+				<h2><a href="symbols/_global_.html">_global_</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omAccordion.html">omAccordion</a></h2>
+				抽屉布局组件。以抽屉的形式展现信息，每个抽屉内容可为当前页面内容，也可以使用Ajax装载其他页面的内容，其原理是jQuery的load方法，没用到嵌入的iframe，不支持跨域装载.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omAjaxSubmit.html">omAjaxSubmit</a></h2>
+				<div>
+omAjaxSubmit() 提供使用ajax方式提交HTML form的一种机制。本插件会监听表单的submit事件，<br/>
+覆盖传统的submit事件监听器，而使用ajax方式来处理submit事件。在表单提交之前，本插件会收集<br/>
+所有的表单字段，并将之序列化后附加在ajax请求的数据域(data)中。支持所有标准的html可提交的<br/>
+表。元素。
+</div><br/>
+<b>事件回调</b><br/>
+<div>
+通过丰富的配置参数，omAjaxSubmit可以高度自定制。同时提供多个事件回调函数，在每一次完整<br/>
+的表单提交的过程中，用户有时机能够对提交的请求进行修改。
+</div>
+<pre>beforeSerialize:</pre>
+<div style="text-indent:2em;">在form序列化之前执行的回调函数。在获取所有form表单字段的值之前，该函数提供了一个操作form的时机</div>
+<pre>beforeSubmit:</pre>
+<div style="text-indent:2em;">在form被提交之前执行的回调函数。该函数提供了一个时机来执行预提交的逻辑，比如表单校验</div><br/>
+<b>工具方法</b><br/>
+<div>omAjaxSubmit还提供了一系列静态工具方法，用于方便地操作表单及其字段。</div>
+<pre>$.fn.formToArray()</pre>
+<div style="text-indent:2em;">将表单所有元素转换成key/value的数组，例如[{name:'username', value:'jack'},{name:'password', value:'secret'}]，<br/>
+注意:该数组将作为参数传递给beforeSubmit函数</div>
+<pre>$.fn.formSerialize()</pre>
+<div style="text-indent:2em;">将表单数据序列化成可提交的字符串，例如name1=value1&amp;name2=value2</div>
+<pre>$.fn.fieldSerialize()</pre>
+<div style="text-indent:2em;">将表单所有元素序列化成可提交的字符串，例如name1=value1&amp;name2=value2</div>
+<pre>$.fn.fieldValue()</pre>
+<div style="text-indent:2em;">获取当前元素(或元素数组)的值</div>
+<pre>$.fieldValue(successful)</pre>
+<div style="text-indent:2em;">静态工具方法，用于获取元素的值，参数successful的意义同上</div>
+<pre>$.fn.clearForm()</pre>
+<div style="text-indent:2em;">清空当前表单各个元素的值</div>
+<pre>$.fn.clearFields()</pre>
+<div style="text-indent:2em;">清空当前元素(或元素数组)的值</div>
+<pre>$.fn.resetForm()</pre>
+<div style="text-indent:2em;">重置当前表单各个元素的值</div>
+<pre>$.fn.enable(b)</pre>
+<div style="text-indent:2em;">设置当前元素(或元素数组)的使能状态</div>
+<pre>$.fn.selected(selected)</pre>
+<div style="text-indent:2em;">设置当前元素(或元素数组)的选中状态</div><br/>
+<b>示例</b><br/>
+<pre>
+ $(document).ready(function() {
+     $('#myForm').bind('submit', function(e) {
+         e.preventDefault(); //阻止form默认的提交行为
+             $(this).omAjaxSubmit(//使用ajax提交
+                 {
+                     target: '#output'
+                 }
+             );
+     });
+ });
+
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omButton.html">omButton</a></h2>
+				按钮组件。类似于html中的button、input[type=submit]、input[type=button]，使用背景图片实现圆角，支持icon，可以只显示icon。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>实现圆角</li>
+     <li>支持左icon和右icon，可同时出现左右icon，也可以只显示icon不显示label</li>
+     <li>按钮文字数目不限，也可以任意设置按钮宽度</li>
+     <li>支持input[type=button]、input[type=submit]、input[type=reset]、button、a五种标签形式</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" &gt;
+$(document).ready(function() {
+    $('#bnt').omButton({
+        icons : {left:'images/help.png',right:'images/edit_add.png'},
+        width : 150,
+        disabled : 'disabled',
+        onClick : function(event){
+            // do something
+        }
+    });
+});
+&lt;/script&gt;
+
+&lt;input id="btn" type="submit" /&gt;
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omCalendar.html">omCalendar</a></h2>
+				日历控件。默认通过绑定一个输入域来触发展示，同时也可以直接显示在页面上。<br /> 
+日历控件提供了一系列配置项参数和常用的组件api，尽量考虑到各种不同的应用场景。请注意，此控件支持的年份从100到10000。<br /><br/>
+<b>工具方法:</b>
+<pre>$.omCalendar.formatDate(date, formatter)</pre>
+<p>将传入的日期对象date按照formatter格式化成一个string并返回.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omCombo.html">omCombo</a></h2>
+				下拉输入框组件。类似于html中的select，但是可以输入，可以过滤，可以使用远程数据。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>可以使用本地数据源，也可以使用远程数据源</li>
+     <li>支持下拉框的缓加载（第一次显示时才初始化下拉框中的内容）</li>
+     <li>用户可定制下拉框中数据的显示效果</li>
+     <li>用户可定制选择后回填到输入框的文字</li>
+     <li>用户可定制选择后组件的value值</li>
+     <li>用户可定制下拉框的宽度和最大高度</li>
+     <li>具有边输入边过滤的功能，也可定制过滤的算法</li>
+     <li>提供丰富的事件</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#combo').omCombo({
+        dataSource:[
+                {text:'Java',value:1},
+                {text:'JavaScript',value:2},
+                {text:'C',value:3},
+                {text:'PHP',value:4},
+                {text:'ASP',value:5}
+        ],
+        optionField:function(data,index){
+            return '&lt;font color="red">'+index+'：&lt;/font>'+data.text+'('+data.value+')';
+        },
+        emptyText:'select one option!',
+        value:1,
+        editable:false,
+        lazyLoad:true,
+        listMaxHeight:40
+    });
+});
+&lt;/script>
+
+&lt;input id="combo"/>
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omDialog.html">omDialog</a></h2>
+				对话框组件。可以放置html。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>方便地自定义按钮</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#dialog').omDialog({
+    });
+});
+&lt;/script>
+
+&lt;div id="dialog"/>
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omEditor.html">omEditor</a></h2>
+				HTML富文本编辑器.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omGrid.html">omGrid</a></h2>
+				富客户端表格组件，轻量级，支持列移动及列大小改变，支持ajax方式装载json格式的数据。<br/>
+客户端从服务器端取到数据后即将其展示在表格中，服务器返回的数据格式一般用标准json格式。<br/><br/>
+<b>数据格式:</b><br/>
+如下数据展示了服务器传到前台的数据格式<br/>
+<pre>
+{"total":1184, "page":1, "rows":
+    [
+        {"address":"CZ88.NET ","city":"IANA保留地址","end":"0.255.255.255","id":"1","start":"0.0.0.0"},
+        {"address":"CZ88.NET ","city":"澳大利亚","end":"1.0.0.255","id":"2","start":"1.0.0.0"},
+        {"address":"电信 ","city":"福建省","end":"1.0.3.255","id":"3","start":"1.0.1.0"},
+        {"address":"CZ88.NET ","city":"泰国","end":"1.0.255.255","id":"9","start":"1.0.128.0"},
+        {"address":"CZ88.NET ","city":"日本","end":"1.0.31.255","id":"6","start":"1.0.16.0"},
+        {"address":"电信 ","city":"广东省","end":"1.0.63.255","id":"7","start":"1.0.32.0"},
+        {"address":"CZ88.NET ","city":"澳大利亚","end":"1.0.7.255","id":"4","start":"1.0.4.0"},
+        {"address":"CZ88.NET ","city":"日本","end":"1.0.127.255","id":"8","start":"1.0.64.0"}
+    ]
+}
+</pre>
+在每一次返回的数据中，如下几项是必须存在的：<br/>
+1.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omMessageBox.html">omMessageBox</a></h2>
+				omMessageBox用于提供提示信息的弹出窗口，类似于JavaScript中使用alert()、confirm()、prompt()函数时出现的那种提示信息的弹出窗口。<br/><br/>
+<br/>
+<h2>有以下特点：</h2><br/>
+<ul>
+    <li>有较好的浏览器兼容性</li>
+    <li>可以定义标题、内容，并且标题和内容可以使用html代码</li>
+    <li>标题栏有关闭按钮，也可以按Esc键关闭</li>
+    <li>支持丰富的提示（图标不同）</li>
+    <li>可以监听关闭事件</li>
+</ul>
+<br/>
+<h2>提供了以下工具方法：</h2><br/>
+<ul>
+    <li>
+        <b>$.omMessageBox.alert(config)</b><br/>
+        弹出一个Alert提示，仅有一个“确定”按钮。其中config有以下配置项：<br/>
+        <ul style="margin-left:40px">
+            <li>type：alert提示的类型，类型不同时弹出窗口左边的图标会不同。String类型，可选的值有'alert'、'success'、'error'、'question'、'warning'。默认值为'alert'。</li>
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'提示'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为true，按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.alert({
+                type:'error',
+                title:'失败',
+                content:'不能删除&lt;font color="red">admin&lt;/font>用户',
+                onClose:function(value){
+                    alert('do something');
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.confirm(config)</b><br/>
+        弹出一个Confirm提示，有“确定”和“取消”按钮。其中config有以下配置项：<br/>
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'确认'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为true，点击“取消”按钮或按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.confirm({
+                title:'确认删除',
+                content:'删除用户后，它所有的发帖和回帖将同时删除（不可恢复），你确定要这样做吗？',
+                onClose:function(value){
+                    alert(value?'开始删除操作':'不删除了');
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.prompt(config)</b><br/>
+        弹出一个Prompt提示，有一个输入框和“确定”和“取消”按钮。其中config有以下配置项：
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'请输入'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的回调函数，Function类型，点击"确定"按钮来关闭弹出窗口时，Function的参数value值为用户在输入框里输入的字符串（一定是字符串），点击“取消”按钮或按ESC键关闭弹出窗口时，Function的参数value值为false。无默认值。<b>注意：在此方法中返回false将会阻止弹出窗口关闭。</b></li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageBox.prompt({
+                title:'商品数量',
+                content:'请输入你要购买的商品的数量（你的余额最多只能购买12千克）：',
+                onClose:function(value){
+                    if(value===false){ //按了取消或ESC
+                        alert('取消购买');
+                        return;
+                    }
+                    if(value==''){
+                        alert('数量不能为空');
+                        return false; //不关闭弹出窗口
+                    }
+                    if(value-0+'' !== value){
+                        alert('只能输入数字');
+                        return false;  //不关闭弹出窗口
+    `               }
+                    if(value&lt;0 || value&gt;12){
+                        alert('请输入0-12之间的数字（可带小数）');
+                        return false; //不关闭弹出窗口
+                    }else{
+                        alert('开始购买'+value+'千克商品');
+                    }
+                }
+            });
+        </pre>
+    </li>
+    <li>
+        <b>$.omMessageBox.waiting(config | 'close')</b><br/>
+        弹出一个Prompt提示，有一个输入框和“确定”和“取消”按钮。该提示窗口没有关闭按钮，也不可以按ESC关闭。如果参数是'close'时表示关闭上次弹出的Waiting提示窗口。如果是config时表示要弹出一个Waiting提示窗口，其中config有以下配置项：
+        <ul style="margin-left:40px">
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'请稍候'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            //弹出提示
+            $.omMessageBox.waiting({
+                title:'请稍候',
+                content:'服务器正在处理您的请求，请稍候.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omMessageTip.html">omMessageTip</a></h2>
+				omMessageTip用于右下角弹出提示窗口（像QQ新闻一样）。<br/><br/>
+<br/>
+<h2>有以下特点：</h2><br/>
+<ul>
+    <li>不中断用户操作（非模态窗口提示）</li>
+    <li>有较好的浏览器兼容性</li>
+    <li>可以定义标题、内容，并且标题和内容可以使用html代码</li>
+    <li>支持丰富的提示（图标不同）</li>
+    <li>可以监听关闭事件</li>
+    <li>弹出提示和关闭提示时有简单动画</li>
+    <li>较轻量（仅简单的提示功能和定时消失功能，不可改变提示窗口大小，不可拖动提示窗口位置）</li>
+</ul>
+<br/>
+该组件非常轻量，功能也较少，如果需要中断用户操作，请使用omDialog或omMessageBox组件。内容区也仅能放html代码，如果有较复杂的内容请使用omDialog组件。
+<br/>
+<h2>提供了以下工具方法：</h2><br/>
+<ul>
+    <li>
+        <b>$.omMessageTip.show(config)</b><br/>
+        从当前页面右下角弹出一个非中断提示，弹出的提示可以关闭。其中config有以下配置项：<br/>
+        <ul style="margin-left:40px">
+            <li>type：提示的类型，类型不同时弹出窗口左边的图标会不同。String类型，可选的值有'alert'、'success'、'error'、'question'、'warning'、'waiting'。默认值为'alert'。</li>
+            <li>title：弹出窗口的标题文字，String类型，可以使用普通字符串，也可以使用html代码。默认值为'提示'。</li>
+            <li>content：弹出窗口的提示内容，String类型，可以使用普通字符串，也可以使用html代码。无默认值。</li>
+            <li>onClose：弹出窗口关闭时的无参回调函数，Function类型。</li>
+            <li>timeout：弹出窗口持续的时间，单位为毫秒，窗口弹出后经过这么长的时间后自动关闭（如果有onClose回调函数，会自动触发它），Int类型。默认值为无穷大（即不自动关闭）</li>
+        </ul>
+        <br/>使用方式如下：<br/>
+        <pre>
+            $.omMessageTip.show({
+                type:'warning',
+                title:'提醒',
+                content:'请选择你要删除的记录（可以选择一条或多条）！'
+            });
+            $.omMessageTip.show({
+                type:'error',
+                title:'数据非法',
+                content:'&lt;font color="red">123456&lt;/font>不是有效的邮箱地址！',
+                onClose:function(){
+                    $('#emial').focus();
+                }
+            });
+        </pre>
+    </li>
+</ul>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omNumberField.html">omNumberField</a></h2>
+				数字输入框组件，只能输入数字，字符自动过滤掉。<br/>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omSlider.html">omSlider</a></h2>
+				用来展示页面中多个HTML元素的滑动器.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omSuggestion.html">omSuggestion</a></h2>
+				&nbsp;&nbsp;&nbsp;&nbsp;Ajax提示组件。类似于google首页的搜索功能（在输入的同时下拉框里给出可用的提示，用户可以从里面选择一个）。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;将该功能添加到一个input输入框上，将允许用户在输入的同时可以快速地查找和选择所要的内容。当输入框得到焦点并输入字符时，该组件会将用户输入的内容以Ajax方式发送到服务器进行处理，服务器处理完后返回一个数据集，客户端将数据集显示成一个可选列表，用户可以从可选列表中很方便地选择自己所要查找的东西。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;目前该组件主要用于从远程URL取得数据（如果是本地数据的话，可以使用omCombo组件，它也有边输入边过滤的功能）。一般用于从大量数据中进行查找的场合，如百度搜索、google搜索、taobao商品搜索、邮件系统快速输入收件人。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;该组件有客户端缓存的功能，如输入a开始Ajax查找；再输入b（输入框内容是ab）再次Ajax查找；再删除b（输入框内容是a）将不进行Ajax查找，因为缓存中已经有key=a的缓存内容，将直接根据缓存内容来重构可选列表而不发送Ajax请求从服务器取数。如果不需要缓存可以将cacheSize参数设成0。如果要清除缓存可以调用clearCache()方法。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;实际应用中一般都要控制可选列表框中记录的数目（如百度搜索、google搜索、taobao商品搜索的可选列表中记录数都为10，有道搜索的可选列表中记录数为8），这个要由服务器进行控制，服务器返回数据时请不要返回得太多（比如从数据库中查询时一般使用TOP-N查询）。<br/><br/>
+<b>特点：</b><br/>
+<ol>
+     <li>可以使用普通数组，也可使用JSON数组</li>
+     <li>支持鼠标操作和键盘操作</li>
+     <li>支持数据的客户端缓存</li>
+     <li>提供丰富的事件</li>
+     <li>用户可定制数据的显示效果</li>
+     <li>用户可定制请求的发送与处理</li>
+     <li>支持跨域请求数据</li>
+</ol><br/>
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#input1').omSuggestion({
+        dataSource:'/suggestion.json',
+        minChars :3,
+        listMaxHeight:40
+    });
+});
+&lt;/script>
+
+&lt;input id="input1"/>
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omTabs.html">omTabs</a></h2>
+				页签布局组件，通过简单的配置展示多页签信息，同时组件提供丰富的事件支持，比如选中页签，关闭页签，添加页签等等。<br/>
+支持各个页签以ajax方式加载内容；支持懒加载；支持页签滚动<br/>
+<b>使用方式：</b><br/><br/>
+页面上的html标记如下
+<pre>
+&lt;script type="text/javascript" >
+$(document).ready(function() {
+    $('#make-tab').omTabs({});
+});
+&lt;/script>
+
+     &lt;div id="make-tab"&gt;
+         &lt;ul&gt;
+             &lt;li&gt;
+                 &lt;a href="#tab1"&gt;Title1&lt;/a&gt;
+             &lt;/li&gt;
+             &lt;li&gt;
+                 &lt;a href="#tab2"&gt;Title2&lt;/a&gt;
+             &lt;/li&gt;
+             &lt;li&gt;
+                 &lt;a href="#tab3"&gt;Title3&lt;/a&gt;
+             &lt;/li&gt;
+         &lt;/ul&gt;
+         &lt;div id="tab1"&gt;
+             this is tab1 content
+         &lt;/div&gt;
+         &lt;div id="tab2"&gt;
+             this is tab2 content
+         &lt;/div&gt;
+         &lt;div id="tab3"&gt;
+             this is tab3 content
+         &lt;/div&gt;
+     &lt;/div&gt;
+</pre>
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/omTree.html">omTree</a></h2>
+				树型组件<br/><br/>
+treenode json格式为：<br/>
+<pre>
+{
+    text:'node1', // 树节点显示文本  
+    expanded:true, // 是否默认展开 
+    classes:'folder', // 树节点样式，默认有folder和file，如果用户自定制为其他，则显示用户自定义样式 
+    hasChildren: false // 树节点懒加载的情况下，该节点在展开时自动向后台取数
+} 
+</pre>
+omTree为每个节点自动生成的唯一标识nid，生成规则为treeId+ "_" + 计数，请用户在omTree的页面上避免
+使用此种规则定义其他对象的nid。不需要用户进行初始化，属于内部参数。
+<br/>
+<b>特点：</b><br/>
+<ol>
+     <li>可以使用本地数据源，也可以使用远程数据源</li>
+     <li>支持数据的缓加载</li>
+     <li>提供丰富的事件</li>
+</ol>
+
+<b>示例：</b><br/>
+<pre>
+&lt;script type="text/javascript" >
+var data = 
+      [{
+          "text": "1.
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/validate.html">validate</a></h2>
+				<div>
+<b>简介</b><br/>
+validate() 可以方便地对Html Form进行校验.
+			</div>
+			<hr />
+			
+			
+		</div>
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sun Nov 20 2011 10:13:17 GMT+0800 (CST)
+		</div>
+	</body>
+</html>

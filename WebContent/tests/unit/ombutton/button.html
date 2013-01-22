@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>omButton unit test </title>
+		<link rel="stylesheet" href="../../../themes/default/om-all.css">
+		<script src="../../../jquery.js"></script>
+		<script src="../../../ui/om-core.js"></script>
+		<script src="../../../ui/om-button.js"></script>
+		
+		<link rel="stylesheet" href="../common/css/qunit.css">
+		<script src="../common/js/qunit.js"></script>
+		<script src="button_options.js"></script>
+		<script src="button_methods.js"></script>
+		<script src="button_events.js"></script>
+		<script src="button_set_options.js"></script>
+    </head>
+    <body>
+        <h1 id="qunit-header">Operamasks UI button Test Suite</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">
+			<div id="optionsTest">
+			    <div class="width">
+			        <a>X</a>
+			        <input type="submit" value="X"/>
+			        <button>X</button>
+                </div>
+                <div class="label">
+                    <a>X</a>
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                    <button>X</button>
+                </div>
+                <div class="disabled">
+                    <a>X</a>
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                    <button>X</button>
+                </div>
+                <div class="icons">
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                </div>
+			</div>
+			<div id="methodsTest">
+			    <div class="changeIcons">
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                </div>
+			    <div class="changeLabel">
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                </div>
+			    <div class="click">
+                    <a onclick="this.hasClicked=true;return false;">X</a>
+                    <a onclick="this.hasClicked=true;return false;">X</a>
+                    <a>X</a>
+                    <input type="submit" value="X" onclick="this.hasClicked=true;return false;"/>
+                    <input type="submit" value="X" onclick="this.hasClicked=true;return false;"/>
+                    <input type="submit" value="X"/>
+                    <button onclick="this.hasClicked=true;return false;">X</button>
+                    <button onclick="this.hasClicked=true;return false;">X</button>
+                    <button>X</button>
+                </div>
+                <div class="disableEnable">
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                </div>
+			</div>
+			<div id="eventsTest">
+			    <div class="onClick">
+                    <a>X</a>
+                    <a>X</a>
+                    <input type="submit" value="X"/>
+                    <input type="submit" value="X"/>
+                    <button>X</button>
+                    <button>X</button>
+                </div>
+			</div>
+			<div id="setOptionsTest">
+            	<a>X</a>
+                <input type="submit" value="X"/>
+                <button>X</button>
+			</div>
+		</div>
+    </body>
+</html>

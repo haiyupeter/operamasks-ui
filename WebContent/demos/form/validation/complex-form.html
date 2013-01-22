@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>综合</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-ajaxsubmit.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js" ></script>
+    <script type="text/javascript" src="rules.js" ></script>
+    
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    
+    <script type="text/javascript" src="../../../ui/om-calendar.js"></script>
+    <script type="text/javascript" src="../../../ui/om-combo.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tabs.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css"/>
+    
+    <!-- view_source_begin -->
+    <style type="text/css">
+        body {font-size:12px;}
+        .om-button {font-size:12px;}
+        #nav_cont{width:580px;margin-left:auto;margin-right:auto;}
+        input {border: 1px solid #A1B9DF; vertical-align: middle;}
+        input:focus{border: 1px solid #3A76C2;}
+        .input_slelct {width: 81%;}
+        .textarea_text {border: 1px solid #A1B9DF; height: 40px;width: 445px;}
+        table.grid_layout tr td {font-weight: normal; height: 15px; padding: 5px 0; vertical-align: middle;}
+        .color_red { color: red; }
+        .toolbar { padding: 12px 0 5px;text-align: center; }
+        .birthplace ,.address {width:445px;}
+        .om-span-field input:focus {border:none;}
+        .errorImg{background: url("images/msg_bg.png") no-repeat scroll 0 0 transparent;height: 16px;width: 16px;cursor: pointer;}
+        input.error,textarea.error{border: 1px solid red;}
+        .errorMsg{border: 1px solid gray;background-color: #FCEFE3;display: none;position: absolute;margin-top: -18px;margin-left: 18px;}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#form1').validate({
+                rules : {
+                    fileId : {
+                        required : true
+                    },
+                    fileNo : {
+                        required : true,
+                        minlength : 5,
+                        maxlength : 20
+                    },
+                    birthday : {
+                        isDate : true
+                    },
+                    country : {
+                        required : true
+                    },
+                    mobilePhone : {
+                        isMobilPhone : true,
+                        required : true
+                    },
+                    email : {
+                        email : true
+                    },
+                    birthplace : {
+                        minlength : 15,
+                        maxlength : 100
+                    },
+                    address : {
+                        minlength : 15,
+                        maxlength : 100
+                    },
+                    selfEvuluation : {
+                        minlength : 50,
+                        maxlength : 500
+                    }
+                },
+                messages : {
+                    fileId : {
+                        required : '档案编号必须输入'
+                    },
+                    fileNo : {
+                        required : '职工编号必须输入',
+                        minlength : '编号长度必须大于5',
+                        maxlength : '编号长度必须小于20'
+                    },
+                    birthday : {
+                        date : '请输入正确的日期格式'
+                    },
+                    country : {
+                        required : '国籍必须选择'
+                    },
+                    mobilePhone : {
+                        required : '必须输入手机号码'
+                    },
+                    email : {
+                        email : '邮件格式不正确'
+                    },
+                    birthplace : {
+                        minlength : '地址长度不能小于15个字符',
+                        maxlength : '地址长度不能多于100个字符'
+                    },
+                    address : {
+                        minlength : '地址长度不能小于15个字符',
+                        maxlength : '地址长度不能多于100个字符'
+                    },
+                    selfEvuluation : {
+                        minlength : '自我评价字数不能小于50个字符',
+                        maxlength : '自我评价字数不能多于500个字符'
+                    }
+                },
+                errorPlacement : function(error, element) { 
+                    if(error.html()){
+	                    $(element).parents().map(function(){
+	                        if(this.tagName.toLowerCase()=='td'){
+	                            var attentionElement = $(this).next().children().eq(0);
+	                            attentionElement.css('display','block');
+	    	                    attentionElement.next().html(error);
+	                        }
+	                    });
+                    }
+    	        },
+    	        showErrors: function(errorMap, errorList) {
+                    if(errorList && errorList.length > 0){
+                        $.each(errorList,function(index,obj){
+                            var msg = this.message;
+                            $(obj.element).parents().map(function(){
+    	                        if(this.tagName.toLowerCase()=='td'){
+    	                            var attentionElement = $(this).next().children().eq(0);
+    	                            attentionElement.show();
+    	    	                    attentionElement.next().html(msg);
+    	                        }
+    	                    });
+ 	                   });
+                    }else{
+                        $(this.currentElements).parents().map(function(){
+	                        if(this.tagName.toLowerCase()=='td'){
+	                            $(this).next().children().eq(0).hide();
+	                        }
+	                    });
+                    }
+                    this.defaultShowErrors();
+                },
+    	        submitHandler : function() {
+                    alert("提交成功！");
+                    $(this)[0].currentForm.reset()
+                    return false;
+                }
+            });
+            
+            $('.errorImg').bind('mouseover',function(){
+                $(this).next().css('display','block');
+            }).bind('mouseout',function(){
+                $(this).next().css('display','none');
+            });
+            
+            $.validator.addMethod("isMobilPhone", function(value) {
+                var regu =/(^[1][3][0-9]{9}$)|(^[1][5][0-9]{9}$)|(^[1][8][0-9]{9}$)|(^[0][1-9]{1}[0-9]{9}$)/; 
+                var reg = new RegExp(regu);
+                return reg.test(value);  // 手机验证 13x 15x 18x 以此类推
+            }, '不是有效的手机号码');
+            
+            
+            
+            
+            $('input[name=birthday]').omCalendar(); //初始化Calendar
+            $('input[name=country]').omCombo({			//初始化Combo
+                dataSource : [ {text : '中国', value : 'China/PRC'}, 
+                               {text : '美国', value : 'America/USA'}, 
+                               {text : '英国', value : 'the United Kingdom/UK'}, 
+                               {text : '日本', value : 'Japan/JPN'} ],
+                width : 162,
+                onValueChange : function(){
+                    $('input[name=country]').focus();
+                }
+            });
+            $("#submit").omButton();
+            $("#reset").omButton();
+        });
+        
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form id="form1">
+	    <div id="nav_cont">
+	        <table class="grid_layout">
+	            <tr>
+	                <td width="80"><span class="color_red">*</span>档案编号：</td>
+	                <td><input name="fileId" /></td>
+	                <td width="50"><span class="errorImg"></span><span class="errorMsg"></span></td>
+	                <td width="80"><span class="color_red">*</span>职工编号：</td>
+	                <td><input name="fileNo" /></td>
+	                <td width="50"><span class="errorImg"></span><span class="errorMsg"></span></td>
+	            </tr>
+	            <tr>
+	                <td>出生日期：</td>
+	                <td class="td"><input name="birthday" style="width:140px;" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	                <td><span class="color_red">*</span>国籍：</td>
+	                <td>
+	                    <input name="country" />
+	                </td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	            </tr>
+	            <tr>
+	                <td><span class="color_red">*</span>移动电话：</td>
+	                <td><input name="mobilePhone" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	                <td>电子邮箱：</td>
+	                <td><input name="email" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	            </tr>
+	            <tr>
+	                <td>出生地：</td>
+	                <td  colspan="4"><input name="birthplace" class="birthplace"/></td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	            </tr>
+	            <tr>
+	                <td>现住址：</td>
+	                <td colspan="4"><input name="address" class="address" /></td>
+	                <td><span class="errorImg"></span><span class="errorMsg"></td>
+	            </tr>
+	            <tr>
+	                <td>自我评价：</td>
+	                <td  colspan="4"><label>
+	                  <textarea name="selfEvuluation" class="textarea_text"></textarea>
+	                  <td><span class="errorImg"></span><span class="errorMsg"></td>
+	                </label></td>
+	            </tr>
+	        </table>
+	        <div class="toolbar">
+	            <button id="submit" type="submit">提交</button> 
+	            <button id="reset" type="reset">重置</button>
+	        </div>
+	    </div>
+    </form>
+    <!-- view_source_end -->
+</body>
+</html>

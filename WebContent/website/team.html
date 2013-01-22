@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>operamasks-ui开发团队介绍</title>
+        <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+        <script type="text/javascript" src="resources/common/jquery.min.js"></script>
+		<script type="text/javascript" src="resources/common/common.js"></script>
+		<script type="text/javascript" src="resources/common/team-info.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/common/common.css" />        
+        <link type="text/css" rel="stylesheet" href="resources/team/team.css">
+    </head>
+    <body>
+     <div id="main-frame-center">
+	    <div class="header-class">
+	        <div class="hdbanner">
+	            <div class="hdlogo"></div>
+	            <div class="hdmenu" id="__hdmenu">
+	                <div link="homepage.html"><span>首页</span></div>
+	                <div link="demos.html"><span>示例</span></div>
+	                <div link="download.html"><span>下载</span></div>
+	                <div link="team.html" class="default_selected"><span>团队</span></div>
+	                <div link="http://www.operamasks.org/forum/index.php"><span>社区</span></div>
+	                <div link="http://www.operamasks.org/blog"><span>博客</span> </div>
+	                <div link="roadmap.html"><span>Roadmap</span></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div id="__content" class="content">
+	    	<div id="om-ui-team">
+	           
+       		</div>
+	    </div>
+	    <div id="__footer" class="footer">
+		       <div>
+		           <a href="http://www.apusic.com" target="_blank">金蝶旗下公司</a> | 
+		           <a href="team.html" target="_blank">关于我们</a> |
+		           <a href="#" target="_blank">联系我们</a> |
+		           <a href="#" target="_blank">使用条款</a> |
+		           <a href="#" target="_blank">保密声明</a>
+		       </div>
+		       <div>Copyright © Apusic System, Inc. All rights reserved</div>
+	    </div>
+	    </div>
+    </body>
+    <script type="text/javascript">
+    	$(function(){
+    		// build dom
+    		for(var i = 0; i < team_info.length; i++){
+    			personData = team_info[i];
+    			var $div = $('<div id="' + personData.id + '" class="om-ui-team-person"><div>');
+    			$div.append('<div class="card-bg card-style-' + (i%4+1) + '">');
+    			$div.append('<div class="intro"><div class="name">' + personData.name + '</div><div class="e-name">' + personData.ename + '</div><div class="title">'+personData.title+'</div></div>');
+    			$div.append('<div class="person-pic"><img alt="' + personData.name + '" src="' + personData.pic + '" /></div>');
+    			$('#om-ui-team').append($div);
+    			var $dialogbox = $('<div target="' + personData.id + '" class="dialog-box"><span class="content">' + personData.say + '</span><div class="dialog-box-before"></div><div class="dialog-box-after"></div></div>');
+    			$('body').append($dialogbox);
+    		}
+   			$('#om-ui-team').append($('<div class="clear-float"></div>'));
+    		
+    	 	$('.om-ui-team-person').each(function(n){
+    	 		$(this).append('<div class="team-info">OperaMasks UI</div>');
+    	 	});
+    	 	// bind event
+    	 	$('.dialog-box').hover(function(){
+    	 		// do nothing
+			},function(){
+				$(this).hide();
+			}).click(function(){
+				return false;
+			});
+    		$('.om-ui-team-person').hover(function(){
+    			$('.dialog-box').hide();
+    			var left = $(this).offset().left + 40;
+    			var top = $(this).offset().top + 80;
+    			$('.dialog-box[target="' + this.id + '"]').css({left:left,top:top}).show();
+    		},function(){
+    			// do nothing
+    		}).click(function(){
+    			return false;
+    		}); 
+    		$(document).click(function(){
+    			$('.dialog-box').hide();
+    		});
+    		setTimeout(function(){$('.dialog-box').hide();},0);
+    	});
+    </script>
+</html>

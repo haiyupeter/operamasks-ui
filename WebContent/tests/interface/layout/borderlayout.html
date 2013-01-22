@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui om-borderlayout tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-mouse.js"></script>
+<script type="text/javascript" src="../../../ui/om-resizable.js"></script>
+<script type="text/javascript" src="../../../ui/om-panel.js"></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-borderlayout.js"></script>
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css">
+ <style type="text/css">
+ 	.width-ruler{
+ 		height: 14px;
+ 		background-color: red;
+ 		font-weight: bold;
+ 		text-align: center;
+ 		margin-top: 5px;
+ 	}
+ 	.height-ruler{
+ 		background-color: red;
+ 		font-weight: bold;
+ 		margin-left: 5px;
+ 		width: 14px;
+ 	}
+ 	table{
+ 		table-layout: fixed;
+ 	}
+ 	.om-panel-body p{
+ 		padding-left: 15px;
+ 		margin-top:20px;
+ 		margin-bottom:20px;
+ 	}
+ </style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        $("#spacing").omBorderLayout({ 
+            panels:[{ 
+                id:"north-panel", 
+                title:"This is north panel", 
+                region:"north", 
+                resizable:true, 
+                collapsible:true 
+            },{ 
+                id:"center-panel", 
+                title:"This is center panel", 
+                region:"center" 
+            },{ 
+                id:"west-panel", 
+                title:"This is west panel", 
+                region:"west", 
+                resizable:true, 
+                collapsible:true, 
+                width:200 
+            },{ 
+                id:"east-panel", 
+                title:"This is east panel", 
+                region:"east", 
+                resizable:true, 
+                collapsible:true, 
+                width:200 
+            },{ 
+                id:"south-panel", 
+                title:"This is south panel", 
+                region:"south", 
+                resizable:true, 
+                collapsible:true, 
+                width:100 
+            }],
+            fit : true
+        }); 
+    });
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		tabs测试案例，API属性总共 <span class="apiNo" number="2">0</span> 个；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;" ></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;" ></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1" style="height : 500px;">
+          <div class="testPoint" style="height : 500px;">
+            <span class="title">功能测试点：测试borderlayout的拖拉功能</span>
+            <br />
+            <p>操作和操作和预期结果：</p>
+            <div class="textresult">
+                                          鼠标点击spacing处，拖动可以改变大小
+            </div>
+            <div class="tpDIV" style="height : 400px;">
+               <div id="spacing" style="height : 400px;"> 
+		           <div id="north-panel"></div> 
+		           <div id="center-panel"></div> 
+		           <div id="west-panel"></div> 
+		           <div id="east-panel"></div> 
+		           <div id="south-panel"></div> 
+		       </div> 
+            </div>
+        </div> 
+	</div>
+	
+	<div id="tabs-2" style="height : 600px;">
+	   
+	</div>
+	
+	<div id="tabs-3">
+	
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

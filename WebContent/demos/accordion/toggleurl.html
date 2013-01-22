@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>动态更新抽屉标题和内容</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <script src="../../ui/om-accordion.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <style type="text/css">
+        .java_icon{background: url('images/java.png') no-repeat;}
+        .c_icon{background: url('images/c.png') no-repeat;}
+        .c_plus_plus_icon{background: url('images/c_plus_plus.png') no-repeat;}
+        .om-panel-body {padding : 20px;}
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            $("#accordionId").omAccordion({
+                width : 500,
+                height : 250
+            });
+            $('#url').toggle(function(){
+                $('#accordionId').omAccordion('url', 0, './ajax/content2.html');
+                $('#accordionId').omAccordion('reload', 0);
+            },function(){
+                $('#accordionId').omAccordion('url', 0, './ajax/content1.html');
+                $('#accordionId').omAccordion('reload', 0);
+            });
+            
+            $('#replace').click(function(){
+                $("#accordionId").find("#accordion-2").html("C是高级语言。它把高级语言的基本结构和语句与低级语言的实用性结合起来。C 语言可以像汇编语言一样对位、字节和地址进行操作，而这三者是计算机最基本的工作单元。");
+            });
+            $('#title').click(function(){
+                $("#accordionId").omAccordion("setTitle" , 1 , "<span style='color:red'>一种神奇的编程语言</span>");
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+    
+<title>Accordion Simple Page</title>
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="accordionId" > 
+        <ul> 
+            <li><a href="./ajax/content1.html" iconCls="java_icon">java语言</a></li> 
+            <li><a href="#accordion-2" iconCls="c_icon" >c语言</a></li> 
+            <li><a href="#accordion-3" iconCls="c_plus_plus_icon" >c++语言</a></li> 
+        </ul> 
+        <div id="accordion-2">
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;C语言是一种计算机程序设计语言。它既具有高级语言的特点，又具有汇编语
+                言的特点。它由美国贝尔研究所的D.M.Ritchie于1972年推出。1978后，C语言
+                已先后被移植到大、中、小及微型机上。它可以作为工作系统设计语言，编写系统
+                应用程序，也可以作为应用程序设计语言，编写不依赖计算机硬件的应用程序。它的应
+                用范围广泛，具备很强的数据处理能力，不仅仅是在软件开发上，而且各类科研都
+                需要用到C语言，适于编写系统软件，三维，二维图形和动画。具体应用比如单片
+                机以及嵌入式系统开发。
+            </p>
+        </div>
+        <div id="accordion-3">
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;C++这个词在中国大陆的程序员圈子中通常被读做“C加加”，而西方的程序员通常
+                读做“C plus plus”，“CPP”。 它是一种使用非常广泛的计算机编程语言。C++是一
+                种静态数据类型检查的、支持多重编程范式的通用程序设计语言。它支持过程化程序
+                设计、数据抽象、面向对象程序设计、制作图标等等泛型程序设计等多种程序设计风格。
+            </p>
+        </div>
+    </div>
+    <br/>
+    <button id="url">切换第一个抽屉的url并重新加载</button>
+    <button id="replace">替换第二个抽屉的内容</button>
+    <button id="title">替换第二个抽屉的标题</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        抽屉的内容可以动态更新，局部更新使用简单js代码即可，一种常见的更新方法是切换URL地址，本示例演示通过切换URL地址更新抽屉的内容。</p>
+    </div>
+</body>
+</html>

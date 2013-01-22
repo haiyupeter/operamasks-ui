@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omCalendar tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-calendar.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<script type="text/javascript" > 
+    function fmtDate(d){
+        return (d.getFullYear())+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+    }
+    $(document).ready(function() { 
+         // ****************option test***************************
+    	 $('#calendar_editable').omCalendar({
+             editable:false
+         });
+    }); 
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		Calendar测试案例，API属性总共 <span class="apiNo" number="1"></span> 个；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+	   <div id="testPoint1" class="testPoint">
+            <span class="title">属性测试点1：测试editable属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">不可以输入，只能通过下拉框选择日期</div>
+            <div class="tpDIV">
+                <input id="calendar_editable">
+            </div>
+        </div>
+	</div>
+	
+	<div id="tabs-2">
+
+	</div>
+	
+	<div id="tabs-3">
+		
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

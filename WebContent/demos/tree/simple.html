@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本功能</title>
+    
+    <script src="../../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-tree.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        var data1 = [{
+            "text": "node1",
+            "children":[{
+                "text": "node11"
+            }, {
+                "text": "node12"
+            }]
+        }, {
+            "text": "node2",
+            "expanded": true,
+            "children":[{
+                "text":"node21",
+                "expanded": true,
+                "children": [{
+                    "text":"node211"
+                },{
+                    "text":"node212"
+                }]
+            },{
+                "text":"node22"
+            }]
+        }, {
+            "text": "node3"
+        }, {
+            "text": "node4"
+        }];
+        var data2 = [{id:"n1",text:"品牌",expanded:true},
+                     {id:"n2",text:"运营商",expanded:true},
+                     {id:"n11",pid:"n1",text:"三星"},
+			         {id:"n12",pid:"n1",text:"诺基亚"},
+			         {id:"n13",pid:"n1",text:"摩托罗拉"},
+			         {id:"n14",pid:"n1",text:"索尼"},
+			         {id:"n21",pid:"n2",text:"移动"},
+			         {id:"n22",pid:"n2",text:"联通"},
+			         {id:"n23",pid:"n2",text:"电信"}];
+        $(document).ready(function(){
+            $("#mytree1").omTree({
+                dataSource : data1
+            });
+            $("#mytree2").omTree({
+                dataSource : data2,
+                simpleDataModel: true
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="main">
+    <table>
+       <tr>
+          <td style="color: blue;">常规数据结构:</td>
+          <td style="color: blue;">简单数据结构:</td>
+       </tr>
+       <tr valign="top">
+          <td width="160"><ul id="mytree1"></ul></td>
+          <td><ul id="mytree2"></ul></td>
+       </tr>
+    </table>
+        
+    </div> 
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置dataSource属性，在指定的ul元素中生成一棵树。目前dataSource支持两种JSON数据类型，
+        一种是标准的树状结构数据类型，如data1（见页面源码）；另一种是简单结构数据类型，如data2（见页面源码）。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

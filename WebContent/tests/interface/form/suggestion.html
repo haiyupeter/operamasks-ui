@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui suggestion tests</title> 
+
+
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script>
+<script type="text/javascript" src="../../../tests/common/js/json2.js" ></script>
+<script type="text/javascript" src="../../../ui/om-suggestion.js" ></script>
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<!-- 如上文件必须引入 -->
+ <style>
+	.itemFloatLeft {
+		float: left
+	}
+	.itemFloatRight {
+		float: right;
+		color:#AAAAAA;
+	}
+</style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        
+        function showSendMsg(txt,id){
+             var result= $('#'+id);
+             var old=result.html();
+                 result.html(txt);
+        }
+        
+        $('#onSuggesting').omSuggestion({
+            dataSource:'../../../advancedSuggestion.json?method=delaytype',
+            clientFormatter:function(data,index){
+                return '<div class="itemFloatLeft">'+data.text+'</div><div class="itemFloatRight">约<font color="red">'+data.count+'</font>条记录</div>';
+            },
+            onSuggesting  : function(text){
+                $('#onSuggesting').omSuggestion('showMessage','正在加载...'); 
+            }
+        });
+        $('#method').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            method : 'post'
+        });
+        $('#readOnly').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            readOnly : true
+        });
+       
+        $('#preProcess').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            preProcess : function(text,data){
+                $(data).each(function(index){
+			        data[index]=this.replace(/_/,'');
+			    });
+                return data;
+            }
+        });
+        $('#clearCache').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            onSuccess : function(){
+            	showSendMsg('发送了请求,key='+$('#clearCache').val() , 'showSendMsg_result');
+            }
+        })
+         $('#queryName1').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            queryName : 'key'
+        })
+        $('#queryName2').omSuggestion({
+            dataSource : '../../../simpleSuggestion.json',
+            queryName : 'text'
+        })
+        
+    }); 
+    
+    function cleanCac()
+    {
+    	$('#clearCache').omSuggestion('clearCache');
+    }
+    
+    function disable11()
+    {
+    	$('#disable11').omSuggestion('disable');
+    }
+    
+    function enable11()
+    {
+    	$('#disable11').omSuggestion('enable');
+    }
+</script> 
+ 
+</head> 
+<body> 
+
+  <div class="total">
+		omSuggestion测试案例，API属性总共 
+		 <!-- 请输入API属性个数 -->
+		  <span class="apiNo" number="14"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；
+		功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个。
+  </div>
+
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">接口测试</a></li>
+	</ul>
+	
+	<!-- 下面是API测试的相关代码 -->
+	<div id="tabs-1">
+	    <div  class="testPoint">
+			<span class="title">测试onSuggesting事件</span>
+			<br />
+			<p>操作和预期结果：输入a，下拉框中显示“正在加载...”，大约4秒后下拉框内容变成一行行的记录</p>
+			<div class="textresult"></div>
+			<div  class="tpDIV">
+				<input id="onSuggesting"/>
+				<span id="onSuggesting_result"></span>
+			</div>
+	   </div>
+	   
+	   <div  class="testPoint">
+			<span class="title">属性测试点9：测试method属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     输入a，正常显示提示下拉框
+			</div>
+			<div  class="tpDIV">
+				<input id="method"/>
+			</div>
+	   </div>
+	   <div  class="testPoint">
+			<span class="title">属性测试点13：测试readOnly属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">
+			     输入框不能输入
+			</div>
+			<div  class="tpDIV">
+				<input id="readOnly"/>
+			</div>
+	   </div>
+	   <div  class="testPoint">
+            <span class="title">属性测试点11：测试preProcess属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+                 输入a出现下拉框，里面的内容是"a0","a1",...这样（其它的测试案例大多数都是"a_0","a_1",...这样）
+            </div>
+            <div  class="tpDIV">
+                <input id="preProcess"/>
+            </div>
+       </div>
+       
+       <div  class="testPoint">
+            <span class="title">功能测试点1：测试clearCache方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+                 输入a，右边出现“发送了请求,key=a”，<br/>
+                 再输入b，右边出现“发送了请求,key=b”<br/>
+                 再输入a，右边提示内容不变<br/>
+                点击清除缓存按钮，<font color="red">删除输入框所有内容</font>然后再输入a，右边出现“发送了请求,key=a”
+            </div>
+            <div  class="tpDIV">
+                <input id="clearCache"/>
+                <span id="showSendMsg_result"></span> <br/>
+                <button onclick="cleanCac()">清除缓存</button>
+            </div>
+       </div>
+       <div  class="testPoint">
+            <span class="title">属性测试点12：测试queryName属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">
+                需要用网络监控软件（如FireBug(用于FireFox，快捷键F12)、HttpWatch(一般用于IE，快捷键Shift+F2)、Chrome自带的开发人员工具(快捷键Ctrl+Shift+I)）查看Ajax请求的URL。<br/>
+                在第一个输入框输入任何内容，可以看到Ajax请求URL为“simpleSuggestion.json?<font color=green>key</font>=输入的内容”且下拉框中能出现提示内容（因为后台有处理key参数）。<br/>
+                而在第二个输入框输入任何内容时，可以看到Ajax请求URL为“simpleSuggestion.json?<font color=green>text</font>=输入的内容”且下拉框中无法出现提示内容（因为后台没有处理text参数）。
+            </div>
+            <div  class="tpDIV">
+                <input id="queryName1"/>
+                <input id="queryName2"/>
+            </div>
+       </div>
+	   
+	 
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

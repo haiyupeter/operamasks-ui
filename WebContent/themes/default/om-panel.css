@@ -1,0 +1,107 @@
+/*
+ * $Id: om-panel.css,v 1.22 2012/06/27 09:10:27 licongping Exp $
+ * operamasks-ui panel @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+.om-panel{
+	overflow: hidden;
+}
+.om-panel-header{
+ 	padding: 5px;
+ 	height: 14px;
+ 	line-height: 14px;
+ 	background: url("images/panel/om-panel-header-bg-d.png") repeat-x scroll 0 0 #FFFFFF;
+ 	border:1px solid #99BBE8;
+ 	position: relative;
+ 	cursor: default;
+ }
+.om-panel-body{
+ 	background-image: none;
+ 	border-top-width: 0;
+ 	padding: 1em;
+ 	overflow: auto;
+}
+.om-panel-noheader{
+ 	border-top-width:1px;
+}
+.om-panel-title{
+	white-space: nowrap;
+	overflow: hidden;
+}
+.om-panel-icon{
+	float: left;
+	background-image: none;
+	width:20px;
+	height:18px;
+}
+.om-panel-tool{
+	position: absolute;
+	right: 5px;
+	top: 3px;
+}
+.om-panel-tool div.om-icon{
+	float:left;
+	margin-left:2px;
+	cursor:pointer;
+	width: 20px;
+	height: 18px;
+	line-height: 18px;
+	display:block;
+}
+.om-panel-loadingMessage{
+	background-color: white;
+    left: 0;
+    opacity: .8; filter:Alpha(Opacity=80);
+    position: absolute;
+    top: 0;
+    z-index:100;
+}
+.om-panel-loadingMessage .valignMiddle{
+	left: 50%;
+   	margin-left: -30px;
+   	margin-top: -8px;
+   	position: absolute;
+   	top: 50%;
+}
+.om-panel-loadingMessage .loadingImg{
+	background: url("images/load.gif") repeat scroll 0 0 transparent;
+    height: 16px;
+    padding-left:20px;
+    background-repeat: no-repeat;
+}
+.om-panel-tool-collapse{
+	background: url("images/ui-toolbar-btn.png") no-repeat scroll -22px 0 transparent
+}
+.om-panel-tool-expand{
+	background: url("images/ui-toolbar-btn.png") no-repeat scroll -2px 0 transparent
+}
+.om-panel-tool-min{
+	background: url("images/ui-toolbar-btn.png") no-repeat scroll -44px 0 transparent
+}
+.om-panel-tool-max{
+	background: url("images/ui-toolbar-btn.png") no-repeat scroll -67px 0 transparent
+}
+.om-panel-tool-close{
+	background: url("images/ui-toolbar-btn.png") no-repeat scroll -90px 0 transparent
+}
+
+.om-panel-tool-collapse-hover{
+	background-position: -22px -36px;
+}
+.om-panel-tool-expand-hover{
+	background-position: -2px -36px;
+}
+.om-panel-tool-min-hover{
+	background-position: -44px -36px;
+}
+.om-panel-tool-max-hover{
+	background-position: -67px -36px;
+}
+.om-panel-tool-close-hover{
+	background-position: -90px -36px;
+}

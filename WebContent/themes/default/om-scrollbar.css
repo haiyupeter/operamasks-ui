@@ -1,0 +1,17 @@
+/*
+ * $Id: om-scrollbar.css,v 1.1 2012/06/14 00:48:20 chentianzhen Exp $
+ * operamasks-ui combo @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or LGPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+ 
+.om-scrollbar {
+	background-color: #83888B;
+	position : absolute;
+	top : 0;
+	opacity: .8; filter:Alpha(Opacity=80);
+}

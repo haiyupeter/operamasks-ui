@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>自定义ui颜色</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+	<script type="text/javascript" src="../../../ui/om-tabs.js"></script>
+	<script type="text/javascript" src="../../../ui/om-panel.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />    
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="uicolor-tab">
+    	<ul>
+    		<li><a href="#color1">color1</a></li>
+    		<li><a href="#color2">color2</a></li>
+    		<li><a href="#color3">color3</a></li>
+    	</ul>
+    	<div id="color1">
+		    <textarea id="editor1" class="editor">&lt;p&gt;Initial value 1&lt;/p&gt;</textarea>
+    	</div>
+    	<div id="color2">
+		    <textarea id="editor2" class="editor">&lt;p&gt;Initial value 2&lt;/p&gt;</textarea>
+    	</div>
+    	<div id="color3">
+		    <textarea id="editor3" class="editor">&lt;p&gt;Initial value 3&lt;/p&gt;</textarea>
+    	</div>
+    </div>
+    <script>
+        $(function() {
+        	$('#uicolor-tab').omTabs();
+            $('#editor1').omEditor({
+                uiColor : '#AADC6E'
+            });
+            $('#editor2').omEditor({
+                uiColor : '#FFCD69'
+            });
+            $('#editor3').omEditor({
+                uiColor : '#F299CC'
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    	设置uiColor属性，使编辑器展现不同的皮肤颜色。
+    </div>
+</body>
+</html>

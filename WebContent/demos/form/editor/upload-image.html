@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>图片上传</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/editor/omeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+</head>
+<body>
+    <!-- view_source_begin -->
+    <textarea id="editor1" class="editor">上传图片示例，默认支持以下文件类型：jpg,gif,png，文件大小限制不能超过100KB</textarea>
+    <script>
+        //         
+        $(function() {
+            var editor = $('.editor').omEditor({
+                             filebrowserImageUploadUrl : '../../../omEditorImageUpload.do?type=Images'
+                         });
+        });
+        //
+    </script>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        <p>设置编辑器的filebrowserImageUploadUrl属性，配合服务器端的servlet或者php等后台处理逻辑，实现图片的上传。</p>
+        <p>点击工具条中的'图象'按钮，选择'上传'页签进行上传，图象文件的大小在服务端限制不能超过100KB。</p>
+    </div>
+</body>
+</html>

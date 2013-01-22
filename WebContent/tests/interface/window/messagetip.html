@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omMessageTip tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-widget.js" ></script>
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-messagetip.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-button.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+</head> 
+<body> 
+  <div class="total">
+		messageBox测试案例，API属性总共 <span class="apiNo" number="0"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<!-- <li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li> -->
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<!--  
+	<div id="tabs-1">
+		不需要测试，没有属性。请进行“功能测试”和“边界值测试”
+	</div>
+	
+	<div id="tabs-2">
+        <div class="testPoint">
+            <span class="title">功能测试点1：测试$.omMessageTip.show(config)基本功能</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮，窗口右下角弹出一个非模态的提示窗口，标题为“提醒”，内容为“提示内容”，内容左边有图标，窗口右上角有关闭按钮，点击右上角关闭按钮或“确定”按钮可关闭窗口。不可以变化窗口的大小和移动窗口位置</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({content:'提示内容'});">提醒</button>
+            </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">功能测试点2：测试$.omMessageTip.show(config)的type属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提示”，内容都是“提示内容”。<br/>点default和alert按钮时窗口左边图标为"i"形图标。点success按钮时窗口左边图标为"√"形图标。点error按钮时窗口左边图标为"X"形图标。点warning按钮时窗口左边图标为"!"形图标。点question按钮时窗口左边图标为"?"形图标。点waiting按钮时窗口左边图标为表示正在处理的loading图标</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({content:'提示内容'});">default</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'alert'});">alert</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'success'});">success</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'error'});">error</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'warning'});">warning</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'question'});">question</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',type:'waiting'});">waiting</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点3：测试$.omMessageTip.show(config)的title属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，内容都是“提示内容”。点击按钮1弹出的窗口标题是“提醒”，点击按钮2弹出的窗口标题是“自定义标题”，点击按钮3弹出的窗口标题是“红色自定义标题”其中红色两字是红色的</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({content:'提示内容'});">default</button>
+                <button onclick="$.omMessageTip.show({content:'提示内容',title:'自定义标题'});">defined</button>
+                <button onclick="showHtmlTitle();">advanced</button>
+                <script>
+                    function showHtmlTitle(){
+                        $.omMessageTip.show({content:'提示内容',title:'<font color=\"red\">红色</font>自定义标题'});
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点4：测试$.omMessageTip.show(config)的content属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提醒”。点击按钮1弹出的窗口内容是空白，点击按钮2弹出的窗口内容是“自定义内容”，点击按钮3弹出的窗口内容是“高级自定义内容”其中高级两字是红色的24px字</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({});">default</button>
+                <button onclick="$.omMessageTip.show({content:'自定义内容'});">defined</button>
+                <button onclick="showHtmlContent();">advanced</button>
+                <script>
+                    function showHtmlContent(){
+                        $.omMessageTip.show({content:'<font color="red" size="24px">高级</font>自定义内容'});
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点5：测试$.omMessageTip.show(config)的timeout属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提醒”内容都是“自定义内容”。点击按钮1弹出的窗口不会自动关闭。点击按钮2弹出的窗口3秒后自动关闭</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({content:'自定义内容'});">default</button>
+                <button onclick="$.omMessageTip.show({content:'自定义内容',timeout:3000});">3秒后自动消失</button>
+            </div>
+        </div>
+        
+        
+        <div class="testPoint">
+            <span class="title">功能测试点6：测试$.omMessageTip.show(config)config)的onClose属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，标题都是“提醒”内容都是“自定义内容”。点击按钮1弹出的窗口关闭时没有任何提示。点击按钮2弹出的窗口不会自动关闭，手动关闭时弹出提示"手动关闭了一个提示"。点击按钮3弹出的窗口3秒后自动关闭，自动关闭时弹出提示"自动关闭了一个提示"。</div>
+            <div  class="tpDIV">
+                <button onclick="$.omMessageTip.show({content:'自定义内容'});">default</button>
+                <button onclick="$.omMessageTip.show({content:'自定义内容',onClose:function(){alert('手动关闭了一个提示');}});">手工关闭</button>
+                <button onclick="$.omMessageTip.show({content:'自定义内容',timeout:3000,onClose:function(){alert('自动关闭了一个提示');}});">自动关闭</button>
+            </div>
+        </div>
+	</div>
+	-->
+	<div id="tabs-3">
+		<div class="testPoint">
+            <span class="title">边界测试点1：测试content内容很长时的情况</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击所有按钮，均弹出显示窗口，不管内容是中文还是英文还是混合的，内容长了后会自动换行。</div>
+            <div  class="tpDIV">
+                <button onclick="showlongContentEn();">全是英文</button>
+                <button onclick="showlongContentCn();">全是中文</button>
+                <button onclick="showlongContentMix();">中英混合</button>
+                <script>
+	                function showlongContentEn(){
+	                    $.omMessageTip.show({content:'EnglishadadadaaAAACAdaafdadsadsadsadasdsascdasaccxaawwxcx Adad Adfa afdad 12 Faadad afasfaf ad2axasasxad asdsa2dsa23adsadadsad'});
+	                }
+		            function showlongContentCn(){
+		                $.omMessageTip.show({content:'中文件工在地甘工在二○一在基革地一于和主产品成本产一 产不能男子这样工在一上海市在于如期而至 工区域性左基基 工菲薄中华全国工商联合会 在于 工基地荭工基 忆苦思甜'});
+		            }
+			        function showlongContentMix(){
+			            $.omMessageTip.show({content:'EnglishadadadaaAAACAdaafdadsadsadsadasdsascdasaccxaawwxcx A中文件工在地甘工在二○一在基革地一于和主dad afasfaf ad2axasasxad asdsa2dsa23adsadadsad商联合会 在于 工基地荭工基 忆苦思甜'});
+			        }
+                </script>
+            </div>
+        </div>
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

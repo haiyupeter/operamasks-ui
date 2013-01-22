@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>正整数</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-numberfield.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#numf1').omNumberField({
+                allowDecimals : false,
+                allowNegative : false
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <span style="font-size: 14px">输入编号：</span>
+    <input id="numf1" />
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置allowDecimals、allowNegative属性，数值组件配置是否允许小数，是否允许负数。</div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

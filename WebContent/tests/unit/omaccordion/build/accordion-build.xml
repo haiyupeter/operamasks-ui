@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="accordion-test" default="default">
+	<description>operamasks-ui-accordion-test</description>
+	
+	<property name="ant-contrib.jar" location="ant-contrib.jar" />  
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="${ant-contrib.jar}" />	
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${ant-contrib.jar}" />
+	
+	<target name="default" description="description">
+		<antcall target="accordion-qunit-test">
+		</antcall>
+	</target>
+
+	<target name="accordion-qunit-test" description="qunit javascript tests via phantomjs">
+		<property name="cmd.exe.file" value="cmd" />
+		<property name="run-qunit.js.file" value="../../../external/phantomjs-qunit-runner.js" />
+		<exec executable="${cmd.exe.file}" failonerror="true" dir="../" output="../../testoutput/accordion-test-output.xml">
+			<arg value="/c" />
+			<arg value="phantomjs" />
+			<arg value="${run-qunit.js.file}" />
+			<arg value="accordion.html" />
+		</exec>
+	</target>
+
+	<target name="accordion-jst-test" description="qunit javascript tests via js-test-driver">
+		<property name="java.exe.file" value="java" />
+		<property name="jst.jar.file" value="../../../external/JsTestDriver-1.3.3d.jar" />
+		<property name="jst.config.file" value="jsTestDriver.conf" />
+		<echo message="The first five letters of the alphabet are:"/>		
+		<for list="'E:/Program Files/Mozilla Firefox/firefox.exe',
+			        'C:/Program Files/Internet Explorer/iexplore.exe'" param="explorertype" keepgoing="true" delimiter=",">
+			<sequential>
+				<exec executable="cmd" failonerror="true" >
+					<arg value="/c" />
+					<arg value="java" />
+					<arg value="-jar" />
+					<arg value="${jst.jar.file}" />
+					<arg value="--config" />
+					<arg value="${jst.config.file}" />
+					<arg value="--port" />
+					<arg value="4424" />
+					<arg value="--browser" />
+					<arg value="${explorertype}" />
+					<arg value="--tests" />
+					<arg value="all" />
+					<arg value="--testOutput" />
+					<arg value="../../testoutput/" />
+				</exec>
+			</sequential>
+		</for>
+	</target>		
+	
+</project>

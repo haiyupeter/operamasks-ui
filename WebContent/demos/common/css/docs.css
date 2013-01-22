@@ -1,0 +1,221 @@
+/* Site
+   -------------------------------- */
+
+body {
+    margin: 0;
+    padding: 0 0;
+    background: #5f5f5f;
+    /* font-family: "Lucida Grande", "Arial", "Helvetica", "Verdana", "sans-serif"; */
+    font-family: "Arial","Helvetica","Verdana","sans-serif";
+    font-size: 12px;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 956px;
+    position: relative;
+    background: #FFFFFF;
+    /* 
+    background: url('/images/body_footer_bg.jpg') no-repeat center bottom;
+    padding-bottom: 365px;
+     */
+}
+
+/* Normal
+   -------------------------------- */
+
+h2,
+h3,
+h4 {
+    margin: 0;
+    font-weight: normal;
+}
+
+h2, h3 {
+    padding: 0 0 9px;
+}
+
+h4 {
+    padding-bottom: 21px;
+    border-bottom: 1px dashed #999;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pull-quote {
+    padding: 6px 0;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+p {
+    font-size: 12px;
+}
+
+
+/* new styles for demo pages, edited by Filament 01.07.09
+eventually we should convert the font sizes to ems -- using px for now to minimize style conflicts
+*/
+
+/* hide markup that's pulled in from the wiki */
+
+.widget-docs .editsection,
+.widget-docs h2.top-header, 
+#overview-example, 
+ul.UIAPIPlugin-toc { display:none; }
+
+.demos-nav a:link,
+.demos-nav a:visited,
+#demo-notes a:link,
+#demo-notes a:visited,
+#demo-source a:link,
+#demo-source a:visited,
+.widget-docs a:link,
+.widget-docs a:visited { color:#1b75bb; text-decoration:none; }
+
+.demos-nav a:hover,
+.demos-nav a:active,
+#demo-notes a:hover,
+#demo-notes a:active,
+#demo-source a:hover,
+#demo-source a:active,
+.widget-docs a:hover,
+.widget-docs a:active { color:#0b559b; }
+
+.widget-docs { margin:20px 0 0; border:0px solid; }
+
+.widget-docs h2, .widget-docs h3, .widget-docs h4, .widget-docs p, .widget-docs ul, .widget-docs code { margin:0; padding:0; }
+.widget-docs code { display:block; color:#555; font-size:.9em; margin:0 0 1em; }
+.widget-docs code strong { color:#000; }
+.widget-docs p { margin:0 0em 1.2em 0; }
+.widget-docs p.intro { font-size:13px; color:#666; line-height:1.3; }
+.widget-docs p.theme-note { margin-top:1.2em; padding:8px; background-color:#f6f6f6; border:1px solid #eee; }
+
+.widget-docs h2 { font-size:16px; margin:1.2em 0 .5em; }
+.widget-docs h3 { font-size:14px; color:#e6820E; margin:1.5em 0 .5em; }
+.normal .widget-docs #overview-dependencies h3,
+.normal .widget-docs h4 { font-size:12px; color:#000; border:0; margin:0 0 .5em; font-weight:bold; }
+.normal .widget-docs h5 { font-size:12px; font-weight:normal; margin:1.5em 0 .5em; }
+
+#overview-main { float:left; width:400px; }
+#overview-dependencies { float:right; width:200px; }
+#overview-dependencies ul, #docs-theming ul { list-style-type: none; }
+#overview-dependencies a span { color:#666; }
+.widget-docs #overview-main p { margin-right:0; }
+.widget-docs #overview-dependencies h4 { padding-left:0; }
+
+#overview-main ul { margin-left:20px; margin-bottom:1.2em; }
+
+.widget-docs ul.options-list, 
+.widget-docs ul.events-list,
+.widget-docs ul.methods-list { list-style-type: none;clear: both;}
+
+.widget-docs ul.options-list li,
+.widget-docs ul.events-list li,
+.widget-docs ul.methods-list li { clear:left; float:left; width:100%; background: url(images/bg-demo-docs-param.gif) repeat-x 0 0; }
+
+.widget-docs #overview pre,
+.widget-docs ul.options-list pre,
+.widget-docs ul.methods-list pre,
+.widget-docs ul.events-list pre { width:748px; overflow:auto;color: #555555; }
+
+.widget-docs ul.options-list code,
+.widget-docs ul.methods-list code,
+.widget-docs ul.events-list code { display:inline; font-size:1em; }
+
+.widget-docs .option-header,
+.widget-docs .event-header,
+.widget-docs .method-header { float:left; width:100%; padding:10px 0 8px; border-top:1px solid #e6e6e6; }
+
+.widget-docs .option-header h3,
+.widget-docs .event-header h3,
+.widget-docs .method-header h3 { float:left; width:30%; margin:0 0 0 10px; padding:0 0 0 15px; line-height: 1; background: url(images/demo-spindown-closed.gif) no-repeat left; cursor: pointer; cursor: hand; }
+
+.widget-docs .header-open h3 { background: url(images/demo-spindown-open.gif) no-repeat left; }
+
+.widget-docs .option-description, 
+.widget-docs .event-description, 
+.widget-docs .method-description,
+.widget-docs .option-examples,
+.widget-docs .method-examples,
+.widget-docs .event-examples { padding:0 10px 0 25px; }
+.widget-docs .event-examples h4 {margin-left:20px;}
+
+.widget-docs .option-examples,
+.widget-docs .method-examples,
+.widget-docs .event-examples { padding-bottom:15px; }
+
+.widget-docs .option-header dl,
+.widget-docs .event-header dl,
+.widget-docs .method-header dl { float:right; width: 65%; }
+
+.widget-docs .option-header dt,
+.widget-docs .event-header dt,
+.widget-docs .option-header dd,
+.widget-docs .event-header dd { float:left; font-size:1.0em; }
+
+.widget-docs .option-header dt,
+.widget-docs .event-header dt { color:#888; padding-right:.5em; }
+
+.widget-docs .option-header dt.option-type-label,
+.widget-docs .method-header dt.method-signature-label { display:none; }
+
+.widget-docs .option-header dd,
+.widget-docs .event-header dd { width:35%; margin:0; padding-right:15px; }
+
+.widget-docs .option-header dd span { border-bottom: 1px dashed #999; cursor: pointer; cursor: hand; }
+.widget-docs .option-header dd span:hover { border-bottom: 1px dashed #000; color: #999; cursor: pointer; cursor: hand; }
+
+.widget-docs .option-examples-list dd,
+.widget-docs .event-examples-list dd { padding:0 0 0 20px; margin:0; }
+
+
+/* overrides for ui-tab & ui-dialog styles */
+.widget-docs ul.ui-tabs-nav { padding:0 0 0 8px; }
+.widget-docs .ui-tabs-nav li { margin:5px 5px 0 0; }
+
+.widget-docs .ui-tabs-nav li a:link,
+.widget-docs .ui-tabs-nav li a:visited,
+.widget-docs .ui-tabs-nav li a:hover,
+.widget-docs .ui-tabs-nav li a:active { font-size:14px; padding:4px 1.2em 3px; color:#fff; }
+
+
+.widget-docs .ui-tabs-panel { padding:20px 9px; font-size:12px; line-height:1.4; color:#000; }
+
+.widget-docs.ui-widget-content,
+.widget-docs .ui-widget-content { background-image:none; background-color:#fff; border:0; }
+
+.widget-docs .ui-widget-content a:link,
+.widget-docs .ui-widget-content a:visited { color:#1b75bb; text-decoration:none; }
+.widget-docs .ui-widget-content a:hover,
+.widget-docs .ui-widget-content a:active { color:#0b559b; }
+
+
+.widget-docs.ui-corner-all {
+    -moz-border-radius-bottomleft:0;
+    -moz-border-radius-bottomright:0;
+    -moz-border-radius-topleft:0;
+    -moz-border-radius-topright:0;
+}
+
+#demo-dialog .ui-dialog-title { font-size:1.2em; }
+
+.widget-docs .toggle-docs-links { margin:0 0.4em 0.4em;float: right;}
+.widget-docs .toggle-docs-links a { margin:0 0.4em;cursor:pointer; }
+
+/* ------------------------- detailList ----------------------*/
+.detailList {
+    line-height: 15px;
+    margin-left: 20px;
+}
+
+.detailList dt {
+    margin-left: 20px;
+}
+
+.detailList .heading {
+    font-weight: bold;
+    margin-left: 0;
+    padding-bottom: 6px;
+}

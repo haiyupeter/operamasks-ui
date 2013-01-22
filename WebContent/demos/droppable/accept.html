@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>接收范围</title>
+<script src="../../jquery.js"></script>
+ <script src="../../ui/om-core.js"></script>
+ <script src="../../ui/om-mouse.js"></script>
+ <script src="../../ui/om-draggable.js"></script>
+ <script src="../../ui/om-droppable.js"></script>
+ <link rel="stylesheet" href="../../themes/default/om-all.css">
+ <link rel="stylesheet" href="../common/css/demo.css">
+  <!-- view_source_begin -->
+ <style>
+   .draggable{
+		width:60px;
+		height:60px;
+		border:2px solid #d3d3d3;
+		background-color:#86A3C4; 
+		float:left;
+		margin: 20px;
+	}
+	p{
+	    margin: 15px; 
+	} 
+	#droppable { 
+		width: 150px; 
+		height: 150px; 
+		float: left;
+		border: 2px solid #cccccc;
+	 }
+	</style>
+	<script>
+	$(document).ready(function() {
+		$( "#draggable1, #draggable2" ).omDraggable();
+		$( "#droppable" ).omDroppable({
+			accept: "#draggable2",
+			activeClass: "om-state-hover",
+			hoverClass: "om-state-active",
+			onDrop: function( event, source ) {
+				$(this).addClass( "om-state-highlight" )
+					.find( "p" ).html( "已接受！" );
+			}
+		});
+	});
+	</script>
+  <!-- view_source_end -->
+</head>
+<body>
+ <!-- view_source_begin -->		
+	<div id="draggable1" class="draggable">
+		<p>拒  绝</p>
+	</div>
+	<div id="draggable2" class="draggable">
+		<p>接  受</p>
+	</div>
+	<div id="droppable">
+		<p>目的地</p>
+	</div><br/>
+	<br/>
+<!-- view_source_end -->
+ <div id="view-desc" style="clear: left;">
+        <p>设置accept属性，指定可接受的拖动元素。</p>
+        <p>设置activeClass和hoverClass属性，分别指定可接受元素拖动时添加到droppable元素上的样式，以及悬停在droppable元素上时，
+        添加到droppable元素上的样式。</p>
+ </div>
+</body>
+</html>

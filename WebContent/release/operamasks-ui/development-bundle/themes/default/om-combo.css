@@ -1,0 +1,4 @@
+.om-combo {white-space: nowrap;display: inline-block;height: 20px;}
+.om-combo input {margin:0px; border: 0px solid;height: 18px;*height : 16px;line-height: 20px;padding-top: 1px;*vertical-align: top;}
+.om-combo .om-combo-trigger {cursor: pointer;display: inline-block;height: 20px;*height:22px;vertical-align: top;width: 19px;}
+.om-combo-list-row {height: 20px; line-height: 20px; padding: 0 5px; margin : 1px; overflow-x: hidden;}

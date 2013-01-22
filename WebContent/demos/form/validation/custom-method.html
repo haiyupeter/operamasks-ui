@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>校验规则</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script type="text/javascript" src="../../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../../ui/om-validate.js"></script>
+    <script type="text/javascript" src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style type="text/css">
+       label.error{
+        background: #fff6bf url(images/alert.png) center no-repeat;
+		background-position: 5px 50%;
+		text-align: left;
+		padding: 2px 20px 2px 25px;
+		border: 1px solid #ffd324;
+		display: none;
+		width: 200px;
+		margin-left: 10px;
+       }
+    </style>
+    <script type="text/javascript">
+        $.validator.addMethod("userNameCheck", function(value) {
+            return value != "admin";
+        }, '此用户名已经被注册！');
+    
+        $(document).ready(function() {
+            $("#reg").validate({
+                rules : {
+                    username : {
+                    	required : true,
+                    	userNameCheck : true
+                    },
+                    password : {
+                        required : true,
+                        minlength : 5,
+                        maxlength : 10
+                    }
+                },
+                messages : {
+                    username : {
+                        required : "请输入用户名"
+                    },
+                    password : {
+                        required : "请输入密码",
+                        minlength : "密码长度不够"
+                    }
+                },
+                submitHandler : function(){
+                    alert('提交成功！');
+                    $(this)[0].currentForm.reset();
+                    return false;
+                }
+            });
+            $("#sub").omButton();
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <form action="#" id="reg">
+        <label>用户名：</label> <input type="text" name="username" />
+        <br><br>
+        <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" />
+        <br><br>
+        <input type="submit" value="提交" id="sub"/>
+    </form>
+    <!-- view_source_end -->
+    <div id="view-desc">
+       校验规则有内置校验规则和自定义校验规则<br>
+       内置校验规则只需要配置对应的规则名称和提示信息即可，如上例的required、minlength、maxlength等，更多校验规则请参考docs文档。<br>
+       自定义校验规则通过 $.validator.addMethod("methodName", functionName,defaultMessage) 自定义校验方法.<br />
+        第一个参数为方法名，第二个参数为校验方法，最后一个参数为默认错误信息。定义好之后将methodName作为规则名称配置到校验的rules里面。<br>
+        此示例通过输入<b>admin</b>，即可以触发自定义校验信息，提示此用户名已经被注册！  
+    </div>
+</body>
+</html>

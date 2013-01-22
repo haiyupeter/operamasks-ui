@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../../ui/om-suggestion.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+<link rel="stylesheet" type="text/css" href="../css/oa.css" />
+<link rel="stylesheet" href="../../../demos/common/css/demo.css">
+<!-- view_source_begin -->
+<script type="text/javascript">
+	var lastType,
+	    renderer={//下拉列表的渲染器
+	    	member:memberRenderer,
+	    	mail:mailRenderer,
+	    	message:messageRenderer,
+	    	notice:noticeRenderer,
+	    	docs:docsRenderer
+		},
+		omSearch;
+	$(document).ready(function() {
+	    var type = {
+	    	member:"通迅录",
+	    	mail:"邮件",
+	    	message:"短信消息",
+	    	notice:"公告",
+	    	docs:"文档系统"
+	    }
+	    omSearch = $('#omsearch').omSuggestion({
+	       dataSource : '../../../oaSearch.do',
+	       queryName:'searchKey',
+	       listWidth:'197px',
+	       listMaxHeight:500,
+	       valueField:'name',
+	       clientFormatter : function(data,index) {
+	           //如果不等的话则证明换类别了,比如从"通迅录"换成"邮件"
+	       	   if(data.type !== lastType){
+	       	       lastType = data.type;
+	       	       return '<div class="header">搜<span style="padding-right:10px">"<span class="search-text">'+omSearch.val()+'</span>"</span>在'+type[lastType]+"中>></div>";
+	       	   }else{//显示子类别记录
+	       	    	return renderer[data.type](data);
+	       	   }
+           },
+           onSelect:function(rowData , text , index){
+             	//注意，这时候有两种情况，一种是点击头部(如:搜"冰" 在通讯录中)，一种是点击具体记录
+	   			var q;//查询内容
+	   			//处理点击头部的情况
+	   			if(rowData.begin && rowData.begin=='true'){
+	   			    q = omSearch.val() || "";
+	   			}else{
+	   			    q = rowData.name || "";
+	   			}
+	   			location.href = "./subSearch.jsp?type="+rowData.type+"&q="+encodeURIComponent(q);
+           }
+	    }).keydown(function(event){//如果这时没有出现下拉列表，我们又想通过按回车提交表单的话，注册keydown事件自行处理
+	        if(event.keyCode === 13 && dropList.is(":hidden")){
+	            if(!omSearch.val()){
+		            alert("请先输入搜索内容");
+		            return false;
+		        }
+	            location.href = "./subSearch.jsp?type=member&q="+encodeURIComponent(omSearch.val());
+	        }
+	    });
+	    //获取下拉列表
+	    var dropList = omSearch.omSuggestion("getDropList");
+	    /**必须给dropList添加一个class， 这样oa.css文件定义的
+	    	.droplist .om-suggestion-list-row{
+	       		//一些样式 
+	    	}
+	                   样式才会生效
+	    **/
+	    dropList.addClass("droplist");
+	    $(".searchSubmit").click(function(){
+	        if(!omSearch.val()){
+	            alert("请先输入搜索内容");
+	            return false;
+	        }
+	        //默认为"通迅录"查询
+	    	location.href = "./subSearch.jsp?type="+"member"+"&q="+encodeURIComponent(omSearch.val());
+	    });
+	});
+	//下拉列表的行渲染器
+	function memberRenderer(data){
+	    return "<div class='record om-helper-clearfix'><img class='bigicon'  src="+data.img+" /><ul class='desc'><li class='primary'>"+styleText(data.name)+getStars(data.star)+"</li><li class='secondary'>"+data.position+"</li></ul></div>";
+	}
+	function mailRenderer(data){
+	    return "<div class='record om-helper-clearfix'><img class='bigicon'  src="+data.img+" /><ul class='desc'><li class='primary'>"+styleText(data.name)+"</li><li class='secondary'>来自:"+data.from+"</li></ul></div>";
+	}
+	function messageRenderer(data){
+	    return "<div>"+styleText(data.name)+"</div>";
+	}
+	function noticeRenderer(data){
+	    //重用
+	    return mailRenderer(data);
+	}
+	function docsRenderer(data){
+	    return "<div class='record om-helper-clearfix'><img class='bigicon'  src="+data.img+" /><ul class='desc'><li class='primary'>"+styleText(data.name)+"</li><li class='secondary'>作者:"+data.author+"</li></ul></div>";
+	}
+	function styleText(text){
+	    return text.replace(new RegExp(omSearch.val(),"g"), "<span class='search-text'>$&</span>");
+	}
+	
+	//便利方法，获取等级的星星图片
+	function getStars(count){
+	    var stars = [];
+	    while(count--){
+	        stars.push("<img style='width:10px;height:10px' src='../images/star.png' />");
+	    }
+	    return stars.join(" ");
+	}
+</script>
+<!-- view_source_end -->
+<title>oa统一搜索</title>
+</head>
+<body>
+<!-- view_source_begin -->
+	<div class="search om-helper-clearfix">
+		<!--在ie6和7中，如果一个div下边有input，且div拥有所谓的"layout"(IE专称，对一个div显式设置宽高使div拥有"layout")，
+		          那么div设置了margin-left后,会导致里边的input也继承了margin-left,用 span 标签包起来可解决此问题-->
+		<span><input id="omsearch" class="input_no_outline" type="text"/></span>
+		<a class="searchSubmit"></a>
+	</div>
+<!-- view_source_end -->
+	<div id="view-desc">
+       omSuggestion 企业级搜索案例，由于数据有限，请输入"冰"进行测试。
+    </div>
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

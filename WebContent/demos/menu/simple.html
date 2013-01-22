@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../themes/default/om-all.css">
+<link rel="stylesheet" href="../common/css/demo.css">
+<script src="../../jquery.js"></script>
+<script src="../../ui/om-core.js"></script>
+<script type="text/javascript" src="../../ui/om-menu.js"></script>
+<title>基本功能</title>
+<!-- view_source_begin -->
+<script type="text/javascript">
+  $(document).ready(function(){
+     $('#menu_simple').omMenu({
+          minWidth : 150,
+          maxWidth : 200
+      });
+      $('#btn').click(function(){
+          $('#menu_simple').omMenu('show',this);
+      });
+  });
+</script>
+<!-- view_source_end -->
+</head>
+<body>
+<!-- view_source_begin -->
+    <div id="menu_simple">
+       <ul>
+        <li>
+		 <a href="#">
+			<img class="icon" src="images/blank.png">
+			<span>节点0</span>
+		</a>
+		</li>
+	    <li>
+	      <a href="#">
+		    <img  src="images/blank.png">
+		    <span>节点一</span>
+		  </a>
+	    </li>
+	    <li>
+	      <a href="#">
+		    <img class="icon" src="images/calendar.gif">
+		    <span>节点二</span>
+		    <span role="popup"></span>
+		  </a>
+		  <ul>
+		     <li class="">
+		        <a href="#">
+				    <img class="icon" src="images/calendar.gif">
+				    <span>节点一一</span>
+				 </a>
+		     </li>
+		     <li class="">
+		        <a href="#">
+				    <img src="images/calendar.gif">
+				    <span>节点一二</span>
+				 </a>
+		     </li>
+		     <li class="">
+		        <a href="#">
+				    <img src="images/calendar.gif">
+				    <span>节点一三</span>
+				 </a>
+		     </li>
+		  </ul>
+	    </li>
+	    <li>
+			<a href="#">
+			  <img class="icon" src="images/blank.png">
+			  <span>节点3</span>
+			</a>
+		</li>
+	  </ul>
+    </div>
+    <input type="button" id="btn" value="页面编写dom节点生成menu">
+  <!-- view_source_end -->
+  <div id="view-desc">
+      <p>该示例演示通过Dom元素初始化omMenu。omMenu初始化后需要通过调用show方法来显示。
+      </p>
+ </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

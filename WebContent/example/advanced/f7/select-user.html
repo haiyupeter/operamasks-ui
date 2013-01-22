@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>增删改查</title>
+    <script type="text/javascript" src="../../../jquery.js"></script>
+    <script src="../../../ui/om-core.js"></script>
+    <script src="../../../ui/om-mouse.js"></script>
+    <script src="../../../ui/om-draggable.js"></script>
+    <script src="../../../ui/om-position.js"></script>
+    <script src="../../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../../ui/om-tree.js"></script>
+    <script src="../../../ui/om-button.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../../demos/common/css/demo.css" />
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .treeContainer{
+            width: 100%;
+            height:100%;
+            overflow: auto;
+        }
+        .toolbar{
+            padding: 10px 0;
+        }
+        #q{
+            width: 80px;
+        }
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        var orgId=null;
+        $(document).ready(function() {
+            var dataUrl='../../../f7Data.json'; 
+            $('#orgTree').omTree({
+                dataSource : dataUrl,
+                onClick: function(node) {
+                   $('#q').val('');
+                   orgId=node.id;
+                   $('#query').omButton('click');
+                }
+            });
+            $('#userGrid').omGrid({
+                dataSource : dataUrl+'?q=&orgId=',
+                width : 304,
+                height : 332,
+                limit : 0, //不分页
+                colModel : [ {header : '编号', name : 'userid', width : 50, align : 'center'}, 
+                             {header : '姓名', name : 'username', width : 100, align : 'left'}, 
+                             {header : '性别', name : 'sex', align : 'center', width : 50}
+                           ],
+                onRowDblClick:function(e, rowData) {
+                    //双击后要回填。但是由于此页面是用iframe引入到主页面的，所以要回填到父页面中去，
+                    //因此这里调用父页面的fillBackAndCloseDialog(rowData)方法
+                    window.parent.fillBackAndCloseDialog(rowData);
+                }
+            });
+            $('#query').omButton({
+                //点击查询按钮时后台需要将左边树中选择的部门的id和查询输入框里输入的内容传递到后台
+                //一种办法是先将这两参数传递到后台，后台修改数据模型，后面刷新表格，
+                //另一种办法是直接修改表格的dataSource的URL，后台根据url的参数来决定返回哪些数据
+                //这里用的是第二种办法
+                onClick:function(e) {
+                    $('#userGrid').omGrid("setData", encodeURI(dataUrl+'?q='+$('#q').val()+'&orgId='+(orgId==null?'':orgId)));
+                }
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <table style="width:100%;height:100%">
+        <tr valign="top">
+            <td width="150">
+                <div class="treeContainer">
+                    <ul id="orgTree"></ul>
+                </div> 
+            </td>
+            <td> 
+                <div class="toolbar">
+			        查询条件(编号或姓名模糊查询)：
+			        <input id="q"></input>
+			        <button id="query">查询</button>
+			    </div>
+                <table id="userGrid"></table> 
+            </td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript" src="../../../demos/common/js/themeloader.js"></script>
+</html>

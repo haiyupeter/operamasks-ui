@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omDraggable tests</title> 
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"/>
+<META HTTP-EQUIV="Expires" CONTENT="0"/> 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-mouse.js" ></script>
+<script type="text/javascript" src="../../../ui/om-draggable.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />  
+<style type="text/css">
+    .testPoint .tpDIV div {
+        background-color: #86A3C4;
+	    border: 2px solid #D3D3D3;
+	    height: 60px;
+	    margin: 20px;
+	    width: 60px;
+    }
+</style>
+<script type="text/javascript" > 
+    $(document).ready(function() { 
+        $("#helper_1").omDraggable();
+        $("#helper_2").omDraggable({helper: "clone"});
+        $("#revert_1").omDraggable({revert : true});
+        $("#revert_2").omDraggable();
+        $("#scroll_1").omDraggable({scroll : false, revert : true});
+        $("#scroll_2").omDraggable({revert : true});
+    });
+</script> 
+ 
+</head> 
+<body> 
+  <div class="total">
+		omDraggable测试案例，API属性总共 <span class="apiNo" number="3"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+		<div class="testPoint">
+			<span class="title">属性测试点1：测试helper属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">下面元素拖动时元素本身是展现元素</div>
+			<div  class="tpDIV">
+				<div id="helper_1">
+				</div>
+			</div>
+	    </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点2：测试helper属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">拖动时将克隆一个元素作为展现</div>
+            <div  class="tpDIV">
+                <div id="helper_2">
+                </div>
+            </div>
+      </div>
+      
+      <div class="testPoint">
+            <span class="title">属性测试点3：测试revert属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">拖动结束时，元素回到原来的地方</div>
+            <div  class="tpDIV">
+                <div id="revert_1">
+                </div>
+            </div>
+      </div>
+	  
+	  <div class="testPoint">
+			<span class="title">属性测试点4：测试revert属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">拖动结束时，元素不会回到原来的地方</div>
+			<div  class="tpDIV">
+				<div id="revert_2">
+				</div>
+			</div>
+	  </div>
+	  
+	  <div class="testPoint">
+			<span class="title">属性测试点5：测试scroll属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">拖动元素时，不会自动滚屏</div>
+			<div  class="tpDIV">
+			    <div id="scroll_1">
+			    </div>
+			</div>
+	  </div>
+	  
+	   <div class="testPoint">
+			<span class="title">属性测试点6：测试scroll属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">拖动元素时，会自动滚屏</div>
+			<div  class="tpDIV">
+				<div id="scroll_2">
+				</div>
+			</div>
+	  </div>
+	</div>
+	
+	<div id="tabs-2">
+	</div>
+	
+	<div id="tabs-3">
+		
+	</div>
+ </div>	
+</div>
+
+	
+</body> 
+</html>

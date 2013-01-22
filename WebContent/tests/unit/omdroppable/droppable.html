@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>jQuery UI Droppable Test Suite</title>
+
+	<script src="../../../jquery.js"></script>
+	<script src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-mouse.js"></script>
+	<script type="text/javascript" src="../../../ui/om-draggable.js"></script>
+	<script type="text/javascript" src="../../../ui/om-droppable.js"></script>
+
+	<link rel="stylesheet" href="../common/css/qunit.css">
+    <link rel="stylesheet" href="../../../themes/default/om-all.css">
+	<script src="../common/js/qunit.js"></script>
+	<script src="../common/js/jquery.simulate.js"></script>
+	<script type="text/javascript" src="../common/js/testsuite.js"></script>	
+	
+	<script type="text/javascript" src="om-droppable-events.js"></script>
+	<script type="text/javascript" src="om-droppable-methods.js"></script>
+	<script type="text/javascript" src="om-droppable-options.js"></script>
+	<script type="text/javascript" src="om-droppable-defaults.js"></script>
+	
+	<script src="../common/js/qunit-junit-outputter.js"></script>
+	<style>
+   .draggable{
+		width:60px;
+		height:60px;
+		left: 25px;
+		top: 25px;
+	}
+	 #droppable1{ 
+		 width: 200px;
+		 height: 200px;
+		 left: 100px;
+		 top: 100px;
+	 }
+	#droppable1-inner {
+		 width: 150px; 
+		 height: 100px;
+	 }
+	 .backcolor{
+        background-color: #F0F0F0;	    
+	}
+	</style>
+</head>
+<body>
+
+<h1 id="qunit-header">jQuery UI Droppable Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests">
+</ol>
+
+<div id="qunit-fixture">
+	<div id="draggable" style="width: 25px; height: 25px;">Draggable</div>
+	<div id="droppable" style="width: 100px; height: 100px;">Droppable</div>
+	<div style='width:1000px;height:1000px;'>&nbsp;</div>
+</div>
+<div id="testOptions">
+    <div id="draggable1" class="draggable">
+	</div>
+	<div id="draggable2" class="draggable">
+	</div>
+	<div id="droppable1" class="backcolor">
+	    <p></p>
+	    <div id="droppable1-inner"><p></p>
+	    </div>
+	</div>
+	
+</div>
+
+</body>
+</html>

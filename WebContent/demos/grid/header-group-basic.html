@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>列渲染</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-headergroup.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <style type="text/css">
+    </style>
+    <!-- view_source_begin -->
+    <script type="text/javascript">  	
+    	//多表头以行进行分类，在写colModel时，每个数组代表一行标题
+    	var colModel = 
+    	    [
+    	     	//第一行
+    	     	[/**
+    	     	 *  "公司 "是有业务意义的，异步取数回来就有关于"公司"的信息，所以要加上"name"属性。
+    	     	 *  此外，"公司"占了两行，所以要加上 rowspan:2。
+    	     	 */
+    	     	 {header:"公司" , name:"company" , rowspan:2 , width:80}, 
+    	     	 {header:"主打产品" , name:"majorProduct" , rowspan:2 , width:80},
+    	     	 /**
+    	     	 *   "联系方式"是没有实际业务意义的，它只是作为"地址"、"联系方式"、"公司主页"这三列的统称，所以这里一定不要加上 "name"属性，切记！
+    	     	 *   另外，由于"联系方式"实际上占了三列，所以要加上 colspan:3，不然会得不到正确的视图。
+    	     	 */
+    	     	 {header:"个人信息" , colspan:3}],
+    	     	
+    	     	//第二行
+    	     	//"公司"和"主打产品"要定义在第一行，而不是第二行。
+    	     	[{header:"地址" , name:"address" , width:100},
+    	     	 {header:"联系方式" , name:"tel" , width:100},
+    	     	 {header:"公司主页" , name:"website" , width:"autoExpand"}]
+    	     ];
+    	
+        $(document).ready(function() {
+            $('#grid').omGrid({
+                title : '',
+                dataSource : 'header-group-basic-data.json',
+                height : 330,
+                showIndex : true,
+                colModel : colModel
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>此示例展示了omGrid多表头插件的基本使用方式。只要在创建omGrid组件时给定
+    指定形式的colModel即可生成多表头。</p>
+    <p>在多表头情况下，colModel中的对象为数组(没有多表头时为对象，如{header:"id",name:"123"})。在编写多表头colModel时，有几个要点:
+    	<ul>
+    		<li>表格头有多少行，colModel的大小就为几。如本示例，表格头有两行，所以colModel.length==2。</li>
+    		<li>没有具体业务数据的标题头不要带上name属性。如“个人信息”只是“地址”，“联系方式”，“公司主页”三列的统称，所以它是没有
+    		真正业务数据相对应的，所以不要提供相应的name属性。可参考本示例源码。</li>
+    		<li>如果一个标题列跨行了，要添加rowspan指明行数，跨列了要添加colspan指明列数。</li>
+    		<li>没有具体业务数据的标题列是不用指明width属性的，比如“个人信息”标题列。</li>
+    	</ul></p>
+    
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

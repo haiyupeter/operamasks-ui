@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>标题和内容可以用html</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-draggable.js"></script>
+    <script src="../../ui/om-position.js"></script>
+    <script src="../../ui/om-messagebox.js"></script>
+    <script src="../../ui/om-button.js"></script>
+    <link rel="stylesheet" href="../../themes/default/om-all.css">
+    <link rel="stylesheet" href="../common/css/demo.css">
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+    <!--
+    function confirmDel(){
+       $.omMessageBox.confirm({
+           title:'<b>删除<font color="red">guanliyuan</font>用户</b>',
+           content:'<font color="red" size="5"><b>guanliyuan</b></font>用户是“<b>系统管理员</b>”角色，删除后将不可恢复，确定要删除吗？',
+           onClose:function(v){
+               if(v){
+                   alert('处理删除');
+               }else{
+                   alert('不删除了');
+               }
+           }
+       });
+    }
+    //-->
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <button onclick="confirmDel();">删除guanliyuan</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    omMessageBox的各种信息提示框可以使用html代码来定义标题和内容。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

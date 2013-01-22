@@ -1,0 +1,199 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>operamasks-ui omCalendar tests</title> 
+ 
+<script type="text/javascript" src="../../../jquery.js"></script> 
+<script type="text/javascript" src="../../../ui/om-core.js" ></script>
+<script type="text/javascript" src="../../../ui/om-button.js" ></script> 
+<script type="text/javascript" src="../../../ui/om-panel.js" ></script>
+<script type="text/javascript" src="../../../ui/om-tabs.js" ></script> 
+<script type="text/javascript" src="../../../tests/common/js/test.js" ></script> 
+<link rel="stylesheet" type="text/css" href="../../../tests/common/css/test-all.css" />
+<link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" /> 
+<script type="text/javascript" > 
+/***
+    $(document).ready(function() { 
+         //properties : width, disabled, icons,  onClick
+    	 $('a#button-width').omButton({
+    	     width : 250,
+    	     label : '金蝶中间件'
+    	 });
+    	 $('a#button-disabled1').omButton({
+    	     disabled : true
+    	 });
+    	 $('a#button-disabled2').omButton({
+    	     disabled : false
+    	 });
+    	 $('a#button-icons').omButton({
+    	     icons : {left : 'images/red-cross.png'}
+    	 });
+    	 $('a#button-label').omButton({
+    	     label : "omButton"
+    	 });
+    	 $('a#button-on-click').omButton({
+    	     onClick : function(ev) {
+    	         $('#button-on-click-repo').text('捕获到了click事件! ');
+    	     }
+    	 });
+    	 $('a#button-click').omButton({
+             onClick :function() {
+                 $('#button-click-repo').text("按钮2捕获到了click事件");
+             }
+         });
+    	 //methods : changeLabel, changeIcons, disable 
+    	 $('a#button-disable').omButton({});
+    	 $('a#button-changeLabel').omButton();
+    	 
+    	 $('#button-changeLabel-trigger').toggle(function(){
+    	     $('a#button-changeLabel').omButton('changeLabel', 'New Label');
+    	 },function(){
+    	     $('a#button-changeLabel').omButton('changeLabel', 'Old Label');
+    	 });
+    	 
+    	 
+    	 $('a#button-changeIcons').omButton({
+    	     icons : {left : 'images/red-cross.png'}
+    	 });
+    	 
+    	 $('#button-changeIcons-trigger').toggle(function(){
+    	     $('a#button-changeIcons').omButton('changeIcons', {left : 'images/black-cross.png'});
+    	 },function(){
+    	     $('a#button-changeIcons').omButton('changeIcons', {left : 'images/red-cross.png'});
+    	 });
+    }); 
+    	 */
+</script>
+ 
+</head> 
+<body> 
+  <div class="total">
+		Button测试案例，API属性总共 <span class="apiNo" number="5"></span> 个，
+		案例覆盖率 <span class="percentage" style="font-weight: bold;"></span>；功能测试案例总共 <span class="funcNo" style="font-weight: bold;"></span> 个；
+		边界值测试案例总共 <span class="borderNo" style="font-weight: bold;"></span> 个
+  </div>
+  
+ <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">属性测试</a></li>
+		<li><a href="#tabs-2">功能测试</a></li>
+		<li><a href="#tabs-3">边界值测试</a></li>
+	</ul>
+	<div id="tabs-1">
+	<!-- 
+	    <div id="testPoint2" class="testPoint">
+			<span class="title">属性测试点1：测试disabled属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">第一个按钮处于禁用状态(disabled=true)，第二个按钮处于启用状态(disabled=false)</div>
+			<div class="tpDIV">
+				<a id="button-disabled1" href="javascript:void(0)">Login</a>
+				<a id="button-disabled2" href="javascript:void(0)">Login</a>
+			</div>
+	    </div>
+	    <div id="testPoint3" class="testPoint">
+			<span class="title">属性测试点2：测试icons属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">按钮上的图标为红色的叉叉</div>
+			<div class="tpDIV">
+				<a id="button-icons" href="javascript:void(0)">Login</a>
+			</div>
+	    </div>
+        
+        <div id="testPoint1" class="testPoint">
+            <span class="title">属性测试点3：测试width属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">按钮的宽度和下方的红色方框一样宽</div>
+            <div class="tpDIV">
+                <a id="button-width" href="javascript:void(0)">现在就注册</a>
+                <div style="width:248px;height:10px;border:1px solid red;margin-left: 2px;"></div>
+            </div>
+        </div>
+        
+        <div id="testPoint1" class="testPoint">
+            <span class="title">属性测试点4：测试label属性</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">按钮文字为：omButton</div>
+            <div class="tpDIV">
+                <a id="button-label" href="javascript:void(0)"></a>
+            </div>
+        </div>
+	    
+	    <div id="testPoint4" class="testPoint">
+			<span class="title">属性测试点5：测试onClick属性</span>
+			<br />
+			<p>操作和预期结果：</p>
+			<div class="textresult">点击按钮 显示 “捕获到了click事件!”</div>
+			<div class="tpDIV">
+				<div>adfasdf</div>
+				<div>dadf</div>
+				<a id="button-on-click" href="javascript:void(0)">Register</a>
+				<span id="button-on-click-repo">bbb</span>
+				<div>aaa</div>
+			</div>
+	    </div>
+	     -->
+	</div>
+	
+	<div id="tabs-2">
+	<!-- 
+        <div class="testPoint">
+            <span class="title">功能测试点1：测试changeLabel()方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">默认状态下组件文字为"Old Label",点击"切换"按钮后,组件文字变为"New Label"</div>
+            <div  class="tpDIV">
+                <a id="button-changeLabel" href="javascript:void(0)" >Old Label</a>
+                <button id="button-changeLabel-trigger">切换</button>
+            </div>
+        </div>
+        <div class="testPoint">
+            <span class="title">功能测试点2：测试changeIcons()方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">默认状态下组件图标为红叉,点击"切换图标"按钮后,组件图标变为黑色叉叉</div>
+            <div  class="tpDIV">
+                <a id="button-changeIcons" href="javascript:void(0)" >Login</a>
+                <button id="button-changeIcons-trigger" >切换</button>
+            </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">功能测试点3：测试click方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">点击按钮1，文本显示“按钮2捕获到了click事件”</div>
+            <div  class="tpDIV">
+                <button onclick="$('a#button-click').omButton('click');">按钮1</button>
+                <a id="button-click" href="javascript:void(0)" >按钮2</a>
+                <span id="button-click-repo"></span>
+            </div>
+        </div>
+        
+        <div class="testPoint">
+            <span class="title">功能测试点4：测试disable()和enable()方法</span>
+            <br />
+            <p>操作和预期结果：</p>
+            <div class="textresult">默认时组件可用,点击disabled按钮后不可用。点击enable按钮后可用</div>
+            <div  class="tpDIV">
+                <a id="button-disable" href="javascript:void(0)" >Login</a>
+                <button onclick="$('a#button-disable').omButton('disable');">disable</button>
+                <button onclick="$('a#button-disable').omButton('enable');">enable</button>
+            </div>
+        </div>
+        -->
+	</div>
+	
+	<div id="tabs-3">
+		
+	</div>
+	
+</div>
+
+	
+</body> 
+</html>

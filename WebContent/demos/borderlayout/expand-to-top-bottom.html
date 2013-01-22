@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>设置左/右边面板拉伸</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../ui/om-core.js"></script>
+    <script type="text/javascript" src="../../ui/om-mouse.js"></script>
+    <script type="text/javascript" src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-panel.js"></script>
+    <script type="text/javascript" src="../../ui/om-borderlayout.js"></script>
+    <script type="text/javascript" src="../common/js/themewriter.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	#expand-none{
+    		width: 100%;
+    		height: 300px;
+    	}
+    	#expand-bottom{
+    		width: 100%;
+    		height: 300px;
+    	}
+    	#expand-top{
+    		width: 100%;
+    		height: 300px;
+    	}
+    	#expand-top-bottom{
+    		width: 100%;
+    		height: 300px;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#expand-none').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	     	title:"west",
+           	        region:"west",
+           	        width:150
+           	    },{
+           	        id:"east-panel",
+           	     	header:false,
+           	        region:"east",
+           	     	width:150
+           	    },{
+           	        id:"north-panel",
+           	     	title:"north",
+           	        region:"north",
+           	     	height:80
+           	    },{
+           	        id:"south-panel",
+           	     	title:"south",
+           	        region:"south",
+           	        height:80
+           	    }]
+            });
+            $('#expand-bottom').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	     	title:"west",
+           	        region:"west",
+           	        expandToBottom:true,
+           	        width:150
+           	    },{
+           	        id:"east-panel",
+           	     	header:false,
+           	        region:"east",
+           	     	width:150
+           	    },{
+           	        id:"north-panel",
+           	     	title:"north",
+           	        region:"north",
+           	     	height:80
+           	    },{
+           	        id:"south-panel",
+           	     	title:"south",
+           	        region:"south",
+           	        height:80
+           	    }]
+            });
+            $('#expand-top').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	     	title:"west",
+           	        region:"west",
+           	        width:150
+           	    },{
+           	        id:"east-panel",
+           	     	header:false,
+           	        region:"east",
+           	        expandToTop:true,
+           	     	width:150
+           	    },{
+           	        id:"north-panel",
+           	     	title:"north",
+           	        region:"north",
+           	     	height:80
+           	    },{
+           	        id:"south-panel",
+           	     	title:"south",
+           	        region:"south",
+           	        height:80
+           	    }]
+            });
+            $('#expand-top-bottom').omBorderLayout({
+           	   panels:[{
+           	        id:"center-panel",
+           	     	header:false,
+           	        region:"center"
+           	    },{
+           	        id:"west-panel",
+           	     	title:"west",
+           	        region:"west",
+           	        expandToBottom:true,
+           	        expandToTop:true,
+           	        width:150
+           	    },{
+           	        id:"east-panel",
+           	     	header:false,
+           	        expandToBottom:true,
+           	        expandToTop:true,
+           	        region:"east",
+           	     	width:150
+           	    },{
+           	        id:"north-panel",
+           	     	title:"north",
+           	        region:"north",
+           	     	height:80
+           	    },{
+           	        id:"south-panel",
+           	     	title:"south",
+           	        region:"south",
+           	        height:80
+           	    }]
+            });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <h3>默认左右两边的面板都不拉伸，上下两个面板宽度为整个layout的100%。</h3>
+    <div id="expand-none">
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="north-panel">north</div>
+    	<div id="south-panel">south</div>
+    </div>
+
+    <h3>设置左边的面板拉伸至底部</h3>
+    <div id="expand-bottom">
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="north-panel">north</div>
+    	<div id="south-panel">south</div>
+    </div>
+    
+    <h3>设置右边的面板拉伸至顶部</h3>
+    <div id="expand-top">
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="north-panel">north</div>
+    	<div id="south-panel">south</div>
+    </div>
+    
+    <h3>设置左右两个面板拉伸至顶部和底部</h3>
+    <div id="expand-top-bottom">
+    	<div id="center-panel">center</div>
+    	<div id="east-panel">east</div>
+    	<div id="west-panel">west</div>
+    	<div id="north-panel">north</div>
+    	<div id="south-panel">south</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+       在左边(west)和右边(east)的面板设置expandToTop或者expandToBottom属性分别拉伸面板至顶部或底部。</div>
+</body>
+</html>

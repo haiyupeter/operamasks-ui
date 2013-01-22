@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>动画效果</title>
+    <script src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-slider.js"></script>
+    <script src="../../ui/om-tabs.js"></script>
+    <script src="../../ui/om-panel.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <style>
+    	.slider-demo{
+    		width: 500px;
+    		height: 375px;
+    		padding: 0;
+    	}
+    	body p{
+    		font-weight: bold;
+    		font-size: 13px;
+    	}
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#effect_tab').omTabs({tabWidth:80,width:525});
+            $('#slider-none').omSlider({effect:false});
+            $('#slider-fade').omSlider({effect:'fade'});
+            $('#slider-slide-v').omSlider({effect:'slide-v'});
+            $('#slider-slide-h').omSlider({effect:'slide-h'});
+            $('#slider-random').omSlider({effect:'random'});
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <div id="effect_tab">
+    	<ul>
+    		<li><a href="#slider-none">无动画效果</a></li>
+    		<li><a href="#slider-fade">淡入淡出效果</a></li>
+    		<li><a href="#slider-slide-v">垂直滑动效果</a></li>
+    		<li><a href="#slider-slide-h">水平滑动效果</a></li>
+    		<li><a href="#slider-random">随机动画效果</a></li>
+    	</ul>
+    	<div id="slider-none" class="slider-demo">
+    	    <img src="images/turtle.jpg" />
+    	    <a href="#"><img src="images/rabbit.jpg" /></a>
+    	    <img src="images/penguin.jpg" />
+    	    <img src="images/lizard.jpg" />
+    	    <img src="images/crocodile.jpg" />
+    	</div>
+    	<div id="slider-fade" class="slider-demo">
+    	    <img src="images/turtle.jpg" />
+    	    <a href="#"><img src="images/rabbit.jpg" /></a>
+    	    <img src="images/penguin.jpg" />
+    	    <img src="images/lizard.jpg" />
+    	    <img src="images/crocodile.jpg" />
+    	</div>
+    	<div id="slider-slide-v" class="slider-demo">
+    	    <img src="images/turtle.jpg" />
+    	    <a href="#"><img src="images/rabbit.jpg" /></a>
+    	    <img src="images/penguin.jpg" />
+    	    <img src="images/lizard.jpg" />
+    	    <img src="images/crocodile.jpg" />
+    	</div>
+    	<div id="slider-slide-h" class="slider-demo">
+    	    <img src="images/turtle.jpg" />
+    	    <a href="#"><img src="images/rabbit.jpg" /></a>
+    	    <img src="images/penguin.jpg" />
+    	    <img src="images/lizard.jpg" />
+    	    <img src="images/crocodile.jpg" />
+    	</div>
+    	<div id="slider-random" class="slider-demo">
+    	    <img src="images/turtle.jpg" />
+    	    <img src="images/rabbit.jpg" />
+    	    <img src="images/penguin.jpg" />
+    	    <img src="images/lizard.jpg" />
+    	    <img src="images/crocodile.jpg" />
+    	</div>
+    </div>
+    <!-- view_source_end -->
+    <div id="view-desc">
+        设置effect属性，slider支持不同的动画效果切换：'fade'(淡入淡出)、'slide-v'(垂直滑动)、'slide-h'(水平滑动)、'random'(随机动画)。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>

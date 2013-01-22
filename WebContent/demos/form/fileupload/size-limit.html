@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>限制上传文件大小</title>
+    <link rel="stylesheet" type="text/css" href="../../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../common/css/demo.css" />
+	<script type="text/javascript" src="../../../jquery.js"></script>
+	<script type="text/javascript" src="../../../ui/om-core.js"></script>
+	<script type="text/javascript" src="../../../ui/om-fileupload.js"></script>
+    <!-- view_source_begin -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#file_upload').omFileUpload({
+	    action : '../../../omFileUpload.do',
+	    swf : '../../../ui/om-fileupload.swf',
+	    sizeLimit : 102400
+	  });
+	});
+	</script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <input id="file_upload" name="file_upload" type="file" />
+    <button value="上传" onclick="$('#file_upload').omFileUpload('upload')">上传</button>
+    <!-- view_source_end -->
+    <div id="view-desc">
+    <p>设置上传文件的大小不错超过102.4KB。选择超过这个大小的文件后会提示错误。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../common/js/themeloader.js"></script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>展开行详情</title>
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script src="../../ui/om-core.js"></script>
+    <script src="../../ui/om-mouse.js"></script>
+    <script src="../../ui/om-resizable.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid.js"></script>
+    <script type="text/javascript" src="../../ui/om-grid-rowexpander.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-all.css" />
+    <link rel="stylesheet" type="text/css" href="../../themes/default/om-grid-rowexpander.css" />
+    <link rel="stylesheet" type="text/css" href="../common/css/demo.css" />
+    <!-- view_source_begin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#grid').omGrid({
+            dataSource : 'griddata.do?method=fast',
+            colModel : [ {header : 'ID', name : 'id', width : 100, align : 'center'}, 
+                         {header : '地区', name : 'city', width : 120, align : 'left'}, 
+                         {header : '地址', name : 'address', align : 'left', width : 200} ],
+            autoFit:true,
+            height : 300,
+            //展开行时使用下面的方法生成详情，必须返回一个字符串
+            rowDetailsProvider:function(rowData,rowIndex){
+                return '第'+rowIndex+'行，ID='+rowData.id+'<br/><b>'
+                            +rowData.city+rowData.address
+                            +'</b>的IP地址范围是：<font color="red">'+rowData.start+'~'+rowData.end+'</font>';
+            }
+        });
+        });
+    </script>
+    <!-- view_source_end -->
+</head>
+<body>
+    <!-- view_source_begin -->
+    <table id="grid"></table>
+    <!-- view_source_end -->
+    
+    <div id="view-desc">
+        使用omGrid组件的“展开行详情插件”即可添加展开行功能。<br/>
+       omGrid组件的“展开行详情插件”与omGrid独立，使用该插件时只需要引入相应的js和css文件即可，使用插件后omGrid的config配置中需要配置一个rowDetailsProvider属性。
+        此方法必须返回一个字符串,可以HTML代码，展开行后行下面将显示你返回的HTML片断。
+    </div>
+</body>
+<script type="text/javascript" src="../common/js/themeloader.js"></script>
+</html>
