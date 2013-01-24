@@ -185,6 +185,16 @@
              */
             scrollable : true,
             /**
+             * 页签滚动的距离因子。点击一次滚动块，滚动的距离为tab页签的宽度乘以距离因子。默认值为1
+             * @default 1
+             * @type Number
+             * @example
+             * //点击一次滚动块，滚动5个页签的距离
+             * $('#make-tab').omTabs({scrollable: true, distFactor: 5});
+             */
+            distFactor : 1,
+
+            /**
              * 页签是否可关闭，当本属性为true时，所有页签都可以关闭。当属性值为数组时，只有数组中指定的index的页签可以关闭，index从0开始。
              * @default false
              * @type Boolean,Array
@@ -863,7 +873,7 @@
 	            if ($(this).hasClass('om-tabs-scroll-disabled')) {
 	                return false;
 	            }
-	            var dist = $(this).parent().find('ul').children('li:last').outerWidth(true);
+	            var dist = $(this).parent().find('ul').children('li:last').outerWidth(true) * options.distFactor;
 	            if ($(this).hasClass('om-tabs-scroll-left')) {
 	                that._scroll(dist, that._scrollCbFn());
 	            }
