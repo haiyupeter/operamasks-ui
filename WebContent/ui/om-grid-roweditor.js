@@ -869,7 +869,8 @@
 			}else{
 				html = newValue==undefined?"" : newValue;
 			}
-			$tr.find("td[abbr='"+key+"'] >div").html(html);
+			// $tr.find("td[abbr='"+key+"'] >div").html(html); // avoid xss attack, use the following line instead
+                        $tr.find("td[abbr='"+key+"'] >div")[0].innerHTML = html
 		});
 	}
 	
