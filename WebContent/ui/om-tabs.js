@@ -865,7 +865,7 @@
 			            		 $(that.menu).omMenu('show',e);
 			            	 }
 			            });
-	            	})
+	            	});
 	            }
 	        }
 	        //scroller click
