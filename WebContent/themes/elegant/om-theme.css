@@ -48,8 +48,8 @@
 .om-widget .om-widget { font-size: 1em; }
 .om-widget input, .om-widget select, .om-widget textarea, .om-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
 .om-widget input, input.om-widget {padding: 1px; *padding: 0px;}
-.om-widget-content { border: 1px solid #99A8BC; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #1E1E1E;}
-.om-widget .om-widget-header { background: url("images/header_bg.png") repeat-x scroll 0 0 #FFFFFF; color: #23466D; font-weight: bold;}
+.om-widget-content { border: 1px solid #E1E1E1; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #1E1E1E;}
+.om-widget .om-widget-header { background: url("images/header_bg.png") repeat-x scroll 0 0 #FFFFFF; color: #595959; font-weight: bold;}
 .om-widget-header a { color: #99A8BC; }
 
 /* Interaction states
