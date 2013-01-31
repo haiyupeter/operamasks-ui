@@ -1,0 +1,51 @@
+/*
+ * $Id: om-accordion.css,v 1.2 2012/06/11 06:14:26 licongping Exp $
+ * operamasks-ui Accordion @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or LGPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+/* "width:100%" IE/Win - Fix animation bug - #4615 */
+.om-accordion { width: 100%;}
+.om-accordion .om-panel .om-panel-header{
+ 	padding: 10px;
+ 	height: 16px;
+ 	line-height: 15px;
+ 	background: url("images/accordion/bg.jpg") repeat-x scroll 0 0 #FFFFFF;
+ 	border:0px;
+ 	font-size: 14px;
+ 	font-weight: bold;
+ 	cursor: pointer;
+}
+.om-accordion .om-panel .om-panel-body{
+	border : 0;
+}
+.om-accordion .om-panel .om-panel-header-hover{
+	background: url("images/accordion/bg.jpg") repeat-x scroll 0 0 #FFFFFF;
+	color:#000;
+	font-weight:bold;
+}
+.om-accordion .om-panel .om-panel-header .om-panel-tool{
+	top: 8px;
+}
+.om-accordion .om-panel .om-panel-header .om-panel-tool-collapse {
+	background: url("images/accordion/drawer-tools.png") no-repeat scroll 0px 0 transparent;
+	width: 16px;
+	height: 16px;
+}
+.om-accordion .om-panel .om-panel-header .om-panel-tool-collapse-hover {
+	background-position: -16px 0px;
+}
+.om-accordion .om-panel .om-panel-header .om-panel-tool-expand {
+	background: url("images/accordion/drawer-tools.png") no-repeat scroll 0px -16px transparent;
+	width: 16px;
+	height: 16px;
+}
+.om-accordion .om-panel .om-panel-header .om-panel-tool-expand-hover {
+	background-position: -16px -16px;
+}
+.om-accordion .om-state-disabled{cursor:not-allowed!important;}
+.om-accordion-disable{background-color:#CCCCCC; opacity: .6; filter:Alpha(Opacity=60); }

@@ -1,0 +1,95 @@
+/*
+ * $Id: om-dialog.css,v 1.3 2012/06/20 09:21:55 chentianzhen Exp $
+ * operamasks-ui dialog @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or LGPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+.om-dialog {
+	position: absolute;
+	width: 300px;
+	overflow: hidden;
+}
+
+.om-dialog .om-dialog-titlebar {
+	height: 47px;
+	position: relative;
+	background: url("images/dialog/dialog-title-bg.png") no-repeat scroll 0 0
+		transparent;
+	border: none;
+	border-radius: 8px 8px 0 0;
+}
+
+.om-dialog .om-dialog-title {
+	float: left;
+	margin: 0.7em 16px 0.1em 0.5em;
+}
+
+.om-dialog .om-dialog-titlebar-close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 30px;
+	height: 22px;
+}
+
+.om-dialog .om-dialog-titlebar-close:hover {
+	background: url("images/dialog/close-hover.png") no-repeat;
+}
+
+.om-dialog .om-dialog-titlebar-close span {
+	display: block;
+	margin: 1px;
+}
+
+.om-dialog .om-dialog-titlebar-close:focus {
+	background: url("")
+}
+
+.om-dialog .om-icon-closethick {
+	background: url("images/dialog/close.png") no-repeat 50% 50%;
+	width: 28px;
+	text-indent: -9999px
+}
+
+.om-dialog .om-dialog-content {
+	position: relative;
+	border: 1px solid #96AAC5;
+	padding: .5em 1em;
+	margin: 0px 8px 18px 8px;
+	overflow: auto;
+	zoom: 1;
+	background-image:none;
+	background-color: #E4EAF2;
+}
+
+.om-dialog .om-dialog-buttonpane {
+	text-align: left;
+	margin: .5em 0 0 0;
+	padding: 0 1em .5em .4em;
+}
+
+.om-dialog .om-dialog-buttonpane .om-dialog-buttonset {
+	float: right;
+}
+
+.om-dialog .om-resizable-se {
+	width: 14px;
+	height: 14px;
+	right: 3px;
+	bottom: 3px;
+}
+
+.ui-draggable .om-dialog-titlebar {
+	cursor: move;
+}
+
+.om-dialog.om-widget-content {
+	border-radius: 5px;
+	background: url('images/dialog/dialog-bg.png') repeat-x #B1C1D6;
+	border: 1px solid #3F5572;
+	box-shadow:0 0 4px #535658;
+}
