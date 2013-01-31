@@ -361,10 +361,10 @@
                }
                self.tip.find('.tip-anchor').addClass('tip-anchor-'+self.regionMap[options.region]);
            }
-           if((left + self.tip.width()) > document.documentElement.clientWidth){ //当右边距离过短的时候会将提示框调整到左边
+           if ((left + self.tip.width() - $(document).scrollLeft()) > document.documentElement.clientWidth){ //当右边距离过短的时候会将提示框调整到左边
                left = left - self.tip.width() - 20;
            }
-           if((top + self.tip.height()) > document.documentElement.clientHeight){ //当下边距离过短的时候会将提示框调整到上边
+           if ((top + self.tip.height() - $(document).scrollTop()) > document.documentElement.clientHeight){ //当下边距离过短的时候会将提示框调整到上边
                top = top - (self.element.height() + self.tip.height()) - 20;
            }
            self.tip.css({'top':top - $(document).scrollTop(),'left':left - $(document).scrollLeft()});
