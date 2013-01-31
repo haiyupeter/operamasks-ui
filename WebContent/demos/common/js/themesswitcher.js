@@ -54,7 +54,7 @@ function changeTheme(target, newValue, oldValue) {
 }
 $(function() {
     $("#changeTheme").omCombo({
-        dataSource : [{text : 'default', value : 'default'}, {text : 'apusic', value : 'apusic'}],
+        dataSource : [{text : "default", value : "default"}, {text : "apusic", value : "apusic"}, {text: "elegant", value: "elegant"}],
         editable : false,
         width : 80,
         value : 'apusic',
