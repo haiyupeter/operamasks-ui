@@ -28,4 +28,4 @@
 .om-btn {border: none !important;}
 .om-btn .om-btn-center {background-position: 100% -23px;background-repeat: repeat-x;}
 .om-btn .om-btn-right {background-position: 100% -46px;background-repeat: no-repeat;}
-.om-state-hover .om-btn-txt, .om-state-hover .om-btn-txt:hover { color: #FFFFFF; text-decoration: none; } 
+.om-state-hover a.om-btn-txt, .om-state-hover a.om-btn-txt:hover, .om-state-focus a.om-btn-txt, .om-state-focus a.om-btn-txt:link { color: #FFFFFF; }
