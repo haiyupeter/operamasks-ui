@@ -57,7 +57,7 @@ $(function() {
         dataSource : [{text : "default", value : "default"}, {text : "apusic", value : "apusic"}, {text: "elegant", value: "elegant"}],
         editable : false,
         width : 80,
-        value : 'apusic',
+        value : 'elegant',
         onValueChange : changeTheme
     });
     var themeCookie = cookieTool("omtheme");
