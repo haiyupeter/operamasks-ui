@@ -8,9 +8,9 @@
  *
  * http://ui.operamasks.org/docs/
  */
-div.om-messageBox { position: absolute; width: 300px; overflow: hidden; outline:0; border: 1px solid #E1E1E1; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;}
-.om-messageBox .om-messageBox-titlebar { height: 28px; position: relative; border-radius: 4px 4px 0 0; background: url("images/messagebox/title-bg.png") repeat-x scroll 0 0 transparent; border: none; border-bottom: 1px solid #E1E1E1;}
-.om-messageBox .om-messageBox-title { float: left; margin: 0.5em 16px 0.1em 0.5em; }
+div.om-messageBox { position: absolute; width: 300px; overflow: hidden; outline:0; border: 1px solid #86A3C4; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;}
+.om-messageBox .om-messageBox-titlebar { height: 29px; position: relative; border-radius: 4px 4px 0 0; background: url("images/messagebox/title-bg.png") repeat-x scroll 0 0 transparent; border: none; border-bottom: 1px solid #86A3C4;}
+.om-messageBox .om-messageBox-title { float: left; margin: 0.7em 16px 0.1em 0.5em; }
 
 .om-messageBox .om-messageBox-titlebar-close { position: absolute; right: .3em; top: 50%; width: 22px; margin: -12px 0 0 0; padding: 1px; height: 18px; }
 .om-messageBox .om-messageBox-titlebar-close span { display: block; margin: 1px; }
