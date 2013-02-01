@@ -71,7 +71,7 @@ function writeThemeCss() {
             }
         }
     }
-    var fullPath = relativePath + "themes/" + (themeName ? themeName : 'apusic') + "/om-all.css";
+    var fullPath = relativePath + "themes/" + (themeName ? themeName : 'elegant') + "/om-all.css";
     var cssStyle = '<link rel="stylesheet" type="text/css" href="'+ fullPath +'" />';
     document.writeln(cssStyle);
 }
