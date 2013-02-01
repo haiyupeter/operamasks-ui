@@ -15,8 +15,8 @@
  	padding: 5px;
  	height: 12px;
  	line-height: 12px;
- 	background: url("images/panel/om-panel-header-bg-d.jpg") repeat-x scroll 0 0 #FFFFFF;
- 	border:1px solid #99A8BB;
+ 	background: url("images/panel/om-panel-header-bg-d.png") repeat-x scroll 0 0 #FFFFFF;
+ 	border:1px solid #E1E1E1;
  	position: relative;
  	cursor: default;
  }
@@ -25,7 +25,6 @@
  	border-top-width: 0;
  	padding: 1em;
  	overflow: auto;
- 	background-color: #DBE2EB;
 }
 .helpMsg .om-panel-header{
  	padding: 5px;

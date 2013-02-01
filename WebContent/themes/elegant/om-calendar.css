@@ -100,7 +100,6 @@
 
 /* from theme.css */
 .om-calendar-trigger {background: url("images/calendar/calendar-trigger.png") no-repeat scroll 0px 50% transparent;}
-.om-calendar-list-wrapper .om-cal-hd {background:url('images/calendar/year_head_bkgd.gif') repeat-x ;background-color:#40a6ff;border:1px solid #8391b4;}
 .om-calendar-list-wrapper .om-cal-hd a.om-title:hover {color:#000000;border: 1px solid #8EA9D5;top:2px;background-color: #DCE8FF;border-radius: 2px 2px 2px 2px;}
 .om-calendar-list-wrapper .om-cal-bd .om-whd {background:url('images/calendar/week_day_bkgd.gif') repeat-x;}
 .om-cal-time button.om-icon {background:url("images/calendar/time_up_down.gif") no-repeat;}
