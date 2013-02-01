@@ -1,9 +1,3 @@
-.om-grid tr.rowExpand-rowDetails td{
-	border-bottom-width:0;
-}
-.om-grid .bDiv tr.rowExpand-rowDetails div.rowExpand-rowDetails-content{
-	border-top-width:0;
-}
 .om-grid .bDiv .expenderCol div{
     background: url("images/grid-rowexpander/grid-row-expand-sprite.gif") no-repeat scroll 5px 5px transparent;
     height:14px;
@@ -15,8 +9,5 @@
 .om-grid tr.rowExpand-rowDetails div.rowExpand-rowDetails-content{
     border: 1px solid #BDCBE8;
     border-width : 1px 0;
-}
-
-.om-grid tr.rowExpand-rowDetails div.rowExpand-rowDetails-content{
-	white-space : normal;
+    white-space : normal;
 }

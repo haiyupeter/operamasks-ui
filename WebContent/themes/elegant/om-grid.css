@@ -1,5 +1,5 @@
 /*
- * $Id: om-grid.css,v 1.8 2012/06/20 00:35:27 chentianzhen Exp $
+ * $Id: om-grid.css,v 1.25 2012/06/04 07:37:32 chentianzhen Exp $
  * operamasks-ui grid @VERSION
  *
  * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
@@ -9,7 +9,7 @@
  * http://ui.operamasks.org/docs/
  */
 
-.om-grid {position: relative; overflow: hidden;border: medium none;}
+.om-grid {position: relative; overflow: hidden;}
 
 .om-grid.hideBody {height: 26px !important;border-bottom: 1px solid #ccc;}
 
@@ -52,7 +52,7 @@
 
 .om-grid div.hDivBox {
 	float: left;
-	padding-right: 60px;
+	padding-right: 40px;
 }
 
 
@@ -65,7 +65,7 @@
     background-color: transparent;
 }
 .om-grid div.bDiv tr.evenRow {
-    background-color: #E9EEF3;
+    background-color: #E8EEF7;
 }
 
 .om-grid div.nDiv td {
@@ -139,7 +139,7 @@
 .om-grid div.sDiv2 {float: left; clear: both; padding: 5px; padding-left: 5px; width: 1024px;}
 .om-grid div.sDiv2 input,.om-grid div.sDiv2 select {vertical-align: middle;}
 
-.om-grid div.btnseparator {float: right; display:none; height: 24px; width: 2px; background: url("images/grid/space-bg.png") no-repeat; margin: 0 1px;}
+.om-grid div.btnseparator {float: left; height: 24px; width: 2px; background: url("images/grid/space-bg.png") no-repeat; margin: 0 1px;}
 
 .om-grid div.fbutton {float: left; display: block; height: 22px;}
 
@@ -170,8 +170,7 @@
 	border-left: 0px;
 	border-right: 0px;
 	overflow: hidden;
-	width:100%;
-	background: url(images/grid/grid_header_bg.png) repeat-x #C7D2E4;
+	width:100%
 }
 
 .om-grid div.cDrag {
@@ -228,13 +227,15 @@
 }
 
 .om-grid div.bDiv {
+	border-top: 0px;
 	background: #fff;
 	overflow: auto;
 	position: relative;
-	border-left : 1px solid #BCC5D2;
-	border-right : 1px solid #BCC5D2;
-	border-bottom : 1px solid #BCC5D2;
-	width: 100%;
+}
+
+.om-grid div.bDiv table {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #d0daee;
 }
 
 .om-grid div.hGrip {
@@ -279,7 +280,7 @@
 	/* common cell properties*/ {
 	text-align: left;
 	border:0px;
-	border-right: 1px solid #BCC5D2;
+	border-right: 1px solid #BDCBE8;
 	overflow: hidden;
 	padding-left: 0;
 	padding-right: 0;
@@ -298,7 +299,7 @@
 
 .om-grid div.hDiv th,div.colCopy {
 	font-weight: normal;
-	height: 27px;
+	height: 24px;
 	cursor: default;
 	white-space: nowrap;
 	overflow: hidden;
@@ -367,7 +368,6 @@ div.colCopy {
 	vertical-align: top;
 	white-space: nowrap;
 	cursor: default;
-	border-color:#bcc5d2;
 }
 
 .om-grid span.cdropleft {
@@ -392,7 +392,7 @@ div.colCopy {
 	margin-bottom: -24px;
 }
 
-.om-grid div.bDiv td div {
+.om-grid div.bDiv td div.innerCol {
 	border-top: 0px solid #fff;
 	padding-bottom: 4px;
 }
@@ -424,7 +424,7 @@ div.colCopy {
 
 .om-grid div.bDiv tr.om-state-highlight:hover td,.om-grid div.bDiv tr.om-state-highlight:hover td.sorted,.om-grid div.bDiv tr.trOver.om-state-highlight td.sorted,.om-grid div.bDiv tr.trOver.om-state-highlight td,.om-grid tr.om-state-highlight td.sorted,.om-grid tr.om-state-highlight td
 	{
-	background: #C7FFC3;
+	background: #F9EAC8;
 }
 
 /* novstripe adjustments */
@@ -464,23 +464,25 @@ div.colCopy {
 
 /* end novstripe */
 .om-grid div.pDiv {
-	border : none;
+	border-bottom: 0px;
+	border-left: 0px;
+	border-right: 0px;
 	overflow: hidden;
 	white-space: nowrap;
 	position: relative;
 }
 
 .om-grid div.pDiv div.pDiv2 {
-	margin :4px 0px 4px -1px;
+	margin :4px 4px 4px -1px;
 	text-align:center;
-	float: right;
-	/*width: 1024px;*/
+	float: left;
+	width: 1024px;
 	height:24px;
 	line-height: 24px;
 }
 
 div.pGroup {
-	float: left;
+	float: left; 
 	background: none;
 	height: 24px;
 	margin: 0px 5px;
@@ -619,22 +621,22 @@ div.pGroup {
 .om-grid div.mDiv {color:#15428B;}
 .om-grid div.tDiv {background: url("images/grid/tool-bg.png") repeat-x scroll 0 0 transparent;}
 .om-grid div.sDiv {background: #fafafa url(images/grid/bg.gif) repeat-x top;}
-.om-grid div.hDiv {width: 100%;background-color:#C7D2E4;border: 1px solid #99A8BC;}
-.om-grid div.pDiv {width: auto; background: none;float: right;}
+.om-grid div.hDiv {background: #fafafa url(images/grid/head-bg.png) repeat-x bottom;border-top: 1px solid #C8C4BF;border-bottom: 1px solid #C8C4BF;}
+.om-grid div.pDiv {background: url(images/grid/pager-bg.png) repeat-x 0 0;}
 
 .om-grid .pFirst {background-position: 3px 2px;}
-.om-grid .pLast {background-position: -17px 2px;}
-.om-grid .pPrev {background-position: -34px 2px;}
-.om-grid .pNext {background-position: -46px 2px;}
-.om-grid .pReload {background-position: -63px 2px;}
+.om-grid .pLast {background-position: -15px 2px;}
+.om-grid .pPrev {background-position: -30px 2px;}
+.om-grid .pNext {background-position: -44px 2px;}
+.om-grid .pReload {background-position: -61px 2px;}
 
 .om-widget-content .bDiv .om-state-hover, .om-widget-content .bDiv .om-state-highlight {color: #000000;}
 .om-widget-content .bDiv .om-state-hover {background-color:#D9EBF5}
-.om-grid div.hDiv {width: auto;color:#000;/*for IE6*/zoom:1;}
+.om-grid div.hDiv {color:#000;/*for IE6*/zoom:1;}
 .om-grid div.hDiv .om-state-hover{background: #fafafa url(images/grid/head-bg.png) repeat-x bottom;color:#000;}
 .om-grid div.pDiv div.pButton.om-state-hover{background-image: url("images/om-icons-hover.png"); border : 1px solid #8ea9d5;background-color: #d3e2ff;border-radius : 2px;cursor: pointer;}
 .om-grid div.pDiv div.pButton.om-stat-hover span{width: 19px;height: 19px;border-top: 1px solid #fff;border-left: 1px solid #fff;}
-.om-grid .om-state-default {/*border: 1px solid #C8C4BF;*/}
+.om-grid .om-state-default {border: 1px solid #C8C4BF;}
 .om-grid .om-widget .om-widget-content{border: 1px solid #C8C4BF;}
-.om-grid .titleDiv {width: auto;background: #fafafa url(images/grid/tool-bg.png) repeat-x bottom;color:#000;border-top: 1px solid #99A8BC;border-left: 1px solid #99A8BC;border-right: 1px solid #99A8BC;}
+.om-grid .titleDiv {background: #fafafa url(images/grid/tool-bg.png) repeat-x bottom;color:#000;}
 .om-grid .titleDiv .titleContent {color:#15428B;font-weight: bold;padding:6px;}
