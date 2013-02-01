@@ -9,7 +9,7 @@
  * http://ui.operamasks.org/docs/
  */
 .om-dialog { position: absolute; width: 300px; overflow: hidden; }
-.om-dialog .om-dialog-titlebar { height: 27px; position: relative;  background: url("images/dialog/title-bg.png") repeat-x scroll 0 0 transparent; border: none;border-radius: 8px 8px 0 0;border-bottom: 1px solid #E1E1E1;}
+.om-dialog .om-dialog-titlebar { height: 28px; position: relative;  background: url("images/dialog/title-bg.png") repeat-x scroll 0 0 transparent; border: none;border-radius: 8px 8px 0 0;border-bottom: 1px solid #E1E1E1;}
 .om-dialog .om-dialog-title { float: left; margin: 0.5em 16px 0.1em 0.5em; } 
 .om-dialog .om-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 25px; margin: -12px 0 0 0; padding: 1px; height: 18px; }
 .om-dialog .om-dialog-titlebar-close span { display: block; margin: 1px; }

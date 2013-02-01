@@ -57,7 +57,7 @@
              */
             disabled : null ,
             /**
-             * 显示文本。label值可以写到dom元素里面，也可以设置在属性里面，设置到属性里面的优先级最高。
+             * 显示文本。label值可以写到dom元素里面，也可以设置在属性里，设置在属性里优先级最高。
              * @type String 
              * @default ""
              * @example
@@ -65,7 +65,7 @@
              */
             label : null ,
             /**
-        	 * 显示按钮图标，left表示左图标，right表示右图标，取值均为图片路径。
+        	 * 按钮图标。left 左图标，right 右图标，取值为图片路径。
              * @type Object 
              * @default null 
              * @example
@@ -81,7 +81,7 @@
     			right: null
     		},
     		/**
-        	 * 按钮宽度，设置固定宽度之后按钮将不会随文字的多少而改变。
+        	 * 按钮宽度。设置固定宽度后按钮不会随文字多少而改变。
              * @type Number 
              * @default null 
              * @example
@@ -161,7 +161,6 @@
             					}
             					self._addClass("active");
             				    self._removeClass("focus");
-            					var onClick = options.onClick;
             				})
             				.bind( "mouseup", function( event ) {
             					if ( options.disabled ) {
