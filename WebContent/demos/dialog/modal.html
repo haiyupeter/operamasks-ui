@@ -16,7 +16,7 @@
 	<script>
 	$(function() {
 		$( "#dialog-modal").omDialog({
-			autoOpen: false,
+			autoOpen: true,
 			height: 140,
 			modal: true
 		});
@@ -26,10 +26,10 @@
         });
 	});
 	function showModelDialog(){
-	   $( "#dialog-modal").omDialog('open');
+	   $("#dialog-modal").omDialog("open");
 	}
 	function showModelessDialog(){
-	   $( "#dialog-modaless").omDialog('open');
+	   $("#dialog-modaless").omDialog("open");
 	}
 	</script>
 	 <!-- view_source_end -->

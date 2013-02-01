@@ -1,0 +1,191 @@
+/*
+ * $Id: om-tabs.css,v 1.12 2012/06/28 06:36:00 chentianzhen Exp $
+ * operamasks-ui tabs @VERSION
+ *
+ * Copyright 2011, AUTHORS.txt (http://ui.operamasks.org/about)
+ * Dual licensed under the MIT or LGPL Version 2 licenses.
+ * http://ui.operamasks.org/license
+ *
+ * http://ui.operamasks.org/docs/
+ */
+.om-tabs{
+   
+ }
+.om-tabs .om-tabs-headers {  
+    overflow: hidden;
+    position: relative;
+    border-width: 0;
+    border : 1px solid #697DA0;
+    border-bottom-right-radius : 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    background : url("images/tabs/om-tabs-bg.png") repeat-x;
+    _width: 100%;
+}
+.om-tabs .header-no-border{
+	border-width:0 0 1px;
+}
+.om-tabs .lileft{
+	background: url("images/tabs/om-tabs-left-default.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 8px;
+}
+.om-state-active .lileft{
+	background: url("images/tabs/om-tabs-left-hover.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 8px;
+}
+.om-tabs .liright{
+	background: url("images/tabs/om-tabs-right-default.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 3px;
+}
+.om-state-active .liright{
+	background: url("images/tabs/om-tabs-right-hover.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 8px;
+}
+
+.om-tabs .left-placeholder{
+	background: url("images/tabs/om-tabs-right-default.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 3px;
+    margin-left: -3px;
+}
+
+.om-tabs .right-placeholder{
+    background: url("images/tabs/om-tabs-left-default.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    width: 8px;
+}
+.om-tabs-panels .om-panel-body{
+	background-color: white;
+}
+.om-tabs .om-tabs-headers .om-state-default a{
+	color: #1E1E1E;
+}
+.om-tabs .om-tabs-scroll-left {
+	background : url(images/tabs/om-tabs-scroll-left.png) no-repeat;
+	border-right : 1px solid #697DA0;
+	height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0px;
+    width: 18px;
+    cursor: pointer;
+    z-index: 100;
+}
+.om-tabs .om-tabs-scroll-right {
+	background : url(images/tabs/om-tabs-scroll-right.png) no-repeat;
+	height: 28px;
+    right: 0;
+    position: absolute;
+    top: 0px;
+    width: 18px;
+    cursor: pointer;
+    z-index: 100;
+}
+.om-tabs .om-tabs-scroll-right:hover {
+	background : url(images/tabs/om-tabs-scroll-right-hover.png) no-repeat;
+}
+.om-tabs .om-tabs-scroll-left:hover {
+	background : url(images/tabs/om-tabs-scroll-left-hover.png) no-repeat;
+}
+.om-tabs .om-tabs-headers .om-tabs-scroll-disabled-left{
+	background  : none; 
+	border-right:none;
+    cursor: default;
+}
+.om-tabs .om-tabs-headers .om-tabs-scroll-disabled-right {
+	background : none;
+    cursor: default;
+}
+.om-tabs .om-tabs-headers ul {
+    width: 5000px;
+    font-size: 13px;
+    margin: 0 ;
+    padding: 0 0 0 4px;
+}
+.om-tabs .om-tabs-headers ul.om-tabs-scrollable {
+	padding : 0 19px;
+	position: relative;
+}
+.om-tabs .om-tabs-headers ul li {
+    display: inline-block;
+    padding: 0;
+    position : relative;
+    -moz-user-select: none;
+    float: left;
+    background: none;
+    border: none;
+}
+.om-tabs .om-tabs-headers ul li.om-state-hover a.om-tabs-inner{
+	color: #004098;
+}
+
+.om-tabs .om-tabs-headers ul li.om-tabs-activated {
+	border-color: none;
+	background: url("images/tabs/om-tabs-bg-h.png") repeat-x scroll 0 0 #DAEAFA;
+	/*font-weight: bold;*/
+}
+.om-tabs .om-tabs-headers ul li.om-tabs-activated a.om-tabs-inner {
+	color : white;
+	padding: 0 10px;
+}
+.om-tabs .om-tabs-headers ul li a.om-tabs-inner {
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    white-space: nowrap;
+    float: left;
+    padding: 0 15px 0 10px;
+}
+.om-tabs .om-icon-close {
+	float: left;
+	margin: 0.4em 0.2em 0 0;
+	cursor: pointer;
+}
+.om-tabs .om-tabs-headers ul li a.om-icon-close{
+	background: url("images/tabs/om-tabs-close.png") no-repeat;
+    display: block;
+    height: 10px;
+    width: 10px;
+    margin: 1px 1px 0 0;
+    position: absolute;
+    right: 2px;
+}
+.om-tabs .om-tabs-headers ul li.om-state-hover a.om-icon-close{
+	background-position: -1px -11px;
+}
+.om-tabs .om-tabs-panels {
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    position: relative;
+}
+.om-tabs .om-tabs-panels .om-panel-body{
+	padding:1em;
+}
+.om-tabs-noborder {
+	border-width: 0;
+}

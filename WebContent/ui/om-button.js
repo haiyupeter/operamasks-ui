@@ -27,10 +27,10 @@
      * <pre>
      * &lt;script type="text/javascript" &gt;
      * $(document).ready(function() {
-     *     $('#bnt').omButton({
-     *         icons : {left:'images/help.png',right:'images/edit_add.png'},
+     *     $("#btn").omButton({
+     *         icons : {left:"images/help.png",right:"images/edit_add.png"},
      *         width : 150,
-     *         disabled : 'disabled',
+     *         disabled : "disabled",
      *         onClick : function(event){
      *             // do something
      *         }
@@ -45,11 +45,11 @@
      * @description 构造函数. 
      * @param p 标准config对象：{}
      */
-    $.omWidget('om.omButton', {
+    $.omWidget("om.omButton", {
     	
         options: /**@lends omButton# */{
         	/**
-        	 * 是否禁用组件。可通过('#id').attr('disabled')判断按钮是否禁用。
+        	 * 是否禁用组件。可通过("#id").attr("disabled")判断按钮是否禁用。
              * @type String 
              * @default null 
              * @example
@@ -57,7 +57,7 @@
              */
             disabled : null ,
             /**
-             * 显示文本。label值可以写到dom元素里面，也可以设置在属性里面，设置到属性里面的优先级最高。
+             * 显示文本。label值可以写到dom元素里面，也可以设置在属性里，设置在属性里优先级最高。
              * @type String 
              * @default ""
              * @example
@@ -65,14 +65,14 @@
              */
             label : null ,
             /**
-        	 * 显示按钮图标，left表示左图标，right表示右图标，取值均为图片路径。
+        	 * 按钮图标。left 左图标，right 右图标，取值为图片路径。
              * @type Object 
              * @default null 
              * @example
              * $("#button").omButton({
              *     icons: {
-             *         left: 'images/help.png',
-             *         right: 'images/edit_add.png'
+             *         left: "images/help.png",
+             *         right: "images/edit_add.png"
              *     }
              * });
              */
@@ -81,7 +81,7 @@
     			right: null
     		},
     		/**
-        	 * 按钮宽度，设置固定宽度之后按钮将不会随文字的多少而改变。
+        	 * 按钮宽度。设置固定宽度后按钮不会随文字多少而改变。
              * @type Number 
              * @default null 
              * @example
@@ -102,17 +102,18 @@
         },
         
         _create : function() {
-            this._determineButtonType();
-            var wrapperSpan = $( '<span>' ).addClass( 'om-btn om-state-default').css('border','none'),
-            leftSpan = $( '<span>' ).addClass( 'om-btn-bg om-btn-left' ),
-            centerSpan = $( '<span>' ).addClass( 'om-btn-bg om-btn-center' ),
-            rightSpan = $( '<span>' ).addClass( 'om-btn-bg om-btn-right');
-            if(this.element.hasClass('apusic-btn-deepblue')){
-            	wrapperSpan.addClass('apusic-btn-deepblue');
+            this._initElemType();
+            var wrapperSpan = $("<span>").addClass("om-btn om-state-default").css("border", "none"),
+            leftSpan = $("<span>").addClass("om-btn-bg om-btn-left"),
+            centerSpan = $("<span>").addClass("om-btn-bg om-btn-center"),
+            rightSpan = $("<span>").addClass("om-btn-bg om-btn-right");
+            // TODO: 删除对apuaic具体类型的依赖
+            if(this.element.hasClass("apusic-btn-deepblue")){
+            	wrapperSpan.addClass("apusic-btn-deepblue");
             }
             
-            this.element.addClass( 'om-btn-txt' )
-                .css( {'background-position':'left center','background-repeat':'no-repeat'} )
+            this.element.addClass( "om-btn-txt" )
+                .css( {"background-position":"left center","background-repeat":"no-repeat"} )
                 .wrap( wrapperSpan )
                 .before( leftSpan )
                 .after( rightSpan )
@@ -126,26 +127,26 @@
             if ( typeof options.disabled != "boolean" ) {
                 options.disabled = element.propAttr( "disabled" );
     		}
-            if ( element.attr('disabled') == 'disabled' || options.disabled == 'disabled') {
+            if ( element.attr("disabled") == "disabled" || options.disabled == "disabled") {
     			options.disabled = true;
     		}
             this._initButton();
             if(options.disabled){
-            	self._addClass('disabled');
-            	element.css('cursor','default');
+            	self._addClass("disabled");
+            	element.css("cursor","default");
             }
             var $newelement = element.parent().parent();
-            $newelement.bind( 'mouseenter',function( event ){
+            $newelement.bind("mouseenter", function( event ){
             					if ( options.disabled ) {
             						return false;
             					}
-            					self._addClass('hover');
+            					self._addClass("hover");
             				}).bind( "mouseleave", function( event ) {
             					if ( options.disabled ) {
             						return false;
             					}
-            					self._removeClass('hover');
-            					self._removeClass('active');
+            					self._removeClass("hover");
+            					self._removeClass("active");
             				}).bind( "click", function( event ){
             					if ( options.disabled ) {
             						event.preventDefault();
@@ -158,23 +159,22 @@
             					if ( options.disabled ) {
             						return false;
             					}
-            					self._addClass('active');
-            				    self._removeClass('focus');
-            					var onClick = options.onClick;
+            					self._addClass("active");
+            				    self._removeClass("focus");
             				})
             				.bind( "mouseup", function( event ) {
             					if ( options.disabled ) {
             						return false;
             					}
-            					self._addClass('focus');
-            					self._removeClass('active');
+            					self._removeClass("focus");
+            					self._removeClass("active");
             				})
             				.bind( "keydown", function(event) {
             					if ( options.disabled ) {
             						return false;
             					}
             					if ( event.keyCode == $.om.keyCode.SPACE || event.keyCode == $.om.keyCode.ENTER ) {
-            						self._addClass('active');
+            						self._addClass("active");
             					}
             					if( event.keyCode == $.om.keyCode.SPACE){
             						var onClick = options.onClick;
@@ -183,19 +183,19 @@
             		                }
             					}
             				})
-            				.bind( "keyup", function() {
-            					self._removeClass('active');
-            				});
+            				.bind("keyup", function() {
+								self._removeClass("active");
+							});
 	            element.bind( "focus.button", function( event ) {
 								if ( options.disabled ) {
 									return false;
 								}
-								self._addClass('focus');
+								self._addClass("focus");
 							}).bind( "blur.button", function( event ) {
 	        					if ( options.disabled ) {
 	        						return false;
 	        					}
-	        					self._removeClass('focus');
+	        					self._removeClass("focus");
 	        				});
 	            element.next().bind("click", function(event){
 	            	if(element.is("input")&&element.attr("type")=="submit"){	
@@ -208,27 +208,27 @@
          * @name omButton#enable
          * @function
          * @example
-         * $('#btn').omButton('enable');
+         * $("#btn").omButton("enable");
          */
         enable : function(){
-            this._removeClass('disabled');
+            this._removeClass("disabled");
             this.options.disabled = false;
-            this.element.css('cursor','pointer')
-                        .removeAttr('disabled');
+            this.element.css("cursor","pointer")
+                        .removeAttr("disabled");
         },
         /**
          * 禁用组件。
          * @name omButton#disable
          * @function
          * @example
-         * $('#btn').omButton('disable');
+         * $("#btn").omButton("disable");
          */
         disable : function(){
-        	this._addClass('disabled');
+        	this._addClass("disabled");
             this.options.disabled = true;
-            this.element.css('cursor','default');
-            if(this.type == 'input' || this.type == 'button'){
-            	this.element.attr('disabled', 'disabled');
+            this.element.css("cursor","default");
+            if(this.type == "input" || this.type == "button"){
+            	this.element.attr("disabled", "disabled");
             }
         },
         /**
@@ -236,7 +236,7 @@
          * @name omButton#click
          * @function
          * @example
-         * $('#btn').omButton('click');
+         * $("#btn").omButton("click");
          */
         click : function(){
         	if(!this.options.disabled && this.options.onClick){
@@ -249,14 +249,14 @@
          * @function
          * @param label 按钮文本
          * @example
-         * $('#btn').omButton('changeLabel','按钮label');
+         * $("#btn").omButton("changeLabel","按钮label");
          */
         changeLabel : function(label){
-            if(this.type == 'a'){
+            if(this.type == "a"){
             	this.element.text(label) ;
-            }else if( this.type == 'input' ){
+            }else if( this.type == "input" ){
             	this.element.val(label) ;
-            }else if ( this.type == 'button' ){
+            }else if ( this.type == "button" ){
             	this.element.html(label) ;
             }
         },
@@ -266,16 +266,16 @@
          * @function
          * @param icons 图标路径
          * @example
-         * $('#btn').omButton('changeIcons',{
-         *     left: 'images/help.png',
-         *     right: 'images/edit_add.png'
+         * $("#btn").omButton("changeIcons",{
+         *     left: "images/help.png",
+         *     right: "images/edit_add.png"
          * });
          */
         changeIcons : function( icons ){
         	if( !this.options.disabled ){
 	            if( icons ){
-	            	icons.left?this.element.css( 'backgroundImage','url( '+icons.left+' )' ):null;
-	            	icons.right?this.element.next().attr( 'src',icons.right ):null;
+	            	icons.left?this.element.css( "backgroundImage","url( "+icons.left+" )" ):null;
+	            	icons.right?this.element.next().attr( "src",icons.right ):null;
 	            }
             }
         },
@@ -284,23 +284,23 @@
         	$el.closest(".om-btn").after($el).remove();
         },
         _addClass : function( state ){
-        	this.element.parent().parent().addClass( 'om-state-'+state );
+        	this.element.parent().parent().addClass( "om-state-"+state );
         },
         _removeClass : function( state ){
-        	this.element.parent().parent().removeClass( 'om-state-'+state );
+        	this.element.parent().parent().removeClass( "om-state-"+state );
         },
         _initButton : function(){
         	var options = this.options,
         	    label = this._getLabel(),
         	    element = this.element;
         	
-            element.removeClass('om-btn-icon om-btn-only-icon')
+            element.removeClass("om-btn-icon om-btn-only-icon")
                 .next("img").remove();
         	
         	if( options.width > 10 ){
-        		element.css( 'width',parseInt( options.width )-10 );
+        		element.css( "width",parseInt( options.width )-10 );
         	}
-        	if( this.type == 'a' || this.type == 'button' ){
+        	if( this.type == "a" || this.type == "button" ){
         	    element.html( label );
         	}else{
         	    element.val( label );
@@ -308,28 +308,28 @@
         	
         	if( options.icons.left ){
         	    if( label ){
-        	        element.addClass( 'om-btn-icon' ).css( 'background-image','url('+options.icons.left+')' );
+        	        element.addClass( "om-btn-icon" ).css( "background-image","url("+options.icons.left+")" );
         	    }else{
-        	        element.addClass( 'om-btn-only-icon' ).css('background-image','url('+options.icons.left+')' );
+        	        element.addClass( "om-btn-only-icon" ).css("background-image","url("+options.icons.left+")" );
         	    }
         	}
         	if( options.icons.right ){
-        	    if( label != '' ){
-        	        $( '<img>' ).attr( 'src',options.icons.right ).css( {'vertical-align':'baseline','padding-left':'3px'} ).insertAfter( element );
+        	    if( label != "" ){
+        	        $( "<img>" ).attr( "src",options.icons.right ).css( {"vertical-align":"baseline","padding-left":"3px"} ).insertAfter( element );
         	    }else{
-        	        $( '<img>' ).attr( 'src',options.icons.right ).css( 'vertical-align','baseline' ).insertAfter( element );
+        	        $( "<img>" ).attr( "src",options.icons.right ).css( "vertical-align","baseline" ).insertAfter( element );
         	    }
             }
         },
         _getLabel : function(){
         	return this.options.label || this.element.html() || this.element.text() || this.element.val();
         },
-        _determineButtonType: function() {
+        _initElemType: function() {
     		if ( this.element.is("input") ) {
     			this.type = "input";
     		}  else if ( this.element.is("a") ) {
     			this.type = "a";
-    		} else if ( this.element.is('button') ){
+    		} else if ( this.element.is("button") ){
     			this.type = "button";
     		}
     	}
