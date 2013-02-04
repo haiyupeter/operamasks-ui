@@ -65,7 +65,7 @@
     background-color: transparent;
 }
 .om-grid div.bDiv tr.evenRow {
-    background-color: #E8EEF7;
+    background-color: #F7F7F7;
 }
 
 .om-grid div.nDiv td {
@@ -280,7 +280,7 @@
 	/* common cell properties*/ {
 	text-align: left;
 	border:0px;
-	border-right: 1px solid #BDCBE8;
+	border-right: 1px solid #DDD;
 	overflow: hidden;
 	padding-left: 0;
 	padding-right: 0;
@@ -364,7 +364,7 @@ div.colCopy {
 }
 
 .om-grid div.bDiv td {
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #f7f7f7;
 	vertical-align: top;
 	white-space: nowrap;
 	cursor: default;
@@ -464,9 +464,7 @@ div.colCopy {
 
 /* end novstripe */
 .om-grid div.pDiv {
-	border-bottom: 0px;
-	border-left: 0px;
-	border-right: 0px;
+	border: 0;
 	overflow: hidden;
 	white-space: nowrap;
 	position: relative;
@@ -621,8 +619,8 @@ div.pGroup {
 .om-grid div.mDiv {color:#15428B;}
 .om-grid div.tDiv {background: url("images/grid/tool-bg.png") repeat-x scroll 0 0 transparent;}
 .om-grid div.sDiv {background: #fafafa url(images/grid/bg.gif) repeat-x top;}
-.om-grid div.hDiv {background: #fafafa url(images/grid/head-bg.png) repeat-x bottom;border-top: 1px solid #C8C4BF;border-bottom: 1px solid #C8C4BF;}
-.om-grid div.pDiv {background: url(images/grid/pager-bg.png) repeat-x 0 0;}
+.om-grid div.hDiv {background: #fafafa url(images/grid/head-bg.gif) repeat-x bottom;border-top: 1px solid #C8C4BF;border-bottom: 0;}
+.om-grid div.pDiv {background: url(images/grid/pager-bg.gif) repeat-x 0 0;}
 
 .om-grid .pFirst {background-position: 3px 2px;}
 .om-grid .pLast {background-position: -15px 2px;}
@@ -633,7 +631,7 @@ div.pGroup {
 .om-widget-content .bDiv .om-state-hover, .om-widget-content .bDiv .om-state-highlight {color: #000000;}
 .om-widget-content .bDiv .om-state-hover {background-color:#D9EBF5}
 .om-grid div.hDiv {color:#000;/*for IE6*/zoom:1;}
-.om-grid div.hDiv .om-state-hover{background: #fafafa url(images/grid/head-bg.png) repeat-x bottom;color:#000;}
+.om-grid div.hDiv .om-state-hover{background: #fafafa url(images/grid/head-bg.gif) repeat-x bottom;color:#000;}
 .om-grid div.pDiv div.pButton.om-state-hover{background-image: url("images/om-icons-hover.png"); border : 1px solid #8ea9d5;background-color: #d3e2ff;border-radius : 2px;cursor: pointer;}
 .om-grid div.pDiv div.pButton.om-stat-hover span{width: 19px;height: 19px;border-top: 1px solid #fff;border-left: 1px solid #fff;}
 .om-grid .om-state-default {border: 1px solid #C8C4BF;}
