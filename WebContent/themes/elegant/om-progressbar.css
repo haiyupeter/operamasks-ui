@@ -8,5 +8,5 @@
  * http://docs.jquery.com/UI/Progressbar#theming
  */
 .om-progressbar { height:14px; }
-.om-progressbar .om-progressbar-value {height:100%; }
+.om-progressbar .om-progressbar-value {height:100%;background:#e4f0fb; }
 .om-progressbar .om-progressbar-text {text-align: center; position: absolute;}
