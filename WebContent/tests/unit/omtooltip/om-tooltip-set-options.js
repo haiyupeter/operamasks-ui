@@ -273,11 +273,11 @@
         var target = $('.tip').filter(function(){
             return $(this).css('display') == 'block';
         });
-        equal(target.find('.tip-body').html() == $('#aaa').html() , true,'通过contentEL属性配置提示框内容');
+        equal(target.find('.tip-body').find('#aaa').html() == $('#aaa').html() , true,'通过contentEL属性配置提示框内容');
        
         $('#options').omTooltip({
             contentEL : '#contentEL'
         });
-        equal(target.find('.tip-body').html() == $('#contentEL').html() , true,'重新初始化指定contentEL');
+        equal(target.find('.tip-body').find("#contentEL").html() == $('#contentEL').html() , true,'重新初始化指定contentEL');
     });
 }(jQuery));
