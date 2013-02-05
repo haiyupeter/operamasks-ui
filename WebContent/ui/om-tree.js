@@ -588,7 +588,7 @@
             self.element
                 .find(".tree-checkbox")
                 .filter(filter_config).each(function(i,name){
-                    nodes.push(self.element.data("nodes")[$(self).parent().attr("id")]);
+                    nodes.push(self.element.data("nodes")[$(this).parent().attr("id")]);
                 });
             return nodes;
         },
