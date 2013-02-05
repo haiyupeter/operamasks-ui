@@ -278,7 +278,6 @@
         _runNoEffect : function(slider,index){
             var _self = this,
             	vars = this._getSliderVars(slider),
-            	opts = this.options,
                 items = slider.find('ul.om-slider-content:first').children();
             items.each(function(n){
                 var $child = $(this);

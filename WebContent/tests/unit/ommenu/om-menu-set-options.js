@@ -17,7 +17,7 @@
             $('#minWidth').omMenu("show",this);
         });
         var length = $('#minWidth').outerWidth();
-        equal(length > 150,true,"menu[minWidth:150]");
+        equal(length , 150,true,"menu[minWidth:150]");
         
         element = $('#minWidth').omMenu({
             minWidth : 180
@@ -26,7 +26,7 @@
             $('#minWidth').omMenu("show",this);
         });
         length = $('#minWidth').outerWidth();
-        equal(length > 180,true,"menu[minWidth:180]");
+        equal(length , 180,true,"menu[minWidth:180]");
     });
     
     test( "{ maxWidth }", function() {

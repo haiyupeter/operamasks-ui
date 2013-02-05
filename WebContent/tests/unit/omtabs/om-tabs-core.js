@@ -5,7 +5,7 @@ var el,
     active;
     
 var omTabs_defaults = {
-	tabHeight: 25,
+	tabHeight: 27,
 	tabWidth: 80
 };
 

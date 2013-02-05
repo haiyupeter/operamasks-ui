@@ -80,15 +80,15 @@ test("doLayout", function() {
 	expect(5);
 	
 	el = $("#tab-method-doLayout").omTabs({closable:true,width:'100'});
-	var scrollBar = $(".om-tabs-headers span" , el);
+	var scrollBar = $(".om-tabs-headers>span" , el);
 	ok(scrollBar.eq(0).hasClass("om-tabs-scroll-left") , "宽度不够长，出现页签左滚动箭头");
 	ok(scrollBar.eq(1).hasClass("om-tabs-scroll-right") , "宽度不够长，出现页签右滚动箭头");
 	el.omTabs("closeAll");
-	scrollBar = $(".om-tabs-headers span" , el);
+	scrollBar = $(".om-tabs-headers>span" , el);
 	ok(scrollBar.eq(0).hasClass("om-tabs-scroll-left") , "closeAll之后，页签左滚动箭头依然存在");
 	ok(scrollBar.eq(1).hasClass("om-tabs-scroll-right") , "closeAll之后，页签右滚动箭头依然存在");
 	el.omTabs("doLayout");
-	equal($(".om-tabs-headers span" , el).length , 0 , "doLayout之后，页签多余的左右两个滚动箭头都消失了");
+	equal($(".om-tabs-headers>span" , el).length , 0 , "doLayout之后，页签多余的左右两个滚动箭头都消失了");
 });
 
 test("getActivated", function() {

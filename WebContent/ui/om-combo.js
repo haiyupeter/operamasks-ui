@@ -625,7 +625,7 @@
         	var self = this, options = self.options, 
         	    inputEl = self.textInput, valueInput = self.element,
           	    dropList = self.dropList.scrollTop(0).css('height','auto'),
-         	    valuedItem,
+         	    valuedItem = null,
          	    nowValue = valueInput.val(),
          	    $listRows = dropList.find('.om-combo-list-row'),
          	    allItems = self._getAllOptionsBeforeFiltered().removeClass('om-helper-hidden om-state-hover');

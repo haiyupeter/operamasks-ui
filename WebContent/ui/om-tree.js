@@ -162,7 +162,7 @@
                 onDblClick = options.onDblClick,
                 onRightClick = options.onRightClick,
                 onDrag =options.onDrag,
-                onSelect = options.onSelect,
+//                onSelect = options.onSelect,
                 onDrop = options.onDrop;
             target.find("span").bind("click",function(e){
             	var node = self.element.data("nodes")[$(this).parent().attr("id")];
@@ -223,9 +223,9 @@
                     	$(this).removeClass("treenode-droppable");
                     },
                     onDrop : function(source, event) {
-                        var pnode,bnode,$item = source;
+                        var pnode = null,bnode = null,$item = source;
                         var $drop = this;
-                        var $list = $drop.find(">ul");
+//                        var $list = $drop.find(">ul");
                         $(this).removeClass("treenode-droppable");
                         $item.css("left", "");
                         $item.css("top", "");
@@ -585,7 +585,7 @@
             var self = this,
                 nodes = [];
             var filter_config = checked?".checkbox_full":":not(.checkbox_full)";
-            this.element
+            self.element
                 .find(".tree-checkbox")
                 .filter(filter_config).each(function(i,name){
                     nodes.push(self.element.data("nodes")[$(this).parent().attr("id")]);
@@ -634,15 +634,14 @@
          * $('#myTree').omTree('unselect',target);
          */
         unselect: function(target) {
-            var self = this;
             var node = $("#" + target.nid);
             //var a = $(" >span >a", node);
             //a.removeClass("selected");
             $(" >span", node).removeClass("selected");
-            var oldSelected = self.element.data("selected");
+            var oldSelected = this.element.data("selected");
             var curSelected = node.attr("id");
             if( oldSelected == curSelected) {
-                self.element.data("selected", "");
+                this.element.data("selected", "");
             }
         },
         /**
@@ -1224,7 +1223,7 @@
          */  
         modify: function(target, newNode, pNode) {
         	if(target&&newNode){
-        		var self = this, nextNode = $("#" + target.nid).next(), bNode;
+        		var self = this, nextNode = $("#" + target.nid).next(), bNode = null;
                 pNode = pNode || this.findByNId(self.element.data("nodes")["pid" + target.nid]);
                 if(nextNode.is("ul") || nextNode.is("li"))
                     bNode = self.findByNId(nextNode.attr("id"));

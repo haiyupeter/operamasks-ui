@@ -289,12 +289,13 @@
 		_createRegionProxy : function(panel,showCollapsTrigger){
 			var _self = this;
 			var proxyHtml = "";
+			var $proxy = null;
 			if(showCollapsTrigger){
 				proxyHtml = "<div class=\"om-borderlayout-proxy om-borderlayout-trigger-proxy-"+panel.region+"\" proxy=\""+panel.region+"\">" +
 							"<div class=\"om-borderlayout-expand-trigger\">"+
 							"</div>"+
 							"</div>";
-				var $proxy = $(proxyHtml);
+				$proxy = $(proxyHtml);
 				if(panel.region == "west" || panel.region == "east"){
 					$proxy.width(_self.options.spacing);
 				} else if(panel.region == "north" || panel.region == "south"){
@@ -313,7 +314,7 @@
 							"</div>"+
 							"</div>"+
 							"</div>";
-				var $proxy = $(proxyHtml);
+				$proxy = $(proxyHtml);
 				(function(panel){
 					$proxy.find(".panel-tool-expand").hover(function(){
 						$(this).toggleClass("panel-tool-expand-hover");
@@ -322,9 +323,11 @@
 					});
 				})(panel);
 			}
-			$proxy.hover(function(){
-				$(this).toggleClass("om-borderlayout-proxy-hover");
-			}).appendTo(this.element);
+			if ($proxy) {
+			    $proxy.hover(function(){
+			        $(this).toggleClass("om-borderlayout-proxy-hover");
+			    }).appendTo(this.element);
+			}
 		},
 		// 构建布局框架
 		_buildRegion : function() {
