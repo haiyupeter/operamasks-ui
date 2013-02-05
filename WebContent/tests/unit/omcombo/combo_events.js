@@ -32,7 +32,7 @@ test("{onError event}",function(){
 	element.next("input").focus();
 	stop();
 	setTimeout(function(){
-		equal($('#onError-span').text(),"请求数据出错，错误消息：Not Found");
+		equal($('#onError-span').text(),"请求数据出错，错误消息：/operamasks-ui/tests/unit/omcombo/combo4.test1");
 		start();
 	},5000);
 
