@@ -10,7 +10,7 @@
                          {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
                          {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
         });
-        var height = $('#height').parent().parent().height();
+        var height = $('#height').parent().parent().outerHeight();
        equal(height,200,"grid的高度为200px");
     });
     test( "{ autoFit: true }", function() {
@@ -23,7 +23,7 @@
                          {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 250, sortable : true} ]
         });
         //设置autoFit为true的时候会重新计算grid列宽，根据width宽度决定
-        var width = $('#autoFit').parent().parent().width();
+        var width = $('#autoFit').parent().parent().outerWidth();
         equal(width,300,"grid宽度为300px");
     });
     
@@ -35,7 +35,7 @@
                          {header : '地区', name : 'city', width : 120, align : 'left', sortable : true}, 
                          {header : '地址', name : 'address', align : 'left', width : 'autoExpand', autoExpandMin : 150, sortable : true} ]
         });
-        var width = $('#width').parent().parent().width();
+        var width = $('#width').parent().parent().outerWidth();
        equal(width,350,"grid宽度为350px");
     });
     

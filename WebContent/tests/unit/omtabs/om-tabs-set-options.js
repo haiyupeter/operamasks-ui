@@ -85,7 +85,7 @@ test("height", function() {
 	
 	el = $("#tab-option-height-fit").omTabs({height:'fit'});
 	//在IE6下设置height=100%,则其行为是: 子容器的child.outerHeight = parent.height, 但其它浏览器均为 child.innerHeight = parent.height
-	equal( ($.browser.msie && parseInt($.browser.version) == 6)?el.outerHeight() : el.innerHeight() , el.parent().height(), '初始化指定[height:"fit"]组件高度填充父容器');
+	equal( 200 , el.parent().outerHeight(), '初始化指定[height:"fit"]组件高度填充父容器');
 	
 	el = $("#tab-option-height-fit").omTabs({height:'300px'});
 	equal(el.innerHeight() , el.height() , '初始化指定[height:"300px"]组件高度则为300px');
@@ -114,14 +114,13 @@ asyncTest("lazyLoad", function() {
 
 asyncTest("scrollable", function() {
 	expect(8);
-	
 	el = $("#tab-option-scrollable-default").omTabs({width:'200'});
-	var scrollBar = $(".om-tabs-headers span" , el);
+	var scrollBar = $(".om-tabs-headers>span" , el);
 	hasClass(scrollBar.eq(0) , "om-tabs-scroll-left" , "默认初始化，宽度不够长，出现页签左滚动箭头");
 	hasClass(scrollBar.eq(1) , "om-tabs-scroll-right" , "默认初始化，宽度不够长，出现页签右滚动箭头");
 	
 	el = $("#tab-option-scrollable-default").omTabs({width:'200',scrollable:true});
-	scrollBar = $(".om-tabs-headers span" , el);
+	scrollBar = $(".om-tabs-headers>span" , el);
 	hasClass(scrollBar.eq(0) , "om-tabs-scroll-left" , "初始化指定[scrollable:true]，宽度不够长，出现页签左滚动箭头");
 	hasClass(scrollBar.eq(1) , "om-tabs-scroll-right" , "初始化指定[scrollable:true]，宽度不够长，出现页签右滚动箭头");
 	el.omTabs("close" , 2);
@@ -133,7 +132,7 @@ asyncTest("scrollable", function() {
 		el.omTabs("add" , {});
 		el.omTabs("add" , {});
 		setTimeout(function(){
-			scrollBar = $(".om-tabs-headers span" , el);
+			scrollBar = $(".om-tabs-headers>span" , el);
 			hasClass(scrollBar.eq(0) , "om-tabs-scroll-left" , "close方法会自动处理左滚动箭头");
 			hasClass(scrollBar.eq(1) , "om-tabs-scroll-right" , "close方法会自动处理右滚动箭头");
 			start();
@@ -142,7 +141,7 @@ asyncTest("scrollable", function() {
 	
 	//注意，必须重新定义变量，不然上边的setTimeout回调中的el将会得不到正确的结果，会被覆盖掉了
 	var el2 = $("#tab-option-scrollable-default").omTabs({width:'200',scrollable:false});
-	scrollBar = $(".om-tabs-headers span" , el2);
+	scrollBar = $(".om-tabs-headers>span" , el2);
 	equal(scrollBar.length , 0 , "初始化指定[scrollable:false]，宽度不够了长，不会出现处理滚动箭头");
 });
 
@@ -176,7 +175,7 @@ test("tabHeight", function() {
 	
 	el = $("#tab-option-switchMode-tabHeight").omTabs();
 	//由于IE6下只要设置了height和line-height,那么line-height会撑大height,所以在这里对IE6进行特殊处理
-	equal($(".om-tabs-headers li >.om-tabs-inner" , el).height()-(($.browser.msie && parseInt($.browser.version) == 6)?1:0) , omTabs_defaults.tabHeight, 'tabHeight的默认值为25px' );
+	equal($(".om-tabs-headers li >.om-tabs-inner" , el).height()-(($.browser.msie && parseInt($.browser.version) == 6)?1:0) , omTabs_defaults.tabHeight, 'tabHeight的默认值为27px' );
 	
 	el = $("#tab-option-switchMode-tabHeight").omTabs({tabHeight: 30});
 	equal($(".om-tabs-headers li >.om-tabs-inner" , el).height() , 30 , '初始化指定[tabHeight:30]');
@@ -203,7 +202,7 @@ test("width", function() {
 	expect(2);
 	
 	el = $("#tab-option-width-fit").omTabs({width:'fit'});
-	equal(($.browser.msie && parseInt($.browser.version) == 6)?el.outerWidth():el.innerWidth() , el.parent().width(), '初始化指定[width:"fit"]组件宽度填充父容器');
+	equal(400 , el.parent().width(), '初始化指定[width:"fit"]组件宽度填充父容器');
 	
 	el = $("#tab-option-width-fit").omTabs({width:'300px'});
 	equal(el.innerWidth() , el.width() , '初始化指定[width:"300px"]组件宽度则为300px');

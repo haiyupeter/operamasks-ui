@@ -116,23 +116,23 @@
     	},1000);
     });
     
-    test( "{cancleEdit ,取消编辑状态}", function() {
+    test( "{cancelEdit ,取消编辑状态}", function() {
     	expect(2);
-    	var element = $('#cancleEdit').omGrid(options1);
+    	var element = $('#cancelEdit').omGrid(options1);
     	stop();
     	setTimeout(function(){
     		element.find('tr:eq(0)').dblclick();
     		var editorview = element.next('.grid-edit-view');
     		equal( editorview.attr('style').indexOf('none') == -1,true,"{组件显示正常}");
-    		$('#cancleEdit').omGrid('cancleEdit');
-    		equal( editorview.attr('style').indexOf('none') != -1,true,"{cancleEdit执行后编辑组件隐藏}");
+    		$('#cancelEdit').omGrid('cancelEdit');
+    		equal( editorview.attr('style').indexOf('none') != -1,true,"{cancelEdit执行后编辑组件隐藏}");
     		start();
     	},1000);
     });
     
-    test( "{cancleChanges  ,取消修改}", function() {
+    test( "{cancelChanges  ,取消修改}", function() {
     	expect(2);
-    	var element = $('#cancleChanges').omGrid(options1);
+    	var element = $('#cancelChanges').omGrid(options1);
     	stop();
     	setTimeout(function(){
     		element.find('tr:eq(0)').dblclick();
@@ -142,7 +142,7 @@
     		input3.val(1000);
     		editorview.find('div.gird-edit-btn').children().eq(0).find('input').click();
     		equal(element.find('tr:eq(0) td:eq(4) div').html() == '1000',true,'{取消前值为修改值}');
-    		$('#cancleChanges').omGrid('cancleChanges');
+    		$('#cancelChanges').omGrid('cancelChanges');
     		equal(element.find('tr:eq(0) td:eq(4) div').html() != '1000',true,'{取消后恢复原值}');
     		start();
     	},1000);
