@@ -168,8 +168,8 @@
              */
             tabWidth : 'auto',
             /**
-             * 单个页签头部的高度，可取值为'auto'。默认为25像素。
-             * @default 25
+             * 单个页签头部的高度，可取值为'auto'。默认为27像素。
+             * @default 27
              * @type Number,String
              * @example
              * $('#make-tab').omTabs({tabHeight: 'auto'});
@@ -624,9 +624,9 @@
 	            var item = new OmPanel(target || $('<div></div>')[0], cfg);
 	            items.push(item);
 	        });
-            $lis = $self.find('>div.om-tabs-headers ul li');
-	        $('<span class="left-placeholder"></span>').insertBefore($lis.eq(0));
-	        $('<span class="right-placeholder"></span>').insertAfter($lis.eq($lis.length - 1));
+            $ul = $self.find('>div.om-tabs-headers ul');
+            $ul.prepend($('<span class="left-placeholder"></span>'));
+            $ul.append($('<span class="right-placeholder"></span>'));
 	        if(loadInfo.length > 0){
             	//一旦存储在loadInfo中，表示该tab还没有进行加载(设置了懒加载)，一旦tab加载完了，相应的要删掉其loadInfo信息
 	            this.loadInfo = loadInfo;
@@ -701,7 +701,8 @@
 	            options = this.options,
 	            _history = this.history;
 	            $headers = $self.find('>div.om-tabs-headers'),
-	            $lis = $headers.find('ul li');
+	            $ul = $headers.find('>ul');
+	            $lis = $ul.find('>li');
 	        $lis.addClass('om-state-default om-corner-top');
 	        $lis.each(function(n){
 	            //$('a.om-icon-close', $(this)).remove(); 暂时去掉
@@ -738,7 +739,10 @@
 	            }
 	        });
 	        var aHeight = $lis.find('a.om-tabs-inner').height();
-	        $lis.parent().css({
+	        if (!aHeight) {
+	            aHeight = 27;
+	        }
+	        $ul.css({
 	            'height' : ++ aHeight ,
 	            'line-height' : aHeight + 'px'
 	        });
@@ -1066,10 +1070,10 @@
 	            config.url = undefined;
 	            config.content = config.content || 'New Content ' + tabId;
 	        }
-	        if (options.onBeforeAdd && _self._trigger("onBeforeAdd",null,config/*title, content, url, closable , index*/) == false) {
+	        if (options.onBeforeAdd && _self._trigger("onBeforeAdd", null, config) == false) {
 	            return false;
 	        }
-	        var $nHeader=$('<li class="om-state-default om-corner-top"> </li>');
+	        var $nHeader = $('<li class="om-state-default om-corner-top"> </li>');
 	        var $anchor = $('<a class="om-tabs-inner"></a>').html(config.title).attr({
 	                href : '#' + tabId,
 	                tabId : tabId
@@ -1096,10 +1100,10 @@
 	            header : false,
 	            closed : true,
                 onSuccess : function(data, textStatus, xmlHttpRequest){
-    				_self._trigger("onLoadComplete",null,tabId);
+    				_self._trigger("onLoadComplete", null, tabId);
 	        	},
 	        	onError : function(xmlHttpRequest, textStatus, errorThrown){
-	        		_self._trigger("onLoadComplete",null,tabId);
+	        		_self._trigger("onLoadComplete", null, tabId);
 	        	}
 	        };
 	        var contentPos = {},
@@ -1112,6 +1116,9 @@
 	        }
 			$.extend(cfg, config , contentPos);
 	        if(config.url && (options.lazyLoad || config.lazyLoad)){
+	            if (!_self.loadInfo) {
+	                _self.loadInfo = [];
+	            }
                 _self.loadInfo.push({
                     tabId: tabId,
                     url: config.url,
@@ -1126,7 +1133,7 @@
 	        } else {
 	            //insert at index
 	            items.splice(config.index, 0, $nPanel);
-	            $ul.children().eq(config.index).before($nHeader);
+	            $ul.find(">li").eq(config.index).before($nHeader);
 	        }
 	        //om-tabs在添加很多个页签后，当页签头的宽度超过5000px的时候出现换行。所以这里进行宽度自动扩充
             if($ul.innerWidth()-$nHeader.position().left<500){
@@ -1135,7 +1142,12 @@
 	        //every time we add or close an tab, check if scroller is needed.
 	        this._checkScroller() && this._enableScroller();
 	        
-	        items[config.index].addClass("om-state-nobd").parent().insertAfter(config.index > 0 ?  $self.find('>div.om-tabs-panels').children().eq(config.index - 1) : 0);
+	        var itemEL = items[config.index].addClass("om-state-nobd").parent();
+	        if (config.index > 0) {
+	            itemEL.insertAfter($self.find('>div.om-tabs-panels').children().eq(config.index - 1));
+	        } else {
+	            $self.find('>div.om-tabs-panels').append(itemEL);
+	        }
 	        
 	        this._purgeEvent();
 	        this._buildEvent();
