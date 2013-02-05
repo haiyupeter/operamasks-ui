@@ -17,7 +17,7 @@
             $('#minWidth').omMenu("show",this);
         });
         var length = $('#minWidth').outerWidth();
-       equal(length > 150,true,"menu的属性设置正确");
+        equal(length, 150,true,"menu的最小宽度设置正确");
     });
     
     test( "{ maxWidth: 200 }", function() {

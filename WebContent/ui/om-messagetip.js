@@ -97,7 +97,7 @@
                 });
             messageTip.slideDown('slow');
             
-            var timer;
+            var timer = null;
             function timeout(time){
             	timer = setTimeout(function(){
                     $.omMessageTip._close(result);

@@ -30,11 +30,11 @@
                          {header : '地址', name : 'address', align : 'left', width : 'autoExpand'} ]
         });
         var height = element.parent().parent().height();
-        equal(height,200,"{height:200}");
+        equal(height + 2,200,"{height:200}");
         
         element = $('#options').omGrid({height:300});
         height = element.parent().parent().height();
-        equal(height,300,"{height:300}");
+        equal(height + 2,300,"{height:300}");
     });
     
     test( "{ autoFit }", function() {
@@ -47,12 +47,12 @@
                          {header : '地区', name : 'city', width : 200}, 
                          {header : '地址', name : 'address' , width : 300} ]
         });
-        calWidth(element , [35 , 70 , 105] , "{autoFit:true},各列宽度设置[100,200,300],实际结果[35,70,105],比值一样");
+        calWidth(element , [34 , 69 , 103] , "{autoFit:true},各列宽度设置[100,200,300],实际结果[34,69,103],比值一样");
         
         $('#options').omGrid({
         	autoFit : false
         });
-        equal(element.parent().parent().width() , 300 , "{width:300}");
+        equal(element.parent().parent().outerWidth() , 300 , "{width:300}");
         calWidth(element , [100 , 200 , 300] , "{autoFit:false},各列宽度设置[100,200,300],实际结果[100,200,300]");
     });
     
@@ -64,14 +64,14 @@
                          {header : '地区', name : 'city', width : 120}, 
                          {header : '地址', name : 'address', align : 'left', width : 'autoExpand'} ]
         });
-        var width = $('#options').parent().parent().width();
+        var width = $('#options').parent().parent().outerWidth();
         equal(width,350,"{width:350}");
-        calWidth(element , [100 , 120 , 42] , "{width:350},各列宽度设置[100,120,autoExpand],实际结果[100,120,41]");
+        calWidth(element , [100 , 120 , 38] , "{width:350},各列宽度设置[100,120,autoExpand],实际结果[100,120,38]");
         
         element = $('#options').omGrid({
         	width : 400
         });
-        calWidth(element , [100 , 120 , 92] , "{width:350},各列宽度设置[100,120,autoExpand],实际结果[100,120,91]");
+        calWidth(element , [100 , 120 , 88] , "{width:350},各列宽度设置[100,120,autoExpand],实际结果[100,120,88]");
     });
     
     test( "{ showIndex }", function() {

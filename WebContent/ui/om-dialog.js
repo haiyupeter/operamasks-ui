@@ -620,7 +620,7 @@ $.omWidget("om.omDialog", {
 		var self = this,
 			options = self.options,
 			doc = $(document),
-			heightBeforeDrag;
+			heightBeforeDrag = 0;
 
 		function filteredUi(ui) {
 			return {

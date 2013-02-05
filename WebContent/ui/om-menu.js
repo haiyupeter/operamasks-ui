@@ -543,7 +543,7 @@
             self._hideChildren(hoverLast);
         },
         _showRight : function(){
-            var self = this , element = self.element,curLi;
+            var self = this , element = self.element,curLi = null;
             var parentA = element.find("li.om-menu-item-hover") , 
                 parentLi = parentA.eq(parentA.length - 1);
             if(parentLi.attr("aria-haspopup") == "true"){

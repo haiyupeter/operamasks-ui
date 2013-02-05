@@ -726,7 +726,7 @@
              * 创建子日历的事件
              */
             this._buildEvent = function() {
-                var cc = this,i,
+                var cc = this,
                     con = $('#' + cc.id), 
                     fOpts = cc.father.options;
 
@@ -776,7 +776,6 @@
                         cc.timmer.hidePopup();
                     } catch(exp) {
                     }
-                    var $source = $(e.target);
                     var in_str = cc.father._templetShow(cc.nav_html, {
                         the_month:cc.month + 1,
                         the_year:cc.year
@@ -868,7 +867,7 @@
                     s = '',
                     startweekday = (new Date(cc.year + '/' + (cc.month + 1) + '/01').getDay() + fOpts.startDay + 7) % 7,//当月第一天是星期几
                     k = cc._getNumOfDays(cc.year, cc.month + 1) + startweekday,
-                    i, _td_s;
+                    i;
                 
                 
                 var _dis_days = [];
@@ -933,13 +932,12 @@
          */
         TimeSelector:function(ft, father) {
             //属性
-            var date = father.options.date,
-                i18n = $.om.lang.omCalendar;
+            var i18n = $.om.lang.omCalendar;
             
             this.father = father;
             this.fcon = ft.parent('.om-cal-box');
             this.popupannel = this.fcon.find('.om-selectime');//点选时间的弹出层
-            if (typeof date == 'undefined') {//确保初始值和当前时间一致
+            if (typeof father.options.date == 'undefined') {//确保初始值和当前时间一致
                 father.options.date = new Date();
             }
             this.time = father.options.date;
@@ -975,8 +973,8 @@
              */
             this.showPopup = function(instr) {
                 var self = this;
-                this.popupannel.html(instr);
-                this.popupannel.removeClass('hidden');
+                self.popupannel.html(instr);
+                self.popupannel.removeClass('hidden');
                 var status = self.status;
                 var active_cls = "om-state-active om-state-nobd";
                 self.ctime.find('span').removeClass(active_cls);
@@ -1037,8 +1035,7 @@
              * get(status)
              */
             this.get = function(status) {
-                var self = this;
-                var time = self.time;
+                var time = this.time;
                 switch (status) {
                     case 'h':
                         return time.getHours();
