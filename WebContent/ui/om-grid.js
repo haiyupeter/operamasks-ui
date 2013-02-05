@@ -540,9 +540,7 @@
         resize : function(position){
         	var self = this,
         		ops = this.options,
-        		$grid = this.element.closest('.om-grid'),
-		 		width,
-		 		height;
+        		$grid = this.element.closest('.om-grid');
 
 		 	position = position || {};
 		 	ops.width = position.width || arguments[0] || ops.width;
@@ -571,10 +569,8 @@
             $grid.children('.bDiv').outerHeight($grid.height() - headerHeight - pagerHeight - titleHeight);
         },
         _resetWidth : function(){
-        	var ops = this.options,
-        		cms = this._getColModel(),
+        	var cms = this._getColModel(),
         		autoExpandColIndex = -1,
-        		$grid = this.element.closest('.om-grid'),
         		$thead = $('thead',this.hDiv),
         		allColsWidth = 0;
         		
@@ -766,8 +762,6 @@
                 return true;
             }
             var el=this.element,
-                op=this.options,
-                grid = el.closest('.om-grid'),
                 pageData = this.pageData,
                 nowPage=pageData.nowPage,
                 totalPages=pageData.totalPages,
@@ -863,8 +857,7 @@
                 data : param,
                 dataType : 'json',
                 success : function(data,textStatus,request) {
-                    var onSuccess = op.onSuccess;
-                    if (typeof(onSuccess) == 'function') {
+                    if (typeof(op.onSuccess) == 'function') {
                         self._trigger("onSuccess",null,data,textStatus,request);
                     }
                     self._addData(data);
@@ -898,7 +891,6 @@
             var op = this.options,
                 el = this.element,
                 grid = el.closest('.om-grid'),
-                pageStat = $('.pPageStat', grid),
                 preProcess = op.preProcess,
                 pageData=this.pageData;
             //预处理
@@ -914,8 +906,7 @@
             if(op.limit<=0){
                 return;
             }
-            var el=this.element,
-                pager=this.pager,
+            var pager=this.pager,
                 pControl=$('.pControl',pager),
                 pageData = this.pageData,
                 nowPage=pageData.nowPage,
@@ -937,7 +928,6 @@
             var self=this,
                 el=this.element,
                 op=this.options,
-                grid=el.closest('.om-grid'),
                 gridHeaderCols = this._getHeaderCols(),
                 rows=this.pageData.data.rows || [],
                 colModel=this._getColModel(),
@@ -1019,7 +1009,6 @@
         },
         //滚动水平滚动条时让表头和表体一起滚动（如果没有这个方法则只有表体滚动，表头不会动，表头和表体就对不齐了）
         _bindScrollEnvent:function(){
-            var self = this;
             this.tbody.closest('.bDiv').scroll(function(){
                 self.hDiv.scrollLeft($(this).scrollLeft());
             });
@@ -1092,20 +1081,14 @@
             return this.pageData.data.rows[index];
         },
         _rowSelect:function(index){
-             var el=this.element,
-                op=this.options,
-                tbody=$('tbody',el),
-                tr=this._getTrs().eq(index),
+             var tr=this._getTrs().eq(index),
                 chk=$('td.checkboxCol span.checkbox',tr);
             tr.addClass('om-state-highlight');
             chk.addClass('selected');
             this._trigger("onRowSelect",null,index,this._getRowData(index));
         },
         _rowDeSelect:function(index){
-            var el=this.element,
-                op=this.options,
-                tbody=$('tbody',el),
-                tr=this._getTrs().eq(index),
+            var tr=this._getTrs().eq(index),
                 chk=$('td.checkboxCol span.checkbox',tr);
             tr.removeClass('om-state-highlight');
             chk.removeClass('selected');
@@ -1125,7 +1108,7 @@
                 bDiv=self.tbody.closest('.bDiv'),
                 grid=self.element.closest('.om-grid'),
                 $titleDiv = this.titleDiv,
-                differWidth;
+                differWidth = 0;
                 
             $('th[axis^="col"] div',self.thead).omResizable({
                 handles: 'e',//只可水平改变大小

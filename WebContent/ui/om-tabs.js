@@ -1241,9 +1241,11 @@
 	        });
 	        if (totalWidth > $ul.parent().innerWidth()) {
 	            if (!$ul.hasClass('om-tabs-scrollable')) {
-	                var $leftScr = $('<span></span>').insertBefore($ul).addClass('om-tabs-scroll-left');
-	                var $rightScr = $('<span></span>').insertAfter($ul).addClass('om-tabs-scroll-right');
-	                var mgn = ($ul.height() - $leftScr.height())/2;
+	                //var $leftScr = $('<span></span>').insertBefore($ul).addClass('om-tabs-scroll-left');
+	                $('<span></span>').insertBefore($ul).addClass('om-tabs-scroll-left');
+	                //var $rightScr = $('<span></span>').insertAfter($ul).addClass('om-tabs-scroll-right');
+	                $('<span></span>').insertAfter($ul).addClass('om-tabs-scroll-right');
+	                //var mgn = ($ul.height() - $leftScr.height())/2;
 	              /*  $leftScr.add($rightScr).css({ // scroller in vertical center.
 	                    'marginTop' : mgn,
 	                    'marginBottom' : mgn
@@ -1307,7 +1309,6 @@
 	                $self.clearQueue();
 	                return;
 	            }
-	            var flag = false;
 	            //fix distance.
 	            distance = (distance > 0) ? '+=' + Math.min(scrOffset.left - $ul.offset().left, distance) : 
 	                '-=' + Math.min($li.offset().left + $li.outerWidth(true) - scrOffset.left, Math.abs(distance));
@@ -1345,8 +1346,7 @@
 	     * 设置第config.index个页签的数据源，如果设置了cofnig.url，则数据源为远程数据，如果设置了config.content数据源为普通文本。
 	     */
 	    _setDataSource : function(config /*content, url, index*/) {
-	        var $self = this.element,
-	        	items = this.items,
+	        var items = this.items,
 	        	options = this.options,
 	        	tabId = this._getAlter(config.index);
 	        config.url = $.trim(config.url);
@@ -1368,8 +1368,7 @@
 	     * 重新加载第n个页签的内容
 	     */
 	    _reload : function(index , url , content) {
-	    	var $self = this.element,
-	        	items = this.items,
+	    	var items = this.items,
 	        	tabId = this._getAlter(index);
 	        if(url){
 	        	this._removeLoadInfo(tabId);

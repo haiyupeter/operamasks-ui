@@ -74,7 +74,7 @@
         	}
         });
         
-        var btnScrollTimer;
+        var btnScrollTimer = null;
         $elem.parent().scroll(function(){
         	if(self._triggered){
         		if(btnScrollTimer){
@@ -206,26 +206,25 @@
 	    	getChanges : function(type){
 	    		var data = {"update":[] , "insert":[] , "delete":[]},
 	    			reqType = type? type : "update",
-	    			cData = this._changeData,
-	    			i;
+	    			cData = this._changeData;
 	    			
 	    		if(reqType === "update"){
 	    			var uData = cData[reqType];
-	    			for(i in uData){
+	    			for(var i in uData){
 	    				own.call(uData , i) && data[reqType].push($.extend(true , {} , this._rowIdDataMap[i] , uData[i]));
 	    			}
 	    			reqType = type? type : "insert";
 	    		}
 	    		if(reqType === "insert"){
 	    			var iData = cData[reqType];
-	    			for(i in iData){
+	    			for(var i in iData){
 	    				own.call(iData , i) && data[reqType].push(iData[i]);
 	    			}
 	    			reqType = type? type : "delete";
 	    		}
 	    		if(reqType === "delete"){
 	    			var dData = cData[reqType];
-	    			for(i in dData){
+	    			for(var i in dData){
 	    				own.call(dData , i) && data[reqType].push(dData[i]);
 	    			}
 	    		}
@@ -499,7 +498,7 @@
         	var axis = $(this).attr('axis'),
 				model,
 				$cell = $tr.find("td:eq("+index+")"),
-				name,//编辑组件input域的名字，这是校验所必需的
+				//name,//编辑组件input域的名字，这是校验所必需的
 				compKey;//指editComps的key
         	if(axis.substring(0,3)=='col'){
              	var colIndex=axis.substring(3);
@@ -630,7 +629,7 @@
 		var $elem = self.element,
 			$bDiv = $elem.parent(),
 			ev = self._editView,
-			$editView = ev.view,
+//			$editView = ev.view,
 			$editBtn = ev.editBtn,
 			$editRow = ev.editRow,
 			pos = {};
@@ -692,8 +691,8 @@
 	function _showEditView(self , tr){
 		var $elem = self.element,
 			$editView = $elem.next(".grid-edit-view"),
-			$editBtn,
-			$editRow,
+//			$editBtn,
+//			$editRow,
 			position = $(tr).position(),
 			scrollTop = $elem.parent().scrollTop(),
 			ops = self.options;
@@ -772,7 +771,7 @@
 			$editView = view.view,
 			scrollLeft = $elem.parent().scrollLeft(),
 			$editBtn = view.editBtn,
-			updated;
+			updated = false;
 		
 		$editView.width($elem.outerWidth());
 		self._getHeaderCols().each(function(index , th){
@@ -834,7 +833,7 @@
 	
 	function _saveEditValue(self , tr){
 		var $tr = $(tr),
-			$editRow = self._editView.editRow,
+//			$editRow = self._editView.editRow,
 			comps = self._editComps,
 			rowId = _getRowId($tr),
 			index = self._getTrs().index($tr),
@@ -870,7 +869,7 @@
 				html = newValue==undefined?"" : newValue;
 			}
 			// $tr.find("td[abbr='"+key+"'] >div").html(html); // avoid xss attack, use the following line instead
-                        $tr.find("td[abbr='"+key+"'] >div")[0].innerHTML = html
+                        $tr.find("td[abbr='"+key+"'] >div")[0].innerHTML = html;
 		});
 	}
 	

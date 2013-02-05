@@ -46,8 +46,8 @@
 			},
 			_buildTableHead : function(){
 				var op=this.options,
-	                $elem=this.element,
-	                $grid = $elem.closest('.om-grid'),
+//	                $elem=this.element,
+//	                $grid = $elem.closest('.om-grid'),
 	                cm= op.colModel,
 	                allColsWidth = 0, //colModel的宽度
 	                autoExpandColIndex = -1,
