@@ -1,4 +1,4 @@
-operamasks-ui Ê¾Àı¹¤³Ì
+operamasks-ui ç¤ºä¾‹å·¥ç¨‹
 ======================
-1¡¢½«operamasks-ui.war²¿Êğµ½·ûºÏServlet 2.5/JSP2.1µÄËùÓĞWebÈİÆ÷»òJ2EEÓ¦ÓÃ·şÎñÆ÷
-2¡¢ÒÔTomcat6.0ÎªÀı£¬war°ü²¿Êğ³É¹¦ºó·ÃÎÊ£ºhttp://127.0.0.1:8080/operamasks-ui/
+1ã€å°†operamasks-ui.waréƒ¨ç½²åˆ°ç¬¦åˆServlet 2.5/JSP2.1çš„æ‰€æœ‰Webå®¹å™¨æˆ–J2EEåº”ç”¨æœåŠ¡å™¨
+2ã€ä»¥Tomcat6.0ä¸ºä¾‹ï¼ŒwaråŒ…éƒ¨ç½²æˆåŠŸåè®¿é—®ï¼šhttp://127.0.0.1:8080/operamasks-ui/
