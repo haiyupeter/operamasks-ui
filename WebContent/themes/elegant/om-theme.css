@@ -54,7 +54,7 @@
 
 /* Interaction states
 ----------------------------------*/
-.om-state-default, .om-widget-content .om-state-default, .om-widget-header .om-state-default { border: 1px solid #86A3C4; background: #e6e6e6 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #1E1E1E; }
+.om-state-default, .om-widget-content .om-state-default, .om-widget-header .om-state-default { border: 1px solid #E1E1E1; background: #e6e6e6 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #1E1E1E; }
 .om-state-default a, .om-state-default a:link, .om-state-default a:visited { text-decoration: none; }
 .om-state-hover, .om-widget-content .om-state-hover, .om-widget-header .om-state-hover, .om-state-focus, .om-widget-content .om-state-focus, .om-widget-header .om-state-focus { background: #6C99DD; font-weight: normal; color: #ffffff; }
 .om-state-hover a, .om-state-hover a:hover { color: #1E1E1E; text-decoration: none; }
@@ -66,7 +66,7 @@
 .om-empty-text{ color: #CCCCCC; }
 /* Interaction Cues
 ----------------------------------*/
-.om-state-highlight, .om-widget-content .om-state-highlight, .om-widget-header .om-state-highlight  {border: 1px solid #fcefa1; background: #1C62CB; color:#ffffff; }
+.om-state-highlight, .om-widget-content .om-state-highlight, .om-widget-header .om-state-highlight  {border: 1px solid #fcefa1; background: #fcefa1; color:#ffffff; }
 .om-state-highlight a, .om-widget-content .om-state-highlight a,.om-widget-header .om-state-highlight a { color: #363636; }
 .om-state-disabled, .om-widget-content .om-state-disabled, .om-widget-header .om-state-disabled { opacity: .6; filter:Alpha(Opacity=60); background-image: none; }
 
