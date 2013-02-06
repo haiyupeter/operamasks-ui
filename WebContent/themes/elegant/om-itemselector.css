@@ -6,8 +6,8 @@
     margin:5px auto;
 }
 .om-itemselector .header{
-	background: url("images/itemselector/header_bg.png") repeat-x;
-	border-bottom: 1px solid #99A8BD;
+	background: url("images/itemselector/header_bg.png") repeat-x scroll 0 0 transparent;
+	border-bottom: 1px solid #E1E1E1;
 	height: 26px;
 }
 .om-itemselector .header span.checkbox{
@@ -18,13 +18,12 @@
 	line-height: 26px;
 }
 .om-itemselector .om-itemselector-leftpanel, .om-itemselector .om-itemselector-rightpanel{
-    border: 1px solid #99A8BD;
+    border: 1px solid #E1E1E1;
 }
 
 .om-itemselector .om-itemselector-items{
     overflow: hidden;
     width: 100%;
-    background-color: #DBE2EC;
     position: relative;
 }
 .om-itemselector-items dl{
