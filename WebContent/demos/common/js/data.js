@@ -128,7 +128,7 @@ omUiDemos.components[1]={
                  {title: '自定义信息展现', height: 330, url: 'form/validation/custom-messages.html'},
                  {title: '校验规则', height: 330, url: 'form/validation/custom-method.html'},
                  {title: '复杂表单校验', height : 330, url : 'form/validation/complex-form.html'},
-                 {title: '类淘宝注册页面', height : 330, url : 'form/validation/taobao.html' , java : 'servlet/OmButtonServlet.java'},
+                 {title: '类淘宝注册页面', height : 500, url : 'form/validation/taobao.html' , java : 'servlet/OmButtonServlet.java'},
                  {title: '校验信息国际化', height : 330, url : 'form/validation/internation.html'},
                  {title: '支持参数的校验信息', height : 330, url : 'form/validation/sendParam.html'},
                  {title: 'rules自定义', height : 330, url : 'form/validation/rules.html'},
@@ -136,7 +136,7 @@ omUiDemos.components[1]={
                  {title: 'ajax提交表单校验', height : 330, url : 'form/validation/ajaxSubmit.html', java : 'servlet/OmButtonServlet.java'}
              ]},{name: 'omAjaxSubmit', samples: [
                  {title: 'Ajax提交', height : 350, url : 'form/ajax-submit.html'},
-                 {title: '综合', height : 700, url : 'form/ajax-form.html'}
+                 {title: '综合', height : 560, url : 'form/ajax-form.html'}
              ]},{name: 'omFileUpload',samples: [
                 {title: '基本功能',height:300, url: 'form/fileupload/simple.html', java: 'servlet/OmFileUploadServlet.java'},
                 {title: '限制上传文件类型',height:300, url: 'form/fileupload/file-type.html', java: 'servlet/OmFileUploadServlet.java'},
@@ -245,9 +245,9 @@ omUiDemos.components[5]={
               	{title: '淘宝的商品搜索', height: 460, url: '../example/suggestion/taobao/search.html',java:'servlet/TaobaoSearchServlet.java'}                            
             ]},{name: 'validation', samples: [
             	{title: '登录校验', height: 430, url: '../example/validation/login-validate.html',java:'servlet/LoginValidateServlet.java'},
-              	{title: '校验样式1', height: 530, url: '../example/validation/validate-style1.html', java : 'servlet/OmButtonServlet.java'},                              
-              	{title: '校验样式2', height: 460, url: '../example/validation/validate-style2.html', java : 'servlet/OmButtonServlet.java'},                              
-              	{title: '京东商城注册', height: 560, url: '../example/validation/360-reg.html', java : 'servlet/OmRegValidateServlet.java'},                              
+              	{title: '校验样式1', height: 730, url: '../example/validation/validate-style1.html', java : 'servlet/OmButtonServlet.java'},                              
+              	{title: '校验样式2', height: 560, url: '../example/validation/validate-style2.html', java : 'servlet/OmButtonServlet.java'},                              
+              	{title: '京东商城注册', height: 620, url: '../example/validation/360-reg.html', java : 'servlet/OmRegValidateServlet.java'},                              
               	{title: '当当网注册', height: 530, url: '../example/validation/dangdang-reg.html', java : 'servlet/OmRegValidateServlet.java'}                              
             ]},{name: 'tree', samples: [
                 {title: '下拉菜单', height: 560, url: '../example/tree/combotree/combotree.html', java: 'servlet/OmTreeServlet.java'},        
