@@ -637,4 +637,4 @@ div.pGroup {
 .om-grid .om-state-default {border: 1px solid #C8C4BF;}
 .om-grid .om-widget .om-widget-content{border: 1px solid #C8C4BF;}
 .om-grid .titleDiv {background: #fafafa url(images/grid/tool-bg.png) repeat-x bottom;color:#000;}
-.om-grid .titleDiv .titleContent {color:#15428B;font-weight: bold;padding:6px;}
+.om-grid .titleDiv .titleContent {font-weight: bold;padding:6px;}
