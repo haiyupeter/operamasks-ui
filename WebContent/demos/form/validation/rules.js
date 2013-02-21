@@ -33,7 +33,7 @@ $(function(){
      * ruleName : isDecimal
      */
     $.validator.addMethod("isDecimal", function(value , element ,params) {
-        var a = element , b = params;
+        //var a = element , b = params;
         return checkDecimal(value);
     }, $.omRules.lang.notDecimal);
     /**
@@ -291,7 +291,7 @@ function checkIP(str){
  */
 function checkURL(str){
     if (str.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i) == null) {
-        return false
+        return false;
     }
     else {
         return true;
@@ -344,13 +344,13 @@ function checkDate(str){
  * 验证时间(10:57:10)
  */
 function checkTime(str){
-    var value = str.match(/^(\d{1,2})(:)?(\d{1,2})\2(\d{1,2})$/)
+    var value = str.match(/^(\d{1,2})(:)?(\d{1,2})\2(\d{1,2})$/);
     if (value == null) {
         return false;
     }
     else {
         if (value[1] > 24 || value[3] > 60 || value[4] > 60) {
-            return false
+            return false;
         }
         else {
             return true;
