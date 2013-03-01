@@ -1010,7 +1010,7 @@
         //滚动水平滚动条时让表头和表体一起滚动（如果没有这个方法则只有表体滚动，表头不会动，表头和表体就对不齐了）
         _bindScrollEnvent:function(){
             this.tbody.closest('.bDiv').scroll(function(){
-                self.hDiv.scrollLeft($(this).scrollLeft());
+              $(this).prev().scrollLeft($(this).scrollLeft());
             });
         },
         //绑定行选择/行反选/行单击/行双击等事件监听
