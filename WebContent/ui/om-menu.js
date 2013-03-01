@@ -126,7 +126,7 @@
                 triggerEle.cancelBubble=true; //IE
             }else{
                 var buttomWidth = parseInt($(triggerEle).css('borderBottomWidth').replace('px',''));
-                top = offSet.top +  $(triggerEle).height() + (buttomWidth != 'NaN'?buttomWidth:0) + 1; //1px作为调节距离
+                top = offSet.top +  $(triggerEle).height() + (isNaN(buttomWidth)?0:buttomWidth) + 1; //1px作为调节距离
                 left = offSet.left +  1;
             }
             var parent = element.parent();
