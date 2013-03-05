@@ -101,12 +101,12 @@ $.fn.position = function( options ) {
 		var elem = $( this ),
 			elemWidth = elem.outerWidth(),
 			elemHeight = elem.outerHeight(),
-			marginLeft = parseInt( $.curCSS( this, "marginLeft", true ) ) || 0,
-			marginTop = parseInt( $.curCSS( this, "marginTop", true ) ) || 0,
+			marginLeft = parseInt( $.css( this, "marginLeft", true ) ) || 0,
+			marginTop = parseInt( $.css( this, "marginTop", true ) ) || 0,
 			collisionWidth = elemWidth + marginLeft +
-				( parseInt( $.curCSS( this, "marginRight", true ) ) || 0 ),
+				( parseInt( $.css( this, "marginRight", true ) ) || 0 ),
 			collisionHeight = elemHeight + marginTop +
-				( parseInt( $.curCSS( this, "marginBottom", true ) ) || 0 ),
+				( parseInt( $.css( this, "marginBottom", true ) ) || 0 ),
 			position = $.extend( {}, basePosition ),
 			collisionPosition;
 
@@ -219,13 +219,13 @@ $.om.omPosition = {
 if ( !$.offset.setOffset ) {
 	$.offset.setOffset = function( elem, options ) {
 		// set position first, in-case top/left are set even on static elem
-		if ( /static/.test( $.curCSS( elem, "position" ) ) ) {
+		if ( /static/.test( $.css( elem, "position" ) ) ) {
 			elem.style.position = "relative";
 		}
 		var curElem   = $( elem ),
 			curOffset = curElem.offset(),
-			curTop    = parseInt( $.curCSS( elem, "top",  true ), 10 ) || 0,
-			curLeft   = parseInt( $.curCSS( elem, "left", true ), 10)  || 0,
+			curTop    = parseInt( $.css( elem, "top",  true ), 10 ) || 0,
+			curLeft   = parseInt( $.css( elem, "left", true ), 10)  || 0,
 			props     = {
 				top:  (options.top  - curOffset.top)  + curTop,
 				left: (options.left - curOffset.left) + curLeft
