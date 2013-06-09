@@ -831,6 +831,7 @@
                 grid = el.closest('.om-grid'),
                 op = this.options,
                 pageStat = $('.pPageStat', grid);
+            $('.pPageStat', grid).css('color','');
             if (!op.dataSource) {
                 $('.pPageStat', grid).html(op.emptygMsg);
                 return false;
