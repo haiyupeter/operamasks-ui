@@ -1148,7 +1148,7 @@
 		},
 		//获取所有真正的行，此方法一样可以兼容其它插件。
 		_getTrs:function(){
-			return this.tbody.find("tr.om-grid-row:not([_delete]=true)");		
+			return this.tbody.find("tr.om-grid-row:not([_delete='true'])");		
 		},
         //public methods
         /**
