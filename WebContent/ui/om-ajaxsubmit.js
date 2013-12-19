@@ -202,7 +202,7 @@ $.fn.omAjaxSubmit = function(options) {
      * 并且你的表单中含有image时，你才需要设置它为true<br/>
      * @blocked
      */
-	var n,v,a = this.formToArray(options.semantic);
+	var a = this.formToArray(options.semantic);
     /**
      * ajax提交中的附加数据，以JSON的形式组成(key/value)。如果value是数组，将会被展开;如果value是函数，将会被求值。
      * @type JSON
@@ -213,14 +213,13 @@ $.fn.omAjaxSubmit = function(options) {
      */
 	if (options.data) {
 		options.extraData = options.data;
-		for (n in options.data) {
+		for (var n in options.data) {
 			if(options.data[n] instanceof Array) {
 				for (var k in options.data[n]) {
 					a.push( { name: n, value: options.data[n][k] } );
 				}
-			}
-			else {
-				v = options.data[n];
+			} else {
+				var v = options.data[n];
 				v = $.isFunction(v) ? v() : v; // if value is fn, invoke it
 				a.push( { name: n, value: v } );
 			}
