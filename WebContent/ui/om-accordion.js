@@ -472,7 +472,7 @@ $.omWidget( "om.omAccordion", {
             options = this.options,
         	$headers = $acc.find(options.header),
         	cfg = [],
-        	first;
+        	first = null;
         $headers.find("a").each(function(n){
             var href  = this.getAttribute('href', 2);
             var hrefBase = href.split( "#" )[ 0 ],
@@ -627,7 +627,7 @@ $.omWidget( "om.omAccordion", {
         isExpand = false,
         expandIndex=-1,
         anim = false,
-        speed;
+        speed = 'normal';
     	if(options.disabled !== false && len === 0){
     		return ;
     	}
