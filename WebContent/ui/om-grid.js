@@ -873,16 +873,14 @@
                         if (typeof(onError) == 'function') {
                             onError(XMLHttpRequest, textStatus, errorThrown);
                         }
-                        return false;
                     } catch (e) {
                         // do nothing 
-                        return false;
                     } finally {
                         loadMask.hide();
                         self.loading = false;
                         self.pageData.data={rows:[],total:0};//出错时重新设置，不然self.pageData.data可能为undefined，其它地方就要做多余空处理
                     }
-                    
+                    return false;
                 }
             });
         },
