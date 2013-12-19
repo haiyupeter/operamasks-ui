@@ -644,11 +644,8 @@
         _buildTableHead:function(){
             var op=this.options,
                 el=this.element,
-                grid = el.closest('.om-grid'),
                 cms=this._getColModel(),
                 allColsWidth = 0, //colModel的宽度
-                indexWidth = 0, //colModel的宽度
-                checkboxWidth = 0, //colModel的宽度
                 autoExpandColIndex = -1;
                 thead=$('<thead></thead>');
                 tr=$('<tr></tr>').appendTo(thead);
@@ -876,13 +873,14 @@
                         if (typeof(onError) == 'function') {
                             onError(XMLHttpRequest, textStatus, errorThrown);
                         }
+                        return false;
                     } catch (e) {
                         // do nothing 
+                        return false;
                     } finally {
                         loadMask.hide();
                         self.loading = false;
                         self.pageData.data={rows:[],total:0};//出错时重新设置，不然self.pageData.data可能为undefined，其它地方就要做多余空处理
-                        return false;
                     }
                     
                 }
@@ -890,8 +888,6 @@
         },
         _addData:function(data){
             var op = this.options,
-                el = this.element,
-                grid = el.closest('.om-grid'),
                 preProcess = op.preProcess,
                 pageData=this.pageData;
             //预处理
