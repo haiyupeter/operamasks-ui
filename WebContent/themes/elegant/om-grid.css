@@ -470,6 +470,13 @@ div.colCopy {
 	position: relative;
 }
 
+.om-grid div.pDiv .pLimits{
+	float: left;
+    height: 20px;
+    margin: 2px 5px;
+    width: 50px;
+}
+
 .om-grid div.pDiv div.pDiv2 {
 	margin :4px 4px 4px -1px;
 	text-align:center;

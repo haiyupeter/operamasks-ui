@@ -237,6 +237,14 @@
              */
             limit:15,
             /**
+             * 每页数据条数切换器，将显示为分页条上的一个下拉框。<b>注意：如果设成false则不显示下拉框</b>。
+             * @type Array
+             * @default [15,30,50]
+             * @example
+             * $('.selector').omGrid({limits : [10,20,30]});
+             */
+            limits:[15,30,50],
+            /**
              * 显示在分页条上“上一页”和“下一页”按钮之间的文字。在显示时其中的{totalPage}会被替换为总页数，{index}会被替换为一个输入框（默认显示当前的页号，用户可以输入任意数字然后回车来跳转到指定的页）。
              * @name omGrid#pageText
              * @type String
@@ -720,6 +728,18 @@
                 '<div class="btnseparator"></div>'+
                 '<div class="pGroup"><span class="pPageStat"></span></div>'+
             	'</div>');
+            var limits=op.limits;
+            if($.isArray(limits) && limits.length>0){
+            	var limitsHtml='<select class="pLimits">';
+            	$.each(limits,function(){
+            		limitsHtml+='<option>'+this+'</option>';
+            	});
+            	limitsHtml+='</select><div class="btnseparator"></div>';
+            	$(limitsHtml).prependTo($('.pDiv2',pDiv)).change(function(){
+            		op.limit=$(this).val();
+                    self.reload(1);
+            	});
+            }
             var pageText = $.om.lang._get(op,"omGrid","pageText").replace(/{totalPage}/, '<span>1</span>').replace(/{index}/, '<input type="text" size="4" value="1" />');
             $('.pControl',pDiv).html(pageText);
             el.parent().after(pDiv);
