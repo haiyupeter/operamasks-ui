@@ -999,26 +999,24 @@
         	return this.hDiv.find("th[axis]");
         },
         _buildRowCellValues:function(colModel,rowData,rowIndex){
-            var len=colModel.length,values=[];
-            for(var i=0;i<len;i++){
+            var values=[];
+            for(var i=0,len=colModel.length;i<len;i++){
                 var c=colModel[i],
-                	v,
-                	r=c.renderer;
-                if(c.name.indexOf(".") > 0){
-                	var properties = c.name.split("."),
-                		j = 1,
-                		length = properties.length,
-                		v = rowData[properties[0]];
-                	while(j<length && v && (v=v[properties[j++]]) != undefined){}
+                	r=c.renderer,
+                	n=c.name,
+                	v;
+                try{
+                	v=eval("rowData."+n);
+                }catch(ex){
+                	$.error("Unknown field '"+n+"' of rowData!");
                 }
-                if(v == undefined){
-                	v = rowData[c.name] == undefined? "" : rowData[c.name];
+                if(v === undefined){
+                	v = "";
                 }
                 if(typeof r === 'function'){
                     v=r(v,rowData,rowIndex);
                 }
                 values[i]=v;
-                v = null;
             }
             return values;
         },
