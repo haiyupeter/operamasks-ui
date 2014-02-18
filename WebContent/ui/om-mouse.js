@@ -13,6 +13,10 @@
  */
 (function( $, undefined ) {
 
+var mouseHandled = false;
+$( document ).mouseup( function( e ) {
+	mouseHandled = false;
+});
 $.omWidget("om.omMouse", {
 	options: {
 		cancel: ':input,option',
@@ -41,13 +45,14 @@ $.omWidget("om.omMouse", {
 	// other instances of mouse
 	_mouseDestroy: function() {
 		this.element.unbind('.'+this.widgetName);
+		$(document)
+			.unbind('mousemove.'+this.widgetName, this._mouseMoveDelegate)
+			.unbind('mouseup.'+this.widgetName, this._mouseUpDelegate);
 	},
 
 	_mouseDown: function(event) {
 		// don't let more than one widget handle mouseStart
-		// TODO: figure out why we have to use originalEvent
-		event.originalEvent = event.originalEvent || {};
-		if (event.originalEvent.mouseHandled) { return; }
+		if( mouseHandled ) { return; }
 
 		// we may have missed mouseup (out of window)
 		(this._mouseStarted && this._mouseUp(event));
@@ -56,7 +61,7 @@ $.omWidget("om.omMouse", {
 
 		var self = this,
 			btnIsLeft = (event.which == 1),
-			elIsCancel = (typeof this.options.cancel == "string" ? $(event.target).closest(this.options.cancel).length : false);
+			elIsCancel = (typeof this.options.cancel == "string" && event.target.nodeName ? $(event.target).closest(this.options.cancel).length : false);
 		if (!btnIsLeft || elIsCancel || !this._mouseCapture(event)) {
 			return true;
 		}
@@ -93,7 +98,8 @@ $.omWidget("om.omMouse", {
 			.bind('mouseup.'+this.widgetName, this._mouseUpDelegate);
 
 		event.preventDefault();
-		event.originalEvent.mouseHandled = true;
+		
+		mouseHandled = true;
 		return true;
 	},
 
@@ -126,7 +132,7 @@ $.omWidget("om.omMouse", {
 			this._mouseStarted = false;
 
 			if (event.target == this._mouseDownEvent.target) {
-			    $.data(event.target, this.widgetName + '.preventClickEvent', true);
+				$.data(event.target, this.widgetName + '.preventClickEvent', true);
 			}
 
 			this._mouseStop(event);
