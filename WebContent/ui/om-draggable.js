@@ -589,12 +589,12 @@ $.omWidget("om.omDraggable", $.om.omMouse, {
 });
 
 $.om.plugin.add("omDraggable", "cursor", {
-	onStart: function(ui, event) {
+	onStart: function(event, ui) {
 		var t = $('body'), o = $(this).data('omDraggable').options;
 		if (t.css("cursor")) o._cursor = t.css("cursor");
 		t.css("cursor", o.cursor);
 	},
-	onStop: function(ui, event) {
+	onStop: function(event, ui) {
 	    var drag = $(this).data('omDraggable');
 	    if(drag){
 	        var o = drag.options;
