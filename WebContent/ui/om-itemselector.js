@@ -485,7 +485,7 @@
         _moveItemsToTarget:function(selector,isLeftToRight){
             var self = this, fromPanel=isLeftToRight?this.leftPanel:this.rightPanel,
                 selectedItems=$('.om-itemselector-items>dl>dt'+selector,fromPanel);
-            if(selectedItems.size()==0)
+            if(selectedItems.length==0)
                 return;
             var toPanel=isLeftToRight?this.rightPanel:this.leftPanel,
                 op=this.options,

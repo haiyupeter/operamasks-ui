@@ -536,7 +536,7 @@
             if(opts.startSlide > 0 && (opts.effect == 'slide-h' || opts.effect == 'slide-v')){
                 // 考虑到slide的动画效果下如果设置startSlide>0需要计算startSlide前面的面板的大小。
                 // 如果面板里面包含img标签的话只有在图片下载完后(既window.onload事件)才能获得面板的大小。
-                $(window).load(function(){
+                $(window).bind('load',function(){
                     _initSlider($this,opts.startSlide);
                 });
             } else{

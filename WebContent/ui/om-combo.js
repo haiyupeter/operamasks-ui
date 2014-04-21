@@ -630,7 +630,7 @@
          	    $listRows = dropList.find('.om-combo-list-row'),
          	    allItems = self._getAllOptionsBeforeFiltered().removeClass('om-helper-hidden om-state-hover');
             
-        	if(allItems.size()<=0){ //如果下拉框没有数据
+        	if(allItems.length<=0){ //如果下拉框没有数据
                 return;
             }
             $listRows.removeClass('om-combo-selected');

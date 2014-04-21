@@ -275,7 +275,7 @@
                         if (dropList.css('display') !== 'none') {
                             self._selectNext();
                         } else {
-                            if (dropList.find('.' + suggestionRowClass).size() > 0) {
+                            if (dropList.find('.' + suggestionRowClass).length > 0) {
                                 dropList.show();
                             }
                         }
@@ -284,7 +284,7 @@
                         if (dropList.css('display') !== 'none') {
                             self._selectPrev();
                         } else {
-                            if (dropList.find('.' + suggestionRowClass).size() > 0) {
+                            if (dropList.find('.' + suggestionRowClass).length > 0) {
                                 dropList.show();
                             }
                         }
@@ -447,7 +447,7 @@
                 index = dropList.find('.' + suggestionHighLightClass).index(),
                 all = this._clear();
             index += 1;
-            if (index >= all.size()) {
+            if (index >= all.length) {
                 index = 0;
             }
             this._scrollToAndSelect(all,index,dropList);
@@ -458,12 +458,12 @@
                 all = this._clear();
             index-=1;
             if(index<0){
-                index=all.size()-1;
+                index=all.length-1;
             }
             this._scrollToAndSelect(all,index,dropList);
         },
         _scrollToAndSelect:function(all,index,dropList){
-        	if(all.size()<1){
+        	if(all.length<1){
         		return;
         	}
             var target = $(all.get(index)).addClass(suggestionHighLightClass);
@@ -601,7 +601,7 @@
                 }
             }
             var all = dropList.find('.' + suggestionRowClass);
-            if (all.size() > 0) {
+            if (all.length > 0) {
                 dropList.parent().css('left', parseInt(inputEl.offset().left)).css('top',inputEl.offset().top+inputEl.outerHeight());
                 var listWidth = this.options.listWidth;
                 if (!listWidth) {//没有定义

@@ -53,7 +53,7 @@
             	});
         }
         
-        var colCount= this._getHeaderCols().size();//总共列数
+        var colCount= this._getHeaderCols().length;//总共列数
         this.tbody.delegate('td.expenderCol >div','click',function(event){
             var _this = $(this),
                 $row = _this.closest('tr'),

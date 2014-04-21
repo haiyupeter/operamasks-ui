@@ -1034,7 +1034,7 @@
             if(!this.options.singleSelect){ //可以多选
                 // 全选/反选,不需要刷新headerChekcbox的选择状态
                 $('th.checkboxCol span.checkbox',this.thead).click(function(){
-                    var thCheckbox=$(this),trSize=self._getTrs().size();
+                    var thCheckbox=$(this),trSize=self._getTrs().length;
                     if(thCheckbox.hasClass('selected')){ //说明是要全部取消选择
                         thCheckbox.removeClass('selected');
                         for(var i=0;i<trSize;i++){

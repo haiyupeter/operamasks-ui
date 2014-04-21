@@ -482,11 +482,11 @@
 		},
 		_getRegion : function(region){
 			var $regionEl = this.element.find(">[region=\""+region+"\"]");
-			return $regionEl.size()>0?$regionEl:false;
+			return $regionEl.length>0?$regionEl:false;
 		},
 		_getRegionProxy : function(region){
 			var $proxyEl = this.element.find(">[proxy=\""+region+"\"]");
-			return $proxyEl.size()>0?$proxyEl:false;
+			return $proxyEl.length>0?$proxyEl:false;
 		},
 		_getPanelOpts : function(region){
 			for(var i = 0; i < this.options.panels.length; i++){
