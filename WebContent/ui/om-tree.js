@@ -863,6 +863,7 @@
          */
         setData: function(data) {
             this.options.dataSource = data;
+            this.refresh();
         },
         /* -------------------- expand and collapse node ------------------- */
         /**
