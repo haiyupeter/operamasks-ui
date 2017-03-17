@@ -1242,8 +1242,9 @@
                 if(page<0){
                     page = 1;
                 }
-                if(page>this.pageData.totalPages){
-                    page=this.pageData.totalPages;
+                var totalPages = this.pageData.totalPages;
+                if(page > totalPages && totalPages > 1){
+                    page=totalPages;
                 }
                 this.pageData.nowPage = page;
             }
